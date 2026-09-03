@@ -81,11 +81,13 @@ def run_locale(locale: str, topic: str) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--slot-index", type=int, default=0)
+    parser.add_argument("--locale", choices=("all", "us", "jp", "kr"), default="all")
     args = parser.parse_args()
     if not 0 <= args.slot_index <= 3:
         raise SystemExit("slot-index must be between 0 and 3")
-    results = [run_locale(locale, topic_for(locale, args.slot_index)) for locale in ("us", "jp", "kr")]
-    print(json.dumps({"slot_index": args.slot_index, "timezone": "Asia/Seoul", "results": results}, ensure_ascii=False, indent=2))
+    locales = ("us", "jp", "kr") if args.locale == "all" else (args.locale,)
+    results = [run_locale(locale, topic_for(locale, args.slot_index)) for locale in locales]
+    print(json.dumps({"slot_index": args.slot_index, "timezone": "Asia/Seoul", "locales": locales, "results": results}, ensure_ascii=False, indent=2))
     return 0 if all(bool(item.get("ok")) for item in results) else 1
 
 

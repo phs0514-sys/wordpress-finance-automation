@@ -242,14 +242,16 @@ def create_article(settings: Settings, locale: str, topic: str) -> tuple[str, st
         json.dumps({"locale": locale, "topic": topic, "language": language, "preferred_source_types": sources, "source_checklist": source_checklist}, ensure_ascii=False),
         use_web_search=True,
     )
-    article_text = openai_text(
-        settings,
-        "You are an independent high-trust finance writer. Write an original article in the requested language; do not imitate or translate a single source. Use only claims supported by the evidence brief. Copy only complete source URLs that appear verbatim in the brief; never invent, truncate, or guess URLs. Include every useful official URL from the brief in a clean references list. Return exactly one json object with string fields title, excerpt, html and an array field sources. The html must be complete, valid, balanced HTML (no dangling tags, cut-off sentences, or markdown), include an information date, risks, and a clear not-financial-advice notice. Keep the article concise enough to finish completely.",
-        json.dumps({"output_format": "json", "locale": locale, "topic": topic, "brief": brief}, ensure_ascii=False),
-        max_output_tokens=4200,
-        json_output=True,
-    )
-    article = json.dumps(parse_article_output(article_text), ensure_ascii=False)
+    article_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "brief": brief}, ensure_ascii=False)
+    article_instructions = "You are an independent high-trust finance writer. Write an original article in the requested language; do not imitate or translate a single source. Use only claims supported by the evidence brief. Copy only complete source URLs that appear verbatim in the brief; never invent, truncate, or guess URLs. Include every useful official URL from the brief in a clean references list. Return exactly one json object with string fields title, excerpt, html and an array field sources. The html must be complete, valid, balanced HTML (no dangling tags, cut-off sentences, or markdown), include an information date, risks, and a clear not-financial-advice notice. Keep the article concise enough to finish completely."
+    article_text = openai_text(settings, article_instructions, article_input, max_output_tokens=4200, json_output=True)
+    try:
+        parsed_article = parse_article_output(article_text)
+    except ValueError:
+        # A transient truncated/non-JSON response should not consume the
+        # entire scheduled slot. Ask once more with a stricter JSON contract.
+        parsed_article = parse_article_output(openai_text(settings, article_instructions + " Output only valid JSON, with no preamble or code fence.", article_input, max_output_tokens=4200, json_output=True))
+    article = json.dumps(parsed_article, ensure_ascii=False)
     return article, brief
 
 
@@ -274,13 +276,18 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
             # Models can occasionally emit a non-JSON preamble despite the
             # structured-output request. Retry once with an even tighter
             # contract before treating the review as a failed run.
-            review = parse_json(openai_text(
-                settings,
-                review_instructions + " Use double quotes, no trailing commas, and do not wrap the object in backticks.",
-                review_input,
-                max_output_tokens=3000,
-                json_output=True,
-            ))
+            try:
+                review = parse_json(openai_text(
+                    settings,
+                    review_instructions + " Use double quotes, no trailing commas, and do not wrap the object in backticks.",
+                    review_input,
+                    max_output_tokens=3000,
+                    json_output=True,
+                ))
+            except (RuntimeError, ValueError):
+                # Treat an unparseable reviewer response as a failed gate and
+                # let the normal revision loop request a fresh review next.
+                review = {"score": 0, "pass": False, "issues": ["Reviewer response was not valid JSON"], "required_fixes": ["Recheck every claim and source against the evidence"], "rationale": ""}
         score = int(review.get("score", 0))
         if bool(review.get("pass")) and score >= settings.quality_threshold:
             return current, {"score": score, "attempts": attempt, "review": review}

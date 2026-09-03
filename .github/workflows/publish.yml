@@ -14,6 +14,10 @@ on:
         description: "KST slot: 0=08:00, 1=11:50, 2=16:00, 3=20:00"
         required: true
         default: "0"
+      locale:
+        description: "Locale to publish (all, us, jp, or kr)"
+        required: true
+        default: "all"
 
 permissions:
   contents: read
@@ -54,5 +58,5 @@ jobs:
         with:
           python-version: "3.12"
       - name: Publish all locales
-        run: python github_runner.py --slot-index "${{ inputs.slot_index || 0 }}"
+        run: python github_runner.py --slot-index "${{ inputs.slot_index || 0 }}" --locale "${{ inputs.locale || 'all' }}"
 

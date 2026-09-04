@@ -44,6 +44,6 @@ centered inline figures; no image-generation API key is needed. Topics are
 scored for realistic click opportunity, exclude overlapping posts from the last
 three days, may update an older URL when the intent is already owned, and record
 confidence-aware publish-slot performance for the weekly strategy file. Hard
-truth/technical gates can hold any score, and a three-failure kill switch pauses
-publishing without changing code.
+truth/technical gates can hold any score, and a three-failure (consecutive or
+within five runs) kill switch pauses publishing without changing code.
 

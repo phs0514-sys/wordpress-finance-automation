@@ -1065,56 +1065,33 @@ def validate_article_content(article: dict[str, Any], brief: dict[str, Any], tar
 
 
 def review_and_revise(settings: Settings, locale: str, topic: str, article: str, brief: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    """Luna reviews independently; Terra rewrites until the 90-point gate passes."""
     current = article
     review: dict[str, Any] = {}
     policy = quality_policy(brief)
+    fact_max = float(policy["weights"]["fact_accuracy"])
+    fact_floor = fact_max * float(policy["fact_floor"])
     for attempt in range(settings.max_revisions + 1):
         review_instructions = (
             "You are Luna, a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. "
             "Score exactly these dimensions and maxima: Fact accuracy /20, Original value /20, Search intent /15, SEO /10, Readability /10, Naturalness /10, Freshness /10, Layout /5. The total must equal 100. "
-            f"Use the intent policy {policy['name']} with weights {json.dumps(policy['weights'], ensure_ascii=False)}. Fact accuracy has a hard floor of {policy['weights'].get('fact_accuracy', 20) * policy.get('fact_floor', 0.90):.1f} points. "
-            "Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings are useful for search without keyword stuffing. Require at least two concrete, evidence-grounded additions from evidence.original_value that are not merely a paraphrase of the five benchmark pages. "
-            "Compare the draft with evidence.recent_3d_posts and fail it if the title, focus keyword, event/entity, or search intent materially overlaps a post from the last three days. Do not demand fixed word counts, source counts, image counts, FAQ counts, or category ratios."
+            f"Fact accuracy has a hard floor of {fact_floor:.1f} points. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice. "
+            "Require at least two concrete, evidence-grounded additions from evidence.original_value that are not merely paraphrases of the five benchmark pages. Fail material overlap with evidence.recent_3d_posts. Do not demand fixed word, source, image, or FAQ counts."
         )
-        # The Responses API's json_object mode requires the literal word
-        # `json` in the request input. Keep it lowercase to satisfy the API
-        # validator across model versions.
         review_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "draft": current, "evidence": brief}, ensure_ascii=False)
         try:
-            review = parse_json(openai_text(
-                settings,
-                review_instructions,
-                review_input,
-                max_output_tokens=3000,
-                json_output=True,
-                model=settings.research_model,
-                reasoning_effort=settings.research_reasoning,
-            ))
+            review = parse_json(openai_text(settings, review_instructions, review_input, max_output_tokens=3000, json_output=True, model=settings.research_model, reasoning_effort=settings.research_reasoning))
         except (RuntimeError, ValueError):
-            # Models can occasionally emit a non-JSON preamble despite the
-            # structured-output request. Retry once with an even tighter
-            # contract before treating the review as a failed run.
-            try:
-                review = parse_json(openai_text(
-                    settings,
-                    review_instructions + " Use double quotes, no trailing commas, and do not wrap the object in backticks.",
-                    review_input,
-                    max_output_tokens=3000,
-                    json_output=True,
-                    model=settings.research_model,
-                reasoning_effort=settings.research_reasoning,
-                ))
-            except (RuntimeError, ValueError):
-                # Treat an unparseable reviewer response as a failed gate and
-                # let the normal revision loop request a fresh review next.
-                review = {"score": 0, "pass": False, "issues": ["Reviewer response was not valid JSON"], "required_fixes": ["Recheck every claim and source against the evidence"], "rationale": ""}
-        score = int(review.get("score", 0))
-        original_value = brief.get("original_value", []) if isinstance(brief, dict) else []
-        original_count = review.get("originality_count")
+            review = {"score": 0, "pass": False, "issues": ["Luna review response was not valid JSON"], "required_fixes": ["Recheck every claim and source against the evidence"], "rationale": ""}
         try:
-            original_count = int(original_count)
+            score = int(review.get("score", 0))
         except (TypeError, ValueError):
-            original_count = len(original_value) if isinstance(original_value, list) else 0
+            score = 0
+        original_value = brief.get("original_value", []) if isinstance(brief, dict) else []
+        try:
+            original_count = int(review.get("originality_count", 0))
+        except (TypeError, ValueError):
+            original_count = 0
         if not isinstance(original_value, list) or len(original_value) < 2:
             original_count = 0
         else:
@@ -1125,17 +1102,38 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
         content_issues = validate_article_content(parse_json(current), brief)
         review["hard_gate_issues"] = content_issues
         fact_value = _breakdown_value(review["breakdown"], ("Fact accuracy", "fact_accuracy", "accuracy"))
-        fact_max = float(policy["weights"].get("fact_accuracy", 20))
-        fact_ok = fact_value is not None and fact_value >= fact_max * float(policy.get("fact_floor", 0.90))
-        review["fact_accuracy_floor"] = round(fact_max * float(policy.get("fact_floor", 0.90)), 1)
+        fact_ok = fact_value is not None and fact_value >= fact_floor
+        review["fact_accuracy_floor"] = round(fact_floor, 1)
         review["intent_policy"] = policy["name"]
-        if bool(review.get("pass")) and score >= settings.quality_threshold and fact_ok and not content_issues:
-            return current, {"score": score, "attempts": attempt, "review": review}
+        passed = bool(review.get("pass")) and score >= settings.quality_threshold and fact_ok and not content_issues
+        if passed:
+            final_prompt = (
+                "You are Luna performing the final independent fact gate. Return exactly one JSON object with score (0-100), pass (boolean), fact_accuracy (0-20), issues (array), and rationale. "
+                "Compare every concrete date, price, percentage, rule, and named claim with the supplied primary-source evidence and claim mapping. Fail unsupported claims, personalized professional advice, unsafe HTML, invalid links, and recent-topic overlap."
+            )
+            try:
+                final_review = parse_json(openai_text(settings, final_prompt, review_input, max_output_tokens=2200, json_output=True, model=settings.research_model, reasoning_effort=settings.research_reasoning))
+            except (RuntimeError, ValueError):
+                final_review = {"score": 0, "pass": False, "fact_accuracy": 0, "issues": ["Final Luna fact review was not valid JSON"]}
+            try:
+                final_score = int(final_review.get("score", 0))
+                final_fact = float(final_review.get("fact_accuracy", 0))
+            except (TypeError, ValueError):
+                final_score, final_fact = 0, 0.0
+            final_review["pass"] = bool(final_review.get("pass")) and final_score >= settings.quality_threshold and final_fact >= fact_floor
+            review["final_fact_review"] = final_review
+            if final_review["pass"]:
+                return current, {"score": score, "attempts": attempt, "review": review}
+            review["required_fixes"] = list(review.get("required_fixes", [])) + list(final_review.get("issues", []))
         if attempt == settings.max_revisions:
             break
-        current = openai_text(settings, "Revise only weak sections of this article. Apply every required_fix in the review, preserve supported facts, remove unsupported claims, add only complete URLs from the evidence, repair all HTML, and keep the language native and human. Preserve the SEO fields (title, slug, excerpt, seo) and improve layout/typography cues through clean semantic HTML rather than decorative AI-sounding filler. Return the complete revised JSON article with title, slug, excerpt, html, sources, and seo; return no prose outside the object.", json.dumps({"output_format": "json", "draft": current, "review": review, "evidence": brief}, ensure_ascii=False), max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning)
-    raise RuntimeError(f"Quality gate failed after {settings.max_revisions} revisions: {review}")
-
+        current = openai_text(
+            settings,
+            "You are Terra. Rewrite only the weak sections identified by Luna. Apply every required_fix, preserve supported facts, remove unsupported claims, add only complete verified URLs, repair all HTML, and keep the language native and human. Preserve title, slug, excerpt, and seo fields. Return the complete revised JSON article only.",
+            json.dumps({"output_format": "json", "draft": current, "review": review, "evidence": brief}, ensure_ascii=False),
+            max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning,
+        )
+    raise RuntimeError(f"Quality gate failed after {settings.max_revisions} Terra revisions: {review}")
 
 def wp_auth_header(settings: Settings) -> str:
     if settings.wp_mode == "self_hosted":

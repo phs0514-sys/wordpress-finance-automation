@@ -7,9 +7,9 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 1. Read 30–50 locale-specific Google Trending Searches and Google News RSS candidates, then score each opportunity by interest, velocity, search intent, SERP feasibility, title CTR potential, durability, and site fit rather than raw popularity alone. A weekly strategy file supplies learned category and publish-slot weights while preserving a 70/20/10 proven/adjacent/experiment mix.
 2. Use a web-search-backed research call to benchmark up to five leading result pages, official sources, and recent sources. Five is a target rather than a brittle minimum: a fast-moving story can publish with fewer trustworthy sources. The brief records common coverage, optional coverage, outdated claims, disagreements to verify, claim-to-source mappings, and original-value additions absent from the benchmark pages.
 3. Enforce a three-day hard exclusion for overlapping events, entities, primary keywords, and search intent. When an older URL already owns the intent and needs fresh facts, the research action can be `update`; otherwise the engine creates a new URL. A final pre-publish guard blocks near-duplicate titles.
-4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, optional FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to three related older posts.
+4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, optional FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to five related older posts.
 5. Generate and upload two distinct, topic-related PNG icons per article using only Python standard-library drawing; no image API is called. Both are compact, centered inline figures (`max-width: 360px`, responsive width) so they remain aligned and readable on mobile.
-6. Run a Terra editorial review followed by an independent Luna fact review, with intent-specific weights (news, evergreen, and comparison), a fact-accuracy floor, hard HTML/source/disclosure/noindex gates, and the three-day duplicate check. `85+` is the starting soft auto-publish target; `78–84` receives one targeted correction, while lower scores remain held. `MAX_REVISIONS` (default 4) bounds retries without overriding a hard gate.
+6. Use Luna for topic discovery, five-result SERP analysis, primary-source fact verification, and critical review; use Terra for drafting and every rewrite. The exact independent-review rubric is Fact accuracy 20, Original value 20, Search intent 15, SEO 10, Readability 10, Naturalness 10, Freshness 10, Layout 5. Publication requires `90+`, at least two evidence-grounded additions beyond the benchmark pages, a passed primary-source verification, passed final Luna fact review, and hard HTML/source/disclosure/noindex/three-day-duplicate gates. `MAX_REVISIONS` (default 4) bounds Terra rewrites without overriding a hard gate.
 7. Append article metadata, claim expirations, source usage, content/prompt/engine/strategy versions, control/optimized experiment assignment, cost tokens, and empty 24h/72h/7d/28d metric windows to `data/article_history.json`. Redacted article snapshots in `data/article_versions.json` support a human-invoked rollback; no credentials are stored.
 8. Run `daily_report.py` each morning to read publication status, WordPress.com stats, optional Search Console query/page/country/device data, and update the history windows. The report labels 24h/72h/7d/28d as Early/Preliminary/Main/Long-term signals, includes sample-size-aware diagnoses, and never treats missing GSC data as zero.
 9. Run `seo_health.py` before publishing to check HTTP 200, canonical/noindex, robots, sitemap, image/link integrity, and structured-data presence. A fresh critical snapshot pauses publishing until a human resumes it; the code never self-edits authentication or core workflows.
@@ -29,9 +29,9 @@ be powered on. The schedules are deliberately separated:
 
 - `publish.yml` keeps the legacy three-site publication slots at 08:00, 11:50,
   16:00, and 20:00 KST. It no longer runs the new sites.
-- `new-site-issue-cycle.yml` scans Google Trends/News every 30 minutes for the
+- `new-site-issue-cycle.yml` scans Google Trends/News at the top of every hour for the
   three new sites, records the candidate and evidence snapshot, then runs the
-  full research → writing → Terra/Luna review → quality gate → publish/update
+  full Luna research/SERP analysis → primary-source verification → Terra writing → Luna review → Terra rewrite when needed → final Luna fact gate → publish/update
   path only when the opportunity score is at least 85. A per-site daily cap of
   two operations prevents mass publication; scans continue after the cap.
 - `daily-report.yml` runs at 06:00 KST and reports both site groups. `weekly-
@@ -44,7 +44,7 @@ does not stop the other locales from being scanned.
 
 The workflows deliberately contain no credentials. Put the API and
 WordPress.com values in GitHub Actions Secrets after the repository is created.
-The starting quality target is 85 points with up to four bounded revisions, and
+The publication quality target is 90 points with up to four bounded revisions, and
 the publish status is explicit (`publish`) in the workflow. A three-failure
 kill switch (three consecutive or three of the last five failed runs) writes
 `data/publish_control.json`; set `PUBLISH_FORCE_RESUME=1`

@@ -1,8 +1,6 @@
 name: Publish finance articles
 
 on:
-  # GitHub evaluates cron in UTC. These four entries are 08:00, 11:50,
-  # 16:00, and 20:00 in Asia/Seoul (KST).
   schedule:
     - cron: "0 23 * * *"
     - cron: "50 2 * * *"
@@ -27,7 +25,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  publish_existing:
+    name: Publish existing sites
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -68,20 +67,77 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Publish all locales
+      - name: Publish existing locales
         run: python github_runner.py --slot-index "${{ inputs.slot_index || 0 }}" --locale "${{ inputs.locale || 'all' }}"
-      - name: Commit article performance history
+      - name: Commit existing site history
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f data/article_history.json ]; then git add data/article_history.json; fi
-          for file in data/article_versions.json data/source_usage.json data/publish_control.json; do
+          for file in data/article_history.json data/article_versions.json data/source_usage.json data/publish_control.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if git diff --cached --quiet; then
-            echo "No article history changes to commit"
+            echo "No existing-site history changes to commit"
           else
-            git commit -m "Record article publication performance metadata"
+            git commit -m "Record existing site publication metadata"
             git push
           fi
 
+  publish_new:
+    name: Publish new sites
+    needs: publish_existing
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_RESEARCH_MODEL: gpt-5.6-luna
+      OPENAI_RESEARCH_REASONING: medium
+      OPENAI_WRITING_MODEL: gpt-5.6-terra
+      OPENAI_WRITING_REASONING: medium
+      PUBLISH_MODE: publish
+      QUALITY_THRESHOLD: "85"
+      MAX_REVISIONS: "4"
+      PUBLISH_HEALTH_GATE: "1"
+      PUBLISH_FORCE_RESUME: ${{ secrets.PUBLISH_FORCE_RESUME }}
+      FINAL_FACT_REVIEW: "1"
+      WP_US_URL: https://uscurrentbrief.wordpress.com
+      WP_US_SITE_REF: uscurrentbrief.wordpress.com
+      WP_US_MODE: wpcom
+      WP_US_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_US_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_US_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_US_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_US_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
+      WP_JP_URL: https://jpdailybrief.wordpress.com
+      WP_JP_SITE_REF: jpdailybrief.wordpress.com
+      WP_JP_MODE: wpcom
+      WP_KR_URL: https://krdailybrief.wordpress.com
+      WP_KR_SITE_REF: krdailybrief.wordpress.com
+      WP_KR_MODE: wpcom
+      GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+      GSC_US_TOKEN: ${{ secrets.GSC_US_TOKEN }}
+      GSC_JP_TOKEN: ${{ secrets.GSC_JP_TOKEN }}
+      GSC_KR_TOKEN: ${{ secrets.GSC_KR_TOKEN }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+    steps:
+      - name: Check out automation
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publish new locales
+        run: python github_runner.py --slot-index "${{ inputs.slot_index || 0 }}" --locale "${{ inputs.locale || 'all' }}"
+      - name: Commit new site history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for file in data/article_history.json data/article_versions.json data/source_usage.json data/publish_control.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No new-site history changes to commit"
+          else
+            git commit -m "Record new site publication metadata"
+            git push
+          fi

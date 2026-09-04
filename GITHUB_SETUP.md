@@ -39,5 +39,6 @@ billed separately from GitHub Actions. Each approved post receives two
 distinct topic-related standard-library-generated PNG icons as compact,
 centered inline figures; no image-generation API key is needed. Topics are
 scored for realistic click opportunity, exclude overlapping posts from the
-last three days, and may update an older URL when the intent is already owned.
+last three days, may update an older URL when the intent is already owned, and
+record publish-slot performance for the weekly strategy file.
 

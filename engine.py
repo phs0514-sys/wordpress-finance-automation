@@ -995,6 +995,10 @@ def validate_article_content(article: dict[str, Any], brief: dict[str, Any], tar
     )
     if not any(marker in lowered for marker in disclosure_markers):
         issues.append("required general-information disclosure missing")
+    affiliate_markers = ("amazon", "amzn.to", "coupang", "affiliate", "제휴", "アフィリエイト")
+    affiliate_disclosure = ("affiliate disclosure", "제휴 고지", "제휴 링크", "アフィリエイト開示", "広告を含み")
+    if any(marker in lowered for marker in affiliate_markers) and not any(marker in lowered for marker in affiliate_disclosure):
+        issues.append("affiliate link disclosure missing")
     if not str(article.get("slug", "")).strip() or not str(seo.get("focus_keyword", "")).strip():
         issues.append("SEO slug or focus keyword missing")
     return sorted(set(issues))

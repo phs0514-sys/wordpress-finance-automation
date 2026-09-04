@@ -156,6 +156,16 @@ def update_history_metrics(gsc: dict[str, object]) -> None:
                 measured["measured_at"] = datetime.now(REPORT_ZONE).isoformat()
                 measured["data_end_date"] = gsc.get("end_date")
                 existing[window] = measured
+        seven = existing.get("7d", {})
+        if isinstance(seven, dict):
+            clicks = float(seven.get("clicks", 0) or 0)
+            ctr = float(seven.get("ctr", 0) or 0)
+            value = row.setdefault("article_value", {})
+            if isinstance(value, dict):
+                value["traffic"] = round(min(100.0, clicks * 2.0), 1)
+                value["engagement"] = round(min(100.0, ctr * 1000.0), 1)
+                value.setdefault("authority", None)
+                value.setdefault("revenue", None)
     engine.save_json_file(engine.HISTORY_PATH, history)
 
 

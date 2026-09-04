@@ -1,0 +1,85 @@
+name: Scan and process new-site issues
+
+on:
+  # GitHub cron uses UTC; this is intentionally independent of the four
+  # daily publication slots used by the legacy sites.
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      locale:
+        description: "Locale to scan (all, us, jp, or kr)"
+        required: true
+        default: "all"
+
+permissions:
+  contents: write
+
+# Serialize with the legacy workflow so two jobs never push the same JSON
+# history files at the same time.
+concurrency:
+  group: finance-publish
+  cancel-in-progress: false
+
+jobs:
+  new_site_cycle:
+    name: 30-minute new-site issue cycle
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_RESEARCH_MODEL: gpt-5.6-luna
+      OPENAI_RESEARCH_REASONING: medium
+      OPENAI_WRITING_MODEL: gpt-5.6-terra
+      OPENAI_WRITING_REASONING: medium
+      PUBLISH_MODE: publish
+      QUALITY_THRESHOLD: "85"
+      MAX_REVISIONS: "4"
+      PUBLISH_HEALTH_GATE: "1"
+      PUBLISH_FORCE_RESUME: ${{ secrets.PUBLISH_FORCE_RESUME }}
+      FINAL_FACT_REVIEW: "1"
+      NEW_SITE_MIN_SCORE: "85"
+      NEW_SITE_MAX_DAILY_POSTS: "2"
+      WP_US_URL: https://uscurrentbrief.wordpress.com
+      WP_US_SITE_REF: uscurrentbrief.wordpress.com
+      WP_US_MODE: wpcom
+      WP_US_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_US_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_US_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_US_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_US_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
+      WP_JP_URL: https://jpdailybrief.wordpress.com
+      WP_JP_SITE_REF: jpdailybrief.wordpress.com
+      WP_JP_MODE: wpcom
+      WP_KR_URL: https://krdailybrief.wordpress.com
+      WP_KR_SITE_REF: krdailybrief.wordpress.com
+      WP_KR_MODE: wpcom
+      GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+      GSC_US_TOKEN: ${{ secrets.GSC_US_TOKEN }}
+      GSC_JP_TOKEN: ${{ secrets.GSC_JP_TOKEN }}
+      GSC_KR_TOKEN: ${{ secrets.GSC_KR_TOKEN }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+    steps:
+      - name: Check out automation
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover, score, research, review and publish new sites
+        run: python new_sites_runner.py --locale "${{ inputs.locale || 'all' }}"
+      - name: Commit new-site cycle state
+        if: ${{ always() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for file in data/new_site_issue_scan.json data/article_history.json data/article_versions.json data/source_usage.json data/publish_control.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No new-site cycle state changes to commit"
+          else
+            git commit -m "Record 30-minute new-site issue cycle"
+            git push
+          fi
+

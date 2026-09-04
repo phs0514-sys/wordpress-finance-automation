@@ -37,6 +37,11 @@ jobs:
       WP_KR_URL: ${{ secrets.WP_KR_URL }}
       WP_KR_SITE_REF: ${{ secrets.WP_KR_SITE_REF }}
       WP_KR_MODE: wpcom
+      GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+      GSC_US_TOKEN: ${{ secrets.GSC_US_TOKEN }}
+      GSC_JP_TOKEN: ${{ secrets.GSC_JP_TOKEN }}
+      GSC_KR_TOKEN: ${{ secrets.GSC_KR_TOKEN }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
     steps:
       - name: Check out automation
         uses: actions/checkout@v4
@@ -54,6 +59,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports
+          if [ -f data/article_history.json ]; then git add data/article_history.json; fi
           if git diff --cached --quiet; then
             echo "No report changes to commit"
           else

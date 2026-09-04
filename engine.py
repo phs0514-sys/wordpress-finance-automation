@@ -934,6 +934,14 @@ def main() -> int:
         topic, brief = collect_research(settings, args.locale, args.topic)
         article, brief = create_article(settings, args.locale, topic, brief)
         article, review = review_and_revise(settings, args.locale, topic, article, brief)
+        final_article = parse_json(article)
+        recent_3d = brief.get("recent_3d_posts", []) if isinstance(brief, dict) else []
+        if isinstance(recent_3d, list) and topic_overlaps_recent(
+            str(final_article.get("title", topic)),
+            {"focus_keyword": final_article.get("seo", {}).get("focus_keyword", "") if isinstance(final_article.get("seo"), dict) else "", "search_intent": topic, "angle": ""},
+            recent_3d,
+        ):
+            raise RuntimeError("Final article title overlapped a post from the last 3 days; publication was blocked")
         result = wp_create(settings, article, topic, args.locale)
         pages = seed_pages(settings, args.locale) if args.seed_pages else 0
         print(json.dumps({

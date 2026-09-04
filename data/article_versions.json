@@ -1,2 +1,119 @@
-{}
-
+{
+  "us:26": [
+    {
+      "version_id": "b15a8d40d8686e1f",
+      "timestamp": "2026-09-04T07:11:35.641311+00:00",
+      "action": "new",
+      "post_id": 26,
+      "url": "https://usfinanceresearch.wordpress.com/2026/09/04/flex-epc-power-acquisition-ai-data-center-power/",
+      "title": "Flex’s EPC Power Acquisition: Why AI Data Centers Need a Power Backbone",
+      "slug": "flex-epc-power-acquisition-ai-data-center-power",
+      "excerpt": "Flex plans to acquire EPC Power for $4.4 billion. Here’s what the deal signals about power conversion, 800V architectures, and the operational risks behind AI data-center expansion.",
+      "html": "<article>\n  <p><strong>Information date: September 3, 2026.</strong></p>\n  <p>Flex’s proposed $4.4 billion acquisition of EPC Power puts a less visible part of AI infrastructure in focus: the systems that help move, convert, and manage electricity before it reaches computing equipment. GPUs may draw attention, but a data center also needs reliable power infrastructure, and Flex says the transaction is intended to support next-generation 800V data-center power architectures.</p>\n  <p>The deal is a strategic signal, not proof of future financial performance. Important details—including EPC Power’s standalone revenue, margins, backlog, purchase-price mechanics, financing, and the deal’s eventual earnings effect on Flex—are not established by the currently available announcement.</p>\n\n  <h2>What Flex announced</h2>\n  <p>On September 3, 2026, Flex announced a definitive agreement to acquire EPC Power for a transaction value of <strong>$4.4 billion</strong>, subject to customary adjustments. Flex expects the transaction to close in the fourth quarter of calendar 2026, subject to customary closing conditions.</p>\n  <p>According to Flex, the acquisition is designed to expand its cloud and power infrastructure business and add power-conversion capabilities for AI data centers and grid applications.</p>\n\n  <h2>Why the power layer matters in AI data centers</h2>\n  <p>AI deployment is a physical infrastructure project as well as a computing project. Servers and accelerators sit at the end of a chain that begins with electricity supply and includes power-management equipment, cooling, networking, and the computing hardware itself.</p>\n  <div>\n    <p><strong>A simplified infrastructure chain</strong></p>\n    <p>Electricity supply → power conversion and management → cooling and facility systems → networking and compute equipment → data-center customer</p>\n  </div>\n  <p>A constraint at any point can affect the whole project. More chips do not by themselves resolve questions around capacity, procurement, financing, customer demand, or the ability to deliver a site on time. Those are material considerations in AI data-center expansion.</p>\n\n  <h2>What EPC Power adds to Flex</h2>\n  <p>The stated rationale is capability expansion. Flex is positioning the acquisition around power conversion for both AI data centers and grid applications, including support for 800V data-center power architectures.</p>\n  <p>In plain language, power conversion is the infrastructure layer that adapts and manages electrical power for the equipment and systems that use it. The value of that layer rises when operators are trying to deploy increasingly demanding computing environments at scale. Flex’s announcement connects EPC Power to that need; it does not disclose enough information to quantify the acquired company’s economics independently.</p>\n\n  <h2>800V data-center power: what the term means here</h2>\n  <p>Flex specifically identifies next-generation 800V data-center architectures as an area the acquisition is intended to support. For readers, the key point is not that one voltage label solves every deployment problem. It is that AI infrastructure planning increasingly includes the design of the power path alongside servers, networking, and cooling.</p>\n  <p>That makes power conversion a distinct AI infrastructure category rather than a background utility expense. It also means buyers and suppliers may face integration and execution demands across several interdependent systems.</p>\n\n  <h2>A practical way to read the deal</h2>\n  <p>Consider a hypothetical operator planning a new AI-focused data center. Ordering compute hardware is only one workstream. The operator must also line up electricity capacity, equipment that manages power delivery, cooling, financing, construction and a customer or internal workload that supports the project’s economics.</p>\n  <p>Flex’s acquisition speaks most directly to the power-management portion of that chain. It does not establish that every planned AI facility will proceed, that demand will meet expectations, or that the acquired capabilities will translate into a particular level of revenue or profit.</p>\n\n  <h2>What the $4.4 billion figure does—and does not—tell readers</h2>\n  <p>The announced value shows that Flex sees strategic importance in EPC Power’s capabilities. It does <strong>not</strong>, on its own, reveal how the transaction is financed, how the final purchase accounting will work, whether the acquisition will be accretive or dilutive, or how quickly any benefits might appear.</p>\n  <h3>A useful disclosure checklist</h3>\n  <ul>\n    <li>Look for later filings or transaction documents describing purchase-price adjustments and financing.</li>\n    <li>Watch for management disclosure on expected segment contribution, integration costs, and purchase accounting.</li>\n    <li>Separate announced capacity and strategic plans from delivered projects and recognized results.</li>\n    <li>Check whether customer concentration, procurement timing, capital needs, or demand assumptions are identified as material risks.</li>\n  </ul>\n  <p>This checklist is a concrete way to distinguish an announcement’s strategic narrative from the financial evidence that may emerge later.</p>\n\n  <h2>Risks and what remains uncertain</h2>\n  <p>The transaction remains subject to customary closing conditions. Beyond closing, integration is a central execution question: acquiring a capability is different from embedding it effectively within a larger cloud and power infrastructure business.</p>\n  <p>AI data-center expansion also carries capacity, financing, procurement, customer-demand, and execution risks. The available materials do not provide independently verified detail on EPC Power’s revenue, margins, backlog, valuation, or Flex’s expected earnings impact. Readers should treat those as open questions rather than fill them with assumptions.</p>\n\n  <h2>What to watch next</h2>\n  <p>The next useful update should follow additional Flex transaction disclosures and earnings materials. The focus should be on financing, purchase accounting, expected segment contribution, and the timing of integration rather than simply repeating the announced value.</p>\n  <p>A broader follow-up can compare the AI infrastructure layers—chips, networking, cooling, power conversion, and data-center real estate—so that readers can see where their economics and risks differ.</p>\n\n  <h2>Bottom line</h2>\n  <p>The Flex EPC Power acquisition highlights a basic reality of AI expansion: computing growth depends on a larger industrial stack than processors alone. Power conversion and related infrastructure may become more prominent as data-center designs evolve, but the deal’s financial implications cannot be determined from the announcement alone.</p>\n  <p><em>This article is general information, not personalized investment, legal, engineering, or financial advice.</em></p>\n\n  <h2>FAQ</h2>\n  <h3>How much is Flex paying for EPC Power?</h3>\n  <p>Flex announced a transaction value of $4.4 billion, subject to customary adjustments.</p>\n  <h3>When is the EPC Power acquisition expected to close?</h3>\n  <p>Flex expects closing in the fourth quarter of calendar 2026, subject to customary closing conditions.</p>\n  <h3>Does the announcement show that the acquisition will improve Flex earnings?</h3>\n  <p>No. The currently available announcement does not establish the transaction’s financing structure, detailed purchase accounting, or whether it will be accretive or dilutive.</p>\n\n  <h2>Sources</h2>\n  <ul>\n    <li><a href=\"https://investors.flex.com/news/news-details/2026/Flex-to-Acquire-EPC-Power-Adding-Leading-Power-Conversion-Capabilities-for-AI-Data-Centers-and-Grid-Applications/default.aspx\">Flex: Flex to Acquire EPC Power, Adding Leading Power Conversion Capabilities for AI Data Centers and Grid Applications</a></li>\n    <li><a href=\"https://www.sec.gov/Archives/edgar/data/1734750/000121390026096776/ea030434301ex99-1.htm\">SEC filing: Corvex Announces Significant Data Center Expansion; Increasing Current Capacity 5x with Contracted Path to 13x</a></li>\n  </ul>\n</article>",
+      "sources": [
+        "https://investors.flex.com/news/news-details/2026/Flex-to-Acquire-EPC-Power-Adding-Leading-Power-Conversion-Capabilities-for-AI-Data-Centers-and-Grid-Applications/default.aspx",
+        "https://www.sec.gov/Archives/edgar/data/1734750/000121390026096776/ea030434301ex99-1.htm"
+      ],
+      "seo": {
+        "meta_description": "Flex plans to acquire EPC Power for $4.4 billion. Learn what the deal means for AI data-center power conversion, 800V systems, and key risks to watch.",
+        "focus_keyword": "Flex EPC Power acquisition",
+        "related_keywords": [
+          "Flex AI data center power",
+          "EPC Power acquisition",
+          "800V data center power",
+          "AI data center electricity infrastructure",
+          "AI infrastructure companies",
+          "data center power conversion",
+          "Flex acquisition 2026"
+        ],
+        "faq_questions": [
+          "How much is Flex paying for EPC Power?",
+          "When is the EPC Power acquisition expected to close?",
+          "Does the announcement show that the acquisition will improve Flex earnings?"
+        ]
+      },
+      "engine_version": "2026.09.04",
+      "prompt_version": "editorial-v3-flexible-gates",
+      "strategy_version": null
+    }
+  ],
+  "jp:26": [
+    {
+      "version_id": "82e48b0d068da8c6",
+      "timestamp": "2026-09-04T07:12:59.145048+00:00",
+      "action": "new",
+      "post_id": 26,
+      "url": "https://jpfinanceresearch.wordpress.com/2026/09/04/9984-softbank-group-stock-surge-september-4-ir/",
+      "title": "9984ソフトバンクグループ株はなぜ急騰？9月4日のIRを事実と推測に分けて読む",
+      "slug": "9984-softbank-group-stock-surge-september-4-ir",
+      "excerpt": "2026年9月4日に上昇した9984（ソフトバンクグループ）について、株価データ、社債の条件決定、SB EnergyのIPO準備を切り分けて解説。IRと株価の因果関係を断定せず、NAVを含む確認手順を整理します。",
+      "html": "<article>\n  <p><strong>情報基準日：2026年9月4日</strong></p>\n  <p>9984（ソフトバンクグループ）の9月4日の上昇について、公式資料から確認できるのは、同日に第70回無担保普通社債の条件決定に関する発表が掲載されたことと、9月2日にSB EnergyのIPO準備に関する情報が掲載されたことです。ただし、これらが当日の株価上昇を直接引き起こしたと公式に確認されたわけではありません。株価の動きとIRは、まず別々の事実として読む必要があります。</p>\n\n  <h2>9月4日の9984株価：確認できる値動き</h2>\n  <p>野村證券の株価ページでは、2026年9月4日14時09分時点で9984は5,482円、前日比481円高（+9.61%）でした。前日9月3日の終値は5,001円です。</p>\n  <p>また、9月3日の出来高は34,349,100株でした。出来高は投資家の参加度合いをみる補助指標ですが、上昇理由そのものを示すものではありません。速報時点の価格と終値は異なることがあるため、判断前には当日の終値、出来高、追加開示を確認してください。</p>\n\n  <h2>9月4日のIR：社債条件決定は何を意味するか</h2>\n  <p>ソフトバンクグループのプレスリリースには、9月4日付で<strong>第70回無担保普通社債の条件決定</strong>に関する情報が掲載されています。</p>\n  <p>社債は企業にとって資金調達の手段です。この種の発表を読む際は、「社債を出すから良い・悪い」と単純化せず、調達資金の使途、償還時期、利率などを個別の開示本文で確認することが重要です。今回の研究時点では、本文の条件を精査せずに数値面の評価を行うことは避けるべきです。</p>\n  <p>市場では、資金調達の実行可能性や財務運営への見方が株価材料として意識される場合があります。しかし、9月4日の上昇が社債条件決定だけによるものだとは、公開情報だけでは結論づけられません。</p>\n\n  <h2>SB EnergyのIPO準備は別の論点</h2>\n  <p>9月2日には、SB Energyの新規株式公開に向けた登録届出書に関する情報が掲載されています。こちらは資金調達そのものより、グループの保有事業・資産ポートフォリオをどう評価するかに関わる論点です。</p>\n  <p>IPO準備のニュースから直ちにソフトバンクグループの価値がいくら増えるとはいえません。公開条件、持分、評価額、上場後の扱いなどを確認する必要があるためです。IPO準備を材料候補とみる場合も、登録届出書や決算資料の詳細が出そろうまでは評価額を推計しない姿勢が無難です。</p>\n\n  <h2>急騰理由は「確認済みの事実」と「市場の解釈」を分ける</h2>\n  <h3>確認済みの事実</h3>\n  <ul>\n    <li>9月3日の終値は5,001円、出来高は34,349,100株だったこと。</li>\n    <li>9月4日14時09分時点で5,482円、前日比+9.61%だったこと。</li>\n    <li>9月4日に第70回無担保普通社債の条件決定に関する情報が掲載されたこと。</li>\n    <li>9月2日にSB EnergyのIPO準備に関する情報が掲載されたこと。</li>\n  </ul>\n  <h3>まだ断定できないこと</h3>\n  <ul>\n    <li>社債条件決定と当日の株価上昇との直接的な因果関係。</li>\n    <li>SB EnergyのIPO準備がNAVや1株当たり価値へ及ぼす具体的な影響。</li>\n    <li>当日中の売買を動かした投資家層や、他の外部材料の寄与。</li>\n  </ul>\n  <p>この区別を置くと、「IRが出た」という事実と、「市場がそのIRをどう織り込んだか」という推測を混同しにくくなります。</p>\n\n  <h2>9984でNAVを確認する理由</h2>\n  <p>ソフトバンクグループはNAV（Net Asset Value、保有資産価値から負債を差し引いた純資産価値）を重要な指標として説明しています。事業会社をPERだけでみる場合と異なり、保有する投資先・子会社などの価値と、負債をあわせて確認する視点が重要になります。</p>\n  <p>実務上は、株価が上がった日に「値動き」だけを追うのではなく、決算資料でNAVの説明を確認し、今回のIRが資金調達の話なのか、保有資産の価値に関わる話なのかを分類します。社債は主に財務運営、SB EnergyのIPO準備は主に資産ポートフォリオというように、同じ日に意識されても意味合いは同じではありません。</p>\n\n  <h2>確認する順番：5分でできるチェックリスト</h2>\n  <ol>\n    <li><strong>株価の基準時刻をそろえる。</strong> 取引時間中の価格なのか終値なのかを明記する。</li>\n    <li><strong>出来高を前日・過去の水準と比べる。</strong> 値幅だけで注目度を判断しない。</li>\n    <li><strong>IRの公開日時と本文を確認する。</strong> 見出しだけで資金使途や条件を推測しない。</li>\n    <li><strong>材料を分類する。</strong> 社債は財務、IPO準備は資産価値・ポートフォリオの論点として分ける。</li>\n    <li><strong>決算資料でNAVと負債の説明を読む。</strong> 1日の株価変動を中長期の企業価値と同一視しない。</li>\n  </ol>\n  <p>たとえば、終値確定後に出来高が大きく増えていても、それだけではIRへの好意的評価とは限りません。短期売買、全体相場、関連資産の値動きなど複数の要因があり得ます。一次資料で確認できる範囲を先に固めることが、速報を読む際のリスク管理になります。</p>\n\n  <h2>今後の更新ポイントと注意点</h2>\n  <p>翌営業日に終値、出来高、追加IRを確認して本記事を更新する予定です。その後は「社債」「SB Energy」「NAV」のどの論点への関心が高いかを確認し、必要に応じてNAVの確認方法を別記事で補足します。</p>\n  <p>株価は刻々と変化し、同日発表のIRと値動きの関係も後から明確になるとは限りません。社債の詳細条件やSB Energyの評価に関しては、個別の開示書類と決算資料を確認してから判断してください。</p>\n  <p><strong>本記事は一般的な情報提供を目的としており、特定銘柄の売買や投資判断を勧誘・推奨するものではありません。投資判断はご自身の目的、資金状況、リスク許容度を踏まえ、必要に応じて専門家へご相談ください。</strong></p>\n\n  <h2>よくある質問</h2>\n  <h3>9月4日の株価上昇は社債IRが理由ですか？</h3>\n  <p>社債条件決定の発表は同日に確認できますが、公式資料だけで株価上昇との直接の因果関係は断定できません。ほかの市場要因も含めて考える必要があります。</p>\n  <h3>SB EnergyのIPO準備は9984にどのような影響がありますか？</h3>\n  <p>保有資産・事業ポートフォリオの評価に関わる可能性があります。ただし、具体的な影響を判断するには、公開条件、持分、評価額などの詳細確認が必要です。</p>\n  <h3>9984はなぜNAVでみるのですか？</h3>\n  <p>ソフトバンクグループがNAVを重要指標として説明しているためです。保有資産と負債をあわせてみることで、株価だけでは捉えにくい企業価値の論点を確認できます。</p>\n\n  <h2>参照した一次・市場情報</h2>\n  <ul>\n    <li><a href=\"https://group.softbank/news/press\">ソフトバンクグループ株式会社 プレスリリース</a></li>\n    <li><a href=\"https://group.softbank/ir/faq\">ソフトバンクグループ株式会社 よくあるご質問と回答</a></li>\n    <li><a href=\"https://group.softbank/ir/documents/\">ソフトバンクグループ株式会社 IRライブラリー</a></li>\n    <li><a href=\"https://quote.nomura.co.jp/nomura/cgi-bin/parser.pl?MKTN=T&amp;QCODE=9984&amp;TEMPLATE=nomura_tp_kabu_01\">野村證券：ソフトバンクグループ（9984）株価</a></li>\n    <li><a href=\"https://finance.yahoo.co.jp/quote/9984.T/history\">Yahoo!ファイナンス：ソフトバンクグループ（9984）株価時系列</a></li>\n  </ul>\n</article>",
+      "sources": [
+        "https://group.softbank/news/press",
+        "https://group.softbank/ir/faq",
+        "https://group.softbank/ir/documents/",
+        "https://quote.nomura.co.jp/nomura/cgi-bin/parser.pl?MKTN=T&QCODE=9984&TEMPLATE=nomura_tp_kabu_01",
+        "https://finance.yahoo.co.jp/quote/9984.T/history"
+      ],
+      "seo": {
+        "meta_description": "9984ソフトバンクグループの9月4日の急騰を、株価、社債条件決定、SB EnergyのIPO準備、NAVの観点から整理。公式に確認できる事実と市場解釈を分けて解説します。",
+        "focus_keyword": "9984 ソフトバンクグループ 株価 急騰理由",
+        "related_keywords": [
+          "9984 株価",
+          "ソフトバンクグループ IR",
+          "ソフトバンクグループ 9月4日",
+          "SB Energy IPO",
+          "ソフトバンクグループ 社債",
+          "ソフトバンクグループ NAV",
+          "9984 急騰 なぜ"
+        ],
+        "faq_questions": [
+          "9月4日の株価上昇は社債IRが理由ですか？",
+          "SB EnergyのIPO準備は9984にどのような影響がありますか？",
+          "9984はなぜNAVでみるのですか？"
+        ]
+      },
+      "engine_version": "2026.09.04",
+      "prompt_version": "editorial-v3-flexible-gates",
+      "strategy_version": null
+    }
+  ],
+  "kr:31": [
+    {
+      "version_id": "f1ee36daa067ee44",
+      "timestamp": "2026-09-04T07:14:31.629302+00:00",
+      "action": "new",
+      "post_id": 31,
+      "url": "https://koreafinanceresearch.wordpress.com/2026/09/04/konex-transfer-listing-exception-guide/",
+      "title": "코넥스 이전상장 예외: 정리매매 없이 이동 가능한 조건과 확인 순서",
+      "slug": "konex-transfer-listing-exception-guide",
+      "excerpt": "2026년 9월 4일 발표된 코넥스 이전상장 예외 조치의 재무 요건, 시가총액 기준 변경 시점, 기존 주주가 확인할 공시 항목과 남은 불확실성을 정리했습니다.",
+      "html": "<article>\n  <p><strong>정보 기준일: 2026년 9월 4일</strong></p>\n  <p>시가총액 미달 관리종목이라고 해서 모두 정리매매를 거치지 않고 코넥스로 옮길 수 있는 것은 아닙니다. 이번 <strong>코넥스 이전상장 예외</strong>는 수익성과 재무건전성이 일정 수준인 기업에 한해 예외 경로를 열어주는 조치입니다. 투자자는 이전 가능성 자체보다 최근 영업이익, 자기자본, 자본잠식 여부와 실제 이전 관련 공시를 따로 확인해야 합니다.</p>\n\n  <h2>무엇이 달라졌나</h2>\n  <p>2026년 9월 4일 발표 내용에 따르면, 일정 요건을 충족한 시가총액 미달 관리종목은 예외적으로 정리매매 없이 코넥스 이전을 추진할 수 있게 됩니다. 또한 시가총액 기준을 200억원에서 300억원으로 올리는 시점은 2027년 1월에서 <strong>2027년 7월</strong>로 6개월 연기됩니다.</p>\n  <p>코넥스는 초기 중소·벤처기업의 자금 조달과 성장을 지원하도록 설계된 별도 시장입니다. 시장의 성격과 기본 제도는 <a href=\"https://open.krx.co.kr/contents/OPN/01/01010301/OPN01010301.jsp\" target=\"_blank\" rel=\"noopener noreferrer\">한국거래소 코넥스시장 소개</a>에서 확인할 수 있습니다.</p>\n\n  <h2>정리매매 없는 이전의 재무 요건</h2>\n  <table>\n    <thead>\n      <tr><th>판단 항목</th><th>확인 기준</th></tr>\n    </thead>\n    <tbody>\n      <tr><td>수익성 경로 1</td><td>최근 3개 사업연도 중 2개 사업연도의 영업이익이 흑자</td></tr>\n      <tr><td>수익성·재무 경로 2</td><td>1개 사업연도 영업이익이 흑자이고 자기자본이 200억원 이상</td></tr>\n      <tr><td>제외 조건</td><td>자본잠식 기업은 제외</td></tr>\n      <tr><td>절차 관련</td><td>신속 이전을 위해 지정자문인 선임이 일정 기간 유예될 수 있음</td></tr>\n    </tbody>\n  </table>\n  <p>위 조건은 발표된 예외 적용의 큰 틀입니다. 기업이 숫자상 요건을 충족하더라도 자동으로 이전되는 것은 아닙니다. 적용 대상, 신청 절차, 심사 주체와 세부 기준일은 후속 규정 및 개별 공시로 확인해야 합니다.</p>\n\n  <h2>투자자가 공시에서 확인할 5가지</h2>\n  <ol>\n    <li><strong>관리종목 지정 사유</strong>: 시가총액 미달인지, 다른 사유가 함께 있는지 구분합니다.</li>\n    <li><strong>최근 3개년 영업이익</strong>: 연결·별도 기준과 각 연도 흑자 여부를 사업보고서에서 대조합니다.</li>\n    <li><strong>자기자본 200억원 충족 여부</strong>: 흑자 1개년 경로를 볼 때 필요한 항목입니다.</li>\n    <li><strong>자본잠식 여부</strong>: 예외 대상에서 제외되는 핵심 조건이므로 재무상태표와 감사 관련 공시를 함께 봅니다.</li>\n    <li><strong>이전 추진 공시와 적용 기준일</strong>: 회사의 이전 의사, 거래소의 결정, 실제 효력 발생일은 서로 다를 수 있습니다.</li>\n  </ol>\n\n  <h3>간단한 판정 예시</h3>\n  <p>A사가 최근 3개년 중 2개년 영업이익 흑자를 기록했고 자본잠식이 없다면 첫 번째 경로를 검토할 수 있습니다. 반대로 B사가 한 해만 영업흑자라면 자기자본 200억원 이상인지가 추가로 중요합니다. 두 사례 모두 실제 이전 여부는 후속 세부 규정과 회사·거래소 공시가 나와야 확정됩니다.</p>\n\n  <h2>200억원에서 300억원으로: 일정은 어떻게 보나</h2>\n  <p>시가총액 기준 상향은 2027년 7월로 연기될 예정입니다. 기준에 근접한 기업의 주주라면 단순히 현재 시가총액만 보지 말고, <strong>어느 날짜의 시가총액이 어떤 규정에 따라 평가되는지</strong>를 확인해야 합니다. 발표일, 관리종목 지정 관련 기준일, 이전 관련 공시일은 각각 다른 의미를 가질 수 있습니다.</p>\n\n  <h2>이전이 투자 안전을 뜻하지 않는 이유</h2>\n  <p>정리매매를 피하는 경로가 생겼다는 사실은 거래 단절 위험을 낮추는 데 의미가 있을 수 있습니다. 하지만 코넥스 이전이 기업가치나 주가를 보장하지는 않습니다. 코넥스에서는 유동성이 제한돼 원하는 시점에 원하는 가격으로 거래하기 어려울 수 있으며, 이전 뒤 가격 형성 방식과 거래 여건도 별도 확인이 필요합니다.</p>\n  <p>특히 당일 발표 자료만으로는 이전 시 기존 주식의 거래 방식, 기준가격 산정, 대상 종목 목록을 확정하기 어렵습니다. ‘이전 가능’과 ‘이전 확정’, ‘투자 적합성’을 같은 의미로 보지 않는 것이 중요합니다.</p>\n\n  <h2>후속 원문은 어디서 확인하나</h2>\n  <p>현재 확인된 자료만으로는 이번 조치의 금융위원회 또는 한국거래소 원문 공고 URL이 특정되지 않았습니다. 후속 공고와 개별 기업 자료가 나오면 한국거래소 공시·시장 안내 및 <a href=\"https://www.konex.or.kr/\" target=\"_blank\" rel=\"noopener noreferrer\">코넥스협회</a>의 규정·이전상장 통계 자료를 교차 확인하는 편이 좋습니다.</p>\n\n  <h2>업데이트 계획</h2>\n  <p>한국거래소의 후속 공고가 확인되면 대상 요건, 신청 절차, 기준가격 관련 내용을 표로 보완할 예정입니다. 이후 개별 기업 공시가 나오면 영업이익·자기자본·자본잠식 여부를 비교하고, 이전 전후 거래량과 가격 변동도 별도로 점검합니다.</p>\n\n  <h2>자주 묻는 질문</h2>\n  <h3>모든 시총 미달 관리종목이 예외 이전 대상인가요?</h3>\n  <p>아닙니다. 발표된 재무 요건을 충족해야 하며 자본잠식 기업은 제외됩니다. 세부 적용 절차와 대상 확정은 후속 규정 및 공시가 필요합니다.</p>\n  <h3>지정자문인 선임이 없어도 바로 이전되나요?</h3>\n  <p>발표 내용에는 신속 이전을 위해 지정자문인 선임을 일정 기간 유예할 수 있다는 내용이 포함됐습니다. 유예 기간과 실제 적용 방식은 추가 발표를 확인해야 합니다.</p>\n  <h3>코넥스 이전 뒤에도 바로 매도할 수 있나요?</h3>\n  <p>거래 가능 여부와 별개로 유동성이 낮으면 매수·매도 호가가 충분하지 않을 수 있습니다. 이전 확정 공시와 당시 시장의 거래 여건을 함께 확인해야 합니다.</p>\n\n  <p><strong>유의사항:</strong> 이 글은 공개된 발표 내용과 시장 안내 자료를 바탕으로 한 일반 정보이며, 특정 종목의 이전 가능성이나 매수·매도 판단을 위한 개인 맞춤형 투자·법률·회계 조언이 아닙니다.</p>\n</article>",
+      "sources": [
+        "https://open.krx.co.kr/contents/OPN/01/01010301/OPN01010301.jsp",
+        "https://www.konex.or.kr/"
+      ],
+      "seo": {
+        "meta_description": "코넥스 이전상장 예외 조치의 영업이익·자기자본·자본잠식 요건, 2027년 시가총액 기준 일정, 투자자 공시 확인 항목을 정리합니다.",
+        "focus_keyword": "코넥스 이전상장 예외",
+        "related_keywords": [
+          "정리매매 없는 코넥스 이전",
+          "코넥스 시가총액 기준",
+          "시총 미달 관리종목",
+          "코넥스 상장폐지",
+          "코넥스 이전상장 요건",
+          "코넥스 투자자 유의사항",
+          "2027년 코넥스 시총 기준"
+        ],
+        "faq_questions": [
+          "모든 시총 미달 관리종목이 정리매매 없이 코넥스로 이전할 수 있나요?",
+          "코넥스 이전상장 예외의 영업이익과 자기자본 요건은 무엇인가요?",
+          "코넥스 이전 뒤 주식 거래에서 어떤 위험을 확인해야 하나요?"
+        ]
+      },
+      "engine_version": "2026.09.04",
+      "prompt_version": "editorial-v3-flexible-gates",
+      "strategy_version": null
+    }
+  ]
+}

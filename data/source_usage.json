@@ -1,2 +1,128 @@
-{}
-
+{
+  "investors.flex.com": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.tomshardware.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.axios.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "apnews.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.sec.gov": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "finance.yahoo.co.jp": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "quote.nomura.co.jp": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "s.minkabu.jp": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "group.softbank": {
+    "times_used": 4,
+    "categories": {
+      "Technology & Markets": 4
+    },
+    "citations_used": 3,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "www.yna.co.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "open.krx.co.kr": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.konex.or.kr": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "markets.hankyung.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.korea.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  }
+}

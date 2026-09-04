@@ -2,6 +2,20 @@
   "paused": false,
   "reason": "",
   "consecutive_failures": 0,
-  "events": []
+  "events": [
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T07:11:35.642989+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T07:12:59.146821+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T07:14:31.631341+00:00"
+    }
+  ],
+  "last_error": "",
+  "updated_at": "2026-09-04T07:14:31.631371+00:00"
 }
-

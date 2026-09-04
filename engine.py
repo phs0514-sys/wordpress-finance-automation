@@ -560,6 +560,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "The topic may be finance or any other genuinely useful current-interest subject; do not constrain the category. Choose the best opportunity for this site, not merely the most popular headline. Evaluate the candidate pool using: interest × velocity × search intent × SERP feasibility × title CTR potential × durability × site fit, minus repetition penalty. A lower-volume rising query with weak or stale results should beat a massive query dominated by authoritative publishers. Use article_history and weekly_strategy performance signals to prefer topic/headline/layout patterns that actually earned clicks, while preserving a 70% proven / 20% adjacent / 10% experiment mix. Apply weekly_strategy category weights when they have enough observations. Avoid sensational or unsafe claims. Use Google's trending-search terms and news headlines as signals, then validate intent, competition, and facts with web search. "
         "Use the Google News RSS snapshot as a trend signal, but verify it and do not treat headlines as facts. Identify exactly five leading/relevant search-result pages for the chosen query when five can be verified; rank them 1-5 and describe only their coverage/structure, never copy wording. "
         "The recent_3d_posts list is a hard exclusion window. Do not choose the same topic or an overlapping story as any post in that list: avoid the same event, entity, policy, product, incident, primary keyword, or search intent even when the title is reworded. If a trend is too close, discard it and select another currently trending query. Exact-title reuse is forbidden. "
+        "Choose action=update only when an older existing post in recent_published_posts already owns the same search intent and the new evidence materially changes or expands it; then return its numeric target_post_id. Never update a post inside the three-day exclusion window. Otherwise return action=new. "
         "Return one compact JSON object only with: topic, action (new or update), target_post_id (when action=update), category, layout_type (news, comparison, howto, timeline, explainer, or checklist), click_potential (0-100), opportunity_score (0-100), opportunity_components (interest, velocity, search_intent, serp_feasibility, ctr_potential, durability, site_fit, repeat_penalty), search_intent, angle, freshness, headline_type, serp_competition (0-100), benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), original_value (at least two concrete additions absent from the benchmark pages), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
         + source_checklist + " Use the requested locale and language. Do not invent, truncate, or guess URLs. Do not provide personalized financial, medical, legal, or safety advice."
     )
@@ -618,6 +619,19 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
     components = research.get("opportunity_components") if isinstance(research, dict) else {}
     research["opportunity_score"] = calculate_opportunity_score(components, research.get("click_potential", 0))
     research["trend_score"] = research.get("trend_score", research.get("click_potential", 0))
+    weights = weekly_strategy.get("category_weights") if isinstance(weekly_strategy, dict) else {}
+    try:
+        strategy_posts = int(weekly_strategy.get("source_posts", 0)) if isinstance(weekly_strategy, dict) else 0
+    except (TypeError, ValueError):
+        strategy_posts = 0
+    category = str(research.get("category", ""))
+    if strategy_posts >= 7 and isinstance(weights, dict) and category in weights:
+        try:
+            raw_weight = float(weights[category])
+            multiplier = raw_weight / 100.0 if raw_weight > 2.0 else raw_weight
+            research["opportunity_score"] = max(0, min(100, round(research["opportunity_score"] * max(0.5, min(1.5, multiplier)))))
+        except (TypeError, ValueError):
+            pass
     original_value = research.get("original_value")
     if not isinstance(original_value, list) or len(original_value) < 2:
         gaps = research.get("gaps") if isinstance(research.get("gaps"), list) else []

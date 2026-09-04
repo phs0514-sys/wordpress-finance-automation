@@ -237,7 +237,7 @@ def site_report(locale: str) -> str:
             lines.append("- 자동 진단:")
             lines.extend(f"  - {item}" for item in diagnoses)
     lines.append("")
-    lines.append("| 상태 | 글 | 게시일 | 누적 조회수 | GSC 7일 노출/클릭 | 평균위치 | 링크 |\n|---|---|---|---:|---:|---:|---|")
+    lines.append("| 상태 | 글 | 게시일 | 누적 조회수 | GSC 노출/클릭 (24h·72h·7d·28d) | 7d CTR/위치 | 링크 |\n|---|---|---|---:|---:|---:|---|")
     gsc_pages = gsc.get("pages", {}) if isinstance(gsc, dict) else {}
     for post in posts:
         post_id = int(post.get("id", 0))
@@ -251,7 +251,15 @@ def site_report(locale: str) -> str:
         impressions = f"{float(seven.get('impressions', 0)):.0f}" if isinstance(seven, dict) and seven else "-"
         clicks = f"{float(seven.get('clicks', 0)):.0f}" if isinstance(seven, dict) and seven else "-"
         position = f"{float(seven.get('position', 0)):.1f}" if isinstance(seven, dict) and seven else "-"
-        lines.append(f"| {status} | {title} | {published_at} | {view_value} | {impressions}/{clicks} | {position} | [열기]({link}) |")
+        ctr = f"{float(seven.get('ctr', 0)) * 100:.1f}%" if isinstance(seven, dict) and seven else "-"
+        window_values = []
+        for window in ("24h", "72h", "7d", "28d"):
+            value = page_metrics.get(window, {}) if isinstance(page_metrics, dict) else {}
+            if isinstance(value, dict) and value:
+                window_values.append(f"{float(value.get('impressions', 0)):.0f}/{float(value.get('clicks', 0)):.0f}")
+            else:
+                window_values.append("-")
+        lines.append(f"| {status} | {title} | {published_at} | {view_value} | {' · '.join(window_values)} | {ctr}/{position} | [열기]({link}) |")
     if not posts:
         lines.append("| - | 아직 글이 없습니다 | - | - | - |")
     return "\n".join(lines)

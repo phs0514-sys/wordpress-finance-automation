@@ -61,6 +61,7 @@ jobs:
             --data-urlencode "refresh_token=$GSC_REFRESH_TOKEN" \
             --data-urlencode "grant_type=refresh_token")
           GSC_TOKEN=$(printf '%s' "$RESPONSE" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$GSC_TOKEN"
           echo "GSC_TOKEN=$GSC_TOKEN" >> "$GITHUB_ENV"
       - name: Generate existing-site report
         run: |
@@ -119,6 +120,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Refresh read-only Search Console token
+        if: ${{ env.GSC_REFRESH_TOKEN != '' }}
+        run: |
+          RESPONSE=$(curl --fail-with-body --silent --show-error https://oauth2.googleapis.com/token \
+            --data-urlencode "client_id=$GSC_CLIENT_ID" \
+            --data-urlencode "client_secret=$GSC_CLIENT_SECRET" \
+            --data-urlencode "refresh_token=$GSC_REFRESH_TOKEN" \
+            --data-urlencode "grant_type=refresh_token")
+          GSC_TOKEN=$(printf '%s' "$RESPONSE" | python -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+          echo "::add-mask::$GSC_TOKEN"
+          echo "GSC_TOKEN=$GSC_TOKEN" >> "$GITHUB_ENV"
       - name: Generate new-site report
         run: |
           mkdir -p reports

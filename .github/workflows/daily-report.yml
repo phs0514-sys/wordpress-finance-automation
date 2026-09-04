@@ -119,5 +119,5 @@ jobs:
             echo "No new-site report changes to commit"
           else
             git commit -m "Add scheduled new-site report"
-            git push
+            git push || (git pull --rebase origin main && git push)
           fi

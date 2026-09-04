@@ -4,10 +4,10 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 
 ## Pipeline
 
-1. Read free, locale-specific Google Trending Searches and Google News RSS snapshots and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; recent WordPress posts are supplied to avoid repetition.
+1. Read free, locale-specific Google Trending Searches and Google News RSS snapshots and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; posts from the last three days are a hard exclusion window, including overlapping events, entities, primary keywords, and search intent.
 2. Use one web-search-backed research call to benchmark up to five leading result pages, identify coverage gaps, and collect complete primary/authoritative URLs, dates, and a concrete growth plan. The prompt forbids copying or translating a competing article.
 3. Generate a native-language article with the writing model, adding SEO title/slug/excerpt, semantic headings, a concise lead, FAQ, internal-link opportunities, balanced typography/layout HTML, update notes, risks, and a general-information notice.
-4. Generate and upload two distinct, topic-related PNG icons per article (one featured icon plus one inline detail icon) using only Python standard-library drawing; no image API is called. The icon pair changes with the article's keywords (for example chart/calculator, currency/chart, or shield/document).
+4. Generate and upload two distinct, topic-related PNG icons per article using only Python standard-library drawing; no image API is called. Both are compact, centered inline figures (`max-width: 360px`, responsive width) so they remain aligned and readable on mobile. The icon pair changes with the article's keywords (for example chart/calculator, currency/chart, or shield/document).
 5. Run a separate reviewer prompt scoring accuracy, source quality, freshness, originality, search intent, depth, clarity, HTML/layout, SEO, and safety.
 6. Revise weak sections up to `MAX_REVISIONS` (default 4). Do not publish below `QUALITY_THRESHOLD` (default 90).
 7. Send the approved article to WordPress REST API as `draft` by default, or `publish` when explicitly enabled.

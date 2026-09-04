@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-09-04T04:29:10.233650+00:00",
+  "status": "insufficient_data",
+  "content_mix": {
+    "proven": 0.7,
+    "adjacent": 0.2,
+    "experiment": 0.1
+  },
+  "category_weights": {},
+  "next_week_actions": [
+    "Collect at least seven days of post and Search Console data before changing category weights."
+  ]
+}
+

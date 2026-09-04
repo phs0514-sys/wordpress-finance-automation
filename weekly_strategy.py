@@ -65,6 +65,15 @@ def summarize(history: list[dict[str, object]]) -> dict[str, object]:
     def averages(values: dict[str, list[float]]) -> dict[str, object]:
         return {key: {"posts": len(items), "avg_7d_clicks": round(sum(items) / len(items), 2)} for key, items in values.items()}
 
+    usage = engine.load_json_file(engine.SOURCE_USAGE_PATH, {})
+    source_usage = []
+    if isinstance(usage, dict):
+        total = sum(int(value.get("times_used", 0) or 0) for value in usage.values() if isinstance(value, dict)) or 1
+        for domain, value in sorted(usage.items(), key=lambda item: int(item[1].get("times_used", 0) or 0) if isinstance(item[1], dict) else 0, reverse=True)[:20]:
+            if not isinstance(value, dict):
+                continue
+            count = int(value.get("times_used", 0) or 0)
+            source_usage.append({"domain": domain, "times_used": count, "share": round(count / total, 3)})
     return {
         "posts": len(history),
         "by_category": averages(by_category),
@@ -74,6 +83,7 @@ def summarize(history: list[dict[str, object]]) -> dict[str, object]:
         "by_publish_slot": averages(by_slot),
         "confidence_counts": dict(confidence_counts),
         "article_value_dimensions": value_rows[-100:],
+        "source_usage": source_usage,
         "recent_topics": [row.get("topic", "") for row in history[-20:]],
     }
 

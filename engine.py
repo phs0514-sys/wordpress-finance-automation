@@ -29,6 +29,13 @@ from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent
+DATA_DIR = ROOT / "data"
+HISTORY_PATH = DATA_DIR / "article_history.json"
+STRATEGY_PATH = DATA_DIR / "weekly_strategy.json"
+try:
+    LOCAL_ZONE = ZoneInfo("Asia/Seoul")
+except ZoneInfoNotFoundError:  # Windows Python may not bundle the IANA database.
+    LOCAL_ZONE = timezone(timedelta(hours=9), "Asia/Seoul")
 
 
 def load_dotenv() -> None:
@@ -41,6 +48,76 @@ def load_dotenv() -> None:
             continue
         key, value = line.split("=", 1)
         os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def load_json_file(path: Path, default: Any) -> Any:
+    """Read a local JSON data file, treating a first run as an empty store."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return default
+
+
+def save_json_file(path: Path, value: Any) -> None:
+    """Atomically persist operational data without ever writing credentials."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
+def load_article_history() -> list[dict[str, Any]]:
+    value = load_json_file(HISTORY_PATH, [])
+    return value if isinstance(value, list) else []
+
+
+def record_article_history(
+    locale: str,
+    article: dict[str, Any],
+    brief: dict[str, Any],
+    review: dict[str, Any],
+    post: dict[str, Any],
+    action: str,
+) -> dict[str, Any]:
+    """Append a durable performance row for later 24h/72h/7d/28d learning."""
+    seo = article.get("seo") if isinstance(article.get("seo"), dict) else {}
+    review_detail = review.get("review") if isinstance(review.get("review"), dict) else review
+    history = load_article_history()
+    row = {
+        "locale": locale,
+        "post_id": post.get("id"),
+        "url": post.get("link", ""),
+        "topic": brief.get("topic") or article.get("title", ""),
+        "category": brief.get("category", ""),
+        "primary_keyword": seo.get("focus_keyword") or brief.get("focus_keyword", ""),
+        "secondary_keywords": seo.get("related_keywords") or brief.get("related_keywords", []),
+        "trend_score": brief.get("trend_score", brief.get("click_potential", 0)),
+        "opportunity_score": brief.get("opportunity_score", brief.get("click_potential", 0)),
+        "serp_competition": brief.get("serp_competition", brief.get("competition", 0)),
+        "headline_type": brief.get("headline_type", ""),
+        "word_count": len(re.findall(r"\w+", re.sub(r"<[^>]+>", " ", str(article.get("html", ""))), flags=re.UNICODE)),
+        "layout_type": article.get("layout_type") or brief.get("layout_type", "explainer"),
+        "image_type": post.get("_image_kinds", []),
+        "sources_count": len(article.get("sources", [])) if isinstance(article.get("sources"), list) else 0,
+        "original_value_count": len(brief.get("original_value", [])) if isinstance(brief.get("original_value"), list) else 0,
+        "publish_time": post.get("date") or datetime.now(timezone.utc).isoformat(),
+        "action": action,
+        "quality_score": review.get("score", review_detail.get("score")),
+        "quality_breakdown": review_detail.get("breakdown", {}),
+        "originality_count": review_detail.get("originality_count", 0),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "metrics": {
+            "24h": {"impressions": None, "clicks": None, "ctr": None, "position": None},
+            "72h": {"impressions": None, "clicks": None, "ctr": None, "position": None},
+            "7d": {"impressions": None, "clicks": None, "ctr": None, "position": None},
+            "28d": {"impressions": None, "clicks": None, "ctr": None, "position": None},
+        },
+    }
+    # Idempotency protects a retry from adding the same post twice.
+    history = [item for item in history if not (item.get("locale") == locale and str(item.get("post_id")) == str(row.get("post_id")))]
+    history.append(row)
+    save_json_file(HISTORY_PATH, history)
+    return row
 
 
 @dataclass(frozen=True)
@@ -62,6 +139,8 @@ class Settings:
     wp_client_id: str
     wp_client_secret: str
     wp_access_token: str
+    gsc_token: str
+    gsc_site_url: str
 
     @classmethod
     def from_env(cls, locale: str) -> "Settings":
@@ -90,9 +169,15 @@ class Settings:
             "wp_client_id": os.getenv(f"WP_{prefix}_CLIENT_ID", os.getenv("WP_US_CLIENT_ID", "")),
             "wp_client_secret": os.getenv(f"WP_{prefix}_CLIENT_SECRET", os.getenv("WP_US_CLIENT_SECRET", "")),
             "wp_access_token": os.getenv(f"WP_{prefix}_ACCESS_TOKEN", os.getenv("WP_US_ACCESS_TOKEN", "")),
+            # Search Console is optional: publishing continues when no
+            # read-only GSC bearer token has been configured yet.
+            "gsc_token": os.getenv(f"GSC_{prefix}_TOKEN", os.getenv("GSC_TOKEN", "")),
+            "gsc_site_url": os.getenv(f"GSC_{prefix}_SITE_URL", os.getenv("GSC_SITE_URL", "")),
         }
         if not values["wp_site_ref"] and values["wp_url"]:
             values["wp_site_ref"] = values["wp_url"].split("//", 1)[-1]
+        if not values["gsc_site_url"]:
+            values["gsc_site_url"] = values["wp_url"]
         missing = [key for key in ("openai_key", "wp_url") if not values[key]]
         if missing:
             raise ValueError(f"Missing configuration: {', '.join(missing)}")
@@ -382,6 +467,70 @@ def google_trends_snapshot(locale: str, limit: int = 20) -> list[dict[str, str]]
     return rows
 
 
+def _traffic_value(value: str) -> float:
+    match = re.search(r"([\d,.]+)\s*([KMB])?", str(value).upper())
+    if not match:
+        return 0.0
+    number = float(match.group(1).replace(",", ""))
+    multiplier = {"K": 1_000, "M": 1_000_000, "B": 1_000_000_000}.get(match.group(2) or "", 1)
+    # Log scaling keeps a single viral term from crowding out every other
+    # candidate while still rewarding a rising high-interest signal.
+    return min(100.0, math.log10(max(1.0, number * multiplier)) * 11.0)
+
+
+def build_candidate_pool(news: list[dict[str, str]], trends: list[dict[str, str]], limit: int = 50) -> list[dict[str, Any]]:
+    """Combine locale-specific RSS signals into a de-duplicated 30–50 pool."""
+    pool: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row in [*trends, *news]:
+        title = str(row.get("term") or row.get("title") or "").strip()
+        if not title:
+            continue
+        key = re.sub(r"\W+", "", unicodedata.normalize("NFKC", title).casefold(), flags=re.UNICODE)
+        if len(key) < 3 or key in seen:
+            continue
+        seen.add(key)
+        pool.append({
+            "candidate": title,
+            "source": "trends" if row.get("term") else "news",
+            "signal_score": round(_traffic_value(str(row.get("approx_traffic", ""))), 1),
+            "url": str(row.get("url", "")),
+            "published": str(row.get("published", "")),
+        })
+        if len(pool) >= limit:
+            break
+    return pool
+
+
+def calculate_opportunity_score(components: dict[str, Any] | None, fallback: Any = 0) -> int:
+    """Score a topic for this site rather than rewarding raw popularity alone."""
+    components = components if isinstance(components, dict) else {}
+    try:
+        fallback_value = float(fallback or 0)
+    except (TypeError, ValueError):
+        fallback_value = 0.0
+    weights = {
+        "interest": 0.20,
+        "velocity": 0.15,
+        "search_intent": 0.15,
+        "serp_feasibility": 0.20,
+        "ctr_potential": 0.10,
+        "durability": 0.10,
+        "site_fit": 0.10,
+    }
+    values: dict[str, float] = {}
+    for key in weights:
+        try:
+            values[key] = max(0.0, min(100.0, float(components.get(key, fallback_value))))
+        except (TypeError, ValueError):
+            values[key] = max(0.0, min(100.0, fallback_value))
+    try:
+        penalty = max(0.0, min(30.0, float(components.get("repeat_penalty", 0))))
+    except (TypeError, ValueError):
+        penalty = 0.0
+    return max(0, min(100, round(sum(values[key] * weight for key, weight in weights.items()) - penalty)))
+
+
 def collect_research(settings: Settings, locale: str, topic_override: str | None = None) -> tuple[str, dict[str, Any]]:
     """Choose a current topic and build a benchmarked evidence brief.
 
@@ -401,14 +550,17 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
     ]
     trends = google_news_snapshot(locale)
     trending_searches = google_trends_snapshot(locale)
+    candidate_pool = build_candidate_pool(trends, trending_searches)
+    weekly_strategy = load_json_file(STRATEGY_PATH, {})
+    article_history = [row for row in load_article_history() if isinstance(row, dict) and row.get("locale") == locale]
     generated_at = datetime.now(timezone.utc).isoformat()
     source_checklist = "Find at least three complete primary or authoritative URLs for the selected topic. Match source types to the topic (government, regulator, public agency, standards body, exchange, university, or first-party issuer). Prefer current pages and state the page date or last-updated date when visible."
     prompt = (
         "You are a local trend and search-intent research editor. Use exactly one web search tool call, with multiple native-language queries if useful, then stop. "
-        "The topic may be finance or any other genuinely useful current-interest subject; choose what is most likely to earn qualified clicks in this locale at the stated moment, while avoiding sensational or unsafe claims. Use Google's trending-search terms and news headlines as signals, then validate intent, competition, and facts with web search. "
+        "The topic may be finance or any other genuinely useful current-interest subject; do not constrain the category. Choose the best opportunity for this site, not merely the most popular headline. Evaluate the candidate pool using: interest × velocity × search intent × SERP feasibility × title CTR potential × durability × site fit, minus repetition penalty. A lower-volume rising query with weak or stale results should beat a massive query dominated by authoritative publishers. Use article_history and weekly_strategy performance signals to prefer topic/headline/layout patterns that actually earned clicks, while preserving a 70% proven / 20% adjacent / 10% experiment mix. Apply weekly_strategy category weights when they have enough observations. Avoid sensational or unsafe claims. Use Google's trending-search terms and news headlines as signals, then validate intent, competition, and facts with web search. "
         "Use the Google News RSS snapshot as a trend signal, but verify it and do not treat headlines as facts. Identify exactly five leading/relevant search-result pages for the chosen query when five can be verified; rank them 1-5 and describe only their coverage/structure, never copy wording. "
         "The recent_3d_posts list is a hard exclusion window. Do not choose the same topic or an overlapping story as any post in that list: avoid the same event, entity, policy, product, incident, primary keyword, or search intent even when the title is reworded. If a trend is too close, discard it and select another currently trending query. Exact-title reuse is forbidden. "
-        "Return one compact JSON object only with: topic, click_potential (0-100), search_intent, angle, freshness, benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
+        "Return one compact JSON object only with: topic, action (new or update), target_post_id (when action=update), category, layout_type (news, comparison, howto, timeline, explainer, or checklist), click_potential (0-100), opportunity_score (0-100), opportunity_components (interest, velocity, search_intent, serp_feasibility, ctr_potential, durability, site_fit, repeat_penalty), search_intent, angle, freshness, headline_type, serp_competition (0-100), benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), original_value (at least two concrete additions absent from the benchmark pages), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
         + source_checklist + " Use the requested locale and language. Do not invent, truncate, or guess URLs. Do not provide personalized financial, medical, legal, or safety advice."
     )
     input_payload = {
@@ -418,6 +570,9 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "topic_override": topic_override or "",
         "google_news_snapshot": trends,
         "google_trending_searches": trending_searches,
+        "candidate_pool": candidate_pool,
+        "weekly_strategy": weekly_strategy,
+        "article_history": article_history[-100:],
         "recent_published_posts": recent_posts,
         "recent_3d_posts": recent_3d,
         "topic_exclusion_rule": "No same or overlapping topic, event/entity, primary keyword, or search intent as a post dated within the last 3 days.",
@@ -425,11 +580,13 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
     }
     research: dict[str, Any] = {}
     selected_topic = ""
+    previous_candidates: list[dict[str, str]] = []
     for selection_attempt in range(3):
         attempt_payload = dict(input_payload)
         if selection_attempt:
             attempt_payload["previous_candidate"] = selected_topic
-            attempt_payload["retry_instruction"] = "The previous candidate overlapped the three-day exclusion list. Choose a materially different trending topic and search intent now."
+            attempt_payload["retry_instruction"] = "The previous candidate was rejected for topic overlap. Choose a materially different trending topic and search intent now."
+            attempt_payload["previous_candidates"] = previous_candidates
         research_text = openai_text(
             settings,
             prompt,
@@ -452,12 +609,37 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
                 reasoning_effort=settings.research_reasoning,
             ))
         selected_topic = str(research.get("topic") or topic_override or "Current local search trend and how to verify it")
-        if not topic_overlaps_recent(selected_topic, research, recent_3d):
+        exclusion_rows = [*recent_3d, *previous_candidates]
+        if not topic_overlaps_recent(selected_topic, research, exclusion_rows):
             break
+        previous_candidates.append({"title": selected_topic})
     else:
         raise RuntimeError("Research topic overlapped a post from the last 3 days after three selections")
+    components = research.get("opportunity_components") if isinstance(research, dict) else {}
+    research["opportunity_score"] = calculate_opportunity_score(components, research.get("click_potential", 0))
+    research["trend_score"] = research.get("trend_score", research.get("click_potential", 0))
+    original_value = research.get("original_value")
+    if not isinstance(original_value, list) or len(original_value) < 2:
+        gaps = research.get("gaps") if isinstance(research.get("gaps"), list) else []
+        research["original_value"] = [str(item) for item in gaps[:2]]
+    action = str(research.get("action", "new")).lower()
+    try:
+        target_id = int(research.get("target_post_id")) if research.get("target_post_id") is not None else None
+    except (TypeError, ValueError):
+        target_id = None
+    valid_targets = {
+        int(row["id"]): row for row in recent_posts
+        if str(row.get("id", "")).isdigit() and row not in recent_3d
+    }
+    if action == "update" and target_id in valid_targets:
+        research["action"] = "update"
+        research["target_post_id"] = target_id
+    else:
+        research["action"] = "new"
+        research.pop("target_post_id", None)
     # Carry the exact exclusion list into the writing/review stages as well,
     # so a headline cannot be changed into a near-duplicate after research.
+    research["recent_published_posts"] = recent_posts
     research["recent_3d_posts"] = recent_3d
     research["recent_3d_exclusion_count"] = len(recent_3d)
     research["topic_exclusion_applied"] = True
@@ -466,16 +648,26 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
 
 def create_article(settings: Settings, locale: str, topic: str, brief: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     language, _ = locale_rules(locale)
+    layout_type = str(brief.get("layout_type", "explainer")).lower()
+    layout_guidance = {
+        "news": "Use a news layout: answer first, what happened, why it matters, verified facts, what remains uncertain, and what to watch next.",
+        "comparison": "Use a comparison layout: conclusion first, a compact comparison table, criterion-by-criterion analysis, and who each option suits.",
+        "howto": "Use a practical layout: problem, immediate answer, numbered steps, pitfalls, and a short FAQ.",
+        "timeline": "Use a timeline layout: current status, dated sequence of verified events, confirmed versus unconfirmed claims, and next dates.",
+        "checklist": "Use a checklist layout: decision summary, checklist grouped by stage, stop-and-verify warnings, and FAQ.",
+        "explainer": "Use an explainer layout: plain-language answer, key concepts, evidence, practical example, limitations, and FAQ.",
+    }.get(layout_type, "Use an explainer layout with a plain-language answer, evidence, practical example, limitations, and FAQ.")
     article_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "research": brief}, ensure_ascii=False)
     article_instructions = (
         "You are an independent high-trust writer. Write an original, useful article in the requested language about the selected current topic. "
         "Use the five benchmark pages only to understand search intent, coverage gaps, and useful structure; never imitate, translate, or copy any competitor wording. "
         "Use only claims supported by the research brief and cite complete official URLs from official_sources; never invent, truncate, or guess URLs. "
         "Treat research.recent_3d_posts as a hard exclusion list: the title, focus keyword, opening, and search intent must not repeat or materially overlap any item dated within the last three days. "
+        "The research brief's original_value list must be reflected as at least two concrete additions that are not merely longer summaries of the benchmark pages. "
         "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, a useful FAQ, and one or two concrete internal-link suggestions only when URLs are present in recent_published_posts. "
-        "Design the HTML like a polished editorial feature rather than an AI dump: use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), a short lead paragraph, compact callout/summary blocks, readable tables or checklists only when they clarify a decision, generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
+        f"Design the HTML like a polished editorial feature rather than an AI dump. Selected layout type: {layout_type}. {layout_guidance} Use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
         "Include the information date, what is still uncertain, risks/limitations appropriate to the topic, a short update plan based on growth_plan, and a clear notice that this is general information rather than personalized professional advice. "
-        "Return exactly one JSON object with string fields title, slug, excerpt, html; array field sources; and object field seo containing meta_description, focus_keyword, related_keywords, and faq_questions. HTML must be complete, valid, balanced HTML with no markdown, dangling tags, or cut-off sentences."
+        "Return exactly one JSON object with string fields title, slug, excerpt, html, layout_type; array field sources; and object field seo containing meta_description, focus_keyword, related_keywords, and faq_questions. HTML must be complete, valid, balanced HTML with no markdown, dangling tags, or cut-off sentences."
     )
     article_text = openai_text(
         settings,
@@ -492,6 +684,7 @@ def create_article(settings: Settings, locale: str, topic: str, brief: dict[str,
         # A transient truncated/non-JSON response should not consume the
         # entire scheduled slot. Ask once more with a stricter JSON contract.
         parsed_article = parse_article_output(openai_text(settings, article_instructions + " Output only valid JSON, with no preamble or code fence.", article_input, max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning))
+    parsed_article.setdefault("layout_type", layout_type)
     article = json.dumps(parsed_article, ensure_ascii=False)
     return article, brief
 
@@ -500,7 +693,7 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
     current = article
     review: dict[str, Any] = {}
     for attempt in range(settings.max_revisions + 1):
-        review_instructions = "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), issues (array), required_fixes (array), and rationale. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings/FAQ are useful for search without keyword stuffing. Compare the draft with evidence.recent_3d_posts and fail it if the title, focus keyword, event/entity, or search intent materially overlaps a post from the last three days. Do not demand numeric thresholds when the article is a methodology guide and tells readers how to verify current values from cited primary sources."
+        review_instructions = "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. The breakdown must score Fact accuracy /20, Original value /20, Search intent /15, SEO /10, Readability /10, Naturalness /10, Freshness /10, Layout /5. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings/FAQ are useful for search without keyword stuffing. Confirm that at least two concrete additions from evidence.original_value are present and not just longer summaries. Compare the draft with evidence.recent_3d_posts and fail it if the title, focus keyword, event/entity, or search intent materially overlaps a post from the last three days. Do not demand numeric thresholds when the article is a methodology guide and tells readers how to verify current values from cited primary sources."
         # The Responses API's json_object mode requires the literal word
         # `json` in the request input. Keep it lowercase to satisfy the API
         # validator across model versions.
@@ -534,7 +727,19 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
                 # let the normal revision loop request a fresh review next.
                 review = {"score": 0, "pass": False, "issues": ["Reviewer response was not valid JSON"], "required_fixes": ["Recheck every claim and source against the evidence"], "rationale": ""}
         score = int(review.get("score", 0))
-        if bool(review.get("pass")) and score >= settings.quality_threshold:
+        original_value = brief.get("original_value", []) if isinstance(brief, dict) else []
+        original_count = review.get("originality_count")
+        try:
+            original_count = int(original_count)
+        except (TypeError, ValueError):
+            original_count = len(original_value) if isinstance(original_value, list) else 0
+        if not isinstance(original_value, list) or len(original_value) < 2:
+            original_count = 0
+        else:
+            original_count = min(original_count, len(original_value))
+        review["originality_count"] = original_count
+        review["breakdown"] = review.get("breakdown", {}) if isinstance(review.get("breakdown"), dict) else {}
+        if bool(review.get("pass")) and score >= settings.quality_threshold and original_count >= 2:
             return current, {"score": score, "attempts": attempt, "review": review}
         if attempt == settings.max_revisions:
             break
@@ -566,7 +771,7 @@ def wp_recent_posts(settings: Settings, limit: int = 20) -> list[dict[str, str]]
         "per_page": str(limit),
         "orderby": "date",
         "order": "desc",
-        "_fields": "title,link,date,modified",
+        "_fields": "id,title,slug,link,date,modified,status",
     })
     payload = http_get_json(wp_endpoint(settings, f"posts?{query}"), {"Authorization": wp_auth_header(settings)})
     rows = payload.get("posts", []) if isinstance(payload, dict) else payload
@@ -580,10 +785,13 @@ def wp_recent_posts(settings: Settings, limit: int = 20) -> list[dict[str, str]]
         if isinstance(title, dict):
             title = title.get("rendered", "")
         result.append({
+            "id": str(row.get("id", "")),
             "title": str(title).strip(),
             "url": str(row.get("link", "")).strip(),
+            "slug": str(row.get("slug", "")).strip(),
             "date": str(row.get("date", ""))[:10],
             "modified": str(row.get("modified", ""))[:10],
+            "status": str(row.get("status", "publish")),
         })
     return [row for row in result if row["title"] and row["url"]]
 
@@ -609,6 +817,12 @@ def _icon_kind(title: str, article_html: str = "", variant: int = 0) -> str:
         ("chart", ("주식", "주가", "채권", "etf", "펀드", "투자", "시장", "株", "株価", "債券", "投資", "市場", "指数", "ファンド", "stock", "bond", "fund", "invest", "market", "index")),
         ("calculator", ("계산", "예산", "저축", "비용", "수수료", "금리", "대출", "計算", "予算", "貯蓄", "費用", "手数料", "金利", "ローン", "budget", "saving", "cost", "fee", "interest", "loan", "rate")),
         ("news", ("뉴스", "속보", "화제", "트렌드", "ニュース", "速報", "話題", "トレンド", "最新", "今日", "news", "trend", "update", "latest", "today")),
+        ("sports", ("스포츠", "경기", "선수", "리그", "スポーツ", "試合", "選手", "リーグ", "sports", "game", "player", "league")),
+        ("product", ("제품", "신제품", "스펙", "가격", "상품", "製品", "新製品", "仕様", "価格", "商品", "product", "spec", "price", "device")),
+        ("timeline", ("타임라인", "사건", "발생", "경과", "経緯", "時系列", "事件", "timeline", "incident", "recap")),
+        ("travel", ("여행", "관광", "항공", "호텔", "旅行", "観光", "航空", "ホテル", "travel", "tourism", "flight", "hotel")),
+        ("lifestyle", ("생활", "요리", "건강", "정리", "생활비", "暮らし", "料理", "健康", "生活", "lifestyle", "recipe", "wellness")),
+        ("entertainment", ("연예", "배우", "가수", "영화", "드라마", "芸能", "俳優", "歌手", "映画", "ドラマ", "entertainment", "actor", "movie", "series")),
     )
     primary = next((kind for kind, words in groups if any(word in text for word in words)), "insight")
     if variant == 0:
@@ -619,7 +833,9 @@ def _icon_kind(title: str, article_html: str = "", variant: int = 0) -> str:
         # security/insight stories even when their semantic labels differ.
         "currency": "chart", "home": "calculator", "security": "document", "policy": "magnifier",
         "calendar": "document", "chart": "calculator", "calculator": "chart", "news": "chart",
-        "insight": "chart", "shield": "document", "document": "magnifier", "magnifier": "chart",
+        "insight": "chart", "sports": "chart", "product": "calculator", "timeline": "calendar",
+        "travel": "compass", "lifestyle": "document", "entertainment": "calendar",
+        "shield": "document", "document": "magnifier", "magnifier": "chart",
     }
     return complements.get(primary, "compass")
 
@@ -794,6 +1010,12 @@ def generated_icon_png(locale: str, title: str, article_html: str = "", variant:
         "compass": draw_compass,
         "news": draw_magnifier,
         "insight": draw_compass,
+        "sports": draw_chart,
+        "product": draw_calculator,
+        "timeline": draw_calendar,
+        "travel": draw_compass,
+        "lifestyle": draw_document,
+        "entertainment": draw_calendar,
     }.get(kind, draw_compass)()
 
     raw = bytes(pixels)
@@ -871,23 +1093,57 @@ def compose_image_layout(html: str, figures: list[str]) -> str:
     return body
 
 
-def wp_create(settings: Settings, article_json: str, topic: str, locale: str) -> dict[str, Any]:
-    article = parse_json(article_json)
-    title = str(article.get("title", topic))
-    article_html = str(article.get("html", ""))
+def build_visuals(settings: Settings, title: str, locale: str, article_html: str) -> tuple[list[tuple[int, str]], list[str]]:
+    """Upload two semantic visuals and return media records plus compact figures."""
     media: list[tuple[int, str]] = [upload_generated_icon(settings, title, locale, article_html, variant) for variant in range(2)]
     figures: list[str] = []
     for index, (_, media_url) in enumerate(media):
         kind = _icon_kind(title, article_html, index)
-        purpose = ("topic", "detail")[index]
         alt = html_escape(f"{title} — original {kind} icon illustration related to the article topic", quote=True)
         figures.append(
             f'<figure class="wp-block-image aligncenter finance-inline-visual finance-inline-icon finance-inline-visual-{index + 1}" '
             'style="max-width:360px;width:100%;margin:1.5rem auto;text-align:center;">'
             f'<img src="{html_escape(media_url, quote=True)}" alt="{alt}" width="360" height="203" '
-            'loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0 auto;" />'
+            'loading="lazy" decoding="async" sizes="(max-width: 600px) 100vw, 360px" '
+            'style="display:block;width:100%;height:auto;margin:0 auto;" />'
             '</figure>'
         )
+    return media, figures
+
+
+def related_posts_html(article: dict[str, Any], brief: dict[str, Any], max_links: int = 5) -> str:
+    """Build 2–5 contextual internal links from the site's existing posts."""
+    candidates = brief.get("recent_published_posts", []) if isinstance(brief, dict) else []
+    if not isinstance(candidates, list):
+        return ""
+    article_terms = _topic_terms(" ".join(str(article.get(key, "")) for key in ("title", "html")))
+    ranked: list[tuple[int, dict[str, Any]]] = []
+    target_id = str(brief.get("target_post_id", "")) if isinstance(brief, dict) else ""
+    for row in candidates:
+        if not isinstance(row, dict) or not row.get("url") or not row.get("title") or (target_id and str(row.get("id")) == target_id):
+            continue
+        score = len(article_terms & _topic_terms(str(row.get("title", ""))))
+        if score:
+            ranked.append((score, row))
+    ranked.sort(key=lambda item: item[0], reverse=True)
+    selected = [row for _, row in ranked[:max_links]]
+    if not selected:
+        return ""
+    items = "".join(f'<li><a href="{html_escape(str(row["url"]), quote=True)}">{html_escape(str(row["title"]))}</a></li>' for row in selected)
+    return f'<aside class="finance-related" style="margin:2rem 0;padding:1rem 1.25rem;border-left:3px solid #2d8f8f;background:#f5f8f8;"><h2>Related reading</h2><ul>{items}</ul></aside>'
+
+
+def article_payload(settings: Settings, article: dict[str, Any], topic: str, locale: str, brief: dict[str, Any], action: str = "new") -> tuple[dict[str, Any], list[tuple[int, str]]]:
+    title = str(article.get("title", topic))
+    article_html = str(article.get("html", ""))
+    media, figures = build_visuals(settings, title, locale, article_html)
+    content = compose_image_layout(article_html, figures)
+    links = related_posts_html(article, brief)
+    if links:
+        content += links
+    if action == "update":
+        stamp = datetime.now(LOCAL_ZONE).strftime("%B %d, %Y").replace(" 0", " ")
+        content = f'<p class="finance-updated"><strong>Updated: {html_escape(stamp)}</strong></p>' + content
     excerpt = str(article.get("excerpt", "")).strip()
     if len(excerpt) > 300:
         excerpt = excerpt[:297].rstrip() + "..."
@@ -897,14 +1153,71 @@ def wp_create(settings: Settings, article_json: str, topic: str, locale: str) ->
         # Keep both visuals in the article body so the responsive width rule
         # also applies to the first icon.  A featured image is intentionally
         # omitted: WordPress themes often render it full-bleed on mobile.
-        "content": compose_image_layout(article_html, figures),
+        "content": content,
         "excerpt": excerpt,
         "status": settings.publish_mode,
     }
+    return payload, media
+
+
+def wp_create(settings: Settings, article_json: str, topic: str, locale: str, brief: dict[str, Any] | None = None) -> dict[str, Any]:
+    article = parse_json(article_json)
+    payload, media = article_payload(settings, article, topic, locale, brief or {}, action="new")
     post = http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
     post["_images_uploaded"] = len(media)
-    post["_image_kinds"] = [_icon_kind(title, article_html, index) for index in range(len(media))]
+    post["_image_kinds"] = [_icon_kind(str(article.get("title", topic)), str(article.get("html", "")), index) for index in range(len(media))]
     return post
+
+
+def wp_update(settings: Settings, post_id: int, article_json: str, topic: str, locale: str, brief: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Update an existing URL when the research engine selects UPDATE."""
+    article = parse_json(article_json)
+    payload, media = article_payload(settings, article, topic, locale, brief or {}, action="update")
+    post = http_json(wp_endpoint(settings, f"posts/{int(post_id)}"), payload, {"Authorization": wp_auth_header(settings)})
+    post["_images_uploaded"] = len(media)
+    post["_image_kinds"] = [_icon_kind(str(article.get("title", topic)), str(article.get("html", "")), index) for index in range(len(media))]
+    post["_action"] = "update"
+    return post
+
+
+def add_reverse_internal_links(settings: Settings, new_post: dict[str, Any], brief: dict[str, Any], max_links: int = 3) -> tuple[int, list[str]]:
+    """Link a few strong existing pages back to a newly published article."""
+    post_id = new_post.get("id")
+    new_url = str(new_post.get("link", ""))
+    if not post_id or not new_url:
+        return 0, []
+    article = {"title": brief.get("topic", ""), "html": brief.get("focus_keyword", "")}
+    candidates = brief.get("recent_published_posts", []) if isinstance(brief, dict) else []
+    if not isinstance(candidates, list):
+        return 0, []
+    ranked: list[tuple[int, dict[str, Any]]] = []
+    article_terms = _topic_terms(f"{article['title']} {article['html']}")
+    for row in candidates:
+        if not isinstance(row, dict) or str(row.get("id")) == str(post_id) or not str(row.get("id", "")).isdigit():
+            continue
+        score = len(article_terms & _topic_terms(str(row.get("title", ""))))
+        if score:
+            ranked.append((score, row))
+    ranked.sort(key=lambda item: item[0], reverse=True)
+    updated = 0
+    errors: list[str] = []
+    auth = wp_auth_header(settings)
+    for _, row in ranked[:max_links]:
+        try:
+            target_id = int(row["id"])
+            existing = http_get_json(wp_endpoint(settings, f"posts/{target_id}"), {"Authorization": auth})
+            content_value = existing.get("content", "") if isinstance(existing, dict) else ""
+            if isinstance(content_value, dict):
+                content_value = content_value.get("raw") or content_value.get("rendered") or ""
+            content = str(content_value)
+            if new_url in content:
+                continue
+            link_html = f'<p class="finance-newer-reading"><a href="{html_escape(new_url, quote=True)}">Newer related reading: {html_escape(str(new_post.get("title", brief.get("topic", ""))))}</a></p>'
+            http_json(wp_endpoint(settings, f"posts/{target_id}"), {"content": content + link_html}, {"Authorization": auth})
+            updated += 1
+        except Exception as exc:
+            errors.append(f"post {row.get('id')}: {exc}")
+    return updated, errors
 
 
 def policy_pages(locale: str) -> list[tuple[str, str]]:
@@ -949,10 +1262,21 @@ def main() -> int:
             recent_3d,
         ):
             raise RuntimeError("Final article title overlapped a post from the last 3 days; publication was blocked")
-        result = wp_create(settings, article, topic, args.locale)
+        action = str(brief.get("action", "new"))
+        if action == "update" and brief.get("target_post_id"):
+            result = wp_update(settings, int(brief["target_post_id"]), article, topic, args.locale, brief)
+        else:
+            action = "new"
+            result = wp_create(settings, article, topic, args.locale, brief)
+        reverse_links, reverse_link_errors = add_reverse_internal_links(settings, result, brief) if action == "new" else (0, [])
+        result["_reverse_links_added"] = reverse_links
+        result["_reverse_link_errors"] = reverse_link_errors
+        record_article_history(args.locale, final_article, brief, review, result, action)
         pages = seed_pages(settings, args.locale) if args.seed_pages else 0
         print(json.dumps({
             "topic": topic,
+            "action": action,
+            "opportunity_score": brief.get("opportunity_score"),
             "click_potential": brief.get("click_potential"),
             "benchmark_sources": len(brief.get("benchmark_sources", [])) if isinstance(brief.get("benchmark_sources"), list) else 0,
             "growth_plan": brief.get("growth_plan", []),
@@ -960,6 +1284,9 @@ def main() -> int:
             "link": result.get("link"),
             "status": result.get("status"),
             "images_uploaded": result.get("_images_uploaded", 0),
+            "image_kinds": result.get("_image_kinds", []),
+            "reverse_links_added": result.get("_reverse_links_added", 0),
+            "reverse_link_errors": result.get("_reverse_link_errors", []),
             "quality": review,
             "pages_created": pages,
         }, ensure_ascii=False, indent=2))

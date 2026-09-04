@@ -24,5 +24,8 @@ Never commit `.env`, access tokens, application passwords, or OpenAI keys.
 Both workflows also support a manual `workflow_dispatch` run.
 
 The quality gate is 90/100 with at most four revisions. The article pipeline
-uses the OpenAI API, whose usage is billed separately from GitHub Actions.
+reads a free locale-specific Google News RSS snapshot, benchmarks up to five
+current search results, then uses `gpt-5.6-luna` (medium reasoning) for research
+and `gpt-5.6-terra` (medium reasoning) for writing/review. OpenAI API usage is
+billed separately from GitHub Actions.
 

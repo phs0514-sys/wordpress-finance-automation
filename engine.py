@@ -168,6 +168,25 @@ def record_article_version(locale: str, article: dict[str, Any], brief: dict[str
     return version_id
 
 
+def rollback_article(settings: Settings, locale: str, post_id: int, version_id: str) -> dict[str, Any]:
+    """Restore a previously stored content snapshot only on explicit CLI use."""
+    store = load_json_file(VERSIONS_PATH, {})
+    versions = store.get(f"{locale}:{post_id}", []) if isinstance(store, dict) else []
+    snapshot = next((item for item in versions if isinstance(item, dict) and item.get("version_id") == version_id), None)
+    if not snapshot:
+        raise ValueError("Requested article version was not found")
+    payload = {
+        "title": snapshot.get("title", ""),
+        "slug": snapshot.get("slug", ""),
+        "excerpt": snapshot.get("excerpt", ""),
+        "content": snapshot.get("html", ""),
+        "status": settings.publish_mode,
+    }
+    result = http_json(wp_endpoint(settings, f"posts/{int(post_id)}"), payload, {"Authorization": wp_auth_header(settings)})
+    result["_rollback_version"] = version_id
+    return result
+
+
 def record_source_usage(brief: dict[str, Any], locale: str) -> None:
     """Track source-domain concentration without imposing a brittle cap."""
     store = load_json_file(SOURCE_USAGE_PATH, {})
@@ -1573,9 +1592,18 @@ def main() -> int:
     parser.add_argument("--locale", choices=("us", "jp", "kr"), required=True)
     parser.add_argument("--topic", help="Optional fixed topic; omit to select a current local trend at run time")
     parser.add_argument("--seed-pages", action="store_true")
+    parser.add_argument("--rollback-post-id", type=int, help="Explicitly restore a stored version for this post")
+    parser.add_argument("--rollback-version", help="Version ID shown in data/article_versions.json")
     args = parser.parse_args()
     try:
         settings = Settings.from_env(args.locale)
+        if args.rollback_post_id or args.rollback_version:
+            if not (args.rollback_post_id and args.rollback_version):
+                raise ValueError("rollback requires both --rollback-post-id and --rollback-version")
+            result = rollback_article(settings, args.locale, args.rollback_post_id, args.rollback_version)
+            record_publish_outcome(True)
+            print(json.dumps({"action": "rollback", "post_id": args.rollback_post_id, "version": args.rollback_version, "status": result.get("status"), "link": result.get("link")}, ensure_ascii=False, indent=2))
+            return 0
         control = load_publish_control()
         if control.get("paused") and os.getenv("PUBLISH_FORCE_RESUME", "0") != "1":
             raise RuntimeError(f"PUBLISHING PAUSED: {control.get('reason', 'manual hold')}")

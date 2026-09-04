@@ -12,6 +12,11 @@ Required secrets:
 - `WP_JP_URL`, `WP_JP_SITE_REF`
 - `WP_KR_URL`, `WP_KR_SITE_REF`
 
+Optional Search Console secrets (enable query/page/country/device metrics):
+
+- `GSC_TOKEN` or locale-specific `GSC_US_TOKEN`, `GSC_JP_TOKEN`, `GSC_KR_TOKEN`
+- `GSC_SITE_URL` when the Search Console property URL differs from the site URL
+
 The workflow maps the shared WordPress.com credentials from the US values to
 Japan and Korea. If the WordPress.com account uses a bearer access token,
 store it as `WP_US_ACCESS_TOKEN` and leave the client/password secrets empty.
@@ -20,7 +25,10 @@ Never commit `.env`, access tokens, application passwords, or OpenAI keys.
 ## Schedule
 
 `publish.yml` runs all three locales at 08:00, 11:50, 16:00, and 20:00 KST.
-`daily-report.yml` writes a read-only report to `reports/` at 06:00 KST.
+`daily-report.yml` writes a read-only report to `reports/` at 06:00 KST and
+updates `data/article_history.json`. `weekly-strategy.yml` runs Sunday 22:00
+KST and stores learned category/headline/layout recommendations in
+`data/weekly_strategy.json`.
 Both workflows also support a manual `workflow_dispatch` run.
 
 The quality gate is 90/100 with at most four revisions. The article pipeline
@@ -28,6 +36,8 @@ reads free locale-specific Google Trending Searches/News RSS snapshots, benchmar
 current search results, then uses `gpt-5.6-luna` (medium reasoning) for research
 and `gpt-5.6-terra` (medium reasoning) for writing/review. OpenAI API usage is
 billed separately from GitHub Actions. Each approved post receives two
-topic-related standard-library-generated PNG icons (one featured and one
-inline); no image-generation API key is needed.
+distinct topic-related standard-library-generated PNG icons as compact,
+centered inline figures; no image-generation API key is needed. Topics are
+scored for realistic click opportunity, exclude overlapping posts from the
+last three days, and may update an older URL when the intent is already owned.
 

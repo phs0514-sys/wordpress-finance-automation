@@ -24,14 +24,18 @@ Never commit `.env`, access tokens, application passwords, or OpenAI keys.
 
 ## Schedule
 
-`publish.yml` runs all three locales at 08:00, 11:50, 16:00, and 20:00 KST.
-`daily-report.yml` writes a read-only report to `reports/` at 06:00 KST and
-updates `data/article_history.json`, source usage, version snapshots, and the
-publish-control state. `seo-health.yml` runs before the first slot and records
-read-only technical SEO checks. `weekly-strategy.yml` runs Sunday 22:00 KST and
-stores confidence-aware category/headline/layout recommendations in
-`data/weekly_strategy.json`.
-Both workflows also support a manual `workflow_dispatch` run.
+`publish.yml` runs only the existing (legacy) three locales at 08:00,
+11:50, 16:00, and 20:00 KST, unchanged. The new sites are intentionally
+removed from that workflow. `new-site-issue-cycle.yml` runs every 30 minutes
+and, for each new site, collects Google Trends/News signals, scores and
+researches the best issue, then runs writing, independent review, quality gates,
+and publish/update when the score is at least 85. It records every scan and
+stops publication after two operations per site per local day while continuing
+to scan. `daily-report.yml` writes a read-only report to `reports/` at 06:00
+KST and updates history. `seo-health.yml` records read-only technical SEO
+checks. `weekly-strategy.yml` runs Sunday 22:00 KST and stores confidence-aware
+recommendations in `data/weekly_strategy.json`. All workflows support manual
+`workflow_dispatch` runs.
 
 The starting quality target is 85/100 with at most four bounded revisions. The
 article pipeline reads free locale-specific Google Trending Searches/News RSS

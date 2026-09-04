@@ -16,13 +16,17 @@ import os
 import re
 import struct
 import sys
+from datetime import datetime, timedelta, timezone
 import urllib.error
 import urllib.parse
 import urllib.request
 import zlib
+import xml.etree.ElementTree as ET
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 ROOT = Path(__file__).resolve().parent
 
@@ -43,6 +47,10 @@ def load_dotenv() -> None:
 class Settings:
     openai_key: str
     model: str
+    research_model: str
+    writing_model: str
+    research_reasoning: str
+    writing_reasoning: str
     publish_mode: str
     quality_threshold: int
     max_revisions: int
@@ -60,7 +68,15 @@ class Settings:
         prefix = locale.upper()
         values: dict[str, Any] = {
             "openai_key": os.getenv("OPENAI_API_KEY", ""),
-            "model": os.getenv("OPENAI_MODEL", "gpt-5"),
+            # Keep `model` as a backwards-compatible alias while making the
+            # requested two-stage model split explicit. The old OPENAI_MODEL
+            # value is intentionally ignored so a stale local .env cannot
+            # silently switch the requested Luna/Terra pair.
+            "model": os.getenv("OPENAI_WRITING_MODEL", "gpt-5.6-terra"),
+            "research_model": os.getenv("OPENAI_RESEARCH_MODEL", "gpt-5.6-luna"),
+            "writing_model": os.getenv("OPENAI_WRITING_MODEL", "gpt-5.6-terra"),
+            "research_reasoning": os.getenv("OPENAI_RESEARCH_REASONING", "medium"),
+            "writing_reasoning": os.getenv("OPENAI_WRITING_REASONING", "medium"),
             "publish_mode": os.getenv("PUBLISH_MODE", "draft").lower(),
             "quality_threshold": int(os.getenv("QUALITY_THRESHOLD", "90")),
             "max_revisions": int(os.getenv("MAX_REVISIONS", "4")),
@@ -104,6 +120,16 @@ def http_json(url: str, payload: dict[str, Any], headers: dict[str, str]) -> dic
         # Web-search-backed generation can be slow on the first request, and
         # scheduled runs should fail only after a generous bounded timeout.
         with urllib.request.urlopen(request, timeout=300) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"HTTP {exc.code} from {url}: {detail[:800]}") from exc
+
+
+def http_get_json(url: str, headers: dict[str, str]) -> Any:
+    request = urllib.request.Request(url, headers=headers, method="GET")
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")
@@ -221,36 +247,134 @@ def parse_article_output(text: str) -> dict[str, Any]:
 
 def locale_rules(locale: str) -> tuple[str, str]:
     if locale == "us":
-        return "US English", "SEC, Investor.gov, FINRA, IRS, Federal Reserve, Treasury, issuer filings"
+        return "US English", "the relevant US government, regulator, public agency, standards body, or primary issuer for the selected topic (for example SEC, FTC, FDA, CDC, NOAA, IRS, Federal Reserve, Treasury, or official state agencies)"
     if locale == "jp":
-        return "natural Japanese", "\u91d1\u878d\u5e81, \u65e5\u672c\u9280\u884c, JPX, \u8ca1\u52d9\u7701, EDINET, issuer disclosures"
+        return "natural Japanese", "the relevant Japanese ministry, regulator, public agency, standards body, exchange, central bank, or primary issuer for the selected topic (for example 金融庁, 日本銀行, JPX, 財務省, 厚生労働省, 気象庁, or official local agencies)"
     if locale == "kr":
-        return "natural Korean", "\uae08\uc735\uc704\uc6d0\ud68c, \uae08\uc735\uac10\ub3c5\uc6d0, \ud55c\uad6d\uc740\ud589, \uad6d\uc138\uccad, KRX, \ud1b5\uacc4\uccad, issuer disclosures"
+        return "natural Korean", "the relevant Korean ministry, regulator, public agency, standards body, exchange, central bank, or primary issuer for the selected topic (for example 금융위원회, 금융감독원, 한국은행, 국세청, KRX, 통계청, 질병관리청, 기상청, or official local agencies)"
     raise ValueError("locale must be us, jp, or kr")
 
 
-def create_article(settings: Settings, locale: str, topic: str) -> tuple[str, str]:
-    language, sources = locale_rules(locale)
-    source_checklist = {
-        "us": "Find at least three direct official pages: one regulator or government explainer, one primary data or filing page, and one consumer/investor guidance page relevant to the topic.",
-        "jp": "Find at least three direct official pages: one FSA/BOJ/JPX or government explainer, one primary data or disclosure page, and one consumer/investor guidance page relevant to the topic.",
-        "kr": "Find at least three direct official pages: one Bank of Korea or financial-regulator explainer, one ECOS/KRX/government data or disclosure page, and one Financial Supervisory Service consumer-comparison or guidance page relevant to the topic.",
-    }[locale]
-    brief = openai_text(
-        settings,
-        "You are a finance research editor. Call web search exactly once, using multiple focused queries if useful, then immediately stop. Return compact JSON only with angle, up to 4 claims (each with one complete official source URL relevant to the locale; omit a claim if no official URL is found), gaps, up to 2 original_value items, and outline. " + source_checklist + " Prefer current or evergreen official landing pages over dated news or old explanatory posts. Use only primary government, regulator, exchange, central-bank, or issuer sources relevant to this locale: " + sources + ". Never invent or truncate URLs and do not guess dates. Do not call the tool again and do not give personalized recommendations.",
-        json.dumps({"locale": locale, "topic": topic, "language": language, "preferred_source_types": sources, "source_checklist": source_checklist}, ensure_ascii=False),
-        use_web_search=True,
+GOOGLE_NEWS_CONFIG = {
+    "us": {"hl": "en-US", "gl": "US", "ceid": "US:en"},
+    "jp": {"hl": "ja", "gl": "JP", "ceid": "JP:ja"},
+    "kr": {"hl": "ko", "gl": "KR", "ceid": "KR:ko"},
+}
+
+
+def google_news_snapshot(locale: str, limit: int = 12) -> list[dict[str, str]]:
+    """Read a small, keyless Google News RSS snapshot for trend discovery.
+
+    Google Programmable Search requires a paid/managed API key in many setups;
+    the public News RSS feed provides a free, locale-specific signal that is
+    then verified by the research model's web-search call.
+    """
+    params = urllib.parse.urlencode(GOOGLE_NEWS_CONFIG[locale])
+    request = urllib.request.Request(
+        f"https://news.google.com/rss?{params}",
+        headers={"User-Agent": "Mozilla/5.0 (compatible; FinanceResearchBot/1.0)"},
+        method="GET",
     )
-    article_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "brief": brief}, ensure_ascii=False)
-    article_instructions = "You are an independent high-trust finance writer. Write an original article in the requested language; do not imitate or translate a single source. Use only claims supported by the evidence brief. Copy only complete source URLs that appear verbatim in the brief; never invent, truncate, or guess URLs. Include every useful official URL from the brief in a clean references list. Return exactly one json object with string fields title, excerpt, html and an array field sources. The html must be complete, valid, balanced HTML (no dangling tags, cut-off sentences, or markdown), include an information date, risks, and a clear not-financial-advice notice. Keep the article concise enough to finish completely."
-    article_text = openai_text(settings, article_instructions, article_input, max_output_tokens=4200, json_output=True)
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            root = ET.fromstring(response.read())
+    except Exception:
+        return []
+    rows: list[dict[str, str]] = []
+    for item in root.findall("./channel/item")[:limit]:
+        title = (item.findtext("title") or "").strip()
+        link = (item.findtext("link") or "").strip()
+        published = (item.findtext("pubDate") or "").strip()
+        source = item.find("source")
+        source_name = (source.text or "").strip() if source is not None else ""
+        if title and link:
+            rows.append({"title": title, "url": link, "published": published, "source": source_name})
+    return rows
+
+
+def collect_research(settings: Settings, locale: str, topic_override: str | None = None) -> tuple[str, dict[str, Any]]:
+    """Choose a current topic and build a benchmarked evidence brief.
+
+    One research call uses the locale's Google News snapshot plus web search to
+    choose the highest-potential current topic, identify five leading results,
+    and synthesize gaps and primary-source facts for the writer.
+    """
+    language, source_policy = locale_rules(locale)
+    try:
+        recent_posts = wp_recent_posts(settings, limit=20)
+    except Exception:
+        recent_posts = []
+    trends = google_news_snapshot(locale)
+    generated_at = datetime.now(timezone.utc).isoformat()
+    source_checklist = "Find at least three complete primary or authoritative URLs for the selected topic. Match source types to the topic (government, regulator, public agency, standards body, exchange, university, or first-party issuer). Prefer current pages and state the page date or last-updated date when visible."
+    prompt = (
+        "You are a local trend and search-intent research editor. Use exactly one web search tool call, with multiple native-language queries if useful, then stop. "
+        "The topic may be finance or any other genuinely useful current-interest subject; choose what is most likely to earn qualified clicks in this locale at the stated moment, while avoiding sensational or unsafe claims. "
+        "Use the Google News RSS snapshot as a trend signal, but verify it and do not treat headlines as facts. Identify exactly five leading/relevant search-result pages for the chosen query when five can be verified; rank them 1-5 and describe only their coverage/structure, never copy wording. "
+        "Return one compact JSON object only with: topic, click_potential (0-100), search_intent, angle, freshness, benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
+        + source_checklist + " Use the requested locale and language. Do not invent, truncate, or guess URLs. Do not provide personalized financial, medical, legal, or safety advice."
+    )
+    input_payload = {
+        "locale": locale,
+        "language": language,
+        "generated_at_utc": generated_at,
+        "topic_override": topic_override or "",
+        "google_news_snapshot": trends,
+        "recent_published_posts": recent_posts,
+        "source_policy": source_policy,
+    }
+    research_text = openai_text(
+        settings,
+        prompt,
+        json.dumps(input_payload, ensure_ascii=False),
+        use_web_search=True,
+        max_output_tokens=9000,
+        model=settings.research_model,
+        reasoning_effort=settings.research_reasoning,
+    )
+    try:
+        research = parse_json(research_text)
+    except ValueError:
+        research = parse_json(openai_text(
+            settings,
+            prompt + " Output valid JSON only, with double quotes and no code fence.",
+            json.dumps(input_payload, ensure_ascii=False),
+            use_web_search=True,
+            max_output_tokens=9000,
+            model=settings.research_model,
+            reasoning_effort=settings.research_reasoning,
+        ))
+    selected_topic = str(research.get("topic") or topic_override or "Current local search trend and how to verify it")
+    return selected_topic, research
+
+
+def create_article(settings: Settings, locale: str, topic: str, brief: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    language, _ = locale_rules(locale)
+    article_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "research": brief}, ensure_ascii=False)
+    article_instructions = (
+        "You are an independent high-trust writer. Write an original, useful article in the requested language about the selected current topic. "
+        "Use the five benchmark pages only to understand search intent, coverage gaps, and useful structure; never imitate, translate, or copy any competitor wording. "
+        "Use only claims supported by the research brief and cite complete official URLs from official_sources; never invent, truncate, or guess URLs. "
+        "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, a useful FAQ, and one or two concrete internal-link suggestions only when URLs are present in recent_published_posts. "
+        "Design the HTML like a polished editorial feature rather than an AI dump: use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), a short lead paragraph, compact callout/summary blocks, readable tables or checklists only when they clarify a decision, generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
+        "Include the information date, what is still uncertain, risks/limitations appropriate to the topic, a short update plan based on growth_plan, and a clear notice that this is general information rather than personalized professional advice. "
+        "Return exactly one JSON object with string fields title, slug, excerpt, html; array field sources; and object field seo containing meta_description, focus_keyword, related_keywords, and faq_questions. HTML must be complete, valid, balanced HTML with no markdown, dangling tags, or cut-off sentences."
+    )
+    article_text = openai_text(
+        settings,
+        article_instructions,
+        article_input,
+        max_output_tokens=7000,
+        json_output=True,
+        model=settings.writing_model,
+        reasoning_effort=settings.writing_reasoning,
+    )
     try:
         parsed_article = parse_article_output(article_text)
     except ValueError:
         # A transient truncated/non-JSON response should not consume the
         # entire scheduled slot. Ask once more with a stricter JSON contract.
-        parsed_article = parse_article_output(openai_text(settings, article_instructions + " Output only valid JSON, with no preamble or code fence.", article_input, max_output_tokens=4200, json_output=True))
+        parsed_article = parse_article_output(openai_text(settings, article_instructions + " Output only valid JSON, with no preamble or code fence.", article_input, max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning))
     article = json.dumps(parsed_article, ensure_ascii=False)
     return article, brief
 
@@ -259,7 +383,7 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
     current = article
     review: dict[str, Any] = {}
     for attempt in range(settings.max_revisions + 1):
-        review_instructions = "You are a strict independent finance fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), issues (array), required_fixes (array), and rationale. Check every number, date, rule, and source against the evidence; flag unsupported or personalized investment advice. Do not demand numeric thresholds when the article is explicitly a methodology guide and tells readers how to verify current values from the cited official source."
+        review_instructions = "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), issues (array), required_fixes (array), and rationale. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings/FAQ are useful for search without keyword stuffing. Do not demand numeric thresholds when the article is a methodology guide and tells readers how to verify current values from cited primary sources."
         # The Responses API's json_object mode requires the literal word
         # `json` in the request input. Keep it lowercase to satisfy the API
         # validator across model versions.
@@ -271,6 +395,8 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
                 review_input,
                 max_output_tokens=3000,
                 json_output=True,
+                model=settings.writing_model,
+                reasoning_effort=settings.writing_reasoning,
             ))
         except (RuntimeError, ValueError):
             # Models can occasionally emit a non-JSON preamble despite the
@@ -283,6 +409,8 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
                     review_input,
                     max_output_tokens=3000,
                     json_output=True,
+                    model=settings.writing_model,
+                    reasoning_effort=settings.writing_reasoning,
                 ))
             except (RuntimeError, ValueError):
                 # Treat an unparseable reviewer response as a failed gate and
@@ -293,7 +421,7 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
             return current, {"score": score, "attempts": attempt, "review": review}
         if attempt == settings.max_revisions:
             break
-        current = openai_text(settings, "Revise only weak sections of this finance article. Apply every required_fix in the review, preserve supported facts, remove unsupported claims, add only complete URLs from the evidence, repair all HTML, and keep the language native. Return the complete revised json article with title, excerpt, html, and sources; return no prose outside the object.", json.dumps({"output_format": "json", "draft": current, "review": review, "evidence": brief}, ensure_ascii=False), max_output_tokens=4200, json_output=True)
+        current = openai_text(settings, "Revise only weak sections of this article. Apply every required_fix in the review, preserve supported facts, remove unsupported claims, add only complete URLs from the evidence, repair all HTML, and keep the language native and human. Preserve the SEO fields (title, slug, excerpt, seo) and improve layout/typography cues through clean semantic HTML rather than decorative AI-sounding filler. Return the complete revised JSON article with title, slug, excerpt, html, sources, and seo; return no prose outside the object.", json.dumps({"output_format": "json", "draft": current, "review": review, "evidence": brief}, ensure_ascii=False), max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning)
     raise RuntimeError(f"Quality gate failed after {settings.max_revisions} revisions: {review}")
 
 
@@ -313,6 +441,34 @@ def wp_endpoint(settings: Settings, resource: str) -> str:
     if settings.wp_mode == "self_hosted":
         return f"{settings.wp_url}/wp-json/wp/v2/{resource}"
     return f"https://public-api.wordpress.com/wp/v2/sites/{settings.wp_site_ref}/{resource}"
+
+
+def wp_recent_posts(settings: Settings, limit: int = 20) -> list[dict[str, str]]:
+    """Return recent published titles/links to prevent duplication and add internal links."""
+    query = urllib.parse.urlencode({
+        "per_page": str(limit),
+        "orderby": "date",
+        "order": "desc",
+        "_fields": "title,link,date,modified",
+    })
+    payload = http_get_json(wp_endpoint(settings, f"posts?{query}"), {"Authorization": wp_auth_header(settings)})
+    rows = payload.get("posts", []) if isinstance(payload, dict) else payload
+    if not isinstance(rows, list):
+        return []
+    result: list[dict[str, str]] = []
+    for row in rows[:limit]:
+        if not isinstance(row, dict):
+            continue
+        title = row.get("title", "")
+        if isinstance(title, dict):
+            title = title.get("rendered", "")
+        result.append({
+            "title": str(title).strip(),
+            "url": str(row.get("link", "")).strip(),
+            "date": str(row.get("date", ""))[:10],
+            "modified": str(row.get("modified", ""))[:10],
+        })
+    return [row for row in result if row["title"] and row["url"]]
 
 
 def _png_chunk(kind: bytes, data: bytes) -> bytes:
@@ -429,13 +585,30 @@ def upload_generated_cover(settings: Settings, title: str, locale: str) -> tuple
     return int(media_id), str(source_url)
 
 
+def seo_slug(value: str) -> str:
+    normalized = unicodedata.normalize("NFKC", value).strip().lower()
+    normalized = re.sub(r"[^\w\s-]", "", normalized, flags=re.UNICODE)
+    normalized = re.sub(r"[-\s]+", "-", normalized).strip("-")
+    return normalized[:96].strip("-")
+
+
 def wp_create(settings: Settings, article_json: str, topic: str, locale: str) -> dict[str, Any]:
     article = parse_json(article_json)
     title = str(article.get("title", topic))
     media_id, media_url = upload_generated_cover(settings, title, locale)
     alt = html_escape(f"{title} — original finance chart illustration", quote=True)
     image_html = f'<figure class="wp-block-image size-large"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>'
-    payload = {"title": title, "content": image_html + str(article.get("html", "")), "excerpt": article.get("excerpt", ""), "status": settings.publish_mode, "featured_media": media_id}
+    excerpt = str(article.get("excerpt", "")).strip()
+    if len(excerpt) > 300:
+        excerpt = excerpt[:297].rstrip() + "..."
+    payload = {
+        "title": title,
+        "slug": seo_slug(str(article.get("slug", ""))) or seo_slug(title),
+        "content": image_html + str(article.get("html", "")),
+        "excerpt": excerpt,
+        "status": settings.publish_mode,
+        "featured_media": media_id,
+    }
     return http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
 
 
@@ -465,16 +638,27 @@ def main() -> int:
     load_dotenv()
     parser = argparse.ArgumentParser()
     parser.add_argument("--locale", choices=("us", "jp", "kr"), required=True)
-    parser.add_argument("--topic", required=True)
+    parser.add_argument("--topic", help="Optional fixed topic; omit to select a current local trend at run time")
     parser.add_argument("--seed-pages", action="store_true")
     args = parser.parse_args()
     try:
         settings = Settings.from_env(args.locale)
-        article, brief = create_article(settings, args.locale, args.topic)
-        article, review = review_and_revise(settings, args.locale, args.topic, article, brief)
-        result = wp_create(settings, article, args.topic, args.locale)
+        topic, brief = collect_research(settings, args.locale, args.topic)
+        article, brief = create_article(settings, args.locale, topic, brief)
+        article, review = review_and_revise(settings, args.locale, topic, article, brief)
+        result = wp_create(settings, article, topic, args.locale)
         pages = seed_pages(settings, args.locale) if args.seed_pages else 0
-        print(json.dumps({"id": result.get("id"), "link": result.get("link"), "status": result.get("status"), "quality": review, "pages_created": pages}, ensure_ascii=False, indent=2))
+        print(json.dumps({
+            "topic": topic,
+            "click_potential": brief.get("click_potential"),
+            "benchmark_sources": len(brief.get("benchmark_sources", [])) if isinstance(brief.get("benchmark_sources"), list) else 0,
+            "growth_plan": brief.get("growth_plan", []),
+            "id": result.get("id"),
+            "link": result.get("link"),
+            "status": result.get("status"),
+            "quality": review,
+            "pages_created": pages,
+        }, ensure_ascii=False, indent=2))
         return 0
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

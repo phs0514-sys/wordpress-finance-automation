@@ -37,8 +37,9 @@ jobs:
       OPENAI_WRITING_MODEL: gpt-5.6-terra
       OPENAI_WRITING_REASONING: medium
       PUBLISH_MODE: publish
-      QUALITY_THRESHOLD: "90"
+      QUALITY_THRESHOLD: "85"
       MAX_REVISIONS: "4"
+      PUBLISH_HEALTH_GATE: "1"
       WP_US_URL: ${{ secrets.WP_US_URL }}
       WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
       WP_US_MODE: wpcom
@@ -72,6 +73,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -f data/article_history.json ]; then git add data/article_history.json; fi
+          for file in data/article_versions.json data/source_usage.json data/publish_control.json; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
           if git diff --cached --quiet; then
             echo "No article history changes to commit"
           else

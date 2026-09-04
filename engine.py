@@ -475,13 +475,13 @@ def _png_chunk(kind: bytes, data: bytes) -> bytes:
     return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xFFFFFFFF)
 
 
-def generated_cover_png(locale: str, title: str) -> bytes:
-    """Create a small original finance-chart cover without a paid image API.
+def generated_cover_png(locale: str, title: str, variant: int = 0) -> bytes:
+    """Create one original finance-chart visual without a paid image API.
 
     It is intentionally generated in-process from standard-library primitives:
     a locale palette, a deterministic market line, bars, and a savings coin.
-    This keeps the GitHub-only deployment free while still giving every post
-    its own non-stock visual. The HTML alt text carries the article-specific
+    This keeps the GitHub-only deployment free while giving every post three
+    distinct non-stock visuals. The HTML alt text carries the article-specific
     description for accessibility and SEO.
     """
     width, height = 1200, 675
@@ -491,7 +491,7 @@ def generated_cover_png(locale: str, title: str) -> bytes:
         "kr": ((18, 58, 74), (35, 157, 154), (250, 184, 74)),
     }
     start, accent, gold = palettes.get(locale, palettes["us"])
-    seed = hashlib.sha256(f"{locale}:{title}".encode("utf-8")).digest()
+    seed = hashlib.sha256(f"{locale}:{title}:{variant}".encode("utf-8")).digest()
     pixels = bytearray()
 
     def color_at(x: int, y: int) -> tuple[int, int, int]:
@@ -542,7 +542,12 @@ def generated_cover_png(locale: str, title: str) -> bytes:
                 for dy in (-1, 0, 1):
                     set_pixel(x + dx, y + dy, accent)
     # Comparison bars and a coin motif.
-    for index, bar in enumerate((120, 190, 150, 235, 180)):
+    bar_sets = (
+        (120, 190, 150, 235, 180),
+        (170, 115, 220, 145, 205),
+        (95, 230, 135, 185, 245),
+    )
+    for index, bar in enumerate(bar_sets[variant % len(bar_sets)]):
         rectangle(175 + index * 72, 500 - bar, 207 + index * 72, 500, (79, 128, 153))
     for radius in range(46, 0, -1):
         for angle in range(360):
@@ -555,16 +560,18 @@ def generated_cover_png(locale: str, title: str) -> bytes:
     return b"\x89PNG\r\n\x1a\n" + _png_chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)) + _png_chunk(b"IDAT", zlib.compress(raw, 9)) + _png_chunk(b"IEND", b"")
 
 
-def upload_generated_cover(settings: Settings, title: str, locale: str) -> tuple[int | None, str]:
-    """Upload the free generated PNG and return (media_id, public_url)."""
+def upload_generated_cover(settings: Settings, title: str, locale: str, variant: int = 0) -> tuple[int | None, str]:
+    """Upload one free generated PNG and return (media_id, public_url)."""
     auth = wp_auth_header(settings)
-    boundary = "----CodexFinance" + hashlib.sha256(title.encode("utf-8")).hexdigest()[:16]
-    image = generated_cover_png(locale, title)
-    alt = f"{title} — original finance chart illustration"
+    boundary = "----CodexFinance" + hashlib.sha256(f"{title}:{variant}".encode("utf-8")).hexdigest()[:16]
+    image = generated_cover_png(locale, title, variant)
+    purposes = ("overview", "comparison", "checklist")
+    purpose = purposes[variant % len(purposes)]
+    alt = f"{title} — original {purpose} chart illustration"
     chunks = [
-        f"--{boundary}\r\nContent-Disposition: form-data; name=\"media[]\"; filename=\"finance-cover.png\"\r\nContent-Type: image/png\r\n\r\n".encode("utf-8"),
+        f"--{boundary}\r\nContent-Disposition: form-data; name=\"media[]\"; filename=\"finance-{purpose}.png\"\r\nContent-Type: image/png\r\n\r\n".encode("utf-8"),
         image,
-        f"\r\n--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][title]\"\r\n\r\n{title}\r\n".encode("utf-8"),
+        f"\r\n--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][title]\"\r\n\r\n{title} — {purpose}\r\n".encode("utf-8"),
         f"--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][alt]\"\r\n\r\n{alt}\r\n".encode("utf-8"),
         f"--{boundary}--\r\n".encode("utf-8"),
     ]
@@ -592,24 +599,62 @@ def seo_slug(value: str) -> str:
     return normalized[:96].strip("-")
 
 
+def insert_figure_after_first_paragraph(html: str, figure: str) -> str:
+    match = re.search(r"</p>", html, flags=re.I)
+    if not match:
+        return figure + html
+    return html[: match.end()] + figure + html[match.end() :]
+
+
+def insert_figure_before_heading(html: str, figure: str, heading_index: int) -> str:
+    matches = list(re.finditer(r"<h2\b", html, flags=re.I))
+    if not matches:
+        return html + figure
+    index = matches[min(heading_index, len(matches) - 1)].start()
+    return html[:index] + figure + html[index:]
+
+
+def compose_image_layout(html: str, figures: list[str]) -> str:
+    """Place three visuals at useful editorial points in the article body."""
+    body = html.strip()
+    if not figures:
+        return body
+    body = insert_figure_after_first_paragraph(body, figures[0])
+    if len(figures) > 1:
+        body = insert_figure_before_heading(body, figures[1], 1)
+    if len(figures) > 2:
+        faq = re.search(r"<h2\b[^>]*>[^<]*(?:FAQ|자주|よくある|질문)[^<]*</h2>", body, flags=re.I)
+        if faq:
+            body = body[: faq.start()] + figures[2] + body[faq.start() :]
+        else:
+            count = len(re.findall(r"<h2\b", body, flags=re.I))
+            body = insert_figure_before_heading(body, figures[2], max(0, count - 1))
+    return body
+
+
 def wp_create(settings: Settings, article_json: str, topic: str, locale: str) -> dict[str, Any]:
     article = parse_json(article_json)
     title = str(article.get("title", topic))
-    media_id, media_url = upload_generated_cover(settings, title, locale)
-    alt = html_escape(f"{title} — original finance chart illustration", quote=True)
-    image_html = f'<figure class="wp-block-image size-large"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>'
+    media: list[tuple[int, str]] = [upload_generated_cover(settings, title, locale, variant) for variant in range(3)]
+    figures: list[str] = []
+    for index, (_, media_url) in enumerate(media):
+        purpose = ("overview", "comparison", "checklist")[index]
+        alt = html_escape(f"{title} — original {purpose} chart illustration", quote=True)
+        figures.append(f'<figure class="wp-block-image size-large finance-inline-visual finance-inline-visual-{index + 1}"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>')
     excerpt = str(article.get("excerpt", "")).strip()
     if len(excerpt) > 300:
         excerpt = excerpt[:297].rstrip() + "..."
     payload = {
         "title": title,
         "slug": seo_slug(str(article.get("slug", ""))) or seo_slug(title),
-        "content": image_html + str(article.get("html", "")),
+        "content": compose_image_layout(str(article.get("html", "")), figures),
         "excerpt": excerpt,
         "status": settings.publish_mode,
         "featured_media": media_id,
     }
-    return http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
+    post = http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
+    post["_images_uploaded"] = len(media)
+    return post
 
 
 def policy_pages(locale: str) -> list[tuple[str, str]]:
@@ -656,6 +701,7 @@ def main() -> int:
             "id": result.get("id"),
             "link": result.get("link"),
             "status": result.get("status"),
+            "images_uploaded": result.get("_images_uploaded", 0),
             "quality": review,
             "pages_created": pages,
         }, ensure_ascii=False, indent=2))

@@ -169,19 +169,21 @@ def openai_text(
     use_web_search: bool = False,
     max_output_tokens: int | None = None,
     json_output: bool = False,
+    model: str | None = None,
+    reasoning_effort: str | None = None,
 ) -> str:
     # Bound model output so a search-backed evidence call cannot run away with
     # an unbounded response on a free-form finance prompt.
     payload: dict[str, Any] = {
-        "model": settings.model,
+        "model": model or settings.model,
         "instructions": instructions,
         "input": input_text,
         "max_output_tokens": max_output_tokens or (12000 if use_web_search else 5000),
-        "reasoning": {"effort": "low"},
+        "reasoning": {"effort": reasoning_effort or settings.writing_reasoning},
     }
     if use_web_search:
         # Keep evidence collection bounded for scheduled runs.
-        payload["tools"] = [{"type": "web_search", "search_context_size": "low"}]
+        payload["tools"] = [{"type": "web_search", "search_context_size": "high"}]
         payload["max_tool_calls"] = 1
     elif json_output:
         # JSON mode is incompatible with built-in web search, but keeps the

@@ -50,7 +50,7 @@ def check_page(url: str, home_url: str) -> dict[str, object]:
     if missing_images:
         issues.append(f"{missing_images} image(s) missing src")
     links = re.findall(r"<a\b[^>]+href=[\"']([^\"'#]+)", html, flags=re.I)
-    internal = [link for link in links if link.startswith(home_url) or link.startswith("/")]
+    internal = [urllib.parse.urljoin(home_url + "/", link) for link in links if link.startswith(home_url) or link.startswith("/")]
     return {
         "url": url,
         "status": status,
@@ -59,6 +59,7 @@ def check_page(url: str, home_url: str) -> dict[str, object]:
         "canonical": canonicals[0] if canonicals else None,
         "images": image_count,
         "internal_links": len(internal),
+        "internal_urls": internal[:20],
         "issues": issues,
         "html_bytes": len(html.encode("utf-8")),
         "structured_data": {name: bool(re.search(name, html, flags=re.I)) for name in ("Article", "BreadcrumbList", "Organization")},
@@ -81,6 +82,15 @@ def locale_health(locale: str) -> dict[str, object]:
     sitemap_status, _, _, sitemap_body = fetch(f"{home}/sitemap.xml")
     robots_status, _, _, robots_body = fetch(f"{home}/robots.txt")
     issues = [f"{page['url']}: {item}" for page in pages for item in page.get("issues", [])]
+    checked_links: set[str] = set()
+    for page in pages:
+        for link in page.get("internal_urls", []) if isinstance(page.get("internal_urls"), list) else []:
+            if link in checked_links or len(checked_links) >= 30:
+                continue
+            checked_links.add(link)
+            link_status, _, _, _ = fetch(str(link))
+            if link_status < 200 or link_status >= 400:
+                issues.append(f"broken internal link {link} (HTTP {link_status or 'unreachable'})")
     if sitemap_status != 200:
         issues.append(f"sitemap.xml HTTP status {sitemap_status or 'unreachable'}")
     if robots_status != 200:
@@ -89,7 +99,7 @@ def locale_health(locale: str) -> dict[str, object]:
         issues.append("robots.txt blocks the whole site")
     # Broken internal links are sampled conservatively to avoid hammering the
     # host; page-level status errors remain hard failures above.
-    critical = any("HTTP status" in item or "accidental noindex" in item or "sitemap.xml" in item or "robots.txt blocks" in item for item in issues)
+    critical = any("HTTP status" in item or "accidental noindex" in item or "sitemap.xml" in item or "robots.txt blocks" in item or "broken internal link" in item for item in issues)
     return {
         "locale": locale,
         "url": home,

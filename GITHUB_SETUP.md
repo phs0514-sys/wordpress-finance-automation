@@ -27,6 +27,7 @@ The quality gate is 90/100 with at most four revisions. The article pipeline
 reads free locale-specific Google Trending Searches/News RSS snapshots, benchmarks up to five
 current search results, then uses `gpt-5.6-luna` (medium reasoning) for research
 and `gpt-5.6-terra` (medium reasoning) for writing/review. OpenAI API usage is
-billed separately from GitHub Actions. Each approved post receives three
-standard-library-generated PNG visuals; no image-generation API key is needed.
+billed separately from GitHub Actions. Each approved post receives two
+topic-related standard-library-generated PNG icons (one featured and one
+inline); no image-generation API key is needed.
 

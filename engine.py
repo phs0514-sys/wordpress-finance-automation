@@ -35,8 +35,8 @@ STRATEGY_PATH = DATA_DIR / "weekly_strategy.json"
 SOURCE_USAGE_PATH = DATA_DIR / "source_usage.json"
 VERSIONS_PATH = DATA_DIR / "article_versions.json"
 PUBLISH_CONTROL_PATH = DATA_DIR / "publish_control.json"
-ENGINE_VERSION = "2026.09.04"
-PROMPT_VERSION = "editorial-v3-flexible-gates"
+ENGINE_VERSION = "2026.09.05"
+PROMPT_VERSION = "editorial-v4-luna-terra-90"
 OPENAI_USAGE: list[dict[str, Any]] = []
 
 
@@ -350,9 +350,8 @@ class Settings:
             "research_reasoning": os.getenv("OPENAI_RESEARCH_REASONING", "medium"),
             "writing_reasoning": os.getenv("OPENAI_WRITING_REASONING", "medium"),
             "publish_mode": os.getenv("PUBLISH_MODE", "draft").lower(),
-            # 85 is the starting auto-publish target; hard truth/technical
-            # gates below remain stricter than this soft quality target.
-            "quality_threshold": int(os.getenv("QUALITY_THRESHOLD", "85")),
+            # Publication requires a 90/100 independent-review score.
+            "quality_threshold": int(os.getenv("QUALITY_THRESHOLD", "90")),
             "max_revisions": int(os.getenv("MAX_REVISIONS", "4")),
             "wp_url": os.getenv(f"WP_{prefix}_URL", "").rstrip("/"),
             "wp_mode": os.getenv(f"WP_{prefix}_MODE", os.getenv("WP_US_MODE", "wpcom")).lower(),
@@ -863,7 +862,49 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
     research["recent_3d_posts"] = recent_3d
     research["recent_3d_exclusion_count"] = len(recent_3d)
     research["topic_exclusion_applied"] = True
-    return selected_topic, research
+    return selected_topic, verify_primary_facts(settings, locale, selected_topic, research)
+
+
+def verify_primary_facts(settings: Settings, locale: str, topic: str, brief: dict[str, Any]) -> dict[str, Any]:
+    """Run Luna's dedicated primary-source verification before drafting."""
+    language, source_policy = locale_rules(locale)
+    instructions = (
+        "You are the independent primary-source fact verifier. Use exactly one web search call and verify the selected topic before any article is drafted. "
+        "Prioritize government, public agencies, company newsrooms, product makers, event organizers, exchanges, schools, and other first-party sources. Do not treat a news headline, community post, or social discussion as proof of a concrete fact. "
+        "For every date, price, percentage, eligibility condition, product specification, official statement, or rule that might appear in the article, either map it to a complete primary-source URL or mark it unsupported. "
+        "Return one compact JSON object only with pass (boolean), verified_claims (array of objects with claim, source_url, source_title, source_type), unsupported_claims (array), correction_required (array), primary_source_urls (array), and rationale. "
+        "pass may be true only when at least one complete, relevant primary-source URL supports the core factual claims and unsupported claims have been removed from the usable evidence. "
+        f"Write labels in {language}. The preferred source types are: {source_policy}."
+    )
+    try:
+        verification = parse_json(openai_text(
+            settings, instructions,
+            json.dumps({"output_format": "json", "locale": locale, "topic": topic, "research": brief}, ensure_ascii=False),
+            use_web_search=True, max_output_tokens=5000,
+            model=settings.research_model, reasoning_effort=settings.research_reasoning,
+        ))
+    except (RuntimeError, ValueError) as exc:
+        raise RuntimeError(f"Primary-source fact verification failed: {exc}") from exc
+    verified_claims = verification.get("verified_claims", []) if isinstance(verification.get("verified_claims"), list) else []
+    urls = verification.get("primary_source_urls", []) if isinstance(verification.get("primary_source_urls"), list) else []
+    valid_urls = [str(url).strip() for url in urls if re.match(r"^https?://[^\s]+$", str(url).strip())]
+    for item in verified_claims:
+        if not isinstance(item, dict):
+            continue
+        url = str(item.get("source_url") or item.get("url") or "").strip()
+        claim = str(item.get("claim") or "").strip()
+        if re.match(r"^https?://[^\s]+$", url):
+            valid_urls.append(url)
+            if claim:
+                claim_sources = brief.setdefault("claim_sources", [])
+                if isinstance(claim_sources, list) and not any(isinstance(row, dict) and row.get("claim") == claim and row.get("url") == url for row in claim_sources):
+                    claim_sources.append({"claim": claim, "url": url, "title": str(item.get("source_title", "")), "source_type": str(item.get("source_type", "primary"))})
+    verification["primary_source_urls"] = sorted(set(valid_urls))
+    verification["pass"] = bool(verification.get("pass")) and bool(verification["primary_source_urls"])
+    brief["fact_verification"] = verification
+    if not verification["pass"]:
+        raise RuntimeError("Primary-source fact verification did not pass")
+    return brief
 
 
 def create_article(settings: Settings, locale: str, topic: str, brief: dict[str, Any]) -> tuple[str, dict[str, Any]]:
@@ -884,7 +925,7 @@ def create_article(settings: Settings, locale: str, topic: str, brief: dict[str,
         "Use only claims supported by the research brief and cite complete official URLs from official_sources; never invent, truncate, or guess URLs. "
         "Treat research.recent_3d_posts as a hard exclusion list: the title, focus keyword, opening, and search intent must not repeat or materially overlap any item dated within the last three days. "
         "The research brief's original_value list must be reflected as at least two concrete additions that are not merely longer summaries of the benchmark pages. "
-        "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, and one or two concrete internal-link suggestions only when URLs are present in recent_published_posts. Add FAQ only when it genuinely helps the reader; it is not mandatory. Keep Article/Breadcrumb/Organization structured-data compatibility in mind, but do not add scripts or unsafe markup inside the post body. "
+        "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, and two to five concrete internal-link suggestions only when URLs are present in recent_published_posts. Add FAQ only when it genuinely helps the reader; it is not mandatory. Keep Article/Breadcrumb/Organization structured-data compatibility in mind, but do not add scripts or unsafe markup inside the post body. "
         f"Design the HTML like a polished editorial feature rather than an AI dump. Selected layout type: {layout_type}. {layout_guidance} Use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
         "Include the information date, what is still uncertain, risks/limitations appropriate to the topic, a short update plan based on growth_plan, and a clear notice that this is general information rather than personalized professional advice. "
         "Return exactly one JSON object with string fields title, slug, excerpt, html, layout_type; array field sources; and object field seo containing meta_description, focus_keyword, related_keywords, and faq_questions. HTML must be complete, valid, balanced HTML with no markdown, dangling tags, or cut-off sentences."
@@ -910,14 +951,21 @@ def create_article(settings: Settings, locale: str, topic: str, brief: dict[str,
 
 
 def quality_policy(brief: dict[str, Any]) -> dict[str, Any]:
-    """Return intent-specific weights while keeping publication gates simple."""
-    text = " ".join(str(brief.get(key, "")) for key in ("search_intent", "category", "layout_type", "topic")).casefold()
-    if any(word in text for word in ("속보", "速報", "breaking", "news", "update", "업데이트")):
-        return {"name": "news", "weights": {"fact_accuracy": 25, "freshness": 25, "search_intent": 20, "original_value": 10, "readability": 10, "seo": 5, "layout": 5}, "fact_floor": 0.72}
-    if any(word in text for word in ("비교", "比較", "comparison", "product", "제품", "製品", "구매", "purchase")):
-        return {"name": "comparison", "weights": {"fact_accuracy": 20, "comparison_value": 25, "purchase_intent": 20, "original_value": 15, "readability": 10, "seo": 5, "layout": 5}, "fact_floor": 0.72}
-    return {"name": "evergreen", "weights": {"fact_accuracy": 20, "original_value": 25, "depth": 20, "search_intent": 15, "readability": 10, "seo": 5, "layout": 5}, "fact_floor": 0.72}
-
+    """Use one explicit 100-point rubric for every automatic publication."""
+    return {
+        "name": "critical_luna_review",
+        "weights": {
+            "fact_accuracy": 20,
+            "original_value": 20,
+            "search_intent": 15,
+            "seo": 10,
+            "readability": 10,
+            "naturalness": 10,
+            "freshness": 10,
+            "layout": 5,
+        },
+        "fact_floor": 0.90,
+    }
 
 def _breakdown_value(breakdown: dict[str, Any], names: tuple[str, ...]) -> float | None:
     for name in names:
@@ -958,6 +1006,15 @@ def _balanced_html(html: str) -> bool:
 def validate_article_content(article: dict[str, Any], brief: dict[str, Any], target_url: str = "") -> list[str]:
     """Hard safety/truth/HTML gates; content goals remain soft recommendations."""
     issues: list[str] = []
+    verification = brief.get("fact_verification", {}) if isinstance(brief, dict) else {}
+    if not isinstance(verification, dict) or not verification.get("pass"):
+        issues.append("primary-source fact verification missing or failed")
+    primary_urls = verification.get("primary_source_urls", []) if isinstance(verification, dict) else []
+    if not isinstance(primary_urls, list) or not any(re.match(r"^https?://[^\s]+$", str(url).strip()) for url in primary_urls):
+        issues.append("verified primary-source URL missing")
+    original_value = brief.get("original_value", []) if isinstance(brief, dict) else []
+    if not isinstance(original_value, list) or len(original_value) < 2:
+        issues.append("fewer than two original evidence-grounded additions")
     title = str(article.get("title", "")).strip()
     html = str(article.get("html", ""))
     seo = article.get("seo") if isinstance(article.get("seo"), dict) else {}
@@ -1013,9 +1070,10 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
     policy = quality_policy(brief)
     for attempt in range(settings.max_revisions + 1):
         review_instructions = (
-            "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. "
-            f"Use the intent policy {policy['name']} with weights {json.dumps(policy['weights'], ensure_ascii=False)}; report the requested dimensions plus any policy-specific dimensions. Fact accuracy has a hard floor of {policy['weights'].get('fact_accuracy', 20) * policy.get('fact_floor', 0.72):.1f} points. "
-            "Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings are useful for search without keyword stuffing. Prefer two concrete additions from evidence.original_value, but do not fail a genuinely valuable fast-moving article solely because evidence supports one strong original addition. "
+            "You are Luna, a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. "
+            "Score exactly these dimensions and maxima: Fact accuracy /20, Original value /20, Search intent /15, SEO /10, Readability /10, Naturalness /10, Freshness /10, Layout /5. The total must equal 100. "
+            f"Use the intent policy {policy['name']} with weights {json.dumps(policy['weights'], ensure_ascii=False)}. Fact accuracy has a hard floor of {policy['weights'].get('fact_accuracy', 20) * policy.get('fact_floor', 0.90):.1f} points. "
+            "Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings are useful for search without keyword stuffing. Require at least two concrete, evidence-grounded additions from evidence.original_value that are not merely a paraphrase of the five benchmark pages. "
             "Compare the draft with evidence.recent_3d_posts and fail it if the title, focus keyword, event/entity, or search intent materially overlaps a post from the last three days. Do not demand fixed word counts, source counts, image counts, FAQ counts, or category ratios."
         )
         # The Responses API's json_object mode requires the literal word
@@ -1029,8 +1087,8 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
                 review_input,
                 max_output_tokens=3000,
                 json_output=True,
-                model=settings.writing_model,
-                reasoning_effort=settings.writing_reasoning,
+                model=settings.research_model,
+                reasoning_effort=settings.research_reasoning,
             ))
         except (RuntimeError, ValueError):
             # Models can occasionally emit a non-JSON preamble despite the
@@ -1043,8 +1101,8 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
                     review_input,
                     max_output_tokens=3000,
                     json_output=True,
-                    model=settings.writing_model,
-                    reasoning_effort=settings.writing_reasoning,
+                    model=settings.research_model,
+                reasoning_effort=settings.research_reasoning,
                 ))
             except (RuntimeError, ValueError):
                 # Treat an unparseable reviewer response as a failed gate and
@@ -1062,21 +1120,18 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
         else:
             original_count = min(original_count, len(original_value))
         review["originality_count"] = original_count
+        review["reviewer_model"] = settings.research_model
         review["breakdown"] = review.get("breakdown", {}) if isinstance(review.get("breakdown"), dict) else {}
         content_issues = validate_article_content(parse_json(current), brief)
         review["hard_gate_issues"] = content_issues
         fact_value = _breakdown_value(review["breakdown"], ("Fact accuracy", "fact_accuracy", "accuracy"))
         fact_max = float(policy["weights"].get("fact_accuracy", 20))
-        fact_ok = fact_value is not None and fact_value >= fact_max * float(policy.get("fact_floor", 0.72))
-        review["fact_accuracy_floor"] = round(fact_max * float(policy.get("fact_floor", 0.72)), 1)
+        fact_ok = fact_value is not None and fact_value >= fact_max * float(policy.get("fact_floor", 0.90))
+        review["fact_accuracy_floor"] = round(fact_max * float(policy.get("fact_floor", 0.90)), 1)
         review["intent_policy"] = policy["name"]
         if bool(review.get("pass")) and score >= settings.quality_threshold and fact_ok and not content_issues:
             return current, {"score": score, "attempts": attempt, "review": review}
         if attempt == settings.max_revisions:
-            break
-        # 78–84 is a single targeted correction band; below 78 is held unless
-        # a later configured attempt is explicitly available for a hard fix.
-        if 78 <= score < settings.quality_threshold and attempt >= 1:
             break
         current = openai_text(settings, "Revise only weak sections of this article. Apply every required_fix in the review, preserve supported facts, remove unsupported claims, add only complete URLs from the evidence, repair all HTML, and keep the language native and human. Preserve the SEO fields (title, slug, excerpt, seo) and improve layout/typography cues through clean semantic HTML rather than decorative AI-sounding filler. Return the complete revised JSON article with title, slug, excerpt, html, sources, and seo; return no prose outside the object.", json.dumps({"output_format": "json", "draft": current, "review": review, "evidence": brief}, ensure_ascii=False), max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning)
     raise RuntimeError(f"Quality gate failed after {settings.max_revisions} revisions: {review}")
@@ -1531,7 +1586,7 @@ def wp_update(settings: Settings, post_id: int, article_json: str, topic: str, l
     return post
 
 
-def add_reverse_internal_links(settings: Settings, new_post: dict[str, Any], brief: dict[str, Any], max_links: int = 3) -> tuple[int, list[str]]:
+def add_reverse_internal_links(settings: Settings, new_post: dict[str, Any], brief: dict[str, Any], max_links: int = 5) -> tuple[int, list[str]]:
     """Link a few strong existing pages back to a newly published article."""
     post_id = new_post.get("id")
     new_url = str(new_post.get("link", ""))

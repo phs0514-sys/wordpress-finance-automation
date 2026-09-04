@@ -1,0 +1,54 @@
+name: Weekly editorial strategy
+
+on:
+  # Sunday 22:00 KST (13:00 UTC), after the week's report data has landed.
+  schedule:
+    - cron: "0 13 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finance-weekly-strategy
+  cancel-in-progress: false
+
+jobs:
+  strategy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_RESEARCH_MODEL: gpt-5.6-luna
+      OPENAI_RESEARCH_REASONING: medium
+      OPENAI_WRITING_MODEL: gpt-5.6-terra
+      OPENAI_WRITING_REASONING: medium
+      WP_US_URL: ${{ secrets.WP_US_URL }}
+      WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
+      WP_US_MODE: wpcom
+      WP_US_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_US_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_US_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_US_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_US_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
+    steps:
+      - name: Check out automation
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate weekly strategy
+        run: python weekly_strategy.py
+      - name: Commit strategy
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/weekly_strategy.json
+          if git diff --cached --quiet; then
+            echo "No strategy changes to commit"
+          else
+            git commit -m "Update weekly editorial strategy"
+            git push
+          fi
+

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
-def run_locale(locale: str, topic: str | None = None) -> dict[str, object]:
+def run_locale(locale: str, topic: str | None = None, slot_index: int = 0) -> dict[str, object]:
     # With no fixed topic the engine reads Google News and performs a fresh
     # web-search-backed opportunity scan at the exact run time.
     command = [sys.executable, str(ROOT / "engine.py"), "--locale", locale]
@@ -30,6 +31,7 @@ def run_locale(locale: str, topic: str | None = None) -> dict[str, object]:
             capture_output=True,
             text=True,
             encoding="utf-8",
+            env={**os.environ, "PUBLISH_SLOT_INDEX": str(slot_index)},
             timeout=1500,
         )
     except Exception as exc:
@@ -57,7 +59,7 @@ def main() -> int:
     if not 0 <= args.slot_index <= 3:
         raise SystemExit("slot-index must be between 0 and 3")
     locales = ("us", "jp", "kr") if args.locale == "all" else (args.locale,)
-    results = [run_locale(locale) for locale in locales]
+    results = [run_locale(locale, slot_index=args.slot_index) for locale in locales]
     print(json.dumps({"slot_index": args.slot_index, "timezone": "Asia/Seoul", "locales": locales, "results": results}, ensure_ascii=False, indent=2))
     return 0 if all(bool(item.get("ok")) for item in results) else 1
 

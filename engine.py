@@ -16,7 +16,7 @@ import os
 import re
 import struct
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -265,6 +265,61 @@ GOOGLE_NEWS_CONFIG = {
 GOOGLE_TRENDS_GEO = {"us": "US", "jp": "JP", "kr": "KR"}
 
 
+def _post_date(row: dict[str, Any]) -> date | None:
+    """Parse a WordPress date without allowing a malformed row to stop a run."""
+    raw = str(row.get("date") or row.get("modified") or "").strip()
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00")).date()
+    except ValueError:
+        try:
+            return date.fromisoformat(raw[:10])
+        except ValueError:
+            return None
+
+
+_TOPIC_STOPWORDS = {
+    "2026", "2025", "today", "latest", "update", "news", "guide", "tips",
+    "한국", "미국", "일본", "관련", "정보", "정리", "최신", "방법", "확인",
+    "今日", "最新", "情報", "解説", "速報", "について", "방법", "안내",
+}
+
+
+def _topic_terms(value: str) -> set[str]:
+    """Extract meaningful multilingual terms for a conservative overlap check."""
+    plain = re.sub(r"<[^>]+>", " ", unicodedata.normalize("NFKC", value).casefold())
+    tokens = re.findall(r"[a-z0-9][a-z0-9-]{1,}|[\uac00-\ud7a3]{2,}|[\u3040-\u30ff\u3400-\u9fff]{2,}", plain)
+    return {
+        token.strip("-")
+        for token in tokens
+        if len(token.strip("-")) >= 2 and token.strip("-") not in _TOPIC_STOPWORDS
+    }
+
+
+def topic_overlaps_recent(topic: str, research: dict[str, Any], recent_posts: list[dict[str, str]]) -> bool:
+    """Return true when a candidate repeats a recent story or search intent."""
+    if not recent_posts:
+        return False
+    candidate_text = " ".join(
+        str(research.get(key, "")) for key in ("focus_keyword", "search_intent", "angle")
+    ) + " " + topic
+    candidate_norm = re.sub(r"[^\w\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3]+", "", unicodedata.normalize("NFKC", topic).casefold())
+    candidate_terms = _topic_terms(candidate_text)
+    for row in recent_posts:
+        recent_title = str(row.get("title", ""))
+        recent_norm = re.sub(r"[^\w\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3]+", "", unicodedata.normalize("NFKC", recent_title).casefold())
+        if candidate_norm and recent_norm and (candidate_norm == recent_norm or len(candidate_norm) >= 14 and (candidate_norm in recent_norm or recent_norm in candidate_norm)):
+            return True
+        recent_terms = _topic_terms(recent_title)
+        shared = candidate_terms & recent_terms
+        # Two shared meaningful terms usually indicate the same event/entity;
+        # a single long distinctive term catches repeated named events.
+        if len(shared) >= 2 or any(len(term) >= 5 for term in shared):
+            return True
+    return False
+
+
 def google_news_snapshot(locale: str, limit: int = 12) -> list[dict[str, str]]:
     """Read a small, keyless Google News RSS snapshot for trend discovery.
 
@@ -332,6 +387,11 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         recent_posts = wp_recent_posts(settings, limit=20)
     except Exception:
         recent_posts = []
+    recent_cutoff = datetime.now(timezone.utc).date() - timedelta(days=3)
+    recent_3d = [
+        row for row in recent_posts
+        if _post_date(row) is not None and _post_date(row) >= recent_cutoff
+    ]
     trends = google_news_snapshot(locale)
     trending_searches = google_trends_snapshot(locale)
     generated_at = datetime.now(timezone.utc).isoformat()
@@ -340,6 +400,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "You are a local trend and search-intent research editor. Use exactly one web search tool call, with multiple native-language queries if useful, then stop. "
         "The topic may be finance or any other genuinely useful current-interest subject; choose what is most likely to earn qualified clicks in this locale at the stated moment, while avoiding sensational or unsafe claims. Use Google's trending-search terms and news headlines as signals, then validate intent, competition, and facts with web search. "
         "Use the Google News RSS snapshot as a trend signal, but verify it and do not treat headlines as facts. Identify exactly five leading/relevant search-result pages for the chosen query when five can be verified; rank them 1-5 and describe only their coverage/structure, never copy wording. "
+        "The recent_3d_posts list is a hard exclusion window. Do not choose the same topic or an overlapping story as any post in that list: avoid the same event, entity, policy, product, incident, primary keyword, or search intent even when the title is reworded. If a trend is too close, discard it and select another currently trending query. Exact-title reuse is forbidden. "
         "Return one compact JSON object only with: topic, click_potential (0-100), search_intent, angle, freshness, benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
         + source_checklist + " Use the requested locale and language. Do not invent, truncate, or guess URLs. Do not provide personalized financial, medical, legal, or safety advice."
     )
@@ -351,30 +412,48 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "google_news_snapshot": trends,
         "google_trending_searches": trending_searches,
         "recent_published_posts": recent_posts,
+        "recent_3d_posts": recent_3d,
+        "topic_exclusion_rule": "No same or overlapping topic, event/entity, primary keyword, or search intent as a post dated within the last 3 days.",
         "source_policy": source_policy,
     }
-    research_text = openai_text(
-        settings,
-        prompt,
-        json.dumps(input_payload, ensure_ascii=False),
-        use_web_search=True,
-        max_output_tokens=9000,
-        model=settings.research_model,
-        reasoning_effort=settings.research_reasoning,
-    )
-    try:
-        research = parse_json(research_text)
-    except ValueError:
-        research = parse_json(openai_text(
+    research: dict[str, Any] = {}
+    selected_topic = ""
+    for selection_attempt in range(3):
+        attempt_payload = dict(input_payload)
+        if selection_attempt:
+            attempt_payload["previous_candidate"] = selected_topic
+            attempt_payload["retry_instruction"] = "The previous candidate overlapped the three-day exclusion list. Choose a materially different trending topic and search intent now."
+        research_text = openai_text(
             settings,
-            prompt + " Output valid JSON only, with double quotes and no code fence.",
-            json.dumps(input_payload, ensure_ascii=False),
+            prompt,
+            json.dumps(attempt_payload, ensure_ascii=False),
             use_web_search=True,
             max_output_tokens=9000,
             model=settings.research_model,
             reasoning_effort=settings.research_reasoning,
-        ))
-    selected_topic = str(research.get("topic") or topic_override or "Current local search trend and how to verify it")
+        )
+        try:
+            research = parse_json(research_text)
+        except ValueError:
+            research = parse_json(openai_text(
+                settings,
+                prompt + " Output valid JSON only, with double quotes and no code fence.",
+                json.dumps(attempt_payload, ensure_ascii=False),
+                use_web_search=True,
+                max_output_tokens=9000,
+                model=settings.research_model,
+                reasoning_effort=settings.research_reasoning,
+            ))
+        selected_topic = str(research.get("topic") or topic_override or "Current local search trend and how to verify it")
+        if not topic_overlaps_recent(selected_topic, research, recent_3d):
+            break
+    else:
+        raise RuntimeError("Research topic overlapped a post from the last 3 days after three selections")
+    # Carry the exact exclusion list into the writing/review stages as well,
+    # so a headline cannot be changed into a near-duplicate after research.
+    research["recent_3d_posts"] = recent_3d
+    research["recent_3d_exclusion_count"] = len(recent_3d)
+    research["topic_exclusion_applied"] = True
     return selected_topic, research
 
 
@@ -385,6 +464,7 @@ def create_article(settings: Settings, locale: str, topic: str, brief: dict[str,
         "You are an independent high-trust writer. Write an original, useful article in the requested language about the selected current topic. "
         "Use the five benchmark pages only to understand search intent, coverage gaps, and useful structure; never imitate, translate, or copy any competitor wording. "
         "Use only claims supported by the research brief and cite complete official URLs from official_sources; never invent, truncate, or guess URLs. "
+        "Treat research.recent_3d_posts as a hard exclusion list: the title, focus keyword, opening, and search intent must not repeat or materially overlap any item dated within the last three days. "
         "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, a useful FAQ, and one or two concrete internal-link suggestions only when URLs are present in recent_published_posts. "
         "Design the HTML like a polished editorial feature rather than an AI dump: use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), a short lead paragraph, compact callout/summary blocks, readable tables or checklists only when they clarify a decision, generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
         "Include the information date, what is still uncertain, risks/limitations appropriate to the topic, a short update plan based on growth_plan, and a clear notice that this is general information rather than personalized professional advice. "
@@ -413,7 +493,7 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
     current = article
     review: dict[str, Any] = {}
     for attempt in range(settings.max_revisions + 1):
-        review_instructions = "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), issues (array), required_fixes (array), and rationale. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings/FAQ are useful for search without keyword stuffing. Do not demand numeric thresholds when the article is a methodology guide and tells readers how to verify current values from cited primary sources."
+        review_instructions = "You are a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), issues (array), required_fixes (array), and rationale. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice; check that benchmark synthesis is original, the information date is clear, the HTML is balanced, and the title/excerpt/slug/headings/FAQ are useful for search without keyword stuffing. Compare the draft with evidence.recent_3d_posts and fail it if the title, focus keyword, event/entity, or search intent materially overlaps a post from the last three days. Do not demand numeric thresholds when the article is a methodology guide and tells readers how to verify current values from cited primary sources."
         # The Responses API's json_object mode requires the literal word
         # `json` in the request input. Keep it lowercase to satisfy the API
         # validator across model versions.
@@ -527,9 +607,12 @@ def _icon_kind(title: str, article_html: str = "", variant: int = 0) -> str:
     if variant == 0:
         return primary
     complements = {
-        "currency": "chart", "home": "calculator", "security": "shield", "policy": "document",
-        "calendar": "document", "chart": "calculator", "calculator": "chart", "news": "magnifier",
-        "insight": "compass", "shield": "document", "document": "magnifier", "magnifier": "chart",
+        # Every secondary icon uses a different renderer from the primary
+        # icon.  This prevents visually identical pairs for policy/news/
+        # security/insight stories even when their semantic labels differ.
+        "currency": "chart", "home": "calculator", "security": "document", "policy": "magnifier",
+        "calendar": "document", "chart": "calculator", "calculator": "chart", "news": "chart",
+        "insight": "chart", "shield": "document", "document": "magnifier", "magnifier": "chart",
     }
     return complements.get(primary, "compass")
 
@@ -771,7 +854,7 @@ def insert_figure_before_heading(html: str, figure: str, heading_index: int) -> 
 
 
 def compose_image_layout(html: str, figures: list[str]) -> str:
-    """Place three visuals at useful editorial points in the article body."""
+    """Place up to two compact visuals at useful editorial points in the body."""
     body = html.strip()
     if not figures:
         return body
@@ -791,20 +874,25 @@ def wp_create(settings: Settings, article_json: str, topic: str, locale: str) ->
         kind = _icon_kind(title, article_html, index)
         purpose = ("topic", "detail")[index]
         alt = html_escape(f"{title} — original {kind} icon illustration related to the article topic", quote=True)
-        figures.append(f'<figure class="wp-block-image size-large finance-inline-visual finance-inline-icon finance-inline-visual-{index + 1}"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>')
+        figures.append(
+            f'<figure class="wp-block-image aligncenter finance-inline-visual finance-inline-icon finance-inline-visual-{index + 1}" '
+            'style="max-width:360px;width:100%;margin:1.5rem auto;text-align:center;">'
+            f'<img src="{html_escape(media_url, quote=True)}" alt="{alt}" width="360" height="203" '
+            'loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0 auto;" />'
+            '</figure>'
+        )
     excerpt = str(article.get("excerpt", "")).strip()
     if len(excerpt) > 300:
         excerpt = excerpt[:297].rstrip() + "..."
     payload = {
         "title": title,
         "slug": seo_slug(str(article.get("slug", ""))) or seo_slug(title),
-        # WordPress renders featured_media above the article. Keep the total
-        # visible visuals to two: one featured topic icon plus one inline
-        # detail icon placed after the lead paragraph.
-        "content": compose_image_layout(article_html, figures[1:]),
+        # Keep both visuals in the article body so the responsive width rule
+        # also applies to the first icon.  A featured image is intentionally
+        # omitted: WordPress themes often render it full-bleed on mobile.
+        "content": compose_image_layout(article_html, figures),
         "excerpt": excerpt,
         "status": settings.publish_mode,
-        "featured_media": media[0][0],
     }
     post = http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
     post["_images_uploaded"] = len(media)

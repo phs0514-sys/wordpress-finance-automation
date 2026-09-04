@@ -101,6 +101,7 @@ def record_article_history(
         "sources_count": len(article.get("sources", [])) if isinstance(article.get("sources"), list) else 0,
         "original_value_count": len(brief.get("original_value", [])) if isinstance(brief.get("original_value"), list) else 0,
         "publish_time": post.get("date") or datetime.now(timezone.utc).isoformat(),
+        "publish_slot": int(os.getenv("PUBLISH_SLOT_INDEX", "0") or 0),
         "action": action,
         "quality_score": review.get("score", review_detail.get("score")),
         "quality_breakdown": review_detail.get("breakdown", {}),

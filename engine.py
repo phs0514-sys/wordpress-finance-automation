@@ -514,14 +514,14 @@ def _icon_kind(title: str, article_html: str = "", variant: int = 0) -> str:
     """
     text = f"{title} {article_html[:2400]}".casefold()
     groups = (
-        ("currency", ("환율", "원화", "달러", "엔화", "유로", "currency", "exchange", "dollar", "yen", "won", "euro")),
-        ("home", ("주택", "부동산", "전세", "월세", "모기지", "mortgage", "housing", "rent", "home")),
-        ("security", ("보안", "사기", "피싱", "fraud", "scam", "security", "privacy", "identity")),
-        ("policy", ("정책", "법안", "규정", "공시", "세법", "regulation", "policy", "filing", "disclosure", "tax")),
-        ("calendar", ("일정", "마감", "기한", "신청", "deadline", "schedule", "calendar", "연휴")),
-        ("chart", ("주식", "주가", "채권", "etf", "펀드", "투자", "시장", "stock", "bond", "fund", "invest", "market", "index")),
-        ("calculator", ("계산", "예산", "저축", "비용", "수수료", "금리", "대출", "budget", "saving", "cost", "fee", "interest", "loan", "rate")),
-        ("news", ("뉴스", "속보", "화제", "트렌드", "news", "trend", "update", "latest", "today")),
+        ("currency", ("환율", "원화", "달러", "엔화", "유로", "為替", "円相場", "ドル", "ユーロ", "currency", "exchange", "dollar", "yen", "won", "euro")),
+        ("home", ("주택", "부동산", "전세", "월세", "모기지", "住宅", "不動産", "家賃", "住宅ローン", "mortgage", "housing", "rent", "home")),
+        ("security", ("보안", "사기", "피싱", "詐欺", "フィッシング", "セキュリティ", "個人情報", "fraud", "scam", "security", "privacy", "identity")),
+        ("policy", ("정책", "법안", "규정", "공시", "세법", "政策", "法律", "規制", "開示", "税制", "regulation", "policy", "filing", "disclosure", "tax")),
+        ("calendar", ("일정", "마감", "기한", "신청", "연휴", "日程", "締切", "期限", "申請", "連休", "deadline", "schedule", "calendar")),
+        ("chart", ("주식", "주가", "채권", "etf", "펀드", "투자", "시장", "株", "株価", "債券", "投資", "市場", "指数", "ファンド", "stock", "bond", "fund", "invest", "market", "index")),
+        ("calculator", ("계산", "예산", "저축", "비용", "수수료", "금리", "대출", "計算", "予算", "貯蓄", "費用", "手数料", "金利", "ローン", "budget", "saving", "cost", "fee", "interest", "loan", "rate")),
+        ("news", ("뉴스", "속보", "화제", "트렌드", "ニュース", "速報", "話題", "トレンド", "最新", "今日", "news", "trend", "update", "latest", "today")),
     )
     primary = next((kind for kind, words in groups if any(word in text for word in words)), "insight")
     if variant == 0:

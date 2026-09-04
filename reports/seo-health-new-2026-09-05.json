@@ -1,0 +1,18 @@
+{
+  "critical": false,
+  "health_path": "/home/runner/work/wordpress-finance-automation/wordpress-finance-automation/data/technical_health.json",
+  "locales": {
+    "us": {
+      "critical": false,
+      "issues": []
+    },
+    "jp": {
+      "critical": false,
+      "issues": []
+    },
+    "kr": {
+      "critical": false,
+      "issues": []
+    }
+  }
+}

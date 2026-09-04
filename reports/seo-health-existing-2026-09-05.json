@@ -1,0 +1,22 @@
+{
+  "critical": true,
+  "health_path": "/home/runner/work/wordpress-finance-automation/wordpress-finance-automation/data/technical_health.json",
+  "locales": {
+    "us": {
+      "critical": true,
+      "issues": [
+        "broken internal link https://usfinanceresearch.wordpress.com/2026/09/04/flex-epc-power-acquisition-ai-data-center-power/?like_comment=4& (HTTP 429)"
+      ]
+    },
+    "jp": {
+      "critical": false,
+      "issues": []
+    },
+    "kr": {
+      "critical": true,
+      "issues": [
+        "broken internal link https://koreafinanceresearch.wordpress.com/2026/09/04/2026-treasury-stock-cancellation-disclosure/?like_comment=4& (HTTP 429)"
+      ]
+    }
+  }
+}

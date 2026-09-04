@@ -188,6 +188,18 @@ def diagnose_metrics(gsc: dict[str, object]) -> list[str]:
     return diagnoses[:12]
 
 
+def expired_fact_count(locale: str, today: str) -> int:
+    """Count claims whose suggested refresh horizon has elapsed."""
+    count = 0
+    for row in engine.load_article_history():
+        if row.get("locale") != locale:
+            continue
+        for fact in row.get("fact_expirations", []) if isinstance(row.get("fact_expirations"), list) else []:
+            if isinstance(fact, dict) and fact.get("expires_at") and str(fact["expires_at"]) < today:
+                count += 1
+    return count
+
+
 def clean_title(value: object) -> str:
     if isinstance(value, dict):
         value = value.get("rendered", "")
@@ -212,6 +224,7 @@ def site_report(locale: str) -> str:
 
     lines = [f"## {LOCALES[locale]} 블로그 ({settings.wp_url})"]
     lines.append(f"- 발행 상태: 공개 {len(published)}편 / 전체 글 {len(posts)}편")
+    lines.append(f"- 사실 유효기간: 만료 후보 {expired_fact_count(locale, datetime.now(REPORT_ZONE).date().isoformat())}건 → UPDATE 검토 대상으로 분류")
     if stat_date is None:
         lines.append(f"- 사이트 방문자수: 확인 불가 ({visits_error or '데이터 없음'})")
     else:

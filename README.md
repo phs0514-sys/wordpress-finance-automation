@@ -7,7 +7,7 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 1. Read free, locale-specific Google Trending Searches and Google News RSS snapshots and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; recent WordPress posts are supplied to avoid repetition.
 2. Use one web-search-backed research call to benchmark up to five leading result pages, identify coverage gaps, and collect complete primary/authoritative URLs, dates, and a concrete growth plan. The prompt forbids copying or translating a competing article.
 3. Generate a native-language article with the writing model, adding SEO title/slug/excerpt, semantic headings, a concise lead, FAQ, internal-link opportunities, balanced typography/layout HTML, update notes, risks, and a general-information notice.
-4. Generate and upload three distinct original PNG visuals per article (one featured overview plus comparison and checklist inline placements) using only Python standard-library drawing; no image API is called.
+4. Generate and upload two distinct, topic-related PNG icons per article (one featured icon plus one inline detail icon) using only Python standard-library drawing; no image API is called. The icon pair changes with the article's keywords (for example chart/calculator, currency/chart, or shield/document).
 5. Run a separate reviewer prompt scoring accuracy, source quality, freshness, originality, search intent, depth, clarity, HTML/layout, SEO, and safety.
 6. Revise weak sections up to `MAX_REVISIONS` (default 4). Do not publish below `QUALITY_THRESHOLD` (default 90).
 7. Send the approved article to WordPress REST API as `draft` by default, or `publish` when explicitly enabled.
@@ -49,10 +49,9 @@ python engine.py --locale jp --topic "Compare NISA fund fees" --seed-pages
 python daily_report.py
 ```
 
-The script uses only the Python standard library for its local runtime and
-image generation. Its trend/news signals come from keyless Google Trends and
-Google News RSS feeds, its research call enables the Responses API web-search
-tool, then it calls `POST /v1/responses` for writing/review and the
+The script uses only the Python standard library. Its trend call reads the
+keyless Google News RSS feed, its research call enables the Responses API
+web-search tool, then it calls `POST /v1/responses` for writing/review and the
 WordPress.com `public-api.wordpress.com/wp/v2/sites/<site>/...` endpoints for
 posts/pages. Self-hosted WordPress remains supported with
 `WP_*_MODE=self_hosted`.
@@ -65,3 +64,4 @@ posts/pages. Self-hosted WordPress remains supported with
 - A WordPress.com Application Password (recommended when 2FA is enabled), or a short-lived WordPress.com access token. Store secrets locally and do not paste them into chat.
 - An OpenAI API key and API billing/credits. ChatGPT subscription billing and API billing are separate.
 - Optional: Search Console property ownership and Analytics measurement ID after each domain exists.
+

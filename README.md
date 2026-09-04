@@ -52,6 +52,8 @@ Copy-Item .env.example .env
 python engine.py --locale us --topic "How to compare total costs of two broad-market ETFs"
 python engine.py --locale jp --topic "Compare NISA fund fees" --seed-pages
 python daily_report.py
+# After reviewing a stored snapshot, restore it explicitly (never automatic):
+python engine.py --locale us --rollback-post-id 123 --rollback-version abcdef0123456789
 ```
 
 The script uses only the Python standard library. Its trend call reads the

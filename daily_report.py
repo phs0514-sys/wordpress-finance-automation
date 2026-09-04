@@ -151,7 +151,11 @@ def update_history_metrics(gsc: dict[str, object]) -> None:
             existing = {}
             row["metrics"] = existing
         for window, values in metrics.items():
-            existing[window] = values
+            if isinstance(values, dict):
+                measured = dict(values)
+                measured["measured_at"] = datetime.now(REPORT_ZONE).isoformat()
+                measured["data_end_date"] = gsc.get("end_date")
+                existing[window] = measured
     engine.save_json_file(engine.HISTORY_PATH, history)
 
 
@@ -169,8 +173,12 @@ def diagnose_metrics(gsc: dict[str, object]) -> list[str]:
         clicks = float(seven.get("clicks", 0) or 0)
         ctr = float(seven.get("ctr", 0) or 0)
         position = float(seven.get("position", 0) or 0)
+        confidence = "HIGH" if impressions >= 1000 else ("MEDIUM" if impressions >= 100 else "LOW")
+        if confidence == "LOW":
+            diagnoses.append(f"표본 부족(LOW): {url} (7일 노출 {impressions:.0f}) → 제목/전략 변경을 보류")
+            continue
         if impressions >= 100 and ctr < 0.02:
-            diagnoses.append(f"제목/스니펫 개선 후보: {url} (노출 {impressions:.0f}, CTR {ctr * 100:.1f}%) → 다음 검수에서 제목 5안 생성")
+            diagnoses.append(f"제목/스니펫 개선 후보({confidence}): {url} (노출 {impressions:.0f}, CTR {ctr * 100:.1f}%) → 다음 검수에서 제목 5안 생성")
         elif 8 <= position <= 20 and ctr >= 0.02:
             diagnoses.append(f"우선 육성: {url} (평균 {position:.1f}위) → 본문 보강 및 내부링크 3~5개")
         elif 1 <= position <= 5 and clicks >= 5:
@@ -228,8 +236,8 @@ def site_report(locale: str) -> str:
                 label = str(keys[0]) if isinstance(keys, list) and keys else "-"
                 values.append(f"{label} ({float(row.get('clicks', 0) or 0):.0f} clicks)")
             return ", ".join(values) or "-"
-        lines.append(f"- Google Search Console (최신 집계 종료일 {gsc.get('end_date')}): 24h/72h/7d/28d 페이지 성과 저장 완료")
-        lines.append("- GSC 최신 24시간 수치는 잠정치일 수 있으며, 72시간·7일·28일 수치가 누적될수록 안정적으로 해석합니다.")
+        lines.append(f"- Google Search Console (최신 집계 종료일 {gsc.get('end_date')}): 24h Early Signal / 72h Preliminary / 7d Main / 28d Long-term 성과 저장 완료")
+        lines.append("- GSC 최신 24시간 수치는 잠정치일 수 있으며, 표본 크기(노출수)가 작은 LOW 신호로는 제목·전략을 바꾸지 않습니다.")
         lines.append(f"- 7일 주요 Query: {top_dimension('query')}")
         lines.append(f"- 7일 주요 국가/기기: {top_dimension('country')} / {top_dimension('device')}")
         diagnoses = diagnose_metrics(gsc)

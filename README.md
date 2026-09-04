@@ -5,13 +5,14 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 ## Pipeline
 
 1. Read 30–50 locale-specific Google Trending Searches and Google News RSS candidates, then score each opportunity by interest, velocity, search intent, SERP feasibility, title CTR potential, durability, and site fit rather than raw popularity alone. A weekly strategy file supplies learned category and publish-slot weights while preserving a 70/20/10 proven/adjacent/experiment mix.
-2. Use a web-search-backed research call to benchmark up to five leading result pages, official sources, and recent sources. The brief records common coverage, optional coverage, outdated claims, disagreements to verify, and at least two concrete original-value additions absent from the benchmark pages.
+2. Use a web-search-backed research call to benchmark up to five leading result pages, official sources, and recent sources. Five is a target rather than a brittle minimum: a fast-moving story can publish with fewer trustworthy sources. The brief records common coverage, optional coverage, outdated claims, disagreements to verify, claim-to-source mappings, and original-value additions absent from the benchmark pages.
 3. Enforce a three-day hard exclusion for overlapping events, entities, primary keywords, and search intent. When an older URL already owns the intent and needs fresh facts, the research action can be `update`; otherwise the engine creates a new URL. A final pre-publish guard blocks near-duplicate titles.
-4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to three related older posts.
+4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, optional FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to three related older posts.
 5. Generate and upload two distinct, topic-related PNG icons per article using only Python standard-library drawing; no image API is called. Both are compact, centered inline figures (`max-width: 360px`, responsive width) so they remain aligned and readable on mobile.
-6. Run a separate Luna/Terra reviewer prompt with the 20/20/15/10/10/10/10/5 score breakdown, originality-count gate (at least two additions), fact/SEO/layout checks, and the three-day duplicate check. Revise weak sections up to `MAX_REVISIONS` (default 4); do not publish below `QUALITY_THRESHOLD` (default 90).
-7. Append article metadata and empty 24h/72h/7d/28d metric windows to `data/article_history.json`. The file is committed by GitHub Actions; it contains no credentials and is the input to the weekly strategy engine.
-8. Run `daily_report.py` each morning to read publication status, WordPress.com stats, optional Search Console query/page/country/device data, and update the history windows. If GSC is not connected, the report says “GSC 토큰 미설정” rather than treating missing data as zero.
+6. Run a separate Luna/Terra reviewer with intent-specific weights (news, evergreen, and comparison), a fact-accuracy floor, hard HTML/source/disclosure/noindex gates, and the three-day duplicate check. `85+` is the starting soft auto-publish target; `78–84` receives one targeted correction, while lower scores remain held. `MAX_REVISIONS` (default 4) bounds retries without overriding a hard gate.
+7. Append article metadata, claim expirations, source usage, content/prompt/engine/strategy versions, control/optimized experiment assignment, cost tokens, and empty 24h/72h/7d/28d metric windows to `data/article_history.json`. Redacted article snapshots in `data/article_versions.json` support a human-invoked rollback; no credentials are stored.
+8. Run `daily_report.py` each morning to read publication status, WordPress.com stats, optional Search Console query/page/country/device data, and update the history windows. The report labels 24h/72h/7d/28d as Early/Preliminary/Main/Long-term signals, includes sample-size-aware diagnoses, and never treats missing GSC data as zero.
+9. Run `seo_health.py` before publishing to check HTTP 200, canonical/noindex, robots, sitemap, image/link integrity, and structured-data presence. A fresh critical snapshot pauses publishing until a human resumes it; the code never self-edits authentication or core workflows.
 
 The first version intentionally has no affiliate links and no personalized investment recommendations. The `--seed-pages` option creates About, Privacy, Contact, and Editorial Policy pages for the selected locale.
 
@@ -34,9 +35,10 @@ edits authentication, WordPress connections, data collection, or engine code.
 
 The workflows deliberately contain no credentials. Put the API and
 WordPress.com values in GitHub Actions Secrets after the repository is created.
-The current quality gate remains 90 points with up to four revisions, and the
-publish status is explicit (`publish`) in the workflow rather than hidden in a
-local file.
+The starting quality target is 85 points with up to four bounded revisions, and
+the publish status is explicit (`publish`) in the workflow. A three-failure
+kill switch writes `data/publish_control.json`; set `PUBLISH_FORCE_RESUME=1`
+only after reviewing the reported cause.
 
 GitHub Actions itself can be free on a public repository, but OpenAI API calls
 still use the API account's separate credits/billing. A zero-hosting-cost
@@ -60,6 +62,12 @@ posts/pages. Self-hosted WordPress remains supported with
 `WP_*_MODE=self_hosted`.
 
 `daily_report.py` uses the WordPress.com stats endpoints in read-only mode. Site-level visitors and views are reported for the last completed local day; the per-post endpoint exposes views rather than unique visitors, so the report labels those values as cumulative post views. If a site has stats disabled, the report shows “확인 불가” instead of treating missing data as zero.
+
+The generated PNG source is 1200×675 (16:9) and is displayed as a compact,
+responsive 360px inline icon so mobile pages remain readable. A theme/SEO
+integration should expose `max-image-preview:large` and Article/BreadcrumbList/
+Organization structured data; the health monitor reports their presence but does
+not inject unsafe scripts into post bodies.
 
 ## Only user-owned prerequisites
 

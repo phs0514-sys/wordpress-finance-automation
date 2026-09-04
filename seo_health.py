@@ -45,6 +45,7 @@ def check_page(url: str, home_url: str) -> dict[str, object]:
         issues.append("duplicate canonical tags")
     if canonicals and not re.match(r"^https?://", canonicals[0]):
         issues.append("relative canonical")
+    max_image_preview = bool(re.search(r"max-image-preview\s*:\s*large", html, flags=re.I))
     image_count = len(re.findall(r"<img\b", html, flags=re.I))
     missing_images = len(re.findall(r"<img\b(?![^>]+\bsrc=)[^>]*>", html, flags=re.I))
     if missing_images:
@@ -57,6 +58,7 @@ def check_page(url: str, home_url: str) -> dict[str, object]:
         "final_url": final_url,
         "content_type": headers.get("content-type", ""),
         "canonical": canonicals[0] if canonicals else None,
+        "max_image_preview_large": max_image_preview,
         "images": image_count,
         "internal_links": len(internal),
         "internal_urls": internal[:20],
@@ -91,6 +93,8 @@ def locale_health(locale: str) -> dict[str, object]:
             link_status, _, _, _ = fetch(str(link))
             if link_status < 200 or link_status >= 400:
                 issues.append(f"broken internal link {link} (HTTP {link_status or 'unreachable'})")
+    if pages and not any(bool(page.get("max_image_preview_large")) for page in pages):
+        issues.append("max-image-preview:large not detected (theme/SEO setting check)")
     if sitemap_status != 200:
         issues.append(f"sitemap.xml HTTP status {sitemap_status or 'unreachable'}")
     if robots_status != 200:

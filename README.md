@@ -4,7 +4,7 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 
 ## Pipeline
 
-1. Read a free, locale-specific Google News RSS snapshot and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; recent WordPress posts are supplied to avoid repetition.
+1. Read free, locale-specific Google Trending Searches and Google News RSS snapshots and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; recent WordPress posts are supplied to avoid repetition.
 2. Use one web-search-backed research call to benchmark up to five leading result pages, identify coverage gaps, and collect complete primary/authoritative URLs, dates, and a concrete growth plan. The prompt forbids copying or translating a competing article.
 3. Generate a native-language article with the writing model, adding SEO title/slug/excerpt, semantic headings, a concise lead, FAQ, internal-link opportunities, balanced typography/layout HTML, update notes, risks, and a general-information notice.
 4. Generate and upload three distinct original PNG visuals per article (one featured overview plus comparison and checklist inline placements) using only Python standard-library drawing; no image API is called.

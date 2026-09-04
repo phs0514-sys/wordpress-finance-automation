@@ -1,14 +1,22 @@
 {
-  "generated_at": "2026-09-04T04:29:10.233650+00:00",
+  "generated_at": null,
   "status": "insufficient_data",
   "content_mix": {
     "proven": 0.7,
     "adjacent": 0.2,
     "experiment": 0.1
   },
+  "exploration_floor": 0.1,
   "category_weights": {},
+  "confidence_policy": {
+    "24h": "Early Signal",
+    "72h": "Preliminary Evaluation",
+    "7d": "Main Evaluation",
+    "28d": "Long-term Evaluation"
+  },
   "next_week_actions": [
-    "Collect at least seven days of post and Search Console data before changing category weights."
+    "Collect at least seven days of post and Search Console data before changing category weights.",
+    "Keep at least 10% exploration and do not react to low-sample CTR swings."
   ]
 }
 

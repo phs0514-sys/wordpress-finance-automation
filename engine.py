@@ -505,33 +505,57 @@ def _png_chunk(kind: bytes, data: bytes) -> bytes:
     return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xFFFFFFFF)
 
 
-def generated_cover_png(locale: str, title: str, variant: int = 0) -> bytes:
-    """Create one original finance-chart visual without a paid image API.
+def _icon_kind(title: str, article_html: str = "", variant: int = 0) -> str:
+    """Choose a semantic icon pair from the article's own language.
 
-    It is intentionally generated in-process from standard-library primitives:
-    a locale palette, a deterministic market line, bars, and a savings coin.
-    This keeps the GitHub-only deployment free while giving every post three
-    distinct non-stock visuals. The HTML alt text carries the article-specific
-    description for accessibility and SEO.
+    The matcher is deliberately small and deterministic: it gives the two
+    visuals different but complementary meanings without calling an image API
+    or depending on a font/rendering package.
     """
+    text = f"{title} {article_html[:2400]}".casefold()
+    groups = (
+        ("currency", ("환율", "원화", "달러", "엔화", "유로", "currency", "exchange", "dollar", "yen", "won", "euro")),
+        ("home", ("주택", "부동산", "전세", "월세", "모기지", "mortgage", "housing", "rent", "home")),
+        ("security", ("보안", "사기", "피싱", "fraud", "scam", "security", "privacy", "identity")),
+        ("policy", ("정책", "법안", "규정", "공시", "세법", "regulation", "policy", "filing", "disclosure", "tax")),
+        ("calendar", ("일정", "마감", "기한", "신청", "deadline", "schedule", "calendar", "연휴")),
+        ("chart", ("주식", "주가", "채권", "etf", "펀드", "투자", "시장", "stock", "bond", "fund", "invest", "market", "index")),
+        ("calculator", ("계산", "예산", "저축", "비용", "수수료", "금리", "대출", "budget", "saving", "cost", "fee", "interest", "loan", "rate")),
+        ("news", ("뉴스", "속보", "화제", "트렌드", "news", "trend", "update", "latest", "today")),
+    )
+    primary = next((kind for kind, words in groups if any(word in text for word in words)), "insight")
+    if variant == 0:
+        return primary
+    complements = {
+        "currency": "chart", "home": "calculator", "security": "shield", "policy": "document",
+        "calendar": "document", "chart": "calculator", "calculator": "chart", "news": "magnifier",
+        "insight": "compass", "shield": "document", "document": "magnifier", "magnifier": "chart",
+    }
+    return complements.get(primary, "compass")
+
+
+def generated_icon_png(locale: str, title: str, article_html: str = "", variant: int = 0) -> bytes:
+    """Create a polished topic-related icon using only stdlib pixel drawing."""
     width, height = 1200, 675
     palettes = {
-        "us": ((16, 45, 79), (54, 166, 160), (245, 190, 66)),
-        "jp": ((38, 35, 78), (207, 78, 112), (241, 190, 73)),
-        "kr": ((18, 58, 74), (35, 157, 154), (250, 184, 74)),
+        "us": ((238, 244, 247), (19, 74, 95), (37, 144, 145), (217, 158, 64)),
+        "jp": ((248, 242, 244), (66, 48, 87), (190, 74, 113), (219, 155, 64)),
+        "kr": ((239, 247, 246), (18, 67, 77), (28, 144, 139), (222, 157, 63)),
     }
-    start, accent, gold = palettes.get(locale, palettes["us"])
-    seed = hashlib.sha256(f"{locale}:{title}:{variant}".encode("utf-8")).digest()
+    background, ink, accent, gold = palettes.get(locale, palettes["us"])
+    kind = _icon_kind(title, article_html, variant)
+    seed = hashlib.sha256(f"{locale}:{title}:{kind}:{variant}".encode("utf-8")).digest()
     pixels = bytearray()
 
-    def color_at(x: int, y: int) -> tuple[int, int, int]:
-        mix = y / max(1, height - 1)
-        return tuple(int(start[i] * (1 - mix) + accent[i] * mix * 0.35) for i in range(3))
+    def blend(a: tuple[int, int, int], b: tuple[int, int, int], amount: float) -> tuple[int, int, int]:
+        return tuple(int(a[i] * (1 - amount) + b[i] * amount) for i in range(3))
 
     for y in range(height):
-        pixels.append(0)  # filter byte
-        for x in range(width):
-            pixels.extend(color_at(x, y))
+        pixels.append(0)
+        tone = 0.06 + (y / height) * 0.10
+        row_color = blend(background, accent, tone)
+        for _ in range(width):
+            pixels.extend(row_color)
 
     def set_pixel(x: int, y: int, color: tuple[int, int, int]) -> None:
         if 0 <= x < width and 0 <= y < height:
@@ -545,63 +569,165 @@ def generated_cover_png(locale: str, title: str, variant: int = 0) -> bytes:
                 pos = row + xx * 3
                 pixels[pos : pos + 3] = bytes(color)
 
-    # A translucent-looking panel (alpha compositing done directly on pixels).
-    rectangle(72, 72, 1128, 603, (18, 35, 61))
-    # Grid and rising line chart.
-    grid = (64, 91, 112)
-    for x in range(150, 1060, 150):
-        for y in range(160, 525):
-            if (y - 160) % 6 < 2:
-                set_pixel(x, y, grid)
-    for y in range(160, 526, 90):
-        for x in range(150, 1060):
-            if (x - 150) % 6 < 2:
-                set_pixel(x, y, grid)
-    points: list[tuple[int, int]] = []
-    value = 0.35
-    for index in range(13):
-        value += ((seed[index] / 255) - 0.42) * 0.12
-        value = max(0.12, min(0.88, value))
-        points.append((170 + index * 72, int(500 - value * 300)))
-    for (x0, y0), (x1, y1) in zip(points, points[1:]):
-        steps = max(abs(x1 - x0), abs(y1 - y0))
+    def line(x0: int, y0: int, x1: int, y1: int, color: tuple[int, int, int], width_px: int = 7) -> None:
+        steps = max(abs(x1 - x0), abs(y1 - y0), 1)
+        radius = max(0, width_px // 2)
         for step in range(steps + 1):
             x = round(x0 + (x1 - x0) * step / steps)
             y = round(y0 + (y1 - y0) * step / steps)
-            for dx in (-1, 0, 1):
-                for dy in (-1, 0, 1):
-                    set_pixel(x + dx, y + dy, accent)
-    # Comparison bars and a coin motif.
-    bar_sets = (
-        (120, 190, 150, 235, 180),
-        (170, 115, 220, 145, 205),
-        (95, 230, 135, 185, 245),
-    )
-    for index, bar in enumerate(bar_sets[variant % len(bar_sets)]):
-        rectangle(175 + index * 72, 500 - bar, 207 + index * 72, 500, (79, 128, 153))
-    for radius in range(46, 0, -1):
-        for angle in range(360):
-            # A cheap circle rasterizer is enough for a compact cover graphic.
-            x = 970 + round(radius * math.cos(math.radians(angle)))
-            y = 220 + round(radius * math.sin(math.radians(angle)))
-            set_pixel(x, y, gold if radius > 8 else (255, 226, 130))
+            for dx in range(-radius, radius + 1):
+                for dy in range(-radius, radius + 1):
+                    set_pixel(x + dx, y + dy, color)
+
+    def circle(cx: int, cy: int, radius: int, color: tuple[int, int, int], fill: bool = True, width_px: int = 7) -> None:
+        r2 = radius * radius
+        inner = max(0, radius - width_px) ** 2
+        for yy in range(cy - radius, cy + radius + 1):
+            for xx in range(cx - radius, cx + radius + 1):
+                d2 = (xx - cx) ** 2 + (yy - cy) ** 2
+                if d2 <= r2 and (fill or d2 >= inner):
+                    set_pixel(xx, yy, color)
+
+    def rounded_card(x0: int, y0: int, x1: int, y1: int, color: tuple[int, int, int]) -> None:
+        # A compact rounded rectangle made from a body and four circles.
+        radius = 30
+        rectangle(x0 + radius, y0, x1 - radius, y1, color)
+        rectangle(x0, y0 + radius, x1, y1 - radius, color)
+        for cx, cy in ((x0 + radius, y0 + radius), (x1 - radius, y0 + radius), (x0 + radius, y1 - radius), (x1 - radius, y1 - radius)):
+            circle(cx, cy, radius, color)
+
+    def draw_chart() -> None:
+        line(390, 455, 390, 220, ink, 9)
+        line(390, 455, 825, 455, ink, 9)
+        bars = (128 + seed[0] % 72, 188 + seed[1] % 84, 116 + seed[2] % 86, 240 + seed[3] % 76)
+        for idx, bar in enumerate(bars):
+            x = 450 + idx * 86
+            rectangle(x, 455 - bar, x + 48, 455, blend(accent, ink, 0.18 if idx % 2 else 0.35))
+        points = [(430, 405), (525, 355), (615, 382), (710, 278), (808, 235)]
+        for p0, p1 in zip(points, points[1:]):
+            line(*p0, *p1, gold, 9)
+        for x, y in points:
+            circle(x, y, 12, gold)
+        line(760, 240, 820, 235, gold, 9)
+        line(806, 223, 820, 235, gold, 9)
+        line(806, 247, 820, 235, gold, 9)
+
+    def draw_calculator() -> None:
+        rounded_card(430, 185, 770, 500, ink)
+        rectangle(480, 230, 720, 295, background)
+        line(665, 265, 705, 265, accent, 7)
+        for row in range(3):
+            for col in range(3):
+                x, y = 490 + col * 75, 335 + row * 48
+                rounded_card(x, y, x + 47, y + 28, blend(accent, background, 0.18))
+        rounded_card(705, 335, 740, 470, gold)
+
+    def draw_currency() -> None:
+        for offset, color in ((0, gold), (45, accent), (90, blend(gold, accent, 0.35))):
+            circle(600 + offset, 355 - offset // 3, 78, color)
+            circle(600 + offset, 355 - offset // 3, 59, background, fill=False, width_px=7)
+            line(600 + offset, 324 - offset // 3, 600 + offset, 387 - offset // 3, background, 8)
+            line(582 + offset, 335 - offset // 3, 618 + offset, 335 - offset // 3, background, 6)
+            line(582 + offset, 375 - offset // 3, 618 + offset, 375 - offset // 3, background, 6)
+
+    def draw_home() -> None:
+        line(400, 330, 600, 180, ink, 11)
+        line(600, 180, 800, 330, ink, 11)
+        line(435, 315, 435, 485, ink, 11)
+        line(765, 315, 765, 485, ink, 11)
+        line(435, 485, 765, 485, ink, 11)
+        rectangle(550, 390, 650, 485, accent)
+        rectangle(485, 340, 535, 390, gold)
+        rectangle(665, 340, 715, 390, gold)
+
+    def draw_shield() -> None:
+        points = [(600, 175), (790, 240), (750, 420), (600, 515), (450, 420), (410, 240)]
+        for p0, p1 in zip(points, points[1:] + points[:1]):
+            line(*p0, *p1, ink, 11)
+        line(500, 345, 570, 415, accent, 15)
+        line(570, 415, 710, 275, accent, 15)
+
+    def draw_document() -> None:
+        rectangle(460, 165, 740, 505, background)
+        line(460, 165, 670, 165, ink, 10)
+        line(740, 235, 740, 505, ink, 10)
+        line(460, 505, 740, 505, ink, 10)
+        line(460, 165, 460, 505, ink, 10)
+        line(670, 165, 740, 235, ink, 10)
+        line(670, 165, 670, 235, ink, 8)
+        line(670, 235, 740, 235, ink, 8)
+        for y in (285, 330, 375):
+            line(510, y, 690, y, blend(ink, background, 0.35), 7)
+        line(510, 425, 550, 465, accent, 12)
+        line(550, 465, 665, 350, accent, 12)
+
+    def draw_magnifier() -> None:
+        circle(565, 320, 135, accent, fill=False, width_px=16)
+        line(665, 420, 790, 545, ink, 22)
+        for idx, bar in enumerate((95, 145, 200)):
+            rectangle(475 + idx * 67, 435 - bar, 515 + idx * 67, 435, gold if idx == 2 else ink)
+
+    def draw_calendar() -> None:
+        rounded_card(420, 190, 780, 485, background)
+        rectangle(420, 190, 780, 270, accent)
+        for x in (500, 700):
+            line(x, 165, x, 225, ink, 14)
+        for row in range(3):
+            line(470, 315 + row * 48, 730, 315 + row * 48, blend(ink, background, 0.25), 5)
+        for col in range(4):
+            line(505 + col * 60, 292, 505 + col * 60, 442, blend(ink, background, 0.25), 5)
+        circle(625, 363, 18, gold)
+
+    def draw_compass() -> None:
+        circle(600, 345, 150, ink, fill=False, width_px=11)
+        circle(600, 345, 16, gold)
+        line(600, 225, 660, 390, accent, 15)
+        line(660, 390, 600, 345, ink, 9)
+        line(600, 465, 600, 345, ink, 7)
+
+    # Soft card and a restrained accent rail make the icon feel editorial.
+    rounded_card(130, 82, 1070, 590, (255, 255, 255))
+    rectangle(130, 82, 164, 590, accent)
+    for idx in range(5):
+        circle(990 + (idx % 2) * 22, 145 + idx * 35, 5 + seed[idx] % 5, blend(accent, gold, 0.35))
+    {
+        "chart": draw_chart,
+        "calculator": draw_calculator,
+        "currency": draw_currency,
+        "home": draw_home,
+        "security": draw_shield,
+        "shield": draw_shield,
+        "policy": draw_document,
+        "document": draw_document,
+        "magnifier": draw_magnifier,
+        "calendar": draw_calendar,
+        "compass": draw_compass,
+        "news": draw_magnifier,
+        "insight": draw_compass,
+    }.get(kind, draw_compass)()
 
     raw = bytes(pixels)
     return b"\x89PNG\r\n\x1a\n" + _png_chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)) + _png_chunk(b"IDAT", zlib.compress(raw, 9)) + _png_chunk(b"IEND", b"")
 
 
-def upload_generated_cover(settings: Settings, title: str, locale: str, variant: int = 0) -> tuple[int | None, str]:
-    """Upload one free generated PNG and return (media_id, public_url)."""
+def generated_cover_png(locale: str, title: str, variant: int = 0) -> bytes:
+    """Backward-compatible alias for callers that used the old image helper."""
+    return generated_icon_png(locale, title, "", variant)
+
+
+def upload_generated_icon(settings: Settings, title: str, locale: str, article_html: str = "", variant: int = 0) -> tuple[int | None, str]:
+    """Upload one free, topic-related generated PNG and return (media_id, URL)."""
     auth = wp_auth_header(settings)
-    boundary = "----CodexFinance" + hashlib.sha256(f"{title}:{variant}".encode("utf-8")).hexdigest()[:16]
-    image = generated_cover_png(locale, title, variant)
-    purposes = ("overview", "comparison", "checklist")
+    kind = _icon_kind(title, article_html, variant)
+    boundary = "----CodexFinance" + hashlib.sha256(f"{title}:{kind}:{variant}".encode("utf-8")).hexdigest()[:16]
+    image = generated_icon_png(locale, title, article_html, variant)
+    purposes = ("topic", "detail")
     purpose = purposes[variant % len(purposes)]
-    alt = f"{title} — original {purpose} chart illustration"
+    alt = f"{title} — original {kind} icon illustration related to the article topic"
     chunks = [
-        f"--{boundary}\r\nContent-Disposition: form-data; name=\"media[]\"; filename=\"finance-{purpose}.png\"\r\nContent-Type: image/png\r\n\r\n".encode("utf-8"),
+        f"--{boundary}\r\nContent-Disposition: form-data; name=\"media[]\"; filename=\"finance-{kind}-{purpose}.png\"\r\nContent-Type: image/png\r\n\r\n".encode("utf-8"),
         image,
-        f"\r\n--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][title]\"\r\n\r\n{title} — {purpose}\r\n".encode("utf-8"),
+        f"\r\n--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][title]\"\r\n\r\n{title} — {kind} icon ({purpose})\r\n".encode("utf-8"),
         f"--{boundary}\r\nContent-Disposition: form-data; name=\"attrs[0][alt]\"\r\n\r\n{alt}\r\n".encode("utf-8"),
         f"--{boundary}--\r\n".encode("utf-8"),
     ]
@@ -652,25 +778,20 @@ def compose_image_layout(html: str, figures: list[str]) -> str:
     body = insert_figure_after_first_paragraph(body, figures[0])
     if len(figures) > 1:
         body = insert_figure_before_heading(body, figures[1], 1)
-    if len(figures) > 2:
-        faq = re.search(r"<h2\b[^>]*>[^<]*(?:FAQ|자주|よくある|질문)[^<]*</h2>", body, flags=re.I)
-        if faq:
-            body = body[: faq.start()] + figures[2] + body[faq.start() :]
-        else:
-            count = len(re.findall(r"<h2\b", body, flags=re.I))
-            body = insert_figure_before_heading(body, figures[2], max(0, count - 1))
     return body
 
 
 def wp_create(settings: Settings, article_json: str, topic: str, locale: str) -> dict[str, Any]:
     article = parse_json(article_json)
     title = str(article.get("title", topic))
-    media: list[tuple[int, str]] = [upload_generated_cover(settings, title, locale, variant) for variant in range(3)]
+    article_html = str(article.get("html", ""))
+    media: list[tuple[int, str]] = [upload_generated_icon(settings, title, locale, article_html, variant) for variant in range(2)]
     figures: list[str] = []
     for index, (_, media_url) in enumerate(media):
-        purpose = ("overview", "comparison", "checklist")[index]
-        alt = html_escape(f"{title} — original {purpose} chart illustration", quote=True)
-        figures.append(f'<figure class="wp-block-image size-large finance-inline-visual finance-inline-visual-{index + 1}"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>')
+        kind = _icon_kind(title, article_html, index)
+        purpose = ("topic", "detail")[index]
+        alt = html_escape(f"{title} — original {kind} icon illustration related to the article topic", quote=True)
+        figures.append(f'<figure class="wp-block-image size-large finance-inline-visual finance-inline-icon finance-inline-visual-{index + 1}"><img src="{html_escape(media_url, quote=True)}" alt="{alt}" loading="lazy" /></figure>')
     excerpt = str(article.get("excerpt", "")).strip()
     if len(excerpt) > 300:
         excerpt = excerpt[:297].rstrip() + "..."
@@ -678,15 +799,16 @@ def wp_create(settings: Settings, article_json: str, topic: str, locale: str) ->
         "title": title,
         "slug": seo_slug(str(article.get("slug", ""))) or seo_slug(title),
         # WordPress renders featured_media above the article. Keep the total
-        # visible visuals to three: one featured overview plus two inline
-        # visuals placed around the body/FAQ sections.
-        "content": compose_image_layout(str(article.get("html", "")), figures[1:]),
+        # visible visuals to two: one featured topic icon plus one inline
+        # detail icon placed after the lead paragraph.
+        "content": compose_image_layout(article_html, figures[1:]),
         "excerpt": excerpt,
         "status": settings.publish_mode,
         "featured_media": media[0][0],
     }
     post = http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
     post["_images_uploaded"] = len(media)
+    post["_image_kinds"] = [_icon_kind(title, article_html, index) for index in range(len(media))]
     return post
 
 

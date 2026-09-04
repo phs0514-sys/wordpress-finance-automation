@@ -86,6 +86,7 @@ jobs:
   publish_new:
     name: Publish new sites
     needs: publish_existing
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:

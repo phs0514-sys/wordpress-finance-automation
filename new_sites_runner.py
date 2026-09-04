@@ -16,12 +16,14 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 import engine
 
 
 ROOT = Path(__file__).resolve().parent
 SCAN_PATH = engine.DATA_DIR / "new_site_issue_scan.json"
+CONTROL_PATH = engine.DATA_DIR / "new_site_publish_control.json"
 LOCALES = ("us", "jp", "kr")
 
 
@@ -38,17 +40,48 @@ def _parse_timestamp(value: Any) -> datetime | None:
     return parsed
 
 
-def published_today(locale: str) -> int:
+def published_today(locale: str, site_url: str) -> int:
     """Count today's published/update operations in the local timezone."""
     today = datetime.now(timezone.utc).astimezone(engine.LOCAL_ZONE).date()
+    target_host = urlparse(site_url).netloc.lower()
     count = 0
     for row in engine.load_article_history():
         if not isinstance(row, dict) or row.get("locale") != locale:
+            continue
+        row_host = urlparse(str(row.get("url", ""))).netloc.lower()
+        if target_host and row_host != target_host:
             continue
         timestamp = _parse_timestamp(row.get("created_at") or row.get("publish_time"))
         if timestamp and timestamp.astimezone(engine.LOCAL_ZONE).date() == today:
             count += 1
     return count
+
+
+def _record_new_outcome(ok: bool, error: str = "") -> dict[str, Any]:
+    """Keep the new-site kill switch isolated from legacy-site publishing."""
+    control = engine.load_json_file(CONTROL_PATH, {})
+    if not isinstance(control, dict):
+        control = {}
+    failures = int(control.get("consecutive_failures", 0) or 0)
+    events = control.get("events", []) if isinstance(control.get("events"), list) else []
+    failures = 0 if ok else failures + 1
+    event: dict[str, Any] = {"ok": ok, "timestamp": datetime.now(timezone.utc).isoformat()}
+    if error:
+        event["error"] = str(error)[:500]
+    events.append(event)
+    recent_failures = sum(1 for item in events[-5:] if isinstance(item, dict) and not item.get("ok"))
+    should_pause = failures >= 3 or recent_failures >= 3
+    force_resume = os.getenv("PUBLISH_FORCE_RESUME", "0") == "1"
+    control.update({
+        "paused": False if ok and force_resume else (bool(control.get("paused", False)) or should_pause),
+        "reason": "" if ok and force_resume else (("three consecutive failed cycles" if failures >= 3 else "three failed cycles in the last five") if should_pause else control.get("reason", "")),
+        "consecutive_failures": failures,
+        "last_error": str(error)[:500] if error else control.get("last_error", ""),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "events": events[-20:],
+    })
+    engine.save_json_file(CONTROL_PATH, control)
+    return control
 
 
 def _save_scan(locale: str, payload: dict[str, Any]) -> None:
@@ -79,6 +112,16 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
         "status": "SCORING",
     }
     try:
+        # Capture the free RSS signals once for an auditable scan record. The
+        # research call takes its own fresh snapshot for topic selection.
+        news_snapshot = engine.google_news_snapshot(locale)
+        trends_snapshot = engine.google_trends_snapshot(locale)
+        candidate_pool = engine.build_candidate_pool(news_snapshot, trends_snapshot)
+        scan.update({
+            "candidate_pool_size": len(candidate_pool),
+            "trend_snapshot": trends_snapshot,
+            "news_snapshot": news_snapshot,
+        })
         topic, brief = engine.collect_research(settings, locale)
         score = int(brief.get("opportunity_score") or brief.get("click_potential") or 0)
         scan.update({
@@ -88,22 +131,25 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
             "action": brief.get("action", "new"),
             "category": brief.get("category", ""),
             "status": "WATCH" if score < min_score else "RESEARCH",
-            "candidate_pool_size": len(brief.get("candidate_pool", [])) if isinstance(brief.get("candidate_pool"), list) else None,
             "benchmark_sources": len(brief.get("benchmark_sources", [])) if isinstance(brief.get("benchmark_sources"), list) else 0,
             "official_sources": len(brief.get("official_sources", [])) if isinstance(brief.get("official_sources"), list) else 0,
-            "trend_snapshot": brief.get("google_trends_snapshot", []),
-            "news_snapshot": brief.get("google_news_snapshot", []),
         })
-        today_count = published_today(locale)
+        today_count = published_today(locale, settings.wp_url)
         scan["published_today"] = today_count
+        control = engine.load_json_file(CONTROL_PATH, {})
+        if isinstance(control, dict) and control.get("paused") and os.getenv("PUBLISH_FORCE_RESUME", "0") != "1":
+            scan.update({"status": "PAUSED", "reason": control.get("reason", "new-site kill switch")})
+            _record_new_outcome(True)
+            _save_scan(locale, scan)
+            return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
         if today_count >= max_daily_posts:
             scan.update({"status": "CAP_REACHED", "reason": f"daily cap {max_daily_posts} reached"})
-            engine.record_publish_outcome(True)
+            _record_new_outcome(True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
         if score < min_score:
             scan["reason"] = f"score below minimum {min_score}"
-            engine.record_publish_outcome(True)
+            _record_new_outcome(True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
 
@@ -133,7 +179,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
         result["_content_version"] = engine.record_article_version(locale, final_article, brief, result, action)
         engine.record_article_history(locale, final_article, brief, review, result, action)
         engine.record_source_usage(brief, locale)
-        engine.record_publish_outcome(True)
+        _record_new_outcome(True)
         scan.update({
             "status": "PUBLISHED" if action == "new" else "UPDATED",
             "action": action,
@@ -148,7 +194,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
         message = str(exc)
         scan.update({"status": "ERROR", "error": message[:1000]})
         try:
-            engine.record_publish_outcome(False, message)
+            _record_new_outcome(False, message)
         finally:
             _save_scan(locale, scan)
         return {"locale": locale, "ok": False, "status": "ERROR", "error": message[:1000]}

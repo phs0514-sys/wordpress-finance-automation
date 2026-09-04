@@ -25,13 +25,22 @@ can be overridden locally with `OPENAI_RESEARCH_MODEL`,
 ## GitHub-only production path
 
 The production path is GitHub Actions, so the user's computer does not need to
-be powered on. `publish.yml` runs one batch at 08:00, 11:50, 16:00, and 20:00
-KST. Each batch independently creates, reviews, and publishes one article for
-the US, Japan, and Korea sites (12 posts per day total). `daily-report.yml`
-runs at 06:00 KST, stores Search Console windows when configured, and commits
-the Markdown report plus `data/article_history.json`. `weekly-strategy.yml`
-runs Sunday 22:00 KST and commits only `data/weekly_strategy.json`; it never
-edits authentication, WordPress connections, data collection, or engine code.
+be powered on. The schedules are deliberately separated:
+
+- `publish.yml` keeps the legacy three-site publication slots at 08:00, 11:50,
+  16:00, and 20:00 KST. It no longer runs the new sites.
+- `new-site-issue-cycle.yml` scans Google Trends/News every 30 minutes for the
+  three new sites, records the candidate and evidence snapshot, then runs the
+  full research → writing → Terra/Luna review → quality gate → publish/update
+  path only when the opportunity score is at least 85. A per-site daily cap of
+  two operations prevents mass publication; scans continue after the cap.
+- `daily-report.yml` runs at 06:00 KST and reports both site groups. `weekly-
+  strategy.yml` runs Sunday 22:00 KST and commits only
+  `data/weekly_strategy.json`.
+
+The new cycle and legacy publication share one concurrency group so history
+files cannot be pushed concurrently. A failure in one locale is recorded and
+does not stop the other locales from being scanned.
 
 The workflows deliberately contain no credentials. Put the API and
 WordPress.com values in GitHub Actions Secrets after the repository is created.

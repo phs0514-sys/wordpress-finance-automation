@@ -40,6 +40,7 @@ jobs:
       QUALITY_THRESHOLD: "85"
       MAX_REVISIONS: "4"
       PUBLISH_HEALTH_GATE: "1"
+      PUBLISH_FORCE_RESUME: ${{ secrets.PUBLISH_FORCE_RESUME }}
       WP_US_URL: ${{ secrets.WP_US_URL }}
       WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
       WP_US_MODE: wpcom

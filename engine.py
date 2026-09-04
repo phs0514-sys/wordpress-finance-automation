@@ -649,7 +649,10 @@ def wp_create(settings: Settings, article_json: str, topic: str, locale: str) ->
     payload = {
         "title": title,
         "slug": seo_slug(str(article.get("slug", ""))) or seo_slug(title),
-        "content": compose_image_layout(str(article.get("html", "")), figures),
+        # WordPress renders featured_media above the article. Keep the total
+        # visible visuals to three: one featured overview plus two inline
+        # visuals placed around the body/FAQ sections.
+        "content": compose_image_layout(str(article.get("html", "")), figures[1:]),
         "excerpt": excerpt,
         "status": settings.publish_mode,
         "featured_media": media[0][0],

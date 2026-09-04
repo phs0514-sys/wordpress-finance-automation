@@ -1,0 +1,81 @@
+name: Publish finance articles
+
+on:
+  # GitHub evaluates cron in UTC. These four entries are 08:00, 11:50,
+  # 16:00, and 20:00 in Asia/Seoul (KST).
+  schedule:
+    - cron: "0 23 * * *"
+    - cron: "50 2 * * *"
+    - cron: "0 7 * * *"
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+    inputs:
+      slot_index:
+        description: "KST slot: 0=08:00, 1=11:50, 2=16:00, 3=20:00"
+        required: true
+        default: "0"
+      locale:
+        description: "Locale to publish (all, us, jp, or kr)"
+        required: true
+        default: "all"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finance-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_RESEARCH_MODEL: gpt-5.6-luna
+      OPENAI_RESEARCH_REASONING: medium
+      OPENAI_WRITING_MODEL: gpt-5.6-terra
+      OPENAI_WRITING_REASONING: medium
+      PUBLISH_MODE: publish
+      QUALITY_THRESHOLD: "90"
+      MAX_REVISIONS: "4"
+      WP_US_URL: ${{ secrets.WP_US_URL }}
+      WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
+      WP_US_MODE: wpcom
+      WP_US_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_US_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_US_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_US_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_US_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
+      WP_JP_URL: ${{ secrets.WP_JP_URL }}
+      WP_JP_SITE_REF: ${{ secrets.WP_JP_SITE_REF }}
+      WP_JP_MODE: wpcom
+      WP_KR_URL: ${{ secrets.WP_KR_URL }}
+      WP_KR_SITE_REF: ${{ secrets.WP_KR_SITE_REF }}
+      WP_KR_MODE: wpcom
+      GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
+      GSC_US_TOKEN: ${{ secrets.GSC_US_TOKEN }}
+      GSC_JP_TOKEN: ${{ secrets.GSC_JP_TOKEN }}
+      GSC_KR_TOKEN: ${{ secrets.GSC_KR_TOKEN }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+    steps:
+      - name: Check out automation
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Publish all locales
+        run: python github_runner.py --slot-index "${{ inputs.slot_index || 0 }}" --locale "${{ inputs.locale || 'all' }}"
+      - name: Commit article performance history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/article_history.json ]; then git add data/article_history.json; fi
+          if git diff --cached --quiet; then
+            echo "No article history changes to commit"
+          else
+            git commit -m "Record article publication performance metadata"
+            git push
+          fi
+

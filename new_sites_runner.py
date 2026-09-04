@@ -1,7 +1,7 @@
-"""Scan and process the three new sites on a 30-minute issue cycle.
+"""Scan and process the three new sites on an hourly issue cycle.
 
 The legacy sites keep their four daily publication slots in ``publish.yml``.
-This runner is intentionally separate: every 30 minutes it discovers and
+This runner is intentionally separate: at the top of every hour it discovers and
 scores fresh issues for each new site, records the scan, and only runs the
 expensive writing/review/publish path when the opportunity clears the
 configured threshold and the per-site daily cap has not been reached.
@@ -201,14 +201,14 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the 30-minute issue cycle for new sites")
+    parser = argparse.ArgumentParser(description="Run the hourly issue cycle for new sites")
     parser.add_argument("--locale", choices=("all", *LOCALES), default="all")
     parser.add_argument("--min-score", type=int, default=int(os.getenv("NEW_SITE_MIN_SCORE", "85")))
     parser.add_argument("--max-daily-posts", type=int, default=int(os.getenv("NEW_SITE_MAX_DAILY_POSTS", "2")))
     args = parser.parse_args()
     locales = LOCALES if args.locale == "all" else (args.locale,)
     results = [process_locale(locale, args.min_score, args.max_daily_posts) for locale in locales]
-    print(json.dumps({"cycle": "30m", "min_score": args.min_score, "max_daily_posts": args.max_daily_posts, "results": results}, ensure_ascii=False, indent=2))
+    print(json.dumps({"cycle": "hourly", "min_score": args.min_score, "max_daily_posts": args.max_daily_posts, "results": results}, ensure_ascii=False, indent=2))
     return 0 if all(bool(row.get("ok")) for row in results) else 1
 
 

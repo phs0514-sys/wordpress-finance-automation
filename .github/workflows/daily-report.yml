@@ -1,12 +1,19 @@
 name: Daily finance blog report
 
 on:
+  # 06:00 and 18:00 KST
   schedule:
     - cron: "0 21 * * *"
+    - cron: "0 9 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+# Prevent report commits from racing publishing or new-site scanning commits.
+concurrency:
+  group: finance-publish
+  cancel-in-progress: false
 
 jobs:
   report_existing:
@@ -45,8 +52,8 @@ jobs:
       - name: Generate existing-site report
         run: |
           mkdir -p reports
-          REPORT_DATE=$(TZ=Asia/Seoul date -d "yesterday" +%F)
-          python daily_report.py > "reports/$REPORT_DATE-existing.md"
+          REPORT_STAMP=$(TZ=Asia/Seoul date +%F-%H00)
+          python daily_report.py > "reports/$REPORT_STAMP-existing.md"
       - name: Commit existing-site report
         run: |
           git config user.name "github-actions[bot]"
@@ -57,8 +64,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No existing-site report changes to commit"
           else
-            git commit -m "Add existing site daily report"
-            git push
+            git commit -m "Add scheduled existing-site report"
+            git push || (git pull --rebase origin main && git push)
           fi
 
   report_new:
@@ -99,8 +106,8 @@ jobs:
       - name: Generate new-site report
         run: |
           mkdir -p reports
-          REPORT_DATE=$(TZ=Asia/Seoul date -d "yesterday" +%F)
-          python daily_report.py > "reports/$REPORT_DATE-new.md"
+          REPORT_STAMP=$(TZ=Asia/Seoul date +%F-%H00)
+          python daily_report.py > "reports/$REPORT_STAMP-new.md"
       - name: Commit new-site report
         run: |
           git config user.name "github-actions[bot]"
@@ -111,6 +118,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No new-site report changes to commit"
           else
-            git commit -m "Add new site daily report"
+            git commit -m "Add scheduled new-site report"
             git push
           fi

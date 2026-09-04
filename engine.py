@@ -281,8 +281,10 @@ def _post_date(row: dict[str, Any]) -> date | None:
 
 _TOPIC_STOPWORDS = {
     "2026", "2025", "today", "latest", "update", "news", "guide", "tips",
-    "한국", "미국", "일본", "관련", "정보", "정리", "최신", "방법", "확인",
-    "今日", "最新", "情報", "解説", "速報", "について", "방법", "안내",
+    "how", "what", "why", "best", "compare", "comparison", "review", "rules",
+    "cost", "costs", "fee", "fees", "change", "changes", "한국", "미국", "일본",
+    "관련", "정보", "정리", "최신", "방법", "확인", "비교", "차이", "변화", "안내",
+    "今日", "最新", "情報", "解説", "速報", "について", "比較", "違い", "変更", "費用", "手数料",
 }
 
 
@@ -304,6 +306,7 @@ def topic_overlaps_recent(topic: str, research: dict[str, Any], recent_posts: li
     candidate_text = " ".join(
         str(research.get(key, "")) for key in ("focus_keyword", "search_intent", "angle")
     ) + " " + topic
+    focus_terms = _topic_terms(str(research.get("focus_keyword", "")))
     candidate_norm = re.sub(r"[^\w\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3]+", "", unicodedata.normalize("NFKC", topic).casefold())
     candidate_terms = _topic_terms(candidate_text)
     for row in recent_posts:
@@ -313,6 +316,10 @@ def topic_overlaps_recent(topic: str, research: dict[str, Any], recent_posts: li
             return True
         recent_terms = _topic_terms(recent_title)
         shared = candidate_terms & recent_terms
+        # A repeated explicit focus keyword is a hard collision even when the
+        # surrounding headline has been translated or rephrased.
+        if any(term in recent_terms and (len(term) >= 3 or any("\uac00" <= char <= "\ud7a3" or "\u3040" <= char <= "\u9fff" for char in term)) for term in focus_terms):
+            return True
         # Two shared meaningful terms usually indicate the same event/entity;
         # a single long distinctive term catches repeated named events.
         if len(shared) >= 2 or any(len(term) >= 5 for term in shared):

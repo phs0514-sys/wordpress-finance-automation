@@ -4,15 +4,21 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 
 ## Pipeline
 
-1. Select a locale-specific topic (US: ETF, IRA/401(k), tax-aware investing, dividends; JP: NISA, iDeCo, funds/ETF, dividends; KR: ISA, 연금저축/IRP, 예적금, ETF, 배당).
-2. Ask the OpenAI Responses API for an evidence-led brief and original outline. The prompt forbids copying or translating a single competing article and requires primary sources, dates, assumptions, risks, and a clear not-financial-advice notice.
-3. Generate a native English or Japanese article from that brief.
-4. Run a separate reviewer prompt scoring accuracy, source quality, freshness, originality, search intent, depth, clarity, and safety.
+1. Read a free, locale-specific Google News RSS snapshot and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; recent WordPress posts are supplied to avoid repetition.
+2. Use one web-search-backed research call to benchmark up to five leading result pages, identify coverage gaps, and collect complete primary/authoritative URLs, dates, and a concrete growth plan. The prompt forbids copying or translating a competing article.
+3. Generate a native-language article with the writing model, adding SEO title/slug/excerpt, semantic headings, a concise lead, FAQ, internal-link opportunities, balanced typography/layout HTML, update notes, risks, and a general-information notice.
+4. Run a separate reviewer prompt scoring accuracy, source quality, freshness, originality, search intent, depth, clarity, HTML/layout, SEO, and safety.
 5. Revise weak sections up to `MAX_REVISIONS` (default 4). Do not publish below `QUALITY_THRESHOLD` (default 90).
 6. Send the approved article to WordPress REST API as `draft` by default, or `publish` when explicitly enabled.
 7. Run `daily_report.py` each morning to read publication status and WordPress.com stats without changing any content.
 
 The first version intentionally has no affiliate links and no personalized investment recommendations. The `--seed-pages` option creates About, Privacy, Contact, and Editorial Policy pages for the selected locale.
+
+Research uses `gpt-5.6-luna` with medium reasoning; article writing and review use
+`gpt-5.6-terra` with medium reasoning. These are configured in the workflows and
+can be overridden locally with `OPENAI_RESEARCH_MODEL`,
+`OPENAI_RESEARCH_REASONING`, `OPENAI_WRITING_MODEL`, and
+`OPENAI_WRITING_REASONING`.
 
 ## GitHub-only production path
 
@@ -42,7 +48,12 @@ python engine.py --locale jp --topic "Compare NISA fund fees" --seed-pages
 python daily_report.py
 ```
 
-The script uses only the Python standard library. Its evidence call enables the Responses API web-search tool, then it calls `POST /v1/responses` for writing/review and the WordPress.com `public-api.wordpress.com/wp/v2/sites/<site>/...` endpoints for posts/pages. Self-hosted WordPress remains supported with `WP_*_MODE=self_hosted`.
+The script uses only the Python standard library. Its trend call reads the
+keyless Google News RSS feed, its research call enables the Responses API
+web-search tool, then it calls `POST /v1/responses` for writing/review and the
+WordPress.com `public-api.wordpress.com/wp/v2/sites/<site>/...` endpoints for
+posts/pages. Self-hosted WordPress remains supported with
+`WP_*_MODE=self_hosted`.
 
 `daily_report.py` uses the WordPress.com stats endpoints in read-only mode. Site-level visitors and views are reported for the last completed local day; the per-post endpoint exposes views rather than unique visitors, so the report labels those values as cumulative post views. If a site has stats disabled, the report shows “확인 불가” instead of treating missing data as zero.
 

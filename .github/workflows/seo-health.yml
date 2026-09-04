@@ -1,7 +1,6 @@
 name: Technical SEO health monitor
 
 on:
-  # 05:30 KST (20:30 UTC on the previous day), before the first publish slot.
   schedule:
     - cron: "30 20 * * *"
   workflow_dispatch:
@@ -11,18 +10,19 @@ permissions:
 
 jobs:
   health:
+    name: Check existing and new sites
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      WP_US_URL: ${{ secrets.WP_US_URL }}
-      WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
       WP_US_MODE: wpcom
       WP_US_USERNAME: ${{ secrets.WP_US_USERNAME }}
       WP_US_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
       WP_US_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
       WP_US_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
       WP_US_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
+      WP_US_URL: ${{ secrets.WP_US_URL }}
+      WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
       WP_JP_URL: ${{ secrets.WP_JP_URL }}
       WP_JP_SITE_REF: ${{ secrets.WP_JP_SITE_REF }}
       WP_JP_MODE: wpcom
@@ -36,20 +36,33 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run read-only health checks
-        run: python seo_health.py > seo-health.json || true
-      - name: Commit health snapshot
+      - name: Check existing sites
+        run: |
+          python seo_health.py > seo-health-existing.json || true
+          if [ -f data/technical_health.json ]; then cp data/technical_health.json data/technical_health-existing.json; fi
+      - name: Check new sites
+        env:
+          WP_US_URL: https://uscurrentbrief.wordpress.com
+          WP_US_SITE_REF: uscurrentbrief.wordpress.com
+          WP_JP_URL: https://jpdailybrief.wordpress.com
+          WP_JP_SITE_REF: jpdailybrief.wordpress.com
+          WP_KR_URL: https://krdailybrief.wordpress.com
+          WP_KR_SITE_REF: krdailybrief.wordpress.com
+        run: |
+          python seo_health.py > seo-health-new.json || true
+          if [ -f data/technical_health.json ]; then cp data/technical_health.json data/technical_health-new.json; fi
+      - name: Commit health snapshots
         run: |
           mkdir -p reports
           REPORT_DATE=$(TZ=Asia/Seoul date +%F)
-          cp seo-health.json "reports/seo-health-${REPORT_DATE}.json"
+          cp seo-health-existing.json "reports/seo-health-existing-$REPORT_DATE.json"
+          cp seo-health-new.json "reports/seo-health-new-$REPORT_DATE.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/technical_health.json reports/seo-health-*.json
+          git add data/technical_health*.json reports/seo-health-*.json
           if git diff --cached --quiet; then
             echo "No technical health changes to commit"
           else
-            git commit -m "Record technical SEO health snapshot"
+            git commit -m "Record existing and new site SEO health"
             git push
           fi
-

@@ -37,7 +37,8 @@ The workflows deliberately contain no credentials. Put the API and
 WordPress.com values in GitHub Actions Secrets after the repository is created.
 The starting quality target is 85 points with up to four bounded revisions, and
 the publish status is explicit (`publish`) in the workflow. A three-failure
-kill switch writes `data/publish_control.json`; set `PUBLISH_FORCE_RESUME=1`
+kill switch (three consecutive or three of the last five failed runs) writes
+`data/publish_control.json`; set `PUBLISH_FORCE_RESUME=1`
 only after reviewing the reported cause.
 
 GitHub Actions itself can be free on a public repository, but OpenAI API calls

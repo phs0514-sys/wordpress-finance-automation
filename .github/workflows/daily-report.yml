@@ -1,10 +1,10 @@
 name: Daily finance blog report
 
 on:
-  # 06:00 and 18:00 KST
+  # Prepare the six-site data before the 06:00 and 18:00 KST Work reports.
   schedule:
-    - cron: "0 21 * * *"
-    - cron: "0 9 * * *"
+    - cron: "40 20 * * *"
+    - cron: "40 8 * * *"
   workflow_dispatch:
 
 permissions:

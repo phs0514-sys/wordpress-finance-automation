@@ -36,8 +36,8 @@ Both workflows also support a manual `workflow_dispatch` run.
 The starting quality target is 85/100 with at most four bounded revisions. The
 article pipeline reads free locale-specific Google Trending Searches/News RSS
 snapshots, targets up to five current search results without making five a hard
-minimum, then uses `gpt-5.6-luna` (medium reasoning) for research and
-`gpt-5.6-terra` (medium reasoning) for writing/review. OpenAI API usage is
+minimum, then uses `gpt-5.6-luna` (medium reasoning) for research/fact review
+and `gpt-5.6-terra` (medium reasoning) for writing/editorial review. OpenAI API usage is
 billed separately from GitHub Actions. Each approved post receives two
 distinct topic-related standard-library-generated PNG icons as compact,
 centered inline figures; no image-generation API key is needed. Topics are

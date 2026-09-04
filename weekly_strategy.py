@@ -15,6 +15,7 @@ def summarize(history: list[dict[str, object]]) -> dict[str, object]:
     by_headline: dict[str, list[float]] = defaultdict(list)
     by_layout: dict[str, list[float]] = defaultdict(list)
     by_locale: dict[str, list[float]] = defaultdict(list)
+    by_slot: dict[str, list[float]] = defaultdict(list)
     for row in history:
         metrics = row.get("metrics", {})
         seven = metrics.get("7d", {}) if isinstance(metrics, dict) else {}
@@ -27,6 +28,7 @@ def summarize(history: list[dict[str, object]]) -> dict[str, object]:
         by_headline[headline].append(clicks)
         by_layout[layout].append(clicks)
         by_locale[locale].append(clicks)
+        by_slot[str(row.get("publish_slot", "0"))].append(clicks)
 
     def averages(values: dict[str, list[float]]) -> dict[str, object]:
         return {key: {"posts": len(items), "avg_7d_clicks": round(sum(items) / len(items), 2)} for key, items in values.items()}
@@ -37,6 +39,7 @@ def summarize(history: list[dict[str, object]]) -> dict[str, object]:
         "by_headline": averages(by_headline),
         "by_layout": averages(by_layout),
         "by_locale": averages(by_locale),
+        "by_publish_slot": averages(by_slot),
         "recent_topics": [row.get("topic", "") for row in history[-20:]],
     }
 
@@ -61,7 +64,7 @@ def main() -> int:
         settings = engine.Settings.from_env("us")
         snapshot = summarize(history)
         prompt = (
-            "You are the weekly editorial strategy lead for three localized blogs. Analyze the supplied performance snapshot and return exactly one JSON object with generated_at, status, content_mix, category_weights, headline_patterns, layout_recommendations, update_candidates, experiments, and next_week_actions. "
+            "You are the weekly editorial strategy lead for three localized blogs. Analyze the supplied performance snapshot and return exactly one JSON object with generated_at, status, content_mix, category_weights, headline_patterns, layout_recommendations, publish_slot_weights, update_candidates, experiments, and next_week_actions. Use by_publish_slot to recommend which existing slot should receive stronger topics; do not rewrite the GitHub cron automatically. "
             "Keep the 70/20/10 mix: 70% proven topic groups, 20% adjacent groups, 10% experiments. Adjust weights only when there are enough observations; otherwise keep neutral weights. Recommend updates to existing URLs when their intent is already covered. Never propose changes to authentication, secrets, WordPress connections, GitHub Actions core code, or data-collection code."
         )
         response = engine.openai_text(settings, prompt, json.dumps(snapshot, ensure_ascii=False), max_output_tokens=5000, json_output=True, model=settings.research_model, reasoning_effort=settings.research_reasoning)

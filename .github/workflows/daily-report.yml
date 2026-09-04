@@ -64,6 +64,7 @@ jobs:
   report_new:
     name: Report new sites
     needs: report_existing
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:

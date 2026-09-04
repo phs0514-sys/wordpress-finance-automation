@@ -262,6 +262,7 @@ GOOGLE_NEWS_CONFIG = {
     "jp": {"hl": "ja", "gl": "JP", "ceid": "JP:ja"},
     "kr": {"hl": "ko", "gl": "KR", "ceid": "KR:ko"},
 }
+GOOGLE_TRENDS_GEO = {"us": "US", "jp": "JP", "kr": "KR"}
 
 
 def google_news_snapshot(locale: str, limit: int = 12) -> list[dict[str, str]]:
@@ -294,6 +295,31 @@ def google_news_snapshot(locale: str, limit: int = 12) -> list[dict[str, str]]:
     return rows
 
 
+def google_trends_snapshot(locale: str, limit: int = 20) -> list[dict[str, str]]:
+    """Read Google's keyless daily-trending-search RSS for the locale."""
+    request = urllib.request.Request(
+        f"https://trends.google.com/trending/rss?geo={GOOGLE_TRENDS_GEO[locale]}",
+        headers={"User-Agent": "Mozilla/5.0 (compatible; FinanceResearchBot/1.0)"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            root = ET.fromstring(response.read())
+    except Exception:
+        return []
+    rows: list[dict[str, str]] = []
+    for item in root.findall("./channel/item")[:limit]:
+        title = (item.findtext("title") or "").strip()
+        traffic = ""
+        for child in item:
+            if child.tag.endswith("approx_traffic"):
+                traffic = (child.text or "").strip()
+                break
+        if title:
+            rows.append({"term": title, "approx_traffic": traffic})
+    return rows
+
+
 def collect_research(settings: Settings, locale: str, topic_override: str | None = None) -> tuple[str, dict[str, Any]]:
     """Choose a current topic and build a benchmarked evidence brief.
 
@@ -307,11 +333,12 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
     except Exception:
         recent_posts = []
     trends = google_news_snapshot(locale)
+    trending_searches = google_trends_snapshot(locale)
     generated_at = datetime.now(timezone.utc).isoformat()
     source_checklist = "Find at least three complete primary or authoritative URLs for the selected topic. Match source types to the topic (government, regulator, public agency, standards body, exchange, university, or first-party issuer). Prefer current pages and state the page date or last-updated date when visible."
     prompt = (
         "You are a local trend and search-intent research editor. Use exactly one web search tool call, with multiple native-language queries if useful, then stop. "
-        "The topic may be finance or any other genuinely useful current-interest subject; choose what is most likely to earn qualified clicks in this locale at the stated moment, while avoiding sensational or unsafe claims. "
+        "The topic may be finance or any other genuinely useful current-interest subject; choose what is most likely to earn qualified clicks in this locale at the stated moment, while avoiding sensational or unsafe claims. Use Google's trending-search terms and news headlines as signals, then validate intent, competition, and facts with web search. "
         "Use the Google News RSS snapshot as a trend signal, but verify it and do not treat headlines as facts. Identify exactly five leading/relevant search-result pages for the chosen query when five can be verified; rank them 1-5 and describe only their coverage/structure, never copy wording. "
         "Return one compact JSON object only with: topic, click_potential (0-100), search_intent, angle, freshness, benchmark_sources (array of up to 5 objects with rank,title,url,what_it_covers), official_sources (array of complete url,title,claim objects), synthesis_points (array), gaps (array), growth_plan (array of concrete future content/measurement actions), focus_keyword, related_keywords (array), and outline (array). "
         + source_checklist + " Use the requested locale and language. Do not invent, truncate, or guess URLs. Do not provide personalized financial, medical, legal, or safety advice."
@@ -322,6 +349,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "generated_at_utc": generated_at,
         "topic_override": topic_override or "",
         "google_news_snapshot": trends,
+        "google_trending_searches": trending_searches,
         "recent_published_posts": recent_posts,
         "source_policy": source_policy,
     }

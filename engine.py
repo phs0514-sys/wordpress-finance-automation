@@ -240,9 +240,10 @@ def record_publish_outcome(ok: bool, error: str = "") -> dict[str, Any]:
     events.append(event)
     recent_failures = sum(1 for item in events[-5:] if isinstance(item, dict) and not item.get("ok"))
     should_pause = failures >= 3 or recent_failures >= 3
+    force_resume = os.getenv("PUBLISH_FORCE_RESUME", "0") == "1"
     control.update({
-        "paused": bool(control.get("paused", False)) or should_pause,
-        "reason": ("three consecutive failed runs" if failures >= 3 else "three failed runs in the last five") if should_pause else control.get("reason", ""),
+        "paused": False if ok and force_resume else (bool(control.get("paused", False)) or should_pause),
+        "reason": "" if ok and force_resume else (("three consecutive failed runs" if failures >= 3 else "three failed runs in the last five") if should_pause else control.get("reason", "")),
         "consecutive_failures": failures,
         "last_error": str(error)[:500] if error else control.get("last_error", ""),
         "updated_at": datetime.now(timezone.utc).isoformat(),

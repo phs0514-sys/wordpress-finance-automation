@@ -75,6 +75,111 @@ def post_views(settings: engine.Settings, auth: str, post_ids: list[int]) -> tup
         return {}, str(exc)
 
 
+def gsc_query(settings: engine.Settings, start_date: str, end_date: str, dimensions: list[str], row_limit: int = 25, page_url: str | None = None) -> tuple[list[dict[str, object]], str | None]:
+    """Read Search Console query/page/country/device rows when a token exists."""
+    if not settings.gsc_token:
+        return [], "GSC 토큰 미설정"
+    body: dict[str, object] = {
+        "startDate": start_date,
+        "endDate": end_date,
+        "dimensions": dimensions,
+        "rowLimit": row_limit,
+        "dataState": "all",
+    }
+    if page_url:
+        body["dimensionFilterGroups"] = [{"filters": [{"dimension": "page", "operator": "equals", "expression": page_url}]}]
+    site = urllib.parse.quote(settings.gsc_site_url or settings.wp_url, safe="")
+    url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{site}/searchAnalytics/query"
+    try:
+        payload = engine.http_json(url, body, {"Authorization": f"Bearer {settings.gsc_token}"})
+        rows = payload.get("rows", []) if isinstance(payload, dict) else []
+        return rows if isinstance(rows, list) else [], None
+    except Exception as exc:
+        # Do not expose the token or request headers in reports.
+        return [], f"GSC 조회 오류: {str(exc)[:220]}"
+
+
+def gsc_summary(settings: engine.Settings, posts: list[dict[str, object]], now: datetime) -> tuple[dict[str, object], str | None]:
+    if not settings.gsc_token:
+        return {}, "GSC 토큰 미설정"
+    # Search Console data can be preliminary for the latest couple of days.
+    end = (now.date() - timedelta(days=2))
+    windows = {
+        "24h": (end, end),
+        "72h": (end - timedelta(days=2), end),
+        "7d": (end - timedelta(days=6), end),
+        "28d": (end - timedelta(days=27), end),
+    }
+    page_metrics: dict[str, dict[str, dict[str, float]]] = {}
+    for window, (start, finish) in windows.items():
+        rows, error = gsc_query(settings, start.isoformat(), finish.isoformat(), ["page"], row_limit=250)
+        if error:
+            return {}, error
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            keys = row.get("keys", [])
+            page = str(keys[0]) if isinstance(keys, list) and keys else ""
+            if page:
+                page_metrics.setdefault(page, {})[window] = {
+                    "clicks": float(row.get("clicks", 0) or 0),
+                    "impressions": float(row.get("impressions", 0) or 0),
+                    "ctr": float(row.get("ctr", 0) or 0),
+                    "position": float(row.get("position", 0) or 0),
+                }
+    dimension_rows: dict[str, list[dict[str, object]]] = {}
+    for dimension in ("query", "country", "device"):
+        rows, error = gsc_query(settings, windows["7d"][0].isoformat(), end.isoformat(), [dimension], row_limit=10)
+        if error:
+            return {}, error
+        dimension_rows[dimension] = rows
+    return {"end_date": end.isoformat(), "preliminary_through": end.isoformat(), "pages": page_metrics, "dimensions": dimension_rows}, None
+
+
+def update_history_metrics(gsc: dict[str, object]) -> None:
+    if not gsc or not isinstance(gsc.get("pages"), dict):
+        return
+    history = engine.load_article_history()
+    pages = gsc["pages"]
+    for row in history:
+        url = str(row.get("url", ""))
+        metrics = pages.get(url) if isinstance(pages, dict) else None
+        if not isinstance(metrics, dict):
+            continue
+        existing = row.setdefault("metrics", {})
+        if not isinstance(existing, dict):
+            existing = {}
+            row["metrics"] = existing
+        for window, values in metrics.items():
+            existing[window] = values
+    engine.save_json_file(engine.HISTORY_PATH, history)
+
+
+def diagnose_metrics(gsc: dict[str, object]) -> list[str]:
+    """Turn Search Console patterns into concrete next actions."""
+    pages = gsc.get("pages", {}) if isinstance(gsc, dict) else {}
+    if not isinstance(pages, dict):
+        return []
+    diagnoses: list[str] = []
+    for url, windows in pages.items():
+        seven = windows.get("7d", {}) if isinstance(windows, dict) else {}
+        if not isinstance(seven, dict):
+            continue
+        impressions = float(seven.get("impressions", 0) or 0)
+        clicks = float(seven.get("clicks", 0) or 0)
+        ctr = float(seven.get("ctr", 0) or 0)
+        position = float(seven.get("position", 0) or 0)
+        if impressions >= 100 and ctr < 0.02:
+            diagnoses.append(f"제목/스니펫 개선 후보: {url} (노출 {impressions:.0f}, CTR {ctr * 100:.1f}%) → 다음 검수에서 제목 5안 생성")
+        elif 8 <= position <= 20 and ctr >= 0.02:
+            diagnoses.append(f"우선 육성: {url} (평균 {position:.1f}위) → 본문 보강 및 내부링크 3~5개")
+        elif 1 <= position <= 5 and clicks >= 5:
+            diagnoses.append(f"성공 주제 확장: {url} (평균 {position:.1f}위, 클릭 {clicks:.0f}) → 후속 키워드 클러스터")
+        elif impressions < 10:
+            diagnoses.append(f"색인/주제 점검: {url} (7일 노출 {impressions:.0f}) → 새 글 남발보다 색인 상태 확인")
+    return diagnoses[:12]
+
+
 def clean_title(value: object) -> str:
     if isinstance(value, dict):
         value = value.get("rendered", "")
@@ -93,6 +198,9 @@ def site_report(locale: str) -> str:
     ids = [int(post["id"]) for post in posts if post.get("id") is not None]
     views, views_error = post_views(settings, auth, ids)
     stat_date, site_views, visitors, visits_error = visits_report(settings, auth)
+    gsc, gsc_error = gsc_summary(settings, posts, datetime.now(REPORT_ZONE))
+    if gsc:
+        update_history_metrics(gsc)
 
     lines = [f"## {LOCALES[locale]} 블로그 ({settings.wp_url})"]
     lines.append(f"- 발행 상태: 공개 {len(published)}편 / 전체 글 {len(posts)}편")
@@ -104,8 +212,33 @@ def site_report(locale: str) -> str:
         lines.append(f"- 글별 조회수: 확인 불가 ({views_error})")
     else:
         lines.append("- 글별 방문자수는 WordPress.com API가 제공하지 않아 글별 조회수로 표시합니다.")
+    if gsc_error:
+        lines.append(f"- Google Search Console: {gsc_error}")
+    else:
+        dimensions = gsc.get("dimensions", {})
+        def top_dimension(name: str) -> str:
+            rows = dimensions.get(name, []) if isinstance(dimensions, dict) else []
+            if not isinstance(rows, list):
+                return "-"
+            values = []
+            for row in rows[:3]:
+                if not isinstance(row, dict):
+                    continue
+                keys = row.get("keys", [])
+                label = str(keys[0]) if isinstance(keys, list) and keys else "-"
+                values.append(f"{label} ({float(row.get('clicks', 0) or 0):.0f} clicks)")
+            return ", ".join(values) or "-"
+        lines.append(f"- Google Search Console (최신 집계 종료일 {gsc.get('end_date')}): 24h/72h/7d/28d 페이지 성과 저장 완료")
+        lines.append("- GSC 최신 24시간 수치는 잠정치일 수 있으며, 72시간·7일·28일 수치가 누적될수록 안정적으로 해석합니다.")
+        lines.append(f"- 7일 주요 Query: {top_dimension('query')}")
+        lines.append(f"- 7일 주요 국가/기기: {top_dimension('country')} / {top_dimension('device')}")
+        diagnoses = diagnose_metrics(gsc)
+        if diagnoses:
+            lines.append("- 자동 진단:")
+            lines.extend(f"  - {item}" for item in diagnoses)
     lines.append("")
-    lines.append("| 상태 | 글 | 게시일 | 누적 조회수 | 링크 |\n|---|---|---|---:|---|")
+    lines.append("| 상태 | 글 | 게시일 | 누적 조회수 | GSC 7일 노출/클릭 | 평균위치 | 링크 |\n|---|---|---|---:|---:|---:|---|")
+    gsc_pages = gsc.get("pages", {}) if isinstance(gsc, dict) else {}
     for post in posts:
         post_id = int(post.get("id", 0))
         status = "공개" if post.get("status") == "publish" else str(post.get("status", "-"))
@@ -113,7 +246,12 @@ def site_report(locale: str) -> str:
         link = post.get("link", "")
         title = clean_title(post.get("title", "(제목 없음)"))
         view_value = f"{views[post_id]:,}" if post_id in views else "-"
-        lines.append(f"| {status} | {title} | {published_at} | {view_value} | [열기]({link}) |")
+        page_metrics = gsc_pages.get(str(link), {}) if isinstance(gsc_pages, dict) else {}
+        seven = page_metrics.get("7d", {}) if isinstance(page_metrics, dict) else {}
+        impressions = f"{float(seven.get('impressions', 0)):.0f}" if isinstance(seven, dict) and seven else "-"
+        clicks = f"{float(seven.get('clicks', 0)):.0f}" if isinstance(seven, dict) and seven else "-"
+        position = f"{float(seven.get('position', 0)):.1f}" if isinstance(seven, dict) and seven else "-"
+        lines.append(f"| {status} | {title} | {published_at} | {view_value} | {impressions}/{clicks} | {position} | [열기]({link}) |")
     if not posts:
         lines.append("| - | 아직 글이 없습니다 | - | - | - |")
     return "\n".join(lines)

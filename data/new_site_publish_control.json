@@ -3,20 +3,8 @@
   "reason": "three failed cycles in the last five",
   "consecutive_failures": 0,
   "last_error": "Primary-source fact verification did not pass",
-  "updated_at": "2026-09-04T21:07:49.256700+00:00",
+  "updated_at": "2026-09-04T22:07:58.295831+00:00",
   "events": [
-    {
-      "ok": true,
-      "timestamp": "2026-09-04T15:38:23.297162+00:00"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-04T15:38:56.180386+00:00"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-04T16:06:39.635312+00:00"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-04T16:07:36.801451+00:00",
@@ -92,6 +80,18 @@
     {
       "ok": true,
       "timestamp": "2026-09-04T21:07:49.256682+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T22:06:08.260805+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T22:06:55.155359+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T22:07:58.295816+00:00"
     }
   ]
 }

@@ -4,7 +4,7 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 
 ## Pipeline
 
-1. Read 30–50 locale-specific Google Trending Searches and Google News RSS candidates, then score each opportunity by interest, velocity, search intent, SERP feasibility, title CTR potential, durability, and site fit rather than raw popularity alone. A weekly strategy file supplies learned category weights while preserving a 70/20/10 proven/adjacent/experiment mix.
+1. Read 30–50 locale-specific Google Trending Searches and Google News RSS candidates, then score each opportunity by interest, velocity, search intent, SERP feasibility, title CTR potential, durability, and site fit rather than raw popularity alone. A weekly strategy file supplies learned category and publish-slot weights while preserving a 70/20/10 proven/adjacent/experiment mix.
 2. Use a web-search-backed research call to benchmark up to five leading result pages, official sources, and recent sources. The brief records common coverage, optional coverage, outdated claims, disagreements to verify, and at least two concrete original-value additions absent from the benchmark pages.
 3. Enforce a three-day hard exclusion for overlapping events, entities, primary keywords, and search intent. When an older URL already owns the intent and needs fresh facts, the research action can be `update`; otherwise the engine creates a new URL. A final pre-publish guard blocks near-duplicate titles.
 4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to three related older posts.

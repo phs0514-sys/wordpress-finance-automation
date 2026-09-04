@@ -652,7 +652,7 @@ def wp_create(settings: Settings, article_json: str, topic: str, locale: str) ->
         "content": compose_image_layout(str(article.get("html", "")), figures),
         "excerpt": excerpt,
         "status": settings.publish_mode,
-        "featured_media": media_id,
+        "featured_media": media[0][0],
     }
     post = http_json(wp_endpoint(settings, "posts"), payload, {"Authorization": wp_auth_header(settings)})
     post["_images_uploaded"] = len(media)

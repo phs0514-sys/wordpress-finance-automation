@@ -4,14 +4,14 @@ This is a separate WordPress implementation of the existing US/Japan plan. It do
 
 ## Pipeline
 
-1. Read free, locale-specific Google Trending Searches and Google News RSS snapshots and ask the research model to choose the most timely, useful, click-worthy topic. Topics can be finance or another current-interest area; posts from the last three days are a hard exclusion window, including overlapping events, entities, primary keywords, and search intent.
-2. Use one web-search-backed research call to benchmark up to five leading result pages, identify coverage gaps, and collect complete primary/authoritative URLs, dates, and a concrete growth plan. The prompt forbids copying or translating a competing article.
-3. Generate a native-language article with the writing model, adding SEO title/slug/excerpt, semantic headings, a concise lead, FAQ, internal-link opportunities, balanced typography/layout HTML, update notes, risks, and a general-information notice.
-4. Generate and upload two distinct, topic-related PNG icons per article using only Python standard-library drawing; no image API is called. Both are compact, centered inline figures (`max-width: 360px`, responsive width) so they remain aligned and readable on mobile. The icon pair changes with the article's keywords (for example chart/calculator, currency/chart, or shield/document).
-5. Run a separate reviewer prompt scoring accuracy, source quality, freshness, originality, search intent, depth, clarity, HTML/layout, SEO, and safety.
-6. Revise weak sections up to `MAX_REVISIONS` (default 4). Do not publish below `QUALITY_THRESHOLD` (default 90).
-7. Send the approved article to WordPress REST API as `draft` by default, or `publish` when explicitly enabled.
-8. Run `daily_report.py` each morning to read publication status and WordPress.com stats without changing any content.
+1. Read 30–50 locale-specific Google Trending Searches and Google News RSS candidates, then score each opportunity by interest, velocity, search intent, SERP feasibility, title CTR potential, durability, and site fit rather than raw popularity alone. A weekly strategy file supplies learned category weights while preserving a 70/20/10 proven/adjacent/experiment mix.
+2. Use a web-search-backed research call to benchmark up to five leading result pages, official sources, and recent sources. The brief records common coverage, optional coverage, outdated claims, disagreements to verify, and at least two concrete original-value additions absent from the benchmark pages.
+3. Enforce a three-day hard exclusion for overlapping events, entities, primary keywords, and search intent. When an older URL already owns the intent and needs fresh facts, the research action can be `update`; otherwise the engine creates a new URL. A final pre-publish guard blocks near-duplicate titles.
+4. Generate a native-language article with one of six layout branches (news, comparison, howto, timeline, explainer, checklist), SEO fields, FAQ, contextual internal links, update notes, risks, and a general-information notice. New articles add reverse links to up to three related older posts.
+5. Generate and upload two distinct, topic-related PNG icons per article using only Python standard-library drawing; no image API is called. Both are compact, centered inline figures (`max-width: 360px`, responsive width) so they remain aligned and readable on mobile.
+6. Run a separate Luna/Terra reviewer prompt with the 20/20/15/10/10/10/10/5 score breakdown, originality-count gate (at least two additions), fact/SEO/layout checks, and the three-day duplicate check. Revise weak sections up to `MAX_REVISIONS` (default 4); do not publish below `QUALITY_THRESHOLD` (default 90).
+7. Append article metadata and empty 24h/72h/7d/28d metric windows to `data/article_history.json`. The file is committed by GitHub Actions; it contains no credentials and is the input to the weekly strategy engine.
+8. Run `daily_report.py` each morning to read publication status, WordPress.com stats, optional Search Console query/page/country/device data, and update the history windows. If GSC is not connected, the report says “GSC 토큰 미설정” rather than treating missing data as zero.
 
 The first version intentionally has no affiliate links and no personalized investment recommendations. The `--seed-pages` option creates About, Privacy, Contact, and Editorial Policy pages for the selected locale.
 
@@ -27,7 +27,10 @@ The production path is GitHub Actions, so the user's computer does not need to
 be powered on. `publish.yml` runs one batch at 08:00, 11:50, 16:00, and 20:00
 KST. Each batch independently creates, reviews, and publishes one article for
 the US, Japan, and Korea sites (12 posts per day total). `daily-report.yml`
-runs at 06:00 KST and commits a read-only Markdown report under `reports/`.
+runs at 06:00 KST, stores Search Console windows when configured, and commits
+the Markdown report plus `data/article_history.json`. `weekly-strategy.yml`
+runs Sunday 22:00 KST and commits only `data/weekly_strategy.json`; it never
+edits authentication, WordPress connections, data collection, or engine code.
 
 The workflows deliberately contain no credentials. Put the API and
 WordPress.com values in GitHub Actions Secrets after the repository is created.
@@ -64,4 +67,5 @@ posts/pages. Self-hosted WordPress remains supported with
 - A WordPress.com Application Password (recommended when 2FA is enabled), or a short-lived WordPress.com access token. Store secrets locally and do not paste them into chat.
 - An OpenAI API key and API billing/credits. ChatGPT subscription billing and API billing are separate.
 - Optional: Search Console property ownership and Analytics measurement ID after each domain exists.
+- Optional: a read-only Google Search Console bearer token in `GSC_TOKEN` or a locale-specific `GSC_US_TOKEN`, `GSC_JP_TOKEN`, or `GSC_KR_TOKEN`, plus `GSC_SITE_URL` when the property URL differs from the WordPress URL.
 

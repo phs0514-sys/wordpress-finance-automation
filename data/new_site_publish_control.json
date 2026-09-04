@@ -1,0 +1,21 @@
+{
+  "paused": false,
+  "reason": "",
+  "consecutive_failures": 0,
+  "last_error": "",
+  "updated_at": "2026-09-04T15:38:56.180406+00:00",
+  "events": [
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T15:37:49.391754+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T15:38:23.297162+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T15:38:56.180386+00:00"
+    }
+  ]
+}

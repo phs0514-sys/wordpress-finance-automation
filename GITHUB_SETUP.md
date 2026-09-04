@@ -26,10 +26,10 @@ Never commit `.env`, access tokens, application passwords, or OpenAI keys.
 
 `publish.yml` runs only the existing (legacy) three locales at 08:00,
 11:50, 16:00, and 20:00 KST, unchanged. The new sites are intentionally
-removed from that workflow. `new-site-issue-cycle.yml` runs every 30 minutes
+removed from that workflow. `new-site-issue-cycle.yml` runs at the top of every hour
 and, for each new site, collects Google Trends/News signals, scores and
 researches the best issue, then runs writing, independent review, quality gates,
-and publish/update when the score is at least 85. It records every scan and
+and publish/update when the opportunity score is at least 85 and the independent quality gate is at least 90. It records every scan and
 stops publication after two operations per site per local day while continuing
 to scan. `daily-report.yml` writes a read-only report to `reports/` at 06:00
 KST and updates history. `seo-health.yml` records read-only technical SEO
@@ -37,11 +37,9 @@ checks. `weekly-strategy.yml` runs Sunday 22:00 KST and stores confidence-aware
 recommendations in `data/weekly_strategy.json`. All workflows support manual
 `workflow_dispatch` runs.
 
-The starting quality target is 85/100 with at most four bounded revisions. The
-article pipeline reads free locale-specific Google Trending Searches/News RSS
+The publication quality target is 90/100 with at most four bounded Terra revisions. Luna performs topic discovery, SERP analysis, first-party fact verification, critical review, and the final fact gate; Terra performs drafting and rewriting. The article pipeline reads free locale-specific Google Trending Searches/News RSS
 snapshots, targets up to five current search results without making five a hard
-minimum, then uses `gpt-5.6-luna` (medium reasoning) for research/fact review
-and `gpt-5.6-terra` (medium reasoning) for writing/editorial review. OpenAI API usage is
+minimum, then uses `gpt-5.6-luna` (medium reasoning) for topic research, SERP analysis, primary-source fact verification, and independent review; it uses `gpt-5.6-terra` (medium reasoning) for drafting and every rewrite. OpenAI API usage is
 billed separately from GitHub Actions. Each approved post receives two
 distinct topic-related standard-library-generated PNG icons as compact,
 centered inline figures; no image-generation API key is needed. Topics are

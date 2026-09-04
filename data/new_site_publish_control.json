@@ -1,9 +1,9 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 0,
-  "last_error": "Primary-source fact verification did not pass",
-  "updated_at": "2026-09-04T16:08:32.518936+00:00",
+  "consecutive_failures": 1,
+  "last_error": "Quality gate failed after 4 Terra revisions: {'score': 90, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 17, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 2, 'issues': ['엑스포장 자체의 구체적인 관람 동선과 볼거리 설명은 다소 제한적입니다.', '교통·주차 정보가 확인 항목 중심이라 실제 이용자가 필요한 노선·승차 위치·주차장 세부정보는 부족합니다.', '비활성 체크박스는 모바일 화면에서 장식 요소처럼 보일 수 있습니다.'], 'required_fixes': ['공식 공지에서 확인 가능한 경우 엑스포장 주요 전시·프로그램의 장소와 운영시간을 보강하세요.', '셔틀 노선, 승차 위치, 임시",
+  "updated_at": "2026-09-04T17:11:49.157534+00:00",
   "events": [
     {
       "ok": true,
@@ -29,6 +29,19 @@
     {
       "ok": true,
       "timestamp": "2026-09-04T16:08:32.518914+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T17:06:03.985085+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-04T17:07:03.015334+00:00"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-04T17:11:49.157510+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 90, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 17, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 2, 'issues': ['엑스포장 자체의 구체적인 관람 동선과 볼거리 설명은 다소 제한적입니다.', '교통·주차 정보가 확인 항목 중심이라 실제 이용자가 필요한 노선·승차 위치·주차장 세부정보는 부족합니다.', '비활성 체크박스는 모바일 화면에서 장식 요소처럼 보일 수 있습니다.'], 'required_fixes': ['공식 공지에서 확인 가능한 경우 엑스포장 주요 전시·프로그램의 장소와 운영시간을 보강하세요.', '셔틀 노선, 승차 위치, 임시"
     }
   ]
 }

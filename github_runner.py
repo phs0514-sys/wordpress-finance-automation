@@ -132,6 +132,23 @@ def run_daily_backfill(locale: str, target: int) -> dict[str, object]:
         result = run_locale(locale, slot_index=3, require_local_slot=False)
         attempts.append(result)
         if not result.get("ok"):
+            error_text = str(result.get("error", "")).lower()
+            hard_block = any(marker in error_text for marker in (
+                "archived",
+                "suspended",
+                "unauthorized",
+                "credentials",
+                "api calls to this endpoint have been disabled",
+            ))
+            if hard_block:
+                return {
+                    "locale": locale,
+                    "ok": False,
+                    "reason": "backfill_publish_blocked",
+                    "published_today": count,
+                    "target_daily_posts": target,
+                    "attempts": attempts,
+                }
             # Research/API hiccups and overlap rejections are retryable.
             # Keep the retry count bounded so hard gates still fail clearly.
             continue

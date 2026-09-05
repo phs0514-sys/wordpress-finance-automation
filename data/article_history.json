@@ -792,5 +792,121 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "jp",
+    "post_id": 33,
+    "url": "https://jpfinanceresearch.wordpress.com/2026/09/05/us-midterm-election-2026-stock-market-impact/",
+    "topic": "2026年米中間選挙は株価にどう影響する？選挙前後の市場傾向と注目セクター",
+    "category": "Technology & Markets",
+    "primary_keyword": "米中間選挙 2026 株価",
+    "secondary_keywords": [
+      "米国中間選挙 株式市場",
+      "米中間選挙 投資への影響",
+      "中間選挙 株価 アノマリー",
+      "米国株 選挙前後",
+      "米中間選挙 セクター",
+      "2026年 米国株 見通し"
+    ],
+    "trend_score": 84,
+    "opportunity_score": 80,
+    "serp_competition": 68,
+    "headline_type": "市場影響の結論先出し＋選挙前後の確認ポイント",
+    "word_count": 196,
+    "layout_type": "explainer",
+    "image_type": [
+      "currency",
+      "chart"
+    ],
+    "sources_count": 5,
+    "original_value_count": 2,
+    "publish_time": "2026-09-05T20:05:30",
+    "publish_slot": 3,
+    "action": "new",
+    "quality_score": 91,
+    "quality_breakdown": {
+      "Fact accuracy": 18.5,
+      "Original value": 18,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 9,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "米国下院は435の投票権を持つ議席で構成され、各議員の任期は2年である。",
+        "url": "https://www.house.gov/representatives",
+        "source_title": "Representatives"
+      },
+      {
+        "claim": "米国上院は3つのクラスに分かれ、約3分の1の議席が2年ごとに改選される。",
+        "url": "https://www.senate.gov/about/origins-foundations/senate-and-constitution/senators-receive-class-assignments.htm",
+        "source_title": "Senators Receive Class Assignments"
+      },
+      {
+        "claim": "中間選挙を含む米国の選挙サイクルでは、選挙前に政治的不確実性が高まり、選挙後に不確実性やリスクプレミアムが低下する傾向を示す研究がある。",
+        "url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID2959164_code463048.pdf?abstractid=2903067&mirid=1",
+        "source_title": "Equity Premiums in the Presidential Cycle: the Midterm Election Resolution of Uncertainty"
+      },
+      {
+        "claim": "1926年から2022年までの49業種ポートフォリオを分析した研究では、中間選挙前後の高い超過リターンはリスク調整後にはほぼ消失し、リスク負担への補償と解釈できるとされている。",
+        "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4220475",
+        "source_title": "The Midterm Election Effect on Us Stock Returns: Some Practical Considerations for Investors"
+      },
+      {
+        "claim": "選挙結果だけで株価の方向を一律に予測することは難しく、過去の中間選挙効果にもリスク調整や市場要因を考慮する必要がある。",
+        "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4220475",
+        "source_title": "The Midterm Election Effect on Us Stock Returns: Some Practical Considerations for Investors"
+      }
+    ],
+    "fact_expirations": [],
+    "content_version": "53fc4f5569dccbdc",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 80335,
+      "writing_tokens": 23685,
+      "review_tokens": 0,
+      "total_tokens": 104020,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-05T11:05:34.443817+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

@@ -1490,5 +1490,123 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "kr",
+    "post_id": 53,
+    "url": "https://koreafinanceresearch.wordpress.com/2026/09/06/agi-meaning-generative-ai-vs-general-ai-2026/",
+    "topic": "AGI 뜻과 2026년 현실 점검: 생성형 AI와 범용인공지능을 구분하는 기준",
+    "category": "Technology & Markets",
+    "primary_keyword": "AGI 뜻",
+    "secondary_keywords": [
+      "범용인공지능",
+      "AGI란",
+      "AGI와 생성형 AI 차이",
+      "AGI 달성 여부",
+      "인공 일반 지능",
+      "AI 에이전트와 AGI",
+      "AGI 현실",
+      "2026 AGI 예산"
+    ],
+    "trend_score": 82,
+    "opportunity_score": 78,
+    "serp_competition": 54,
+    "headline_type": "급상승 검색어 해석형 + 생성형 AI 비교형 + 현실 점검 체크리스트형",
+    "word_count": 823,
+    "layout_type": "explainer",
+    "image_type": [
+      "policy",
+      "magnifier"
+    ],
+    "sources_count": 4,
+    "original_value_count": 2,
+    "publish_time": "2026-09-06T04:28:17",
+    "publish_slot": 4,
+    "action": "new",
+    "quality_score": 92,
+    "quality_breakdown": {
+      "Fact accuracy": 19,
+      "Original value": 18,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 9,
+      "Layout": 5
+    },
+    "originality_count": 1,
+    "source_claims": [
+      {
+        "claim": "AGI는 한국어로 범용인공지능을 뜻하며, 특정 문제에 한정되지 않고 다양한 상황에서 생각·학습·창작하는 능력을 목표로 하는 개념이다.",
+        "url": "https://terms.tta.or.kr/dictionary/dictionaryView.do?word_seq=166864-3",
+        "source_title": "범용인공지능(AGI) | TTA정보통신용어사전"
+      },
+      {
+        "claim": "TTA는 특정 문제만 해결하는 인공지능을 좁은 인공지능(ANI)으로 구분하고, AGI를 사람과 같거나 그 이상의 지능을 구현하는 개념으로 설명한다.",
+        "url": "https://terms.tta.or.kr/dictionary/dictionaryView.do?word_seq=166864-3",
+        "source_title": "범용인공지능(AGI) | TTA정보통신용어사전"
+      },
+      {
+        "claim": "AGI에 대해 보편적으로 합의된 단일 정의는 없으며, 일부 정의는 광범위한 과제에서 인간 수준의 인지 능력과 새로운 문제·기술을 학습하는 능력을 강조한다.",
+        "url": "https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf",
+        "source_title": "Artificial Intelligence Index Report 2025"
+      },
+      {
+        "claim": "AI 시스템은 고난도 벤치마크에서 빠르게 성능이 향상되고 있지만, 서로 다른 과제에서 능력이 고르지 않은 이른바 ‘불균일한 지능’이 관찰되며 에이전트도 구조화된 벤치마크에서 반복적으로 실패한다.",
+        "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance",
+        "source_title": "Technical Performance | The 2026 AI Index Report"
+      },
+      {
+        "claim": "2026년 한국 정부 예산안 분석 자료에는 범용AI(AGI) 원천기술 개발과 기존 산업의 AI 전환을 함께 추진하는 AX-Sprint 프로젝트가 포함되어 있다.",
+        "url": "https://nabo.go.kr/board/file/bulkDown.do?bid=19&idx=8956",
+        "source_title": "2026년 예산안 분석 자료"
+      }
+    ],
+    "fact_expirations": [],
+    "content_version": "232c1c217316efc1",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 132648,
+      "writing_tokens": 64295,
+      "review_tokens": 0,
+      "total_tokens": 196943,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-05T19:28:23.674884+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

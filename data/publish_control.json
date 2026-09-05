@@ -1,16 +1,8 @@
 {
-  "paused": true,
-  "reason": "three failed runs in the last five",
-  "consecutive_failures": 1,
+  "paused": false,
+  "reason": "",
+  "consecutive_failures": 0,
   "events": [
-    {
-      "ok": true,
-      "timestamp": "2026-09-04T07:11:35.642989+00:00"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-04T07:12:59.146821+00:00"
-    },
     {
       "ok": true,
       "timestamp": "2026-09-04T07:14:31.631341+00:00"
@@ -95,8 +87,17 @@
       "ok": false,
       "timestamp": "2026-09-05T15:52:37.682987+00:00",
       "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T19:24:39.560784+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T19:28:23.677238+00:00"
     }
   ],
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-05T15:52:37.683015+00:00"
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-05T19:28:23.677254+00:00"
 }

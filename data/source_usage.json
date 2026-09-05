@@ -386,5 +386,68 @@
     "citations_used": 1,
     "unique_information": 0,
     "last_locale": "us"
+  },
+  "cloud.google.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.ibm.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "aws.amazon.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "terms.tta.or.kr": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.technologyreview.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "korea.nabo.go.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "nabo.go.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
   }
 }

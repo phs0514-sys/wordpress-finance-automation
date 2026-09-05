@@ -1,7 +1,7 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 6,
+  "consecutive_failures": 9,
   "events": [
     {
       "ok": true,
@@ -48,8 +48,23 @@
       "ok": false,
       "timestamp": "2026-09-05T13:17:27.935685+00:00",
       "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:20:40.837782+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:22:20.118905+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:24:41.300450+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
-  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-  "updated_at": "2026-09-05T13:17:27.935709+00:00"
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-05T13:24:41.300490+00:00"
 }

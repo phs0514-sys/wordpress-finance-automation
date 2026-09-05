@@ -51,6 +51,7 @@ jobs:
       PUBLISH_HEALTH_GATE: "1"
       PUBLISH_FORCE_RESUME: ${{ secrets.PUBLISH_FORCE_RESUME }}
       FINAL_FACT_REVIEW: "1"
+      PUBLISH_SLOT_TOLERANCE_MINUTES: "30"
       WP_US_URL: ${{ secrets.WP_US_URL }}
       WP_US_SITE_REF: ${{ secrets.WP_US_SITE_REF }}
       WP_US_MODE: wpcom
@@ -89,6 +90,7 @@ jobs:
           esac
           python github_runner.py --slot-index "$slot" --locale "${{ inputs.locale || 'all' }}" --require-local-slot
       - name: Commit existing site history
+        if: ${{ always() }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

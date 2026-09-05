@@ -1,24 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five",
-  "consecutive_failures": 3,
-  "last_error": "Quality gate failed after 4 Terra revisions: {'score': 79, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 17, 'Search intent': 10, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 3, 'Layout': 5}, 'originality_count': 2, 'issues': ['台風24号の存在・現在位置・地域別降水量予報を一次情報で裏付けられておらず、中心テーマである速報性を満たしていません。', '2026年台風経路図のURLだけでは、2026年9月5日時点の台風24号の状況を裏付けられません。', '記事は確認方法の一般解説に寄っており、検索意図である台風24号の地域別雨量を知りたい需要に十分答えていません。'], 'required_fixes': ['公開前に気象庁の最新台風情報・地方気象情報から、発表時刻付きの台風24号の存在、位",
-  "updated_at": "2026-09-05T17:10:19.149121+00:00",
+  "reason": "us: three consecutive failed cycles, kr: three failed cycles in the last five",
+  "consecutive_failures": 4,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-05T18:09:02.194556+00:00",
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T02:07:25.097990+00:00",
-      "error": "Primary-source fact verification did not pass"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T03:05:59.413511+00:00",
-      "error": "Primary-source fact verification did not pass"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T03:06:44.384411+00:00"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-05T03:07:43.267184+00:00",
@@ -203,15 +189,32 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-05T17:10:19.149074+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-05T18:07:03.564605+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-05T18:07:46.618045+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-05T18:09:02.194517+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 3,
+      "consecutive_failures": 4,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-05T17:06:09.031514+00:00",
+      "updated_at": "2026-09-05T18:07:03.564633+00:00",
       "events": [
         {
           "locale": "us",
@@ -252,15 +255,21 @@
           "ok": false,
           "timestamp": "2026-09-05T17:06:09.031490+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-05T18:07:03.564605+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 79, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 17, 'Search intent': 10, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 3, 'Layout': 5}, 'originality_count': 2, 'issues': ['台風24号の存在・現在位置・地域別降水量予報を一次情報で裏付けられておらず、中心テーマである速報性を満たしていません。', '2026年台風経路図のURLだけでは、2026年9月5日時点の台風24号の状況を裏付けられません。', '記事は確認方法の一般解説に寄っており、検索意図である台風24号の地域別雨量を知りたい需要に十分答えていません。'], 'required_fixes': ['公開前に気象庁の最新台風情報・地方気象情報から、発表時刻付きの台風24号の存在、位",
-      "updated_at": "2026-09-05T17:09:37.355035+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T18:07:46.618063+00:00",
       "events": [
         {
           "locale": "jp",
@@ -300,15 +309,20 @@
           "ok": false,
           "timestamp": "2026-09-05T17:09:37.355013+00:00",
           "error": "Quality gate failed after 4 Terra revisions: {'score': 79, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 17, 'Search intent': 10, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 3, 'Layout': 5}, 'originality_count': 2, 'issues': ['台風24号の存在・現在位置・地域別降水量予報を一次情報で裏付けられておらず、中心テーマである速報性を満たしていません。', '2026年台風経路図のURLだけでは、2026年9月5日時点の台風24号の状況を裏付けられません。', '記事は確認方法の一般解説に寄っており、検索意図である台風24号の地域別雨量を知りたい需要に十分答えていません。'], 'required_fixes': ['公開前に気象庁の最新台風情報・地方気象情報から、発表時刻付きの台風24号の存在、位"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-05T18:07:46.618045+00:00"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-05T17:10:19.149088+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-05T18:09:02.194540+00:00",
       "events": [
         {
           "locale": "kr",
@@ -348,6 +362,12 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-05T17:10:19.149074+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-05T18:09:02.194517+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     }

@@ -1,9 +1,9 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 1,
-  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-  "updated_at": "2026-09-05T10:09:30.882805+00:00",
+  "consecutive_failures": 2,
+  "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
+  "updated_at": "2026-09-05T12:10:39.134682+00:00",
   "events": [
     {
       "ok": true,
@@ -122,15 +122,33 @@
       "ok": false,
       "timestamp": "2026-09-05T10:09:30.882770+00:00",
       "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-05T12:07:25.285980+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-05T12:09:16.742154+00:00",
+      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-05T12:10:39.134646+00:00",
+      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
     }
   ],
   "locales": {
     "us": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-05T10:06:26.228619+00:00",
+      "updated_at": "2026-09-05T12:07:25.286007+00:00",
       "events": [
         {
           "locale": "us",
@@ -142,15 +160,21 @@
           "ok": false,
           "timestamp": "2026-09-05T10:06:26.228592+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-05T12:07:25.285980+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
-      "updated_at": "2026-09-05T10:07:53.766366+00:00",
+      "updated_at": "2026-09-05T12:09:16.742181+00:00",
       "events": [
         {
           "locale": "jp",
@@ -162,15 +186,21 @@
           "ok": false,
           "timestamp": "2026-09-05T10:07:53.766342+00:00",
           "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-05T12:09:16.742154+00:00",
+          "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
         }
       ]
     },
     "kr": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 1,
-      "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-      "updated_at": "2026-09-05T10:09:30.882793+00:00",
+      "consecutive_failures": 2,
+      "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
+      "updated_at": "2026-09-05T12:10:39.134671+00:00",
       "events": [
         {
           "locale": "kr",
@@ -182,6 +212,12 @@
           "ok": false,
           "timestamp": "2026-09-05T10:09:30.882770+00:00",
           "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-05T12:10:39.134646+00:00",
+          "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
         }
       ]
     }

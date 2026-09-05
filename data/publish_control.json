@@ -1,7 +1,7 @@
 {
-  "paused": false,
-  "reason": "",
-  "consecutive_failures": 2,
+  "paused": true,
+  "reason": "three consecutive failed runs",
+  "consecutive_failures": 4,
   "events": [
     {
       "ok": true,
@@ -28,8 +28,18 @@
       "ok": false,
       "timestamp": "2026-09-05T12:17:19.008237+00:00",
       "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:03:32.618717+00:00",
+      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpfinanceresearch.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:03:33.157930+00:00",
+      "error": "PUBLISHING PAUSED: three consecutive failed runs"
     }
   ],
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-05T12:17:19.008264+00:00"
+  "last_error": "PUBLISHING PAUSED: three consecutive failed runs",
+  "updated_at": "2026-09-05T13:03:33.157944+00:00"
 }

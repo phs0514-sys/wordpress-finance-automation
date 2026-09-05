@@ -51,19 +51,19 @@ jobs:
       WP_JP_URL: ${{ secrets.WP_JP_URL }}
       WP_JP_SITE_REF: ${{ secrets.WP_JP_SITE_REF }}
       WP_JP_MODE: wpcom
-      WP_JP_USERNAME: ${{ secrets.WP_JP_USERNAME }}
-      WP_JP_APPLICATION_PASSWORD: ${{ secrets.WP_JP_APPLICATION_PASSWORD }}
-      WP_JP_CLIENT_ID: ${{ secrets.WP_JP_CLIENT_ID }}
-      WP_JP_CLIENT_SECRET: ${{ secrets.WP_JP_CLIENT_SECRET }}
-      WP_JP_ACCESS_TOKEN: ${{ secrets.WP_JP_ACCESS_TOKEN }}
+      WP_JP_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_JP_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_JP_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_JP_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_JP_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
       WP_KR_URL: ${{ secrets.WP_KR_URL }}
       WP_KR_SITE_REF: ${{ secrets.WP_KR_SITE_REF }}
       WP_KR_MODE: wpcom
-      WP_KR_USERNAME: ${{ secrets.WP_KR_USERNAME }}
-      WP_KR_APPLICATION_PASSWORD: ${{ secrets.WP_KR_APPLICATION_PASSWORD }}
-      WP_KR_CLIENT_ID: ${{ secrets.WP_KR_CLIENT_ID }}
-      WP_KR_CLIENT_SECRET: ${{ secrets.WP_KR_CLIENT_SECRET }}
-      WP_KR_ACCESS_TOKEN: ${{ secrets.WP_KR_ACCESS_TOKEN }}
+      WP_KR_USERNAME: ${{ secrets.WP_US_USERNAME }}
+      WP_KR_APPLICATION_PASSWORD: ${{ secrets.WP_US_APPLICATION_PASSWORD }}
+      WP_KR_CLIENT_ID: ${{ secrets.WP_US_CLIENT_ID }}
+      WP_KR_CLIENT_SECRET: ${{ secrets.WP_US_CLIENT_SECRET }}
+      WP_KR_ACCESS_TOKEN: ${{ secrets.WP_US_ACCESS_TOKEN }}
       GSC_TOKEN: ${{ secrets.GSC_TOKEN }}
       GSC_US_TOKEN: ${{ secrets.GSC_US_TOKEN }}
       GSC_JP_TOKEN: ${{ secrets.GSC_JP_TOKEN }}

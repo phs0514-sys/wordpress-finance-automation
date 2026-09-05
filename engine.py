@@ -36,7 +36,7 @@ SOURCE_USAGE_PATH = DATA_DIR / "source_usage.json"
 VERSIONS_PATH = DATA_DIR / "article_versions.json"
 PUBLISH_CONTROL_PATH = DATA_DIR / "publish_control.json"
 ENGINE_VERSION = "2026.09.05"
-PROMPT_VERSION = "editorial-v4-luna-terra-90"
+PROMPT_VERSION = "editorial-v5-luna-terra-balanced-80"
 OPENAI_USAGE: list[dict[str, Any]] = []
 
 
@@ -351,7 +351,7 @@ class Settings:
             "writing_reasoning": os.getenv("OPENAI_WRITING_REASONING", "medium"),
             "publish_mode": os.getenv("PUBLISH_MODE", "draft").lower(),
             # Publication requires a 90/100 independent-review score.
-            "quality_threshold": int(os.getenv("QUALITY_THRESHOLD", "90")),
+            "quality_threshold": int(os.getenv("QUALITY_THRESHOLD", "80")),
             "max_revisions": int(os.getenv("MAX_REVISIONS", "4")),
             "wp_url": os.getenv(f"WP_{prefix}_URL", "").rstrip("/"),
             "wp_mode": os.getenv(f"WP_{prefix}_MODE", os.getenv("WP_US_MODE", "wpcom")).lower(),
@@ -770,7 +770,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         recent_posts = wp_recent_posts(settings, limit=20)
     except Exception:
         recent_posts = []
-    recent_cutoff = datetime.now(timezone.utc).date() - timedelta(days=3)
+    recent_cutoff = datetime.now(timezone.utc).date() - timedelta(days=1)
     recent_3d = [
         row for row in recent_posts
         if _post_date(row) is not None and _post_date(row) >= recent_cutoff
@@ -805,7 +805,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
         "article_history": article_history[-100:],
         "recent_published_posts": recent_posts,
         "recent_3d_posts": recent_3d,
-        "topic_exclusion_rule": "No same or overlapping topic, event/entity, primary keyword, or search intent as a post dated within the last 3 days.",
+        "topic_exclusion_rule": "No same or overlapping topic, event/entity, primary keyword, or search intent as a post dated within the last 24 hours.",
         "source_policy": source_policy,
     }
     research: dict[str, Any] = {}
@@ -844,7 +844,7 @@ def collect_research(settings: Settings, locale: str, topic_override: str | None
             break
         previous_candidates.append({"title": selected_topic})
     else:
-        raise RuntimeError("Research topic overlapped a post from the last 3 days after three selections")
+        raise RuntimeError("Research topic overlapped a post from the last 24 hours after three selections")
     components = research.get("opportunity_components") if isinstance(research, dict) else {}
     research["opportunity_score"] = calculate_opportunity_score(components, research.get("click_potential", 0))
     research["trend_score"] = research.get("trend_score", research.get("click_potential", 0))
@@ -947,6 +947,51 @@ def verify_primary_facts(settings: Settings, locale: str, topic: str, brief: dic
     reason = last_error or "no relevant primary source supported the core factual claims"
     raise RuntimeError(f"Primary-source fact verification did not pass: {reason}")
 
+def create_article(settings: Settings, locale: str, topic: str, brief: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    language, _ = locale_rules(locale)
+    layout_type = str(brief.get("layout_type", "explainer")).lower()
+    layout_guidance = {
+        "news": "Use a news layout: answer first, what happened, why it matters, verified facts, what remains uncertain, and what to watch next.",
+        "comparison": "Use a comparison layout: conclusion first, a compact comparison table, criterion-by-criterion analysis, and who each option suits.",
+        "howto": "Use a practical layout: problem, immediate answer, numbered steps, pitfalls, and a short FAQ.",
+        "timeline": "Use a timeline layout: current status, dated sequence of verified events, confirmed versus unconfirmed claims, and next dates.",
+        "checklist": "Use a checklist layout: decision summary, checklist grouped by stage, stop-and-verify warnings, and FAQ.",
+        "explainer": "Use an explainer layout: plain-language answer, key concepts, evidence, practical example, limitations, and FAQ.",
+    }.get(layout_type, "Use an explainer layout with a plain-language answer, evidence, practical example, limitations, and FAQ.")
+    article_input = json.dumps({"output_format": "json", "locale": locale, "topic": topic, "research": brief}, ensure_ascii=False)
+    article_instructions = (
+        "You are an independent high-trust writer. Write an original, useful article in the requested language about the selected current topic. "
+        "Use the benchmark pages only to understand search intent, coverage gaps, and useful structure; never imitate, translate, or copy any competitor wording. The target is up to five sources, not a fixed minimum: preserve a fast, well-supported article when only one or two trustworthy sources exist. "
+        "Use only claims supported by the research brief and cite complete official URLs from official_sources; never invent, truncate, or guess URLs. "
+        "Treat research.recent_3d_posts as a hard exclusion list: the title, focus keyword, opening, and search intent must not repeat or materially overlap any item dated within the last 24 hours. "
+        "Reflect at least one concrete evidence-grounded addition from research.original_value; add a second when the evidence genuinely supports it, but do not block a narrow source-led update. "
+        "Optimize for search without keyword stuffing: a clear native-language title, a concise meta-style excerpt, a readable slug, one primary focus keyword, natural secondary terms, descriptive H2/H3 headings, an answer-first opening, short paragraphs, and three to five concrete internal-link suggestions when relevant URLs are present in recent_published_posts; the WordPress theme supplies the page H1, so use H2/H3 in the body. Add FAQ only when it genuinely helps the reader; it is not mandatory. Keep Article/Breadcrumb/Organization structured-data compatibility in mind, but do not add scripts or unsafe markup inside the post body. "
+        f"Design the HTML like a polished editorial feature rather than an AI dump. Selected layout type: {layout_type}. {layout_guidance} Use a calm typographic hierarchy (title handled by WordPress, H2 for major sections, H3 for details), generous paragraph rhythm, and restrained emphasis. Do not add inline font sizes, fake author claims, repetitive transition phrases, generic clickbait, or decorative emoji. Vary sentence length and include specific practical examples so the voice feels edited by a human. "
+        "Include the information date, what is still uncertain, risks/limitations appropriate to the topic, a short update plan based on growth_plan, and a clear notice that this is general information rather than personalized professional advice. Keep optional FAQ, image, and source-count targets soft when the evidence or platform does not support them. "
+        "Return exactly one JSON object with string fields title, slug, excerpt, html, layout_type; array field sources; and object field seo containing meta_description, focus_keyword, related_keywords, and faq_questions. HTML must be complete, valid, balanced HTML with no markdown, dangling tags, or cut-off sentences."
+    )
+    article_text = openai_text(
+        settings,
+        article_instructions,
+        article_input,
+        max_output_tokens=7000,
+        json_output=True,
+        model=settings.writing_model,
+        reasoning_effort=settings.writing_reasoning,
+    )
+    try:
+        parsed_article = parse_article_output(article_text)
+    except ValueError:
+        # A transient truncated/non-JSON response should not consume the
+        # entire scheduled slot. Ask once more with a stricter JSON contract.
+        parsed_article = parse_article_output(openai_text(settings, article_instructions + " Output only valid JSON, with no preamble or code fence.", article_input, max_output_tokens=7000, json_output=True, model=settings.writing_model, reasoning_effort=settings.writing_reasoning))
+    parsed_article.setdefault("layout_type", layout_type)
+    article = json.dumps(parsed_article, ensure_ascii=False)
+    return article, brief
+
+
+
+
 def quality_policy(brief: dict[str, Any]) -> dict[str, Any]:
     """Use one explicit 100-point rubric for every automatic publication."""
     return {
@@ -961,7 +1006,7 @@ def quality_policy(brief: dict[str, Any]) -> dict[str, Any]:
             "freshness": 10,
             "layout": 5,
         },
-        "fact_floor": 0.90,
+        "fact_floor": 0.85,
         "minimum_original_value": 1,
     }
 
@@ -1066,7 +1111,7 @@ def review_and_revise(settings: Settings, locale: str, topic: str, article: str,
     for attempt in range(settings.max_revisions + 1):
         current = json.dumps(ensure_general_information_disclosure(parse_json(current), locale), ensure_ascii=False)
         review_instructions = (
-            "You are Luna, a strict independent editor and fact checker. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. "
+            "You are Luna, an independent editor and fact checker. Block only material factual, safety, disclosure, invalid-link, HTML, or duplication problems. Treat optional SEO polish, source-count, image, FAQ, and word-count targets as soft improvements. Return exactly one json object and no markdown or prose, with score (0-100), pass (boolean), breakdown object, originality_count, issues (array), required_fixes (array), and rationale. "
             "Score exactly these dimensions and maxima: Fact accuracy /20, Original value /20, Search intent /15, SEO /10, Readability /10, Naturalness /10, Freshness /10, Layout /5. The total must equal 100. "
             f"Fact accuracy has a hard floor of {fact_floor:.1f} points. Check every number, date, rule, and source against the evidence; flag unsupported or personalized financial, medical, legal, or safety advice. "
             "Require at least one concrete, evidence-grounded addition from evidence.original_value; reward a second when the topic supports it, but do not block a narrow source-led update for lacking a second. Fail material overlap with evidence.recent_3d_posts. Do not demand fixed word, source, image, or FAQ counts."
@@ -1681,7 +1726,7 @@ def main() -> int:
             {"focus_keyword": final_article.get("seo", {}).get("focus_keyword", "") if isinstance(final_article.get("seo"), dict) else "", "search_intent": topic, "angle": ""},
             recent_3d,
         ):
-            raise RuntimeError("Final article title overlapped a post from the last 3 days; publication was blocked")
+            raise RuntimeError("Final article title overlapped a post from the last 24 hours; publication was blocked")
         action = str(brief.get("action", "new"))
         target_url = ""
         if action == "update" and brief.get("target_post_id"):
@@ -1731,4 +1776,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

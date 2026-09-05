@@ -1,12 +1,8 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 1,
+  "consecutive_failures": 0,
   "events": [
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T11:05:34.444968+00:00"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-05T11:07:20.846452+00:00",
@@ -97,8 +93,12 @@
       "ok": false,
       "timestamp": "2026-09-05T19:35:42.964390+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T20:06:41.063124+00:00"
     }
   ],
   "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-05T19:35:42.964419+00:00"
+  "updated_at": "2026-09-05T20:06:41.063139+00:00"
 }

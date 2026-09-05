@@ -449,5 +449,41 @@
     "citations_used": 1,
     "unique_information": 0,
     "last_locale": "kr"
+  },
+  "www.macrumors.com": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.macworld.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.tomsguide.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "9to5mac.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
   }
 }

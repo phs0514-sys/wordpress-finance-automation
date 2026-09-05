@@ -1608,5 +1608,118 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "us",
+    "post_id": 32,
+    "url": "https://usfinanceresearch.wordpress.com/2026/09/06/iphone-18-pro-rumors-september-2026-apple-event/",
+    "topic": "iPhone 18 Pro rumors ahead of Apple’s September 9, 2026 event",
+    "category": "Technology & Markets",
+    "primary_keyword": "iPhone 18 Pro rumors",
+    "secondary_keywords": [
+      "iPhone 18 Pro release date",
+      "iPhone 18 Pro price",
+      "iPhone 18 Pro specs",
+      "iPhone 18 Pro camera",
+      "iPhone 18 Pro A20 Pro chip",
+      "iPhone 18 Pro vs iPhone 17 Pro",
+      "iPhone 18 Pro Max",
+      "Apple September 2026 event"
+    ],
+    "trend_score": 88,
+    "opportunity_score": 79,
+    "serp_competition": 62,
+    "headline_type": "News-driven rumor explainer with a wait-or-buy search hook",
+    "word_count": 967,
+    "layout_type": "explainer",
+    "image_type": [
+      "calendar",
+      "document"
+    ],
+    "sources_count": 2,
+    "original_value_count": 2,
+    "publish_time": "2026-09-06T05:06:27",
+    "publish_slot": 2,
+    "action": "new",
+    "quality_score": 93,
+    "quality_breakdown": {
+      "Fact accuracy": 18.5,
+      "Original value": 18.5,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 10,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "Apple has officially announced a special Apple Event for September 9, 2026, at 10:00 a.m. Pacific Time.",
+        "url": "https://developer.apple.com/hello/september26/",
+        "source_title": "September 2026 - Hello - Apple Developer"
+      },
+      {
+        "claim": "Apple’s official event listing confirms a September 9, 2026 event but does not identify the iPhone 18 Pro or disclose product specifications.",
+        "url": "https://www.apple.com/apple-events/",
+        "source_title": "Apple Events - Apple",
+        "valid_for_days": 7,
+        "expires_at": "2026-09-12"
+      }
+    ],
+    "fact_expirations": [
+      {
+        "claim": "Apple’s official event listing confirms a September 9, 2026 event but does not identify the iPhone 18 Pro or disclose product specifications.",
+        "url": "https://www.apple.com/apple-events/",
+        "source_title": "Apple Events - Apple",
+        "valid_for_days": 7,
+        "expires_at": "2026-09-12"
+      }
+    ],
+    "content_version": "592e8a3bc6aea3b0",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 91689,
+      "writing_tokens": 14104,
+      "review_tokens": 0,
+      "total_tokens": 105793,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-05T20:06:41.060599+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

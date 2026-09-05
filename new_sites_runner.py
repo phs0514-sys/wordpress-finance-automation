@@ -102,7 +102,7 @@ def _target_url(brief: dict[str, Any]) -> str:
     return ""
 
 
-def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[str, Any]:
+def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_posts: int, floor_score: int) -> dict[str, Any]:
     settings = engine.Settings.from_env(locale)
     generated_at = datetime.now(timezone.utc).isoformat()
     scan: dict[str, Any] = {
@@ -147,15 +147,29 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
             _record_new_outcome(True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
-        if score < min_score:
-            scan["reason"] = f"score below minimum {min_score}"
+        # Normal discovery keeps the 85-point opportunity bar. When a site is
+        # below its daily target, allow only a bounded floor candidate through;
+        # the full source, safety, and 90-point quality gates still apply.
+        target_fill = today_count < min_daily_posts and score < min_score and score >= floor_score
+        scan["target_fill_mode"] = target_fill
+        if score < min_score and not target_fill:
+            scan["reason"] = (
+                f"score below floor {floor_score}" if today_count < min_daily_posts
+                else f"score below minimum {min_score}"
+            )
             _record_new_outcome(True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
+        if target_fill:
+            scan.update({
+                "status": "TARGET_FILL",
+                "reason": f"daily target {min_daily_posts} not reached; floor score {floor_score} accepted",
+            })
 
         article, brief = engine.create_article(settings, locale, topic, brief)
         article, review = engine.review_and_revise(settings, locale, topic, article, brief)
-        final_article = engine.parse_json(article)
+        final_article = engine.ensure_general_information_disclosure(engine.parse_json(article), locale)
+        article = json.dumps(final_article, ensure_ascii=False)
         recent_3d = brief.get("recent_3d_posts", []) if isinstance(brief, dict) else []
         if isinstance(recent_3d, list) and engine.topic_overlaps_recent(
             str(final_article.get("title", topic)),
@@ -165,7 +179,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
             raise RuntimeError("Final article title overlapped a post from the last 3 days; publication was blocked")
         action = str(brief.get("action", "new"))
         target_url = _target_url(brief) if action == "update" else ""
-        content_issues = engine.validate_article_content(final_article, brief, target_url)
+        content_issues = engine.validate_article_content(final_article, brief, target_url, locale)
         if content_issues:
             raise RuntimeError("Pre-publish hard gate failed: " + "; ".join(content_issues))
         if action == "update" and brief.get("target_post_id"):
@@ -199,19 +213,27 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int) -> dict[st
             _save_scan(locale, scan)
         return {"locale": locale, "ok": False, "status": "ERROR", "error": message[:1000]}
 
-
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the hourly issue cycle for new sites")
     parser.add_argument("--locale", choices=("all", *LOCALES), default="all")
     parser.add_argument("--min-score", type=int, default=int(os.getenv("NEW_SITE_MIN_SCORE", "85")))
-    parser.add_argument("--max-daily-posts", type=int, default=int(os.getenv("NEW_SITE_MAX_DAILY_POSTS", "2")))
+    parser.add_argument("--min-daily-posts", type=int, default=int(os.getenv("NEW_SITE_MIN_DAILY_POSTS", "3")))
+    parser.add_argument("--max-daily-posts", type=int, default=int(os.getenv("NEW_SITE_MAX_DAILY_POSTS", "5")))
+    parser.add_argument("--floor-score", type=int, default=int(os.getenv("NEW_SITE_FLOOR_SCORE", "70")))
     args = parser.parse_args()
+    if args.min_daily_posts < 0 or args.max_daily_posts < 1 or args.min_daily_posts > args.max_daily_posts:
+        parser.error("daily post target must satisfy 0 <= min-daily-posts <= max-daily-posts")
     locales = LOCALES if args.locale == "all" else (args.locale,)
-    results = [process_locale(locale, args.min_score, args.max_daily_posts) for locale in locales]
-    print(json.dumps({"cycle": "hourly", "min_score": args.min_score, "max_daily_posts": args.max_daily_posts, "results": results}, ensure_ascii=False, indent=2))
+    results = [process_locale(locale, args.min_score, args.max_daily_posts, args.min_daily_posts, args.floor_score) for locale in locales]
+    print(json.dumps({
+        "cycle": "hourly",
+        "min_score": args.min_score,
+        "min_daily_posts": args.min_daily_posts,
+        "max_daily_posts": args.max_daily_posts,
+        "floor_score": args.floor_score,
+        "results": results,
+    }, ensure_ascii=False, indent=2))
     return 0 if all(bool(row.get("ok")) for row in results) else 1
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

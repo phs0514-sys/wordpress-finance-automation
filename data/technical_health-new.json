@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-09-04T20:37:48.322155+00:00",
+  "generated_at": "2026-09-05T20:36:39.198979+00:00",
   "locales": {
     "us": {
       "locale": "us",
       "url": "https://uscurrentbrief.wordpress.com",
-      "checked_pages": 2,
+      "checked_pages": 4,
       "sitemap_status": 200,
       "robots_status": 200,
       "core_web_vitals": "not collected by the standard-library monitor; use PageSpeed/Search Console field data",
@@ -19,8 +19,8 @@
           "content_type": "text/html; charset=UTF-8",
           "canonical": null,
           "max_image_preview_large": true,
-          "images": 3,
-          "internal_links": 11,
+          "images": 7,
+          "internal_links": 23,
           "internal_urls": [
             "https://uscurrentbrief.wordpress.com",
             "https://uscurrentbrief.wordpress.com/about/",
@@ -30,14 +30,101 @@
             "https://uscurrentbrief.wordpress.com/editorial-policy/",
             "https://uscurrentbrief.wordpress.com/privacy-policy/",
             "https://uscurrentbrief.wordpress.com/terms-of-use/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
             "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
-            "https://uscurrentbrief.wordpress.com",
-            "https://uscurrentbrief.wordpress.com"
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/"
           ],
           "issues": [],
-          "html_bytes": 102227,
+          "html_bytes": 118592,
           "structured_data": {
-            "Article": false,
+            "Article": true,
+            "BreadcrumbList": false,
+            "Organization": false
+          }
+        },
+        {
+          "url": "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+          "status": 200,
+          "final_url": "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+          "content_type": "text/html; charset=UTF-8",
+          "canonical": "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+          "max_image_preview_large": true,
+          "images": 5,
+          "internal_links": 34,
+          "internal_urls": [
+            "https://uscurrentbrief.wordpress.com",
+            "https://uscurrentbrief.wordpress.com/about/",
+            "https://uscurrentbrief.wordpress.com/affiliate-disclosure/",
+            "https://uscurrentbrief.wordpress.com/contact/",
+            "https://uscurrentbrief.wordpress.com/corrections-policy/",
+            "https://uscurrentbrief.wordpress.com/editorial-policy/",
+            "https://uscurrentbrief.wordpress.com/privacy-policy/",
+            "https://uscurrentbrief.wordpress.com/terms-of-use/",
+            "https://uscurrentbrief.wordpress.com/author/phs514b/",
+            "https://uscurrentbrief.wordpress.com/category/uncategorized/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/?share=twitter",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/?share=facebook",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/comment-page-1/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/?like_comment=5&",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/comment-page-1/?replytocom=5",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/comment-page-1/"
+          ],
+          "issues": [],
+          "html_bytes": 129825,
+          "structured_data": {
+            "Article": true,
+            "BreadcrumbList": false,
+            "Organization": false
+          }
+        },
+        {
+          "url": "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+          "status": 200,
+          "final_url": "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+          "content_type": "text/html; charset=UTF-8",
+          "canonical": "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+          "max_image_preview_large": true,
+          "images": 5,
+          "internal_links": 35,
+          "internal_urls": [
+            "https://uscurrentbrief.wordpress.com",
+            "https://uscurrentbrief.wordpress.com/about/",
+            "https://uscurrentbrief.wordpress.com/affiliate-disclosure/",
+            "https://uscurrentbrief.wordpress.com/contact/",
+            "https://uscurrentbrief.wordpress.com/corrections-policy/",
+            "https://uscurrentbrief.wordpress.com/editorial-policy/",
+            "https://uscurrentbrief.wordpress.com/privacy-policy/",
+            "https://uscurrentbrief.wordpress.com/terms-of-use/",
+            "https://uscurrentbrief.wordpress.com/author/phs514b/",
+            "https://uscurrentbrief.wordpress.com/category/uncategorized/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/?share=twitter",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/?share=facebook",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/comment-page-1/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/?like_comment=2&",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/comment-page-1/?replytocom=2"
+          ],
+          "issues": [],
+          "html_bytes": 128274,
+          "structured_data": {
+            "Article": true,
             "BreadcrumbList": false,
             "Organization": false
           }
@@ -50,7 +137,7 @@
           "canonical": "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
           "max_image_preview_large": true,
           "images": 3,
-          "internal_links": 12,
+          "internal_links": 32,
           "internal_urls": [
             "https://uscurrentbrief.wordpress.com",
             "https://uscurrentbrief.wordpress.com/about/",
@@ -60,13 +147,21 @@
             "https://uscurrentbrief.wordpress.com/editorial-policy/",
             "https://uscurrentbrief.wordpress.com/privacy-policy/",
             "https://uscurrentbrief.wordpress.com/terms-of-use/",
-            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
-            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/",
-            "https://uscurrentbrief.wordpress.com",
-            "https://uscurrentbrief.wordpress.com"
+            "https://uscurrentbrief.wordpress.com/author/phs514b/",
+            "https://uscurrentbrief.wordpress.com/category/uncategorized/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/comment-page-1/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/?like_comment=1&",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/comment-page-1/?replytocom=1",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/comment-page-1/",
+            "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+            "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/?like_comment=4&"
           ],
           "issues": [],
-          "html_bytes": 119816,
+          "html_bytes": 120295,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -78,39 +173,54 @@
     "jp": {
       "locale": "jp",
       "url": "https://jpdailybrief.wordpress.com",
-      "checked_pages": 2,
-      "sitemap_status": 200,
+      "checked_pages": 3,
+      "sitemap_status": 410,
       "robots_status": 200,
       "core_web_vitals": "not collected by the standard-library monitor; use PageSpeed/Search Console field data",
       "structured_data_expectation": "Article/BreadcrumbList/Organization should be supplied by the active WordPress theme/SEO integration",
-      "critical": false,
-      "issues": [],
+      "critical": true,
+      "issues": [
+        "https://jpdailybrief.wordpress.com: HTTP status 410",
+        "https://jpdailybrief.wordpress.com/2026/09/05/fukuoka-vs-mito-2026-09-05/: HTTP status 410",
+        "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/: HTTP status 410",
+        "max-image-preview:large not detected (theme/SEO setting check)",
+        "sitemap.xml HTTP status 410"
+      ],
       "pages": [
         {
           "url": "https://jpdailybrief.wordpress.com",
-          "status": 200,
+          "status": 410,
           "final_url": "https://jpdailybrief.wordpress.com",
-          "content_type": "text/html; charset=UTF-8",
+          "content_type": "",
           "canonical": null,
-          "max_image_preview_large": true,
-          "images": 3,
-          "internal_links": 12,
-          "internal_urls": [
-            "https://jpdailybrief.wordpress.com",
-            "https://jpdailybrief.wordpress.com/about/",
-            "https://jpdailybrief.wordpress.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/",
-            "https://jpdailybrief.wordpress.com/%e3%81%93%e3%81%ae%e3%82%b5%e3%82%a4%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
-            "https://jpdailybrief.wordpress.com/%e3%82%a2%e3%83%95%e3%82%a3%e3%83%aa%e3%82%a8%e3%82%a4%e3%83%88%e9%96%8b%e7%a4%ba/",
-            "https://jpdailybrief.wordpress.com/%e3%83%97%e3%83%a9%e3%82%a4%e3%83%90%e3%82%b7%e3%83%bc%e3%83%9d%e3%83%aa%e3%82%b7%e3%83%bc/",
-            "https://jpdailybrief.wordpress.com/%e5%88%a9%e7%94%a8%e8%a6%8f%e7%b4%84/",
-            "https://jpdailybrief.wordpress.com/%e7%b7%a8%e9%9b%86%e6%96%b9%e9%87%9d/",
-            "https://jpdailybrief.wordpress.com/%e8%a8%82%e6%ad%a3%e3%83%9d%e3%83%aa%e3%82%b7%e3%83%bc/",
-            "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://jpdailybrief.wordpress.com",
-            "https://jpdailybrief.wordpress.com"
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
           ],
-          "issues": [],
-          "html_bytes": 102758,
+          "html_bytes": 500,
+          "structured_data": {
+            "Article": false,
+            "BreadcrumbList": false,
+            "Organization": false
+          }
+        },
+        {
+          "url": "https://jpdailybrief.wordpress.com/2026/09/05/fukuoka-vs-mito-2026-09-05/",
+          "status": 410,
+          "final_url": "https://jpdailybrief.wordpress.com/2026/09/05/fukuoka-vs-mito-2026-09-05/",
+          "content_type": "",
+          "canonical": null,
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
+          ],
+          "html_bytes": 500,
           "structured_data": {
             "Article": false,
             "BreadcrumbList": false,
@@ -119,32 +229,20 @@
         },
         {
           "url": "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "status": 200,
+          "status": 410,
           "final_url": "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "content_type": "text/html; charset=UTF-8",
-          "canonical": "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "max_image_preview_large": true,
-          "images": 3,
-          "internal_links": 13,
-          "internal_urls": [
-            "https://jpdailybrief.wordpress.com",
-            "https://jpdailybrief.wordpress.com/about/",
-            "https://jpdailybrief.wordpress.com/%e3%81%8a%e5%95%8f%e3%81%84%e5%90%88%e3%82%8f%e3%81%9b/",
-            "https://jpdailybrief.wordpress.com/%e3%81%93%e3%81%ae%e3%82%b5%e3%82%a4%e3%83%88%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
-            "https://jpdailybrief.wordpress.com/%e3%82%a2%e3%83%95%e3%82%a3%e3%83%aa%e3%82%a8%e3%82%a4%e3%83%88%e9%96%8b%e7%a4%ba/",
-            "https://jpdailybrief.wordpress.com/%e3%83%97%e3%83%a9%e3%82%a4%e3%83%90%e3%82%b7%e3%83%bc%e3%83%9d%e3%83%aa%e3%82%b7%e3%83%bc/",
-            "https://jpdailybrief.wordpress.com/%e5%88%a9%e7%94%a8%e8%a6%8f%e7%b4%84/",
-            "https://jpdailybrief.wordpress.com/%e7%b7%a8%e9%9b%86%e6%96%b9%e9%87%9d/",
-            "https://jpdailybrief.wordpress.com/%e8%a8%82%e6%ad%a3%e3%83%9d%e3%83%aa%e3%82%b7%e3%83%bc/",
-            "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://jpdailybrief.wordpress.com",
-            "https://jpdailybrief.wordpress.com"
+          "content_type": "",
+          "canonical": null,
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
           ],
-          "issues": [],
-          "html_bytes": 120327,
+          "html_bytes": 500,
           "structured_data": {
-            "Article": true,
+            "Article": false,
             "BreadcrumbList": false,
             "Organization": false
           }
@@ -154,39 +252,75 @@
     "kr": {
       "locale": "kr",
       "url": "https://krdailybrief.wordpress.com",
-      "checked_pages": 2,
-      "sitemap_status": 200,
+      "checked_pages": 4,
+      "sitemap_status": 410,
       "robots_status": 200,
       "core_web_vitals": "not collected by the standard-library monitor; use PageSpeed/Search Console field data",
       "structured_data_expectation": "Article/BreadcrumbList/Organization should be supplied by the active WordPress theme/SEO integration",
-      "critical": false,
-      "issues": [],
+      "critical": true,
+      "issues": [
+        "https://krdailybrief.wordpress.com: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/05/boston-dynamics-atlas-hyundai-factory-deployment-commercialization/: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/05/mg-walking-start-savings-rate-checklist/: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/04/hello-world/: HTTP status 410",
+        "max-image-preview:large not detected (theme/SEO setting check)",
+        "sitemap.xml HTTP status 410"
+      ],
       "pages": [
         {
           "url": "https://krdailybrief.wordpress.com",
-          "status": 200,
+          "status": 410,
           "final_url": "https://krdailybrief.wordpress.com",
-          "content_type": "text/html; charset=UTF-8",
+          "content_type": "",
           "canonical": null,
-          "max_image_preview_large": true,
-          "images": 3,
-          "internal_links": 12,
-          "internal_urls": [
-            "https://krdailybrief.wordpress.com",
-            "https://krdailybrief.wordpress.com/about/",
-            "https://krdailybrief.wordpress.com/%ea%b0%9c%ec%9d%b8%ec%a0%95%eb%b3%b4%ec%b2%98%eb%a6%ac%eb%b0%a9%ec%b9%a8/",
-            "https://krdailybrief.wordpress.com/%eb%ac%b8%ec%9d%98%ed%95%98%ea%b8%b0/",
-            "https://krdailybrief.wordpress.com/%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%86%8c%ea%b0%9c/",
-            "https://krdailybrief.wordpress.com/%ec%9d%b4%ec%9a%a9%ec%95%bd%ea%b4%80/",
-            "https://krdailybrief.wordpress.com/%ec%a0%95%ec%a0%95-%ec%a0%95%ec%b1%85/",
-            "https://krdailybrief.wordpress.com/%ec%a0%9c%ed%9c%b4-%ea%b3%a0%ec%a7%80/",
-            "https://krdailybrief.wordpress.com/%ed%8e%b8%ec%a7%91-%ec%a0%95%ec%b1%85/",
-            "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://krdailybrief.wordpress.com",
-            "https://krdailybrief.wordpress.com"
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
           ],
-          "issues": [],
-          "html_bytes": 102590,
+          "html_bytes": 500,
+          "structured_data": {
+            "Article": false,
+            "BreadcrumbList": false,
+            "Organization": false
+          }
+        },
+        {
+          "url": "https://krdailybrief.wordpress.com/2026/09/05/boston-dynamics-atlas-hyundai-factory-deployment-commercialization/",
+          "status": 410,
+          "final_url": "https://krdailybrief.wordpress.com/2026/09/05/boston-dynamics-atlas-hyundai-factory-deployment-commercialization/",
+          "content_type": "",
+          "canonical": null,
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
+          ],
+          "html_bytes": 500,
+          "structured_data": {
+            "Article": false,
+            "BreadcrumbList": false,
+            "Organization": false
+          }
+        },
+        {
+          "url": "https://krdailybrief.wordpress.com/2026/09/05/mg-walking-start-savings-rate-checklist/",
+          "status": 410,
+          "final_url": "https://krdailybrief.wordpress.com/2026/09/05/mg-walking-start-savings-rate-checklist/",
+          "content_type": "",
+          "canonical": null,
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
+          ],
+          "html_bytes": 500,
           "structured_data": {
             "Article": false,
             "BreadcrumbList": false,
@@ -195,32 +329,20 @@
         },
         {
           "url": "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "status": 200,
+          "status": 410,
           "final_url": "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "content_type": "text/html; charset=UTF-8",
-          "canonical": "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-          "max_image_preview_large": true,
-          "images": 3,
-          "internal_links": 13,
-          "internal_urls": [
-            "https://krdailybrief.wordpress.com",
-            "https://krdailybrief.wordpress.com/about/",
-            "https://krdailybrief.wordpress.com/%ea%b0%9c%ec%9d%b8%ec%a0%95%eb%b3%b4%ec%b2%98%eb%a6%ac%eb%b0%a9%ec%b9%a8/",
-            "https://krdailybrief.wordpress.com/%eb%ac%b8%ec%9d%98%ed%95%98%ea%b8%b0/",
-            "https://krdailybrief.wordpress.com/%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%86%8c%ea%b0%9c/",
-            "https://krdailybrief.wordpress.com/%ec%9d%b4%ec%9a%a9%ec%95%bd%ea%b4%80/",
-            "https://krdailybrief.wordpress.com/%ec%a0%95%ec%a0%95-%ec%a0%95%ec%b1%85/",
-            "https://krdailybrief.wordpress.com/%ec%a0%9c%ed%9c%b4-%ea%b3%a0%ec%a7%80/",
-            "https://krdailybrief.wordpress.com/%ed%8e%b8%ec%a7%91-%ec%a0%95%ec%b1%85/",
-            "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://krdailybrief.wordpress.com/2026/09/04/hello-world/",
-            "https://krdailybrief.wordpress.com",
-            "https://krdailybrief.wordpress.com"
+          "content_type": "",
+          "canonical": null,
+          "max_image_preview_large": false,
+          "images": 0,
+          "internal_links": 0,
+          "internal_urls": [],
+          "issues": [
+            "HTTP status 410"
           ],
-          "issues": [],
-          "html_bytes": 120154,
+          "html_bytes": 500,
           "structured_data": {
-            "Article": true,
+            "Article": false,
             "BreadcrumbList": false,
             "Organization": false
           }
@@ -228,5 +350,5 @@
       ]
     }
   },
-  "critical": false
+  "critical": true
 }

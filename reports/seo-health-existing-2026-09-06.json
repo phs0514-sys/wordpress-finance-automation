@@ -1,0 +1,26 @@
+{
+  "critical": true,
+  "health_path": "/home/runner/work/wordpress-finance-automation/wordpress-finance-automation/data/technical_health.json",
+  "locales": {
+    "us": {
+      "critical": true,
+      "issues": [
+        "broken internal link https://usfinanceresearch.wordpress.com/2026/09/04/how-to-compare-total-costs-of-broad-market-etfs-using-standardized-disclosures/?like_comment=3& (HTTP 429)"
+      ]
+    },
+    "jp": {
+      "critical": true,
+      "issues": [
+        "https://jpfinanceresearch.wordpress.com: HTTP status 410",
+        "https://jpfinanceresearch.wordpress.com/2026/09/05/us-midterm-election-2026-stock-market-impact/: HTTP status 410",
+        "https://jpfinanceresearch.wordpress.com/2026/09/04/rakuten-group-business-materials-supersale-fintech-reorganization-2026-09/: HTTP status 410",
+        "https://jpfinanceresearch.wordpress.com/2026/09/04/9984-softbank-group-stock-surge-september-4-ir/: HTTP status 410",
+        "https://jpfinanceresearch.wordpress.com/2026/09/04/typhoon-24-krovan-heavy-rain-traffic-2026-09-04/: HTTP status 410"
+      ]
+    },
+    "kr": {
+      "critical": false,
+      "issues": []
+    }
+  }
+}

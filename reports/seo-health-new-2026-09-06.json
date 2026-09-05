@@ -1,0 +1,30 @@
+{
+  "critical": true,
+  "health_path": "/home/runner/work/wordpress-finance-automation/wordpress-finance-automation/data/technical_health.json",
+  "locales": {
+    "us": {
+      "critical": false,
+      "issues": []
+    },
+    "jp": {
+      "critical": true,
+      "issues": [
+        "https://jpdailybrief.wordpress.com: HTTP status 410",
+        "https://jpdailybrief.wordpress.com/2026/09/05/fukuoka-vs-mito-2026-09-05/: HTTP status 410",
+        "https://jpdailybrief.wordpress.com/2026/09/04/hello-world/: HTTP status 410",
+        "max-image-preview:large not detected (theme/SEO setting check)",
+        "sitemap.xml HTTP status 410"
+      ]
+    },
+    "kr": {
+      "critical": true,
+      "issues": [
+        "https://krdailybrief.wordpress.com: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/05/boston-dynamics-atlas-hyundai-factory-deployment-commercialization/: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/05/mg-walking-start-savings-rate-checklist/: HTTP status 410",
+        "https://krdailybrief.wordpress.com/2026/09/04/hello-world/: HTTP status 410",
+        "max-image-preview:large not detected (theme/SEO setting check)"
+      ]
+    }
+  }
+}

@@ -81,9 +81,10 @@
     "last_locale": "jp"
   },
   "www.yna.co.kr": {
-    "times_used": 1,
+    "times_used": 3,
     "categories": {
-      "Technology & Markets": 1
+      "Technology & Markets": 2,
+      "지역 행사·여행": 1
     },
     "citations_used": 0,
     "unique_information": 0,
@@ -250,5 +251,104 @@
     "citations_used": 1,
     "unique_information": 0,
     "last_locale": "jp"
+  },
+  "www.opinet.co.kr": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "tv.edaily.co.kr": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "oil.achveons.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "oil.moateo.com": {
+    "times_used": 1,
+    "categories": {
+      "Technology & Markets": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "news.seoul.go.kr": {
+    "times_used": 2,
+    "categories": {
+      "지역 행사·여행": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "busanfireworks.com": {
+    "times_used": 2,
+    "categories": {
+      "지역 행사·여행": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "mediahub.seoul.go.kr": {
+    "times_used": 2,
+    "categories": {
+      "지역 행사·여행": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "bsjb.kr": {
+    "times_used": 1,
+    "categories": {
+      "지역 행사·여행": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.president.go.kr": {
+    "times_used": 3,
+    "categories": {
+      "정책·제도": 3
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "jifi.scourt.go.kr": {
+    "times_used": 2,
+    "categories": {
+      "정책·제도": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
+  },
+  "www.scourt.go.kr": {
+    "times_used": 2,
+    "categories": {
+      "정책·제도": 2
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "kr"
   }
 }

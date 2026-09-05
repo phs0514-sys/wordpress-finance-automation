@@ -1,7 +1,7 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 9,
+  "consecutive_failures": 0,
   "events": [
     {
       "ok": true,
@@ -63,8 +63,35 @@
       "ok": false,
       "timestamp": "2026-09-05T13:24:41.300450+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:30:43.461852+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T13:33:13.024060+00:00"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:37:16.783801+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 93, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 18, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 9, 'Freshness': 10, 'Layout': 5}, 'originality_count': 2, 'issues': ['행사 종료 시각을 본문에 명시하지 않아 검색자의 귀가 계획에 필요한 정보가 다소 부족합니다.', '무료 관람 가능 구역을 구체적으로 제시하지 않아 관람구역 정보가 제한적입니다.'], 'required_fixes': ['일반 여의도·이촌한강공원 관람이 무료라는 점을 명시적으로 확인하지 않았지만, 본문이 무료라고 직접 단정하지 않아 큰 문제는 없습니다.', '본문의 공식 안내 링크에 포함된 일부 버스 우회 세부사항은 1차 "
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T13:39:38.284099+00:00",
+      "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T13:41:29.149097+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T13:43:43.427722+00:00"
     }
   ],
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-05T13:24:41.300490+00:00"
+  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
+  "updated_at": "2026-09-05T13:43:43.427750+00:00"
 }

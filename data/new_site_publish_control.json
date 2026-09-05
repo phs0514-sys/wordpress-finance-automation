@@ -3,20 +3,8 @@
   "reason": "three failed cycles in the last five",
   "consecutive_failures": 0,
   "last_error": "Research topic overlapped a post from the last 3 days after three selections",
-  "updated_at": "2026-09-05T07:08:01.667384+00:00",
+  "updated_at": "2026-09-05T08:08:13.851118+00:00",
   "events": [
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T01:05:46.036493+00:00"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T01:06:26.906581+00:00"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T02:05:54.829653+00:00"
-    },
     {
       "ok": true,
       "timestamp": "2026-09-05T02:06:38.575966+00:00"
@@ -89,6 +77,18 @@
     {
       "ok": true,
       "timestamp": "2026-09-05T07:08:01.667368+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T08:06:32.186986+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T08:07:29.230281+00:00"
+    },
+    {
+      "ok": true,
+      "timestamp": "2026-09-05T08:08:13.851097+00:00"
     }
   ]
 }

@@ -103,7 +103,7 @@ def run_locale(
 
 
 def run_daily_backfill(locale: str, target: int) -> dict[str, object]:
-    """Fill only the missing portion of today's four-post quota after the final slot."""
+    """Fill the missing portion of the daily quota after the final slot."""
     allowed, local_time = in_backfill_window(locale)
     if not allowed:
         return {
@@ -127,39 +127,32 @@ def run_daily_backfill(locale: str, target: int) -> dict[str, object]:
         }
 
     attempts: list[dict[str, object]] = []
-    while count < target and len(attempts) < target:
+    max_attempts = max(target + 4, target * 2)
+    while count < target and len(attempts) < max_attempts:
         result = run_locale(locale, slot_index=3, require_local_slot=False)
         attempts.append(result)
         if not result.get("ok"):
-            return {
-                "locale": locale,
-                "ok": False,
-                "reason": "backfill_publish_failed",
-                "published_today": count,
-                "target_daily_posts": target,
-                "attempts": attempts,
-            }
+            # Research/API hiccups and overlap rejections are retryable.
+            # Keep the retry count bounded so hard gates still fail clearly.
+            continue
         try:
             updated_count = published_today(locale)
         except Exception as exc:
-            return {
+            attempts.append({
                 "locale": locale,
                 "ok": False,
                 "reason": "daily_count_failed_after_publish",
                 "error": str(exc)[:1000],
-                "published_today": count,
-                "target_daily_posts": target,
-                "attempts": attempts,
-            }
+            })
+            continue
         if updated_count <= count:
-            return {
+            attempts.append({
                 "locale": locale,
                 "ok": False,
                 "reason": "publication_did_not_increase_daily_count",
                 "published_today": updated_count,
-                "target_daily_posts": target,
-                "attempts": attempts,
-            }
+            })
+            continue
         count = updated_count
 
     return {
@@ -171,7 +164,6 @@ def run_daily_backfill(locale: str, target: int) -> dict[str, object]:
         "attempts": attempts,
         "local_time": local_time,
     }
-
 
 def main() -> int:
     parser = argparse.ArgumentParser()

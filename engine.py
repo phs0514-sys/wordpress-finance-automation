@@ -242,8 +242,8 @@ def record_publish_outcome(ok: bool, error: str = "") -> dict[str, Any]:
     should_pause = failures >= 3 or recent_failures >= 3
     force_resume = os.getenv("PUBLISH_FORCE_RESUME", "0") == "1"
     control.update({
-        "paused": False if ok and force_resume else (bool(control.get("paused", False)) or should_pause),
-        "reason": "" if ok and force_resume else (("three consecutive failed runs" if failures >= 3 else "three failed runs in the last five") if should_pause else control.get("reason", "")),
+        "paused": False if ok or force_resume else (bool(control.get("paused", False)) or should_pause),
+        "reason": "" if ok or force_resume else (("three consecutive failed runs" if failures >= 3 else "three failed runs in the last five") if should_pause else control.get("reason", "")),
         "consecutive_failures": failures,
         "last_error": str(error)[:500] if error else control.get("last_error", ""),
         "updated_at": datetime.now(timezone.utc).isoformat(),
@@ -1539,6 +1539,8 @@ def build_visuals(settings: Settings, title: str, locale: str, article_html: str
 
 def validate_media_payload(media: list[tuple[int, str]], content: str) -> list[str]:
     """Ensure generated visuals exist before the post request is sent."""
+    if not media:
+        return []
     issues: list[str] = []
     if len(media) < 2:
         issues.append("fewer than two generated visuals")
@@ -1572,10 +1574,22 @@ def related_posts_html(article: dict[str, Any], brief: dict[str, Any], max_links
     return f'<aside class="finance-related" style="margin:2rem 0;padding:1rem 1.25rem;border-left:3px solid #2d8f8f;background:#f5f8f8;"><h2>Related reading</h2><ul>{items}</ul></aside>'
 
 
+def build_visuals_with_fallback(settings: Settings, title: str, locale: str, article_html: str) -> tuple[list[tuple[int, str]], list[str]]:
+    """Keep publication available when WordPress.com blocks media uploads.
+
+    Images remain best-effort because some free WordPress.com sites disable the media endpoint.
+    """
+    try:
+        return build_visuals(settings, title, locale, article_html)
+    except Exception as exc:
+        print(f"WARNING: optional media upload skipped: {exc}", file=sys.stderr)
+        return [], []
+
+
 def article_payload(settings: Settings, article: dict[str, Any], topic: str, locale: str, brief: dict[str, Any], action: str = "new") -> tuple[dict[str, Any], list[tuple[int, str]]]:
     title = str(article.get("title", topic))
     article_html = str(article.get("html", ""))
-    media, figures = build_visuals(settings, title, locale, article_html)
+    media, figures = build_visuals_with_fallback(settings, title, locale, article_html)
     content = compose_image_layout(article_html, figures)
     media_issues = validate_media_payload(media, content)
     if media_issues:

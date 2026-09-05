@@ -1,9 +1,9 @@
 {
-  "paused": true,
-  "reason": "three failed cycles in the last five",
+  "paused": false,
+  "reason": "",
   "consecutive_failures": 0,
-  "last_error": "Research topic overlapped a post from the last 3 days after three selections",
-  "updated_at": "2026-09-05T08:08:13.851118+00:00",
+  "last_error": "",
+  "updated_at": "2026-09-05T09:05:06.669Z",
   "events": [
     {
       "ok": true,
@@ -90,5 +90,6 @@
       "ok": true,
       "timestamp": "2026-09-05T08:08:13.851097+00:00"
     }
-  ]
+  ],
+  "locales": {}
 }

@@ -3,7 +3,7 @@
   "reason": "",
   "consecutive_failures": 0,
   "last_error": "",
-  "updated_at": "2026-09-05T09:05:06.669Z",
+  "updated_at": "2026-09-05T09:30:12.482930+00:00",
   "events": [
     {
       "ok": true,
@@ -89,7 +89,65 @@
     {
       "ok": true,
       "timestamp": "2026-09-05T08:08:13.851097+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": true,
+      "timestamp": "2026-09-05T09:26:48.092989+00:00"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-05T09:28:45.515269+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-05T09:30:12.482902+00:00"
     }
   ],
-  "locales": {}
+  "locales": {
+    "us": {
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T09:26:48.093010+00:00",
+      "events": [
+        {
+          "locale": "us",
+          "ok": true,
+          "timestamp": "2026-09-05T09:26:48.092989+00:00"
+        }
+      ]
+    },
+    "jp": {
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T09:28:45.515286+00:00",
+      "events": [
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-05T09:28:45.515269+00:00"
+        }
+      ]
+    },
+    "kr": {
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T09:30:12.482917+00:00",
+      "events": [
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-05T09:30:12.482902+00:00"
+        }
+      ]
+    }
+  }
 }

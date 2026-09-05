@@ -124,5 +124,77 @@
     "citations_used": 0,
     "unique_information": 0,
     "last_locale": "kr"
+  },
+  "www.usga.org": {
+    "times_used": 3,
+    "categories": {
+      "Sports": 3
+    },
+    "citations_used": 2,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.randa.org": {
+    "times_used": 2,
+    "categories": {
+      "Sports": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "walkercup.co.uk": {
+    "times_used": 3,
+    "categories": {
+      "Sports": 3
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.golfmonthly.com": {
+    "times_used": 1,
+    "categories": {
+      "Sports": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.jleague.jp": {
+    "times_used": 5,
+    "categories": {
+      "Sports": 5
+    },
+    "citations_used": 2,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "www.avispa.co.jp": {
+    "times_used": 2,
+    "categories": {
+      "Sports": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "data.j-league.or.jp": {
+    "times_used": 2,
+    "categories": {
+      "Sports": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "jp"
+  },
+  "www.kfcc.co.kr": {
+    "times_used": 2,
+    "categories": {
+      "Technology & Markets": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "kr"
   }
 }

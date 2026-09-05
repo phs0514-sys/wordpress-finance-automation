@@ -1,7 +1,7 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 1,
+  "consecutive_failures": 2,
   "events": [
     {
       "ok": true,
@@ -23,8 +23,13 @@
       "ok": false,
       "timestamp": "2026-09-05T11:07:20.846452+00:00",
       "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-05T12:17:19.008237+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
     }
   ],
-  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-  "updated_at": "2026-09-05T11:07:20.846481+00:00"
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-05T12:17:19.008264+00:00"
 }

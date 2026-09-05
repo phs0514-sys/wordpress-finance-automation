@@ -1,9 +1,9 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 0,
-  "last_error": "",
-  "updated_at": "2026-09-05T09:30:12.482930+00:00",
+  "consecutive_failures": 1,
+  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
+  "updated_at": "2026-09-05T10:09:30.882805+00:00",
   "events": [
     {
       "ok": true,
@@ -104,48 +104,84 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-05T09:30:12.482902+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-05T10:06:26.228592+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-05T10:07:53.766342+00:00",
+      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-05T10:09:30.882770+00:00",
+      "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
     }
   ],
   "locales": {
     "us": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-05T09:26:48.093010+00:00",
+      "consecutive_failures": 1,
+      "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+      "updated_at": "2026-09-05T10:06:26.228619+00:00",
       "events": [
         {
           "locale": "us",
           "ok": true,
           "timestamp": "2026-09-05T09:26:48.092989+00:00"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-05T10:06:26.228592+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-05T09:28:45.515286+00:00",
+      "consecutive_failures": 1,
+      "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
+      "updated_at": "2026-09-05T10:07:53.766366+00:00",
       "events": [
         {
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-05T09:28:45.515269+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-05T10:07:53.766342+00:00",
+          "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
         }
       ]
     },
     "kr": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-05T09:30:12.482917+00:00",
+      "consecutive_failures": 1,
+      "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
+      "updated_at": "2026-09-05T10:09:30.882793+00:00",
       "events": [
         {
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-05T09:30:12.482902+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-05T10:09:30.882770+00:00",
+          "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
         }
       ]
     }

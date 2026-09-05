@@ -57,28 +57,54 @@ def published_today(locale: str, site_url: str) -> int:
     return count
 
 
-def _record_new_outcome(ok: bool, error: str = "") -> dict[str, Any]:
-    """Keep the new-site kill switch isolated from legacy-site publishing."""
+def _record_new_outcome(locale: str, ok: bool, error: str = "") -> dict[str, Any]:
+    """Track the new-site safety switch per locale, not as one global switch."""
     control = engine.load_json_file(CONTROL_PATH, {})
     if not isinstance(control, dict):
         control = {}
-    failures = int(control.get("consecutive_failures", 0) or 0)
-    events = control.get("events", []) if isinstance(control.get("events"), list) else []
+    locale_states = control.get("locales", {}) if isinstance(control.get("locales"), dict) else {}
+    state = locale_states.get(locale, {}) if isinstance(locale_states.get(locale), dict) else {}
+    failures = int(state.get("consecutive_failures", 0) or 0)
+    events = state.get("events", []) if isinstance(state.get("events"), list) else []
     failures = 0 if ok else failures + 1
-    event: dict[str, Any] = {"ok": ok, "timestamp": datetime.now(timezone.utc).isoformat()}
+    event: dict[str, Any] = {
+        "locale": locale,
+        "ok": ok,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
     if error:
         event["error"] = str(error)[:500]
     events.append(event)
     recent_failures = sum(1 for item in events[-5:] if isinstance(item, dict) and not item.get("ok"))
     should_pause = failures >= 3 or recent_failures >= 3
     force_resume = os.getenv("PUBLISH_FORCE_RESUME", "0") == "1"
-    control.update({
-        "paused": False if ok and force_resume else (bool(control.get("paused", False)) or should_pause),
-        "reason": "" if ok and force_resume else (("three consecutive failed cycles" if failures >= 3 else "three failed cycles in the last five") if should_pause else control.get("reason", "")),
+    paused = False if ok or force_resume else (bool(state.get("paused", False)) or should_pause)
+    state.update({
+        "paused": paused,
+        "reason": "" if ok or force_resume else (
+            ("three consecutive failed cycles" if failures >= 3 else "three failed cycles in the last five")
+            if should_pause else state.get("reason", "")
+        ),
         "consecutive_failures": failures,
-        "last_error": str(error)[:500] if error else control.get("last_error", ""),
+        "last_error": str(error)[:500] if error else ("" if ok else state.get("last_error", "")),
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "events": events[-20:],
+    })
+    locale_states[locale] = state
+    all_events = control.get("events", []) if isinstance(control.get("events"), list) else []
+    all_events.append(event)
+    paused_locales = [name for name, item in locale_states.items() if isinstance(item, dict) and item.get("paused")]
+    control.update({
+        "paused": bool(paused_locales),
+        "reason": ", ".join(f"{name}: {locale_states[name].get('reason', 'paused')}" for name in paused_locales),
+        "consecutive_failures": max(
+            (int(item.get("consecutive_failures", 0) or 0) for item in locale_states.values() if isinstance(item, dict)),
+            default=0,
+        ),
+        "last_error": str(error)[:500] if error else control.get("last_error", ""),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "events": all_events[-40:],
+        "locales": locale_states,
     })
     engine.save_json_file(CONTROL_PATH, control)
     return control
@@ -137,14 +163,17 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_
         today_count = published_today(locale, settings.wp_url)
         scan["published_today"] = today_count
         control = engine.load_json_file(CONTROL_PATH, {})
-        if isinstance(control, dict) and control.get("paused") and os.getenv("PUBLISH_FORCE_RESUME", "0") != "1":
-            scan.update({"status": "PAUSED", "reason": control.get("reason", "new-site kill switch")})
-            _record_new_outcome(True)
+        locale_control = {}
+        if isinstance(control, dict) and isinstance(control.get("locales"), dict) and isinstance(control["locales"].get(locale), dict):
+            locale_control = control["locales"][locale]
+        if locale_control.get("paused") and os.getenv("PUBLISH_FORCE_RESUME", "0") != "1":
+            scan.update({"status": "PAUSED", "reason": locale_control.get("reason", "new-site kill switch")})
+            _record_new_outcome(locale, True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
         if today_count >= max_daily_posts:
             scan.update({"status": "CAP_REACHED", "reason": f"daily cap {max_daily_posts} reached"})
-            _record_new_outcome(True)
+            _record_new_outcome(locale, True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
         # Normal discovery keeps the 85-point opportunity bar. When a site is
@@ -157,7 +186,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_
                 f"score below floor {floor_score}" if today_count < min_daily_posts
                 else f"score below minimum {min_score}"
             )
-            _record_new_outcome(True)
+            _record_new_outcome(locale, True)
             _save_scan(locale, scan)
             return {"locale": locale, "ok": True, "status": scan["status"], "topic": topic, "score": score}
         if target_fill:
@@ -193,7 +222,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_
         result["_content_version"] = engine.record_article_version(locale, final_article, brief, result, action)
         engine.record_article_history(locale, final_article, brief, review, result, action)
         engine.record_source_usage(brief, locale)
-        _record_new_outcome(True)
+        _record_new_outcome(locale, True)
         scan.update({
             "status": "PUBLISHED" if action == "new" else "UPDATED",
             "action": action,
@@ -208,7 +237,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_
         message = str(exc)
         scan.update({"status": "ERROR", "error": message[:1000]})
         try:
-            _record_new_outcome(False, message)
+            _record_new_outcome(locale, False, message)
         finally:
             _save_scan(locale, scan)
         return {"locale": locale, "ok": False, "status": "ERROR", "error": message[:1000]}

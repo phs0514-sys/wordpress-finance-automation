@@ -15,11 +15,11 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parent
 LOCAL_ZONES = {"us": "America/New_York", "jp": "Asia/Tokyo", "kr": "Asia/Seoul"}
 SLOTS = ((8, 0), (11, 50), (16, 0), (20, 0))
-SCHEDULE_TOLERANCE_MINUTES = 12
+SCHEDULE_TOLERANCE_MINUTES = int(os.getenv("PUBLISH_SLOT_TOLERANCE_MINUTES", "30"))
 
 
 def is_due_in_local_time(locale: str, slot_index: int) -> tuple[bool, str]:
-    """Accept delayed GitHub cron starts while enforcing each site's local clock."""
+    """Accept delayed GitHub cron starts within the configured grace window while enforcing each site's local clock."""
     now = datetime.now(ZoneInfo(LOCAL_ZONES[locale]))
     target_hour, target_minute = SLOTS[slot_index]
     actual = now.hour * 60 + now.minute

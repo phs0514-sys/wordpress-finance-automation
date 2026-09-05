@@ -1,9 +1,9 @@
 {
-  "paused": false,
-  "reason": "",
-  "consecutive_failures": 2,
-  "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
-  "updated_at": "2026-09-05T12:10:39.134682+00:00",
+  "paused": true,
+  "reason": "jp: three consecutive failed cycles, kr: three consecutive failed cycles",
+  "consecutive_failures": 3,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-05T14:09:58.154676+00:00",
   "events": [
     {
       "ok": true,
@@ -140,15 +140,32 @@
       "ok": false,
       "timestamp": "2026-09-05T12:10:39.134646+00:00",
       "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+    },
+    {
+      "locale": "us",
+      "ok": true,
+      "timestamp": "2026-09-05T14:06:40.376531+00:00"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-05T14:08:23.124075+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-05T14:09:58.154628+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
   "locales": {
     "us": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 2,
-      "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-05T12:07:25.286007+00:00",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T14:06:40.376545+00:00",
       "events": [
         {
           "locale": "us",
@@ -166,15 +183,20 @@
           "ok": false,
           "timestamp": "2026-09-05T12:07:25.285980+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": true,
+          "timestamp": "2026-09-05T14:06:40.376531+00:00"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 2,
-      "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
-      "updated_at": "2026-09-05T12:09:16.742181+00:00",
+      "paused": true,
+      "reason": "three consecutive failed cycles",
+      "consecutive_failures": 3,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-05T14:08:23.124103+00:00",
       "events": [
         {
           "locale": "jp",
@@ -192,15 +214,21 @@
           "ok": false,
           "timestamp": "2026-09-05T12:09:16.742154+00:00",
           "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-05T14:08:23.124075+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 2,
-      "last_error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}",
-      "updated_at": "2026-09-05T12:10:39.134671+00:00",
+      "paused": true,
+      "reason": "three consecutive failed cycles",
+      "consecutive_failures": 3,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-05T14:09:58.154656+00:00",
       "events": [
         {
           "locale": "kr",
@@ -218,6 +246,12 @@
           "ok": false,
           "timestamp": "2026-09-05T12:10:39.134646+00:00",
           "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-05T14:09:58.154628+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     }

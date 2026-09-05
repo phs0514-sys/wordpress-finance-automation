@@ -1344,5 +1344,151 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "us",
+    "post_id": 28,
+    "url": "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/",
+    "topic": "Mexican wolf recovery in 2026: 319 wolves in the U.S. and a new reintroduction effort in Mexico",
+    "category": "Science & Environment",
+    "primary_keyword": "Mexican wolf population 2026",
+    "secondary_keywords": [
+      "Mexican wolf recovery",
+      "Mexican gray wolf population",
+      "Mexican wolf 319 wolves",
+      "Mexican wolf reintroduction Durango",
+      "Mexican wolf endangered species",
+      "Mexican wolf downlisting",
+      "Mexican wolf Arizona New Mexico"
+    ],
+    "trend_score": 82,
+    "opportunity_score": 77,
+    "serp_competition": 34,
+    "headline_type": "Trend-led news explainer with a numbers-and-what-next hook",
+    "word_count": 913,
+    "layout_type": "explainer",
+    "image_type": [
+      "chart",
+      "calculator"
+    ],
+    "sources_count": 4,
+    "original_value_count": 2,
+    "publish_time": "2026-09-05T10:06:29",
+    "publish_slot": 0,
+    "action": "new",
+    "quality_score": 95,
+    "quality_breakdown": {
+      "Fact accuracy": 19,
+      "Original value": 19,
+      "Search intent": 15,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 10,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "The minimum documented U.S. Mexican wolf population reached 319 at the end of 2025, up from 286 at the end of 2024.",
+        "url": "https://wildlife.dgf.nm.gov/mexican-wolf-population-count-complete/",
+        "source_title": "Mexican wolf population count complete"
+      },
+      {
+        "claim": "The 319 figure is a minimum count, not a complete census of every Mexican wolf.",
+        "url": "https://wildlife.dgf.nm.gov/mexican-wolf-population-count-complete/",
+        "source_title": "Mexican wolf population count complete"
+      },
+      {
+        "claim": "The recovery criteria call for an average of 320 documented wolves per year over a four-year period to support downlisting; that average has not yet been achieved.",
+        "url": "https://wildlife.dgf.nm.gov/mexican-wolf-population-count-complete/",
+        "source_title": "Mexican wolf population count complete"
+      },
+      {
+        "claim": "The federal recovery strategy addresses abundance, geographic distribution, genetic diversity, human-caused mortality, monitoring, and effects on local communities and livestock production.",
+        "url": "https://www.fws.gov/program/conserving-mexican-wolf/what-we-do",
+        "source_title": "Conserving the Mexican Wolf: What We Do",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-06"
+      },
+      {
+        "claim": "Federal and state partners in Arizona and New Mexico conduct monitoring, trapping, relocation, radio-collaring, and livestock-conflict management.",
+        "url": "https://www.aphis.usda.gov/operational-wildlife-activities/protect-livestock-from-predators/mexican-gray-wolves-southwest",
+        "source_title": "Mexican Gray Wolves in the Southwest",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-06"
+      },
+      {
+        "claim": "Mexico established a new Mexican wolf pre-release and reintroduction site in Durango, with the first pack moved there for pre-release on March 14, 2026.",
+        "url": "https://medioambiente.durango.gob.mx/el-lobo-mexicano-regresa-a-casa-a-los-bosques-de-durango-gobierno-del-estado-e-instituciones-binacionales-lo-hacen-posible/",
+        "source_title": "El lobo mexicano regresa a casa, a los bosques de Durango"
+      },
+      {
+        "claim": "The Durango effort is part of a binational recovery program involving Mexican and U.S. agencies and local partners.",
+        "url": "https://www.gob.mx/semarnat/prensa/mexico-realiza-segundo-traslado-de-lobo-mexicano-a-nuevo-sitio-en-durango?idiom=es-MX",
+        "source_title": "México realiza segundo traslado de lobo mexicano a nuevo sitio en Durango"
+      }
+    ],
+    "fact_expirations": [
+      {
+        "claim": "The federal recovery strategy addresses abundance, geographic distribution, genetic diversity, human-caused mortality, monitoring, and effects on local communities and livestock production.",
+        "url": "https://www.fws.gov/program/conserving-mexican-wolf/what-we-do",
+        "source_title": "Conserving the Mexican Wolf: What We Do",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-06"
+      },
+      {
+        "claim": "Federal and state partners in Arizona and New Mexico conduct monitoring, trapping, relocation, radio-collaring, and livestock-conflict management.",
+        "url": "https://www.aphis.usda.gov/operational-wildlife-activities/protect-livestock-from-predators/mexican-gray-wolves-southwest",
+        "source_title": "Mexican Gray Wolves in the Southwest",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-06"
+      }
+    ],
+    "content_version": "4e799ebccc5dbf2e",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 59965,
+      "writing_tokens": 7289,
+      "review_tokens": 0,
+      "total_tokens": 67254,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-05T14:06:40.374324+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

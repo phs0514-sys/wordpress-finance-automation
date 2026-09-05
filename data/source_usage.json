@@ -350,5 +350,41 @@
     "citations_used": 0,
     "unique_information": 0,
     "last_locale": "kr"
+  },
+  "wildlife.dgf.nm.gov": {
+    "times_used": 2,
+    "categories": {
+      "Science & Environment": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.aphis.usda.gov": {
+    "times_used": 2,
+    "categories": {
+      "Science & Environment": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.fws.gov": {
+    "times_used": 3,
+    "categories": {
+      "Science & Environment": 3
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.gob.mx": {
+    "times_used": 2,
+    "categories": {
+      "Science & Environment": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
   }
 }

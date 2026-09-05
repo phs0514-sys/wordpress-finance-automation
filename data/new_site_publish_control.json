@@ -1,24 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, kr: three failed cycles in the last five",
-  "consecutive_failures": 4,
+  "reason": "us: three consecutive failed cycles",
+  "consecutive_failures": 5,
   "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-05T18:09:02.194556+00:00",
+  "updated_at": "2026-09-05T19:09:30.536713+00:00",
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T03:07:43.267184+00:00",
-      "error": "Primary-source fact verification did not pass"
-    },
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T04:05:47.771886+00:00"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T04:06:30.441913+00:00",
-      "error": "Primary-source fact verification did not pass"
-    },
     {
       "ok": true,
       "timestamp": "2026-09-05T04:07:24.389547+00:00"
@@ -206,15 +192,32 @@
       "ok": false,
       "timestamp": "2026-09-05T18:09:02.194517+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-05T19:05:55.567766+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-05T19:08:41.375258+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-05T19:09:30.536677+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 4,
+      "consecutive_failures": 5,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-05T18:07:03.564633+00:00",
+      "updated_at": "2026-09-05T19:05:55.567795+00:00",
       "events": [
         {
           "locale": "us",
@@ -261,15 +264,21 @@
           "ok": false,
           "timestamp": "2026-09-05T18:07:03.564605+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-05T19:05:55.567766+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
       "paused": false,
       "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-05T18:07:46.618063+00:00",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-05T19:08:41.375289+00:00",
       "events": [
         {
           "locale": "jp",
@@ -314,15 +323,21 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-05T18:07:46.618045+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-05T19:08:41.375258+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-05T18:09:02.194540+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-05T19:09:30.536693+00:00",
       "events": [
         {
           "locale": "kr",
@@ -368,6 +383,11 @@
           "ok": false,
           "timestamp": "2026-09-05T18:09:02.194517+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-05T19:09:30.536677+00:00"
         }
       ]
     }

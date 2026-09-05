@@ -205,7 +205,7 @@ def process_locale(locale: str, min_score: int, max_daily_posts: int, min_daily_
             {"focus_keyword": final_article.get("seo", {}).get("focus_keyword", "") if isinstance(final_article.get("seo"), dict) else "", "search_intent": topic, "angle": ""},
             recent_3d,
         ):
-            raise RuntimeError("Final article title overlapped a post from the last 3 days; publication was blocked")
+            raise RuntimeError("Final article title overlapped a post from the last 24 hours; publication was blocked")
         action = str(brief.get("action", "new"))
         target_url = _target_url(brief) if action == "update" else ""
         content_issues = engine.validate_article_content(final_article, brief, target_url, locale)

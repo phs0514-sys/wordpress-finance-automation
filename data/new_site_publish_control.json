@@ -1,28 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 15,
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-06T06:09:02.714509+00:00",
+  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five",
+  "consecutive_failures": 16,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-06T07:08:39.972230+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-05T16:08:48.536775+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-05T17:06:09.031490+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-05T17:09:37.355013+00:00",
-      "error": "Quality gate failed after 4 Terra revisions: {'score': 79, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 17, 'Search intent': 10, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 3, 'Layout': 5}, 'originality_count': 2, 'issues': ['台風24号の存在・現在位置・地域別降水量予報を一次情報で裏付けられておらず、中心テーマである速報性を満たしていません。', '2026年台風経路図のURLだけでは、2026年9月5日時点の台風24号の状況を裏付けられません。', '記事は確認方法の一般解説に寄っており、検索意図である台風24号の地域別雨量を知りたい需要に十分答えていません。'], 'required_fixes': ['公開前に気象庁の最新台風情報・地方気象情報から、発表時刻付きの台風24号の存在、位"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -231,15 +213,32 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-06T06:09:02.714480+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T07:06:18.035719+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-06T07:08:02.315067+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-06T07:08:39.972191+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 15,
+      "consecutive_failures": 16,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T06:07:30.433989+00:00",
+      "updated_at": "2026-09-06T07:06:18.035744+00:00",
       "events": [
         {
           "locale": "us",
@@ -352,15 +351,21 @@
           "ok": false,
           "timestamp": "2026-09-06T06:07:30.433962+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T07:06:18.035719+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-06T06:08:19.091411+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-06T07:08:02.315094+00:00",
       "events": [
         {
           "locale": "jp",
@@ -466,6 +471,12 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-06T06:08:19.091393+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-06T07:08:02.315067+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
@@ -474,7 +485,7 @@
       "reason": "",
       "consecutive_failures": 0,
       "last_error": "",
-      "updated_at": "2026-09-06T06:09:02.714495+00:00",
+      "updated_at": "2026-09-06T07:08:39.972211+00:00",
       "events": [
         {
           "locale": "kr",
@@ -580,6 +591,11 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-06T06:09:02.714480+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-06T07:08:39.972191+00:00"
         }
       ]
     }

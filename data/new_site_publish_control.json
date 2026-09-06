@@ -1,27 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 24,
-  "last_error": "Quality gate failed after 4 Terra revisions: {'score': 84, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 13, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 8, 'Layout': 5}, 'originality_count': 0, 'issues': ['‘골키퍼 선방과 오프사이드 판정으로 추가 득점이 나오지 않았다’는 인과관계가 제공 근거로 확인되지 않는다.', 'evidence.original_value의 구체적 보강 요소인 공식 통계나 국내 시청 정보가 본문에 추가되지 않았다.'], 'required_fixes': ['골키퍼 선방이 추가 득점을 막았다는 표현을 삭제하거나 공식 근거를 추가한다.', '공식 통계 또는 국내 시청 정보를 확인해 추가하거나, 해당 보강 내",
-  "updated_at": "2026-09-06T16:10:57.713147+00:00",
+  "reason": "us: three consecutive failed cycles",
+  "consecutive_failures": 25,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-06T17:07:25.634955+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-06T02:07:52.486397+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-06T03:06:35.259911+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-06T03:08:17.279424+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -231,22 +214,32 @@
       "ok": false,
       "timestamp": "2026-09-06T16:10:57.713110+00:00",
       "error": "Quality gate failed after 4 Terra revisions: {'score': 84, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 13, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 8, 'Layout': 5}, 'originality_count': 0, 'issues': ['‘골키퍼 선방과 오프사이드 판정으로 추가 득점이 나오지 않았다’는 인과관계가 제공 근거로 확인되지 않는다.', 'evidence.original_value의 구체적 보강 요소인 공식 통계나 국내 시청 정보가 본문에 추가되지 않았다.'], 'required_fixes': ['골키퍼 선방이 추가 득점을 막았다는 표현을 삭제하거나 공식 근거를 추가한다.', '공식 통계 또는 국내 시청 정보를 확인해 추가하거나, 해당 보강 내"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T17:05:54.976342+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-06T17:06:37.377561+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-06T17:07:25.634927+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 24,
+      "consecutive_failures": 25,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T16:06:38.800388+00:00",
+      "updated_at": "2026-09-06T17:05:54.976368+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-05T19:05:55.567766+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -360,22 +353,22 @@
           "ok": false,
           "timestamp": "2026-09-06T16:06:38.800359+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T17:05:54.976342+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T16:07:59.869089+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T17:06:37.377576+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-05T19:08:41.375258+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -480,21 +473,21 @@
           "ok": false,
           "timestamp": "2026-09-06T16:07:59.869067+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-06T17:06:37.377561+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 84, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 13, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 8, 'Layout': 5}, 'originality_count': 0, 'issues': ['‘골키퍼 선방과 오프사이드 판정으로 추가 득점이 나오지 않았다’는 인과관계가 제공 근거로 확인되지 않는다.', 'evidence.original_value의 구체적 보강 요소인 공식 통계나 국내 시청 정보가 본문에 추가되지 않았다.'], 'required_fixes': ['골키퍼 선방이 추가 득점을 막았다는 표현을 삭제하거나 공식 근거를 추가한다.', '공식 통계 또는 국내 시청 정보를 확인해 추가하거나, 해당 보강 내",
-      "updated_at": "2026-09-06T16:10:57.713132+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T17:07:25.634943+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-05T19:09:30.536677+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -599,6 +592,11 @@
           "ok": false,
           "timestamp": "2026-09-06T16:10:57.713110+00:00",
           "error": "Quality gate failed after 4 Terra revisions: {'score': 84, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 13, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 8, 'Layout': 5}, 'originality_count': 0, 'issues': ['‘골키퍼 선방과 오프사이드 판정으로 추가 득점이 나오지 않았다’는 인과관계가 제공 근거로 확인되지 않는다.', 'evidence.original_value의 구체적 보강 요소인 공식 통계나 국내 시청 정보가 본문에 추가되지 않았다.'], 'required_fixes': ['골키퍼 선방이 추가 득점을 막았다는 표현을 삭제하거나 공식 근거를 추가한다.', '공식 통계 또는 국내 시청 정보를 확인해 추가하거나, 해당 보강 내"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-06T17:07:25.634927+00:00"
         }
       ]
     }

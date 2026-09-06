@@ -1,24 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 9,
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-06T00:13:15.707411+00:00",
+  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
+  "consecutive_failures": 10,
+  "last_error": "Quality gate failed after 4 Terra revisions: {'score': 94, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 19, 'Search intent': 15, 'SEO': 9, 'Readability': 10, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': [], 'required_fixes': ['구면 메르카토르의 1/cos φ·1/cos² φ 공식과 30°·45°·60°·75°의 수치표가 제공된 1차 자료 및 claim mapping에서 직접 검증되지 않았습니다.', '‘위도 60°에서 약 4배’라는 구체적 수치도 별도 근거 연결이 필요합니다.', '웹 지도와 전통적 해도의 투영·활용 맥락이 서비스·축척에 따라 달라진다는 주장은 제공 근거가 불명확합니다.', '남극 주변 ",
+  "updated_at": "2026-09-06T01:13:44.115471+00:00",
   "events": [
-    {
-      "ok": true,
-      "timestamp": "2026-09-05T08:08:13.851097+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-05T09:26:48.092989+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-05T09:28:45.515269+00:00"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -228,15 +214,33 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-06T00:13:15.707378+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T01:06:04.325471+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-06T01:09:49.376454+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 86, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 1, 'issues': ['最新の位置・進路や9月6〜7日の地域別予報を掲載せず、検索意図への回答は確認方法中心にとどまる。', '「クロヴァン」という名称を扱っていないため、トピックとの一致は部分的。'], 'required_fixes': ['公開時点で最新進路を断定する場合は、気象庁の台風24号専用情報で位置・進路を再確認する。未確認なら現状どおり固定値を掲載しない。', '「秋雨前線」という名称は一次資料で確認されておらず、証拠では単に「前線」とされている。', '台風24号が湿った空気"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-06T01:13:44.115432+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 94, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 19, 'Search intent': 15, 'SEO': 9, 'Readability': 10, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': [], 'required_fixes': ['구면 메르카토르의 1/cos φ·1/cos² φ 공식과 30°·45°·60°·75°의 수치표가 제공된 1차 자료 및 claim mapping에서 직접 검증되지 않았습니다.', '‘위도 60°에서 약 4배’라는 구체적 수치도 별도 근거 연결이 필요합니다.', '웹 지도와 전통적 해도의 투영·활용 맥락이 서비스·축척에 따라 달라진다는 주장은 제공 근거가 불명확합니다.', '남극 주변 "
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T00:11:02.677000+00:00",
+      "updated_at": "2026-09-06T01:06:04.325500+00:00",
       "events": [
         {
           "locale": "us",
@@ -313,15 +317,21 @@
           "ok": false,
           "timestamp": "2026-09-06T00:11:02.676967+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T01:06:04.325471+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-06T00:12:10.510716+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 86, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 1, 'issues': ['最新の位置・進路や9月6〜7日の地域別予報を掲載せず、検索意図への回答は確認方法中心にとどまる。', '「クロヴァン」という名称を扱っていないため、トピックとの一致は部分的。'], 'required_fixes': ['公開時点で最新進路を断定する場合は、気象庁の台風24号専用情報で位置・進路を再確認する。未確認なら現状どおり固定値を掲載しない。', '「秋雨前線」という名称は一次資料で確認されておらず、証拠では単に「前線」とされている。', '台風24号が湿った空気",
+      "updated_at": "2026-09-06T01:09:49.376483+00:00",
       "events": [
         {
           "locale": "jp",
@@ -394,15 +404,21 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-06T00:12:10.510697+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-06T01:09:49.376454+00:00",
+          "error": "Quality gate failed after 4 Terra revisions: {'score': 86, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 1, 'issues': ['最新の位置・進路や9月6〜7日の地域別予報を掲載せず、検索意図への回答は確認方法中心にとどまる。', '「クロヴァン」という名称を扱っていないため、トピックとの一致は部分的。'], 'required_fixes': ['公開時点で最新進路を断定する場合は、気象庁の台風24号専用情報で位置・進路を再確認する。未確認なら現状どおり固定値を掲載しない。', '「秋雨前線」という名称は一次資料で確認されておらず、証拠では単に「前線」とされている。', '台風24号が湿った空気"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-06T00:13:15.707396+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 94, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 19, 'Search intent': 15, 'SEO': 9, 'Readability': 10, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': [], 'required_fixes': ['구면 메르카토르의 1/cos φ·1/cos² φ 공식과 30°·45°·60°·75°의 수치표가 제공된 1차 자료 및 claim mapping에서 직접 검증되지 않았습니다.', '‘위도 60°에서 약 4배’라는 구체적 수치도 별도 근거 연결이 필요합니다.', '웹 지도와 전통적 해도의 투영·활용 맥락이 서비스·축척에 따라 달라진다는 주장은 제공 근거가 불명확합니다.', '남극 주변 ",
+      "updated_at": "2026-09-06T01:13:44.115456+00:00",
       "events": [
         {
           "locale": "kr",
@@ -475,6 +491,12 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-06T00:13:15.707378+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-06T01:13:44.115432+00:00",
+          "error": "Quality gate failed after 4 Terra revisions: {'score': 94, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 19, 'Search intent': 15, 'SEO': 9, 'Readability': 10, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': [], 'required_fixes': ['구면 메르카토르의 1/cos φ·1/cos² φ 공식과 30°·45°·60°·75°의 수치표가 제공된 1차 자료 및 claim mapping에서 직접 검증되지 않았습니다.', '‘위도 60°에서 약 4배’라는 구체적 수치도 별도 근거 연결이 필요합니다.', '웹 지도와 전통적 해도의 투영·활용 맥락이 서비스·축척에 따라 달라진다는 주장은 제공 근거가 불명확합니다.', '남극 주변 "
         }
       ]
     }

@@ -1,26 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 14,
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-06T05:09:21.116294+00:00",
+  "reason": "us: three consecutive failed cycles",
+  "consecutive_failures": 15,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-06T06:09:02.714509+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-05T15:08:46.022055+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-05T16:06:47.008766+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-05T16:07:32.428283+00:00"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -231,15 +215,31 @@
       "ok": false,
       "timestamp": "2026-09-06T05:09:21.116251+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T06:07:30.433962+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-06T06:08:19.091393+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-06T06:09:02.714480+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 14,
+      "consecutive_failures": 15,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T05:05:57.869667+00:00",
+      "updated_at": "2026-09-06T06:07:30.433989+00:00",
       "events": [
         {
           "locale": "us",
@@ -346,15 +346,21 @@
           "ok": false,
           "timestamp": "2026-09-06T05:05:57.869636+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T06:07:30.433962+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T05:07:31.515058+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T06:08:19.091411+00:00",
       "events": [
         {
           "locale": "jp",
@@ -455,15 +461,20 @@
           "ok": false,
           "timestamp": "2026-09-06T05:07:31.515027+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-06T06:08:19.091393+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T05:09:21.116278+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T06:09:02.714495+00:00",
       "events": [
         {
           "locale": "kr",
@@ -564,6 +575,11 @@
           "ok": false,
           "timestamp": "2026-09-06T05:09:21.116251+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-06T06:09:02.714480+00:00"
         }
       ]
     }

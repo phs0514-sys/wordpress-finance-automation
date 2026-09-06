@@ -1,27 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 22,
-  "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-  "updated_at": "2026-09-06T14:10:32.350442+00:00",
+  "reason": "us: three consecutive failed cycles",
+  "consecutive_failures": 23,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-06T15:08:45.906692+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-06T00:13:15.707378+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-06T01:06:04.325471+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-06T01:09:49.376454+00:00",
-      "error": "Quality gate failed after 4 Terra revisions: {'score': 86, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 1, 'issues': ['最新の位置・進路や9月6〜7日の地域別予報を掲載せず、検索意図への回答は確認方法中心にとどまる。', '「クロヴァン」という名称を扱っていないため、トピックとの一致は部分的。'], 'required_fixes': ['公開時点で最新進路を断定する場合は、気象庁の台風24号専用情報で位置・進路を再確認する。未確認なら現状どおり固定値を掲載しない。', '「秋雨前線」という名称は一次資料で確認されておらず、証拠では単に「前線」とされている。', '台風24号が湿った空気"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -231,22 +214,32 @@
       "ok": false,
       "timestamp": "2026-09-06T14:10:32.350404+00:00",
       "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T15:06:55.654170+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-06T15:07:57.327337+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-06T15:08:45.906659+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 22,
+      "consecutive_failures": 23,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T14:06:36.858908+00:00",
+      "updated_at": "2026-09-06T15:06:55.654202+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-05T17:06:09.031490+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -360,22 +353,22 @@
           "ok": false,
           "timestamp": "2026-09-06T14:06:36.858840+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T15:06:55.654170+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T14:08:51.596357+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T15:07:57.327357+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-05T17:09:37.355013+00:00",
-          "error": "Quality gate failed after 4 Terra revisions: {'score': 79, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 17, 'Search intent': 10, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 3, 'Layout': 5}, 'originality_count': 2, 'issues': ['台風24号の存在・現在位置・地域別降水量予報を一次情報で裏付けられておらず、中心テーマである速報性を満たしていません。', '2026年台風経路図のURLだけでは、2026年9月5日時点の台風24号の状況を裏付けられません。', '記事は確認方法の一般解説に寄っており、検索意図である台風24号の地域別雨量を知りたい需要に十分答えていません。'], 'required_fixes': ['公開前に気象庁の最新台風情報・地方気象情報から、発表時刻付きの台風24号の存在、位"
-        },
         {
           "locale": "jp",
           "ok": true,
@@ -480,21 +473,21 @@
           "ok": false,
           "timestamp": "2026-09-06T14:08:51.596330+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-06T15:07:57.327337+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-      "updated_at": "2026-09-06T14:10:32.350430+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T15:08:45.906677+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-05T17:10:19.149074+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -599,6 +592,11 @@
           "ok": false,
           "timestamp": "2026-09-06T14:10:32.350404+00:00",
           "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-06T15:08:45.906659+00:00"
         }
       ]
     }

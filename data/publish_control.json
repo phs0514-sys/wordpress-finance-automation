@@ -1,48 +1,8 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 0,
+  "consecutive_failures": 8,
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T11:07:20.846452+00:00",
-      "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T12:17:19.008237+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:03:32.618717+00:00",
-      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpfinanceresearch.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:03:33.157930+00:00",
-      "error": "PUBLISHING PAUSED: three consecutive failed runs"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:15:43.264743+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:17:27.935685+00:00",
-      "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:20:40.837782+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-05T13:22:20.118905+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-05T13:24:41.300450+00:00",
@@ -97,8 +57,48 @@
     {
       "ok": true,
       "timestamp": "2026-09-05T20:06:41.063124+00:00"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:53.947073+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.052330+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.158325+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.263771+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.370186+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.477270+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.581813+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-06T00:44:54.686407+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
     }
   ],
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-05T20:06:41.063139+00:00"
+  "last_error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue",
+  "updated_at": "2026-09-06T00:44:54.686421+00:00"
 }

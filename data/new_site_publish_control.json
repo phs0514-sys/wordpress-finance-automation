@@ -1,27 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 12,
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-06T03:10:16.453659+00:00",
+  "reason": "us: three consecutive failed cycles",
+  "consecutive_failures": 13,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-06T04:07:49.563617+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-05T12:10:39.134646+00:00",
-      "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/krdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-05T14:06:40.376531+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-05T14:08:23.124075+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -231,15 +214,31 @@
       "ok": false,
       "timestamp": "2026-09-06T03:10:16.453612+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T04:06:32.381165+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-06T04:07:08.234162+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-06T04:07:49.563583+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 12,
+      "consecutive_failures": 13,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T03:06:35.259934+00:00",
+      "updated_at": "2026-09-06T04:06:32.381202+00:00",
       "events": [
         {
           "locale": "us",
@@ -334,15 +333,21 @@
           "ok": false,
           "timestamp": "2026-09-06T03:06:35.259911+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T04:06:32.381165+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T03:08:17.279454+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T04:07:08.234181+00:00",
       "events": [
         {
           "locale": "jp",
@@ -432,15 +437,20 @@
           "ok": false,
           "timestamp": "2026-09-06T03:08:17.279424+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-06T04:07:08.234162+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T03:10:16.453640+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-06T04:07:49.563601+00:00",
       "events": [
         {
           "locale": "kr",
@@ -530,6 +540,11 @@
           "ok": false,
           "timestamp": "2026-09-06T03:10:16.453612+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-06T04:07:49.563583+00:00"
         }
       ]
     }

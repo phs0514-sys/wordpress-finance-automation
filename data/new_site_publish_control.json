@@ -1,28 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 17,
+  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
+  "consecutive_failures": 18,
   "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-06T09:08:20.366762+00:00",
+  "updated_at": "2026-09-06T10:11:46.201558+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-05T18:09:02.194517+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-05T19:05:55.567766+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-05T19:08:41.375258+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -231,22 +213,34 @@
       "ok": false,
       "timestamp": "2026-09-06T09:08:20.366720+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-06T10:07:07.282838+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-06T10:09:40.912507+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-06T10:11:46.201518+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 17,
+      "consecutive_failures": 18,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T09:06:17.411949+00:00",
+      "updated_at": "2026-09-06T10:07:07.282868+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-05T10:06:26.228592+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -359,22 +353,22 @@
           "ok": false,
           "timestamp": "2026-09-06T09:06:17.411922+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-06T10:07:07.282838+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-06T09:06:58.540340+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-06T10:09:40.912535+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-05T10:07:53.766342+00:00",
-          "error": "HTTP 403 from https://public-api.wordpress.com/rest/v1.1/sites/jpdailybrief.wordpress.com/media/new: {\"error\":\"unauthorized\",\"message\":\"API calls to this endpoint have been disabled.\"}"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -479,22 +473,22 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-06T09:06:58.540323+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-06T10:09:40.912507+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 1,
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 2,
       "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T09:08:20.366747+00:00",
+      "updated_at": "2026-09-06T10:11:46.201542+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-05T10:09:30.882770+00:00",
-          "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -598,6 +592,12 @@
           "locale": "kr",
           "ok": false,
           "timestamp": "2026-09-06T09:08:20.366720+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-06T10:11:46.201518+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]

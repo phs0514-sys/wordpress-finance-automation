@@ -1,26 +1,10 @@
 {
-  "paused": false,
-  "reason": "",
-  "consecutive_failures": 0,
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-07T14:08:47.178253+00:00",
+  "paused": true,
+  "reason": "us: three failed cycles in the last five, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
+  "consecutive_failures": 1,
+  "last_error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims",
+  "updated_at": "2026-09-07T15:14:53.223016+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-07T01:11:04.711728+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-07T02:07:28.245038+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-07T02:08:21.335491+00:00"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -225,22 +209,34 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-07T14:08:47.178225+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-07T15:10:06.830080+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['The article does not quantify cross-source disagreement or provide Tier 2/Tier 3 and late-round player comparisons, limiting its draft-day usefulness.', 'The source comparison is transparent but narrower than the proposed consensus-versu"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-07T15:13:56.934683+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-07T15:14:53.222971+00:00",
+      "error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims"
     }
   ],
   "locales": {
     "us": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-07T14:06:41.901732+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['The article does not quantify cross-source disagreement or provide Tier 2/Tier 3 and late-round player comparisons, limiting its draft-day usefulness.', 'The source comparison is transparent but narrower than the proposed consensus-versu",
+      "updated_at": "2026-09-07T15:10:06.830107+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-06T18:07:15.325849+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -347,22 +343,22 @@
           "locale": "us",
           "ok": true,
           "timestamp": "2026-09-07T14:06:41.901715+00:00"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-07T15:10:06.830080+00:00",
+          "error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['The article does not quantify cross-source disagreement or provide Tier 2/Tier 3 and late-round player comparisons, limiting its draft-day usefulness.', 'The source comparison is transparent but narrower than the proposed consensus-versu"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-07T14:07:44.566269+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-07T15:13:56.934709+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-06T18:09:09.910301+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "jp",
           "ok": true,
@@ -466,22 +462,22 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-07T14:07:44.566250+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-07T15:13:56.934683+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-07T14:08:47.178240+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims",
+      "updated_at": "2026-09-07T15:14:53.222998+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-06T18:11:36.779714+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "kr",
           "ok": true,
@@ -585,6 +581,12 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-07T14:08:47.178225+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-07T15:14:53.222971+00:00",
+          "error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims"
         }
       ]
     }

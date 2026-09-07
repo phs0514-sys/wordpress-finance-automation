@@ -1,27 +1,10 @@
 {
-  "paused": true,
-  "reason": "jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 1,
+  "paused": false,
+  "reason": "",
+  "consecutive_failures": 0,
   "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-07T01:11:04.711769+00:00",
+  "updated_at": "2026-09-07T02:09:17.312562+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-06T11:07:59.535286+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-06T12:08:18.768698+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-06T12:10:13.968492+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -229,6 +212,21 @@
       "ok": false,
       "timestamp": "2026-09-07T01:11:04.711728+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": true,
+      "timestamp": "2026-09-07T02:07:28.245038+00:00"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-07T02:08:21.335491+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-07T02:09:17.312535+00:00"
     }
   ],
   "locales": {
@@ -237,14 +235,8 @@
       "reason": "",
       "consecutive_failures": 0,
       "last_error": "",
-      "updated_at": "2026-09-07T01:07:10.149115+00:00",
+      "updated_at": "2026-09-07T02:07:28.245055+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-06T04:06:32.381165+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -356,21 +348,21 @@
           "locale": "us",
           "ok": true,
           "timestamp": "2026-09-07T01:07:10.149100+00:00"
+        },
+        {
+          "locale": "us",
+          "ok": true,
+          "timestamp": "2026-09-07T02:07:28.245038+00:00"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-07T01:08:38.967267+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T02:08:21.335514+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": true,
-          "timestamp": "2026-09-06T04:07:08.234162+00:00"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -475,21 +467,21 @@
           "ok": false,
           "timestamp": "2026-09-07T01:08:38.967237+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-07T02:08:21.335491+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-07T01:11:04.711753+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T02:09:17.312549+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-06T04:07:49.563583+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -594,6 +586,11 @@
           "ok": false,
           "timestamp": "2026-09-07T01:11:04.711728+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-07T02:09:17.312535+00:00"
         }
       ]
     }

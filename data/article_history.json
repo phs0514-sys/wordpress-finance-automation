@@ -1839,5 +1839,127 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "us",
+    "post_id": 39,
+    "url": "https://uscurrentbrief.wordpress.com/2026/09/06/hurricane-lowell-hawaii-update-track-timing-impacts/",
+    "topic": "Hurricane Lowell Hawaii update: forecast track, timing, rain and surf impacts",
+    "category": "Science & Environment",
+    "primary_keyword": "Hurricane Lowell Hawaii update",
+    "secondary_keywords": [
+      "Hurricane Lowell track",
+      "Hurricane Lowell forecast",
+      "Hurricane Lowell landfall",
+      "Hawaii weather September 7 2026",
+      "Lowell storm impacts Hawaii",
+      "Kauai hurricane update",
+      "Hawaii tropical storm warning"
+    ],
+    "trend_score": 88,
+    "opportunity_score": 80,
+    "serp_competition": 40,
+    "headline_type": "Breaking-weather explainer with forecast-timeline and what-to-expect hook",
+    "word_count": 841,
+    "layout_type": "timeline",
+    "image_type": [
+      "home",
+      "calculator"
+    ],
+    "sources_count": 5,
+    "original_value_count": 2,
+    "publish_time": "2026-09-06T22:07:10",
+    "publish_slot": 0,
+    "action": "new",
+    "quality_score": 94,
+    "quality_breakdown": {
+      "Fact accuracy": 19,
+      "Original value": 19,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 10,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "As of the latest available NWS Honolulu update on September 6, 2026, Hurricane Lowell was forecast to make its closest approach to the main Hawaiian Islands Monday night, passing approximately 90 to 150 miles west of Niihau.",
+        "url": "https://forecast.weather.gov/product.php?format=CI&glossary=1&issuedby=HFO&product=HLS&site=CSC&version=1",
+        "source_title": "Hurricane Lowell Local Statement Advisory Number 43"
+      },
+      {
+        "claim": "Lowell was expected to remain a hurricane while passing near Hawaii, with tropical-storm conditions expected on Kauai and Niihau by late Monday.",
+        "url": "https://forecast.weather.gov/product.php?format=CI&glossary=1&issuedby=HFO&product=HLS&site=CSC&version=1",
+        "source_title": "Hurricane Lowell Local Statement Advisory Number 43"
+      },
+      {
+        "claim": "A Tropical Storm Warning was in effect for Kauai and Niihau in the September 6, 2026, NWS Honolulu advisory.",
+        "url": "https://forecast.weather.gov/product.php?format=txt&glossary=1&issuedby=HFO&product=HLS&site=CSC&version=2",
+        "source_title": "Hurricane Lowell Local Statement Advisory Number 42"
+      },
+      {
+        "claim": "Expected Hawaii impacts included high surf, heavy rain, flooding, strong southerly winds, and possible thunderstorms; impacts could extend beyond the storm center and affect multiple islands.",
+        "url": "https://www.weather.gov/hfo/AFD",
+        "source_title": "Area Forecast Discussion for Hawaii"
+      },
+      {
+        "claim": "High surf was expected to continue through Monday night, with flooding possible from showers and thunderstorms Sunday night through Tuesday; tropical-storm-force winds were expected to reach Kauai and Niihau late Monday through Monday night.",
+        "url": "https://www.weather.gov/hfo/HSFNP",
+        "source_title": "High Seas Forecast for the Central North Pacific"
+      },
+      {
+        "claim": "The forecast remained subject to change because relatively small deviations in Lowell's track could produce significantly different impacts, especially around Kauai County.",
+        "url": "https://www.weather.gov/hfo/AFD",
+        "source_title": "Area Forecast Discussion for Hawaii"
+      }
+    ],
+    "fact_expirations": [],
+    "content_version": "04fa9fe27442c345",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 62222,
+      "writing_tokens": 6374,
+      "review_tokens": 0,
+      "total_tokens": 68596,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-07T02:07:28.242230+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

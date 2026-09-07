@@ -27,10 +27,11 @@
     "last_locale": "us"
   },
   "apnews.com": {
-    "times_used": 2,
+    "times_used": 3,
     "categories": {
       "Technology & Markets": 1,
-      "Everyday Life": 1
+      "Everyday Life": 1,
+      "Science & Environment": 1
     },
     "citations_used": 0,
     "unique_information": 0,
@@ -518,6 +519,42 @@
     "times_used": 2,
     "categories": {
       "Everyday Life": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "forecast.weather.gov": {
+    "times_used": 2,
+    "categories": {
+      "Science & Environment": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.nhc.noaa.gov": {
+    "times_used": 3,
+    "categories": {
+      "Science & Environment": 3
+    },
+    "citations_used": 2,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.gohawaii.com": {
+    "times_used": 1,
+    "categories": {
+      "Science & Environment": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.goes.noaa.gov": {
+    "times_used": 2,
+    "categories": {
+      "Science & Environment": 2
     },
     "citations_used": 1,
     "unique_information": 0,

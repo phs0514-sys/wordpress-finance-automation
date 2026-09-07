@@ -1,27 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three failed cycles in the last five, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 1,
-  "last_error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims",
-  "updated_at": "2026-09-07T15:14:53.223016+00:00",
+  "reason": "us: three failed cycles in the last five",
+  "consecutive_failures": 2,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-07T16:09:03.194142+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-07T02:09:17.312535+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-07T03:07:22.262226+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-07T03:10:49.590147+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -227,22 +210,32 @@
       "ok": false,
       "timestamp": "2026-09-07T15:14:53.222971+00:00",
       "error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-07T16:07:26.277704+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-07T16:08:11.949367+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-07T16:09:03.194112+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['The article does not quantify cross-source disagreement or provide Tier 2/Tier 3 and late-round player comparisons, limiting its draft-day usefulness.', 'The source comparison is transparent but narrower than the proposed consensus-versu",
-      "updated_at": "2026-09-07T15:10:06.830107+00:00",
+      "consecutive_failures": 2,
+      "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+      "updated_at": "2026-09-07T16:07:26.277734+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-06T20:06:31.659022+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -349,21 +342,22 @@
           "ok": false,
           "timestamp": "2026-09-07T15:10:06.830080+00:00",
           "error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': True, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 12, 'SEO': 9, 'Readability': 9, 'Naturalness': 8, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['The article does not quantify cross-source disagreement or provide Tier 2/Tier 3 and late-round player comparisons, limiting its draft-day usefulness.', 'The source comparison is transparent but narrower than the proposed consensus-versu"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-07T16:07:26.277704+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-07T15:13:56.934709+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T16:08:11.949385+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": true,
-          "timestamp": "2026-09-06T20:07:18.792492+00:00"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -468,21 +462,21 @@
           "ok": false,
           "timestamp": "2026-09-07T15:13:56.934683+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-07T16:08:11.949367+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims",
-      "updated_at": "2026-09-07T15:14:53.222998+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T16:09:03.194128+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-06T20:08:03.383078+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -587,6 +581,11 @@
           "ok": false,
           "timestamp": "2026-09-07T15:14:53.222971+00:00",
           "error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-07T16:09:03.194112+00:00"
         }
       ]
     }

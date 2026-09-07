@@ -27,9 +27,10 @@
     "last_locale": "us"
   },
   "apnews.com": {
-    "times_used": 1,
+    "times_used": 2,
     "categories": {
-      "Technology & Markets": 1
+      "Technology & Markets": 1,
+      "Everyday Life": 1
     },
     "citations_used": 0,
     "unique_information": 0,
@@ -483,6 +484,42 @@
       "Technology & Markets": 1
     },
     "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.washingtonpost.com": {
+    "times_used": 1,
+    "categories": {
+      "Everyday Life": 1
+    },
+    "citations_used": 0,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "about.usps.com": {
+    "times_used": 2,
+    "categories": {
+      "Everyday Life": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.federalreserve.gov": {
+    "times_used": 2,
+    "categories": {
+      "Everyday Life": 2
+    },
+    "citations_used": 1,
+    "unique_information": 0,
+    "last_locale": "us"
+  },
+  "www.nyse.com": {
+    "times_used": 2,
+    "categories": {
+      "Everyday Life": 2
+    },
+    "citations_used": 1,
     "unique_information": 0,
     "last_locale": "us"
   }

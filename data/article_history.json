@@ -1721,5 +1721,123 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "us",
+    "post_id": 33,
+    "url": "https://uscurrentbrief.wordpress.com/2026/09/06/labor-day-2026-whats-open-and-closed-september-7/",
+    "topic": "Labor Day 2026: What’s Open and Closed on Monday, September 7",
+    "category": "Everyday Life",
+    "primary_keyword": "what is open and closed on Labor Day 2026",
+    "secondary_keywords": [
+      "Labor Day 2026 bank hours",
+      "is the post office open Labor Day 2026",
+      "is the stock market open Labor Day 2026",
+      "are banks open September 7 2026",
+      "are stores open on Labor Day 2026",
+      "USPS Labor Day schedule 2026",
+      "NYSE Labor Day 2026",
+      "what is closed on September 7 2026"
+    ],
+    "trend_score": 86,
+    "opportunity_score": 73,
+    "serp_competition": 72,
+    "headline_type": "Date-specific utility checklist with open-versus-closed search hook",
+    "word_count": 812,
+    "layout_type": "checklist",
+    "image_type": [
+      "currency",
+      "chart"
+    ],
+    "sources_count": 4,
+    "original_value_count": 2,
+    "publish_time": "2026-09-06T21:06:57",
+    "publish_slot": 0,
+    "action": "new",
+    "quality_score": 93,
+    "quality_breakdown": {
+      "Fact accuracy": 19,
+      "Original value": 18,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 10,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "Labor Day 2026 falls on Monday, September 7, 2026.",
+        "url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/?stream=top",
+        "source_title": "Federal Holidays"
+      },
+      {
+        "claim": "Labor Day is a federal holiday listed on the 2026 federal holiday schedule.",
+        "url": "https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/?stream=top",
+        "source_title": "Federal Holidays"
+      },
+      {
+        "claim": "All USPS post office locations will be closed on Monday, September 7, 2026; regular mail delivery and retail services will resume Tuesday, September 8, 2026.",
+        "url": "https://about.usps.com/newsroom/national-releases/2026/0824-usps-to-close-for-labor-day-on-sept-7.htm",
+        "source_title": "U.S. Postal Service Will be Closed in Observance of Labor Day, September 7"
+      },
+      {
+        "claim": "The Federal Reserve observes Labor Day on September 7, 2026.",
+        "url": "https://www.federalreserve.gov/aboutthefed/k8.htm",
+        "source_title": "Federal Reserve Board - Holidays Observed - K.8"
+      },
+      {
+        "claim": "All NYSE markets observe Labor Day on Monday, September 7, 2026, and do not have a regular trading session that day.",
+        "url": "https://www.nyse.com/trade/hours-calendars?os=vbkn42___",
+        "source_title": "Holidays & Trading Hours"
+      }
+    ],
+    "fact_expirations": [],
+    "content_version": "a19a1e85d1d5404a",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "optimized",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 58951,
+      "writing_tokens": 6092,
+      "review_tokens": 0,
+      "total_tokens": 65043,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-07T01:07:10.146427+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

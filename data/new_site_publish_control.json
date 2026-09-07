@@ -1,26 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 4,
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-07T18:10:08.618559+00:00",
+  "reason": "jp: three failed cycles in the last five",
+  "consecutive_failures": 1,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-07T20:08:45.768782+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-07T05:09:25.760177+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-07T06:09:03.013493+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-07T06:09:57.010986+00:00"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -226,22 +210,32 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-07T18:10:08.618526+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": true,
+      "timestamp": "2026-09-07T20:06:28.090514+00:00"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-07T20:07:59.285490+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-07T20:08:45.768749+00:00"
     }
   ],
   "locales": {
     "us": {
-      "paused": true,
-      "reason": "three consecutive failed cycles",
-      "consecutive_failures": 4,
-      "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-07T18:08:08.011899+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T20:06:28.090529+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-06T23:06:11.258868+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": true,
@@ -348,22 +342,21 @@
           "ok": false,
           "timestamp": "2026-09-07T18:08:08.011868+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": true,
+          "timestamp": "2026-09-07T20:06:28.090514+00:00"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-07T18:09:10.522096+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-07T20:07:59.285519+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-06T23:10:24.361502+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "jp",
           "ok": true,
@@ -467,6 +460,12 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-07T18:09:10.522077+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-07T20:07:59.285490+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     },
@@ -475,14 +474,8 @@
       "reason": "",
       "consecutive_failures": 0,
       "last_error": "",
-      "updated_at": "2026-09-07T18:10:08.618545+00:00",
+      "updated_at": "2026-09-07T20:08:45.768768+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-06T23:12:27.074860+00:00",
-          "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
-        },
         {
           "locale": "kr",
           "ok": true,
@@ -586,6 +579,11 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-07T18:10:08.618526+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-07T20:08:45.768749+00:00"
         }
       ]
     }

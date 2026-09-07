@@ -1961,5 +1961,127 @@
         "position": null
       }
     }
+  },
+  {
+    "locale": "us",
+    "post_id": 46,
+    "url": "https://uscurrentbrief.wordpress.com/2026/09/07/nintendo-switch-2-banned-reports-what-to-do/",
+    "topic": "Reports of sudden Nintendo Switch 2 console bans and what affected owners should know",
+    "category": "Technology & Markets",
+    "primary_keyword": "Nintendo Switch 2 banned",
+    "secondary_keywords": [
+      "Nintendo Switch 2 ban wave",
+      "Switch 2 console banned",
+      "Nintendo error 2124-4508",
+      "Nintendo account deactivated",
+      "Switch 2 ban reports",
+      "Nintendo console ban",
+      "why was my Switch 2 banned"
+    ],
+    "trend_score": 86,
+    "opportunity_score": 83,
+    "serp_competition": 31,
+    "headline_type": "News-driven explainer with a verification-and-troubleshooting hook",
+    "word_count": 859,
+    "layout_type": "explainer",
+    "image_type": [
+      "home",
+      "calculator"
+    ],
+    "sources_count": 4,
+    "original_value_count": 2,
+    "publish_time": "2026-09-07T03:09:08",
+    "publish_slot": 0,
+    "action": "new",
+    "quality_score": 92,
+    "quality_breakdown": {
+      "Fact accuracy": 19,
+      "Original value": 18,
+      "Search intent": 14,
+      "SEO": 9,
+      "Readability": 9,
+      "Naturalness": 9,
+      "Freshness": 9,
+      "Layout": 5
+    },
+    "originality_count": 2,
+    "source_claims": [
+      {
+        "claim": "Nintendo documents that error codes 2124-4007 and 2124-4508 indicate a Nintendo Switch 2 or Nintendo Switch console has been permanently banned from connecting online because of a breach of the user agreements.",
+        "url": "https://en-americas-support.nintendo.com/app/topics/detail/p/1095/c/914",
+        "source_title": "Nintendo Switch 2: Error Codes"
+      },
+      {
+        "claim": "Nintendo distinguishes console-level online bans from Nintendo Account deactivation; deactivated accounts display separate account-related messages and may be reactivated during the applicable 30-day period.",
+        "url": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/16031/p/992/c/737",
+        "source_title": "Nintendo Account Was Deleted or Deactivated",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-08"
+      },
+      {
+        "claim": "Nintendo states that piracy, system modifications, and circumvention devices are prohibited and warns that unauthorized devices may reduce online functionality or cause a console to stop working after network updates.",
+        "url": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/55888/~/intellectual-property-%26-piracy-faq",
+        "source_title": "Intellectual Property & Piracy FAQ"
+      },
+      {
+        "claim": "Nintendo provides official support pathways for users experiencing Switch 2, account, or error-code problems.",
+        "url": "https://en-americas-support.nintendo.com/",
+        "source_title": "Nintendo Support & Customer Service"
+      }
+    ],
+    "fact_expirations": [
+      {
+        "claim": "Nintendo distinguishes console-level online bans from Nintendo Account deactivation; deactivated accounts display separate account-related messages and may be reactivated during the applicable 30-day period.",
+        "url": "https://en-americas-support.nintendo.com/app/answers/detail/a_id/16031/p/992/c/737",
+        "source_title": "Nintendo Account Was Deleted or Deactivated",
+        "valid_for_days": 1,
+        "expires_at": "2026-09-08"
+      }
+    ],
+    "content_version": "e4a0b798b5bd6546",
+    "prompt_version": "editorial-v5-luna-terra-balanced-80",
+    "engine_version": "2026.09.05",
+    "strategy_version": null,
+    "experiment_group": "control",
+    "article_value": {
+      "traffic": null,
+      "authority": null,
+      "engagement": null,
+      "revenue": null
+    },
+    "cost": {
+      "research_tokens": 62318,
+      "writing_tokens": 6157,
+      "review_tokens": 0,
+      "total_tokens": 68475,
+      "estimated_usd": null
+    },
+    "created_at": "2026-09-07T07:09:37.431450+00:00",
+    "metrics": {
+      "24h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "72h": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "7d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      },
+      "28d": {
+        "impressions": null,
+        "clicks": null,
+        "ctr": null,
+        "position": null
+      }
+    }
   }
 ]

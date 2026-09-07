@@ -1,28 +1,10 @@
 {
-  "paused": true,
-  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 30,
+  "paused": false,
+  "reason": "",
+  "consecutive_failures": 0,
   "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-  "updated_at": "2026-09-06T23:12:27.074905+00:00",
+  "updated_at": "2026-09-07T00:11:21.295514+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-06T09:08:20.366720+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-06T10:07:07.282838+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-06T10:09:40.912507+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -232,22 +214,31 @@
       "ok": false,
       "timestamp": "2026-09-06T23:12:27.074860+00:00",
       "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+    },
+    {
+      "locale": "us",
+      "ok": true,
+      "timestamp": "2026-09-07T00:09:33.216542+00:00"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-07T00:10:29.129237+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-07T00:11:21.295484+00:00"
     }
   ],
   "locales": {
     "us": {
-      "paused": true,
-      "reason": "three consecutive failed cycles",
-      "consecutive_failures": 30,
-      "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-06T23:06:11.258903+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T00:09:33.216561+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-06T02:06:22.634325+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -361,21 +352,21 @@
           "ok": false,
           "timestamp": "2026-09-06T23:06:11.258868+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": true,
+          "timestamp": "2026-09-07T00:09:33.216542+00:00"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-06T23:10:24.361534+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T00:10:29.129254+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": true,
-          "timestamp": "2026-09-06T02:07:07.388299+00:00"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -480,21 +471,21 @@
           "ok": false,
           "timestamp": "2026-09-06T23:10:24.361502+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-07T00:10:29.129237+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Final article title overlapped a post from the last 24 hours; publication was blocked",
-      "updated_at": "2026-09-06T23:12:27.074889+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-07T00:11:21.295500+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-06T02:07:52.486397+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -599,6 +590,11 @@
           "ok": false,
           "timestamp": "2026-09-06T23:12:27.074860+00:00",
           "error": "Final article title overlapped a post from the last 24 hours; publication was blocked"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-07T00:11:21.295484+00:00"
         }
       ]
     }

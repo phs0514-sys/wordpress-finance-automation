@@ -1,27 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 9,
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-08T05:07:49.415570+00:00",
+  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
+  "consecutive_failures": 10,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-08T06:13:31.638570+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-07T15:14:53.222971+00:00",
-      "error": "Primary-source fact verification did not pass: no relevant primary source supported the core factual claims"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-07T16:07:26.277704+00:00",
-      "error": "Research topic overlapped a post from the last 24 hours after three selections"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-07T16:08:11.949367+00:00"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -229,22 +212,34 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-08T05:07:49.415543+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-08T06:08:10.324718+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-08T06:12:05.636842+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 90, 'pass': False, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 9, 'Freshness': 9, 'Layout': 5}, 'originality_count': 0, 'issues': ['evidence.original_valueの具体的な追加情報が本文に明示されていません。'], 'required_fixes': ['全国共通の対象道路マップや一覧は確認できないため、個別道路は現地の標識・道路形状と都道府県警察・自治体の案内で確認する、という制約を本文に明記してください。'], 'rationale': '施行日、対象道路、対象外の道路、指定速度の優先関係は公式情報と整合しています。構成と検索意図も適切ですが、独自価値として指定された証拠由来の"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-08T06:13:31.638531+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 9,
+      "consecutive_failures": 10,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-08T05:06:28.236806+00:00",
+      "updated_at": "2026-09-08T06:08:10.324745+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-07T09:07:48.445711+00:00",
-          "error": "Research topic overlapped a post from the last 24 hours after three selections"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -355,22 +350,22 @@
           "ok": false,
           "timestamp": "2026-09-08T05:06:28.236778+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-08T06:08:10.324718+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-08T05:07:09.681961+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 90, 'pass': False, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 9, 'Freshness': 9, 'Layout': 5}, 'originality_count': 0, 'issues': ['evidence.original_valueの具体的な追加情報が本文に明示されていません。'], 'required_fixes': ['全国共通の対象道路マップや一覧は確認できないため、個別道路は現地の標識・道路形状と都道府県警察・自治体の案内で確認する、という制約を本文に明記してください。'], 'rationale': '施行日、対象道路、対象外の道路、指定速度の優先関係は公式情報と整合しています。構成と検索意図も適切ですが、独自価値として指定された証拠由来の",
+      "updated_at": "2026-09-08T06:12:05.636866+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-07T09:11:01.036536+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "jp",
           "ok": true,
@@ -474,22 +469,22 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-08T05:07:09.681942+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-08T06:12:05.636842+00:00",
+          "error": "Quality gate failed after 4 Terra revisions: {'score': 90, 'pass': False, 'breakdown': {'Fact accuracy': 19, 'Original value': 16, 'Search intent': 14, 'SEO': 9, 'Readability': 9, 'Naturalness': 9, 'Freshness': 9, 'Layout': 5}, 'originality_count': 0, 'issues': ['evidence.original_valueの具体的な追加情報が本文に明示されていません。'], 'required_fixes': ['全国共通の対象道路マップや一覧は確認できないため、個別道路は現地の標識・道路形状と都道府県警察・自治体の案内で確認する、という制約を本文に明記してください。'], 'rationale': '施行日、対象道路、対象外の道路、指定速度の優先関係は公式情報と整合しています。構成と検索意図も適切ですが、独自価値として指定された証拠由来の"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-08T05:07:49.415558+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-08T06:13:31.638556+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-07T09:12:40.692730+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "kr",
           "ok": true,
@@ -593,6 +588,12 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-08T05:07:49.415543+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-08T06:13:31.638531+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     }

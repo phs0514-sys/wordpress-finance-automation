@@ -1,48 +1,8 @@
 {
-  "paused": true,
-  "reason": "three consecutive failed runs",
-  "consecutive_failures": 100,
+  "paused": false,
+  "reason": "",
+  "consecutive_failures": 108,
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T00:44:54.373656+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T00:44:54.460446+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.052846+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.171104+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.282763+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.385648+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.490144+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
-    {
-      "ok": false,
-      "timestamp": "2026-09-08T01:42:48.593654+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-08T01:42:48.697326+00:00",
@@ -102,8 +62,48 @@
       "ok": false,
       "timestamp": "2026-09-08T12:19:04.679045+00:00",
       "error": "PUBLISHING PAUSED: three consecutive failed runs"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:30.955877+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.053499+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.151538+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.254984+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.354242+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.452472+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.552426+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-08T12:49:31.651559+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
     }
   ],
-  "last_error": "PUBLISHING PAUSED: three consecutive failed runs",
-  "updated_at": "2026-09-08T12:19:04.679064+00:00"
+  "last_error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue",
+  "updated_at": "2026-09-08T12:49:31.651575+00:00"
 }

@@ -1,26 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three consecutive failed cycles",
-  "consecutive_failures": 7,
-  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-  "updated_at": "2026-09-08T03:07:21.948189+00:00",
+  "reason": "us: three consecutive failed cycles, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
+  "consecutive_failures": 8,
+  "last_error": "Expecting value: line 1 column 1 (char 0)",
+  "updated_at": "2026-09-08T04:12:10.871660+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-07T13:14:38.114383+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-07T14:06:41.901715+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": true,
-      "timestamp": "2026-09-07T14:07:44.566250+00:00"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -228,21 +212,34 @@
       "locale": "kr",
       "ok": true,
       "timestamp": "2026-09-08T03:07:21.948158+00:00"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-08T04:06:53.700062+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-08T04:10:35.368144+00:00",
+      "error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 18, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': ['タイトルが、153円台への円高進行とその理由を確認済み事実のように読ませる可能性がある。', 'ホルムズ海峡報道、日銀利上げ観測、キャリー取引巻き戻しと当日の円高の因果関係は一次資料で裏付けられていない。'], 'required_fixes': ['タイトルを『市場解説で示されたドル円円高の見方』など、未確認の市場解釈であることが分かる表現に変更する。', '当日の原因分析では、ホルムズ海峡報道・利上げ観測・ポジション整理を『指摘されている材料』に限定し、確認済み事"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-08T04:12:10.871613+00:00",
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 7,
+      "consecutive_failures": 8,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-08T03:06:15.965871+00:00",
+      "updated_at": "2026-09-08T04:06:53.700092+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": true,
-          "timestamp": "2026-09-07T07:09:37.434432+00:00"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -353,22 +350,22 @@
           "ok": false,
           "timestamp": "2026-09-08T03:06:15.965842+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-08T04:06:53.700062+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-08T03:06:49.936086+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 18, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': ['タイトルが、153円台への円高進行とその理由を確認済み事実のように読ませる可能性がある。', 'ホルムズ海峡報道、日銀利上げ観測、キャリー取引巻き戻しと当日の円高の因果関係は一次資料で裏付けられていない。'], 'required_fixes': ['タイトルを『市場解説で示されたドル円円高の見方』など、未確認の市場解釈であることが分かる表現に変更する。', '当日の原因分析では、ホルムズ海峡報道・利上げ観測・ポジション整理を『指摘されている材料』に限定し、確認済み事",
+      "updated_at": "2026-09-08T04:10:35.368167+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-07T07:11:50.742614+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "jp",
           "ok": true,
@@ -472,22 +469,22 @@
           "locale": "jp",
           "ok": true,
           "timestamp": "2026-09-08T03:06:49.936067+00:00"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-08T04:10:35.368144+00:00",
+          "error": "Quality gate failed after 4 Terra revisions: {'score': 87, 'pass': False, 'breakdown': {'Fact accuracy': 18, 'Original value': 18, 'Search intent': 12, 'SEO': 8, 'Readability': 9, 'Naturalness': 9, 'Freshness': 8, 'Layout': 5}, 'originality_count': 2, 'issues': ['タイトルが、153円台への円高進行とその理由を確認済み事実のように読ませる可能性がある。', 'ホルムズ海峡報道、日銀利上げ観測、キャリー取引巻き戻しと当日の円高の因果関係は一次資料で裏付けられていない。'], 'required_fixes': ['タイトルを『市場解説で示されたドル円円高の見方』など、未確認の市場解釈であることが分かる表現に変更する。', '当日の原因分析では、ホルムズ海峡報道・利上げ観測・ポジション整理を『指摘されている材料』に限定し、確認済み事"
         }
       ]
     },
     "kr": {
-      "paused": false,
-      "reason": "",
-      "consecutive_failures": 0,
-      "last_error": "",
-      "updated_at": "2026-09-08T03:07:21.948175+00:00",
+      "paused": true,
+      "reason": "three failed cycles in the last five",
+      "consecutive_failures": 1,
+      "last_error": "Expecting value: line 1 column 1 (char 0)",
+      "updated_at": "2026-09-08T04:12:10.871642+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-07T07:13:39.454223+00:00",
-          "error": "Expecting value: line 1 column 1 (char 0)"
-        },
         {
           "locale": "kr",
           "ok": true,
@@ -591,6 +588,12 @@
           "locale": "kr",
           "ok": true,
           "timestamp": "2026-09-08T03:07:21.948158+00:00"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-08T04:12:10.871613+00:00",
+          "error": "Expecting value: line 1 column 1 (char 0)"
         }
       ]
     }

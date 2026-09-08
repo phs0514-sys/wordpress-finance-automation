@@ -1,26 +1,10 @@
 {
   "paused": true,
-  "reason": "us: three failed cycles in the last five, jp: three failed cycles in the last five, kr: three failed cycles in the last five",
-  "consecutive_failures": 1,
-  "last_error": "Expecting value: line 1 column 1 (char 0)",
-  "updated_at": "2026-09-08T09:15:22.599554+00:00",
+  "reason": "us: three failed cycles in the last five",
+  "consecutive_failures": 2,
+  "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
+  "updated_at": "2026-09-08T10:08:57.427521+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": true,
-      "timestamp": "2026-09-07T18:10:08.618526+00:00"
-    },
-    {
-      "locale": "us",
-      "ok": true,
-      "timestamp": "2026-09-07T20:06:28.090514+00:00"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-07T20:07:59.285490+00:00",
-      "error": "Expecting value: line 1 column 1 (char 0)"
-    },
     {
       "locale": "kr",
       "ok": true,
@@ -229,21 +213,32 @@
       "ok": false,
       "timestamp": "2026-09-08T09:15:22.599505+00:00",
       "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-08T10:07:26.575038+00:00",
+      "error": "Research topic overlapped a post from the last 24 hours after three selections"
+    },
+    {
+      "locale": "jp",
+      "ok": true,
+      "timestamp": "2026-09-08T10:08:05.952531+00:00"
+    },
+    {
+      "locale": "kr",
+      "ok": true,
+      "timestamp": "2026-09-08T10:08:57.427492+00:00"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
+      "consecutive_failures": 2,
       "last_error": "Research topic overlapped a post from the last 24 hours after three selections",
-      "updated_at": "2026-09-08T09:07:30.736876+00:00",
+      "updated_at": "2026-09-08T10:07:26.575064+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": true,
-          "timestamp": "2026-09-07T12:08:30.064168+00:00"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -354,21 +349,22 @@
           "ok": false,
           "timestamp": "2026-09-08T09:07:30.736850+00:00",
           "error": "Research topic overlapped a post from the last 24 hours after three selections"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-08T10:07:26.575038+00:00",
+          "error": "Research topic overlapped a post from the last 24 hours after three selections"
         }
       ]
     },
     "jp": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Quality gate failed after 4 Terra revisions: {'score': 78, 'pass': False, 'breakdown': {'Fact accuracy': 19, 'Original value': 14, 'Search intent': 6, 'SEO': 7, 'Readability': 9, 'Naturalness': 9, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['タイトルとメタディスクリプションが「4位」を示す一方、本文では順位・平均点・低得点層を確認できず、検索意図に十分答えていない。', '証拠にある独自価値のうち、順位・平均得点・低得点層を同じ表で整理する要素が実装されていない。', 'PISA2025の中心数値を未掲載のため、速報順位＋数字の意味という記事テーマから大きく外れている。'], 'required_fixes': ['公式の一次資料で読解力4位、数学・科学5位、平均得点、低得点層の数値を確認し、出典付きで本文",
-      "updated_at": "2026-09-08T09:11:33.223143+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-08T10:08:05.952548+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": true,
-          "timestamp": "2026-09-07T12:09:28.604826+00:00"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -473,21 +469,21 @@
           "ok": false,
           "timestamp": "2026-09-08T09:11:33.223118+00:00",
           "error": "Quality gate failed after 4 Terra revisions: {'score': 78, 'pass': False, 'breakdown': {'Fact accuracy': 19, 'Original value': 14, 'Search intent': 6, 'SEO': 7, 'Readability': 9, 'Naturalness': 9, 'Freshness': 9, 'Layout': 5}, 'originality_count': 1, 'issues': ['タイトルとメタディスクリプションが「4位」を示す一方、本文では順位・平均点・低得点層を確認できず、検索意図に十分答えていない。', '証拠にある独自価値のうち、順位・平均得点・低得点層を同じ表で整理する要素が実装されていない。', 'PISA2025の中心数値を未掲載のため、速報順位＋数字の意味という記事テーマから大きく外れている。'], 'required_fixes': ['公式の一次資料で読解力4位、数学・科学5位、平均得点、低得点層の数値を確認し、出典付きで本文"
+        },
+        {
+          "locale": "jp",
+          "ok": true,
+          "timestamp": "2026-09-08T10:08:05.952531+00:00"
         }
       ]
     },
     "kr": {
-      "paused": true,
-      "reason": "three failed cycles in the last five",
-      "consecutive_failures": 1,
-      "last_error": "Expecting value: line 1 column 1 (char 0)",
-      "updated_at": "2026-09-08T09:15:22.599534+00:00",
+      "paused": false,
+      "reason": "",
+      "consecutive_failures": 0,
+      "last_error": "",
+      "updated_at": "2026-09-08T10:08:57.427508+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": true,
-          "timestamp": "2026-09-07T12:10:19.489663+00:00"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -592,6 +588,11 @@
           "ok": false,
           "timestamp": "2026-09-08T09:15:22.599505+00:00",
           "error": "Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "locale": "kr",
+          "ok": true,
+          "timestamp": "2026-09-08T10:08:57.427492+00:00"
         }
       ]
     }

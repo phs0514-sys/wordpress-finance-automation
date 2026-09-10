@@ -1,0 +1,20 @@
+{
+  "critical": true,
+  "health_path": "/home/runner/work/wordpress-finance-automation/wordpress-finance-automation/data/technical_health.json",
+  "locales": {
+    "us": {
+      "critical": false,
+      "issues": []
+    },
+    "jp": {
+      "critical": false,
+      "issues": []
+    },
+    "kr": {
+      "critical": true,
+      "issues": [
+        "broken internal link https://koreafinanceresearch.wordpress.com/2026/09/08/%ea%b8%88%ec%9c%b5%ed%9a%8c%ec%82%ac-ai-%eb%b3%b4%ec%95%88%ec%9c%84%ed%98%91%ea%b3%bc-%eb%a7%9d%eb%b6%84%eb%a6%ac-%ea%b7%9c%ec%a0%9c-%ec%99%84%ed% (HTTP 400)"
+      ]
+    }
+  }
+}

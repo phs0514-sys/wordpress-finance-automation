@@ -1,13 +1,8 @@
 {
   "paused": false,
   "reason": "",
-  "consecutive_failures": 199,
+  "consecutive_failures": 200,
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-10T11:03:21.402982+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-10T11:03:21.488649+00:00",
@@ -102,8 +97,13 @@
       "ok": false,
       "timestamp": "2026-09-11T08:27:42.011463+00:00",
       "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-11T08:43:23.930411+00:00",
+      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
     }
   ],
   "last_error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue",
-  "updated_at": "2026-09-11T08:27:42.011500+00:00"
+  "updated_at": "2026-09-11T08:43:23.930425+00:00"
 }

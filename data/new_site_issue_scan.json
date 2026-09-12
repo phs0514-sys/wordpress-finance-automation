@@ -1,64 +1,82 @@
 {
   "us": {
     "locale": "us",
-    "generated_at": "2026-09-12T19:04:31.307281+00:00",
+    "generated_at": "2026-09-12T20:04:56.512245+00:00",
     "site_url": "https://uscurrentbrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 22,
     "trend_snapshot": [
       {
-        "term": "unlv vs north texas",
+        "term": "college football rankings",
+        "approx_traffic": "5000+"
+      },
+      {
+        "term": "la liga match",
         "approx_traffic": "500+"
       },
       {
-        "term": "tommy gantt",
+        "term": "pittsburgh weather",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "real madrid score",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "arsenal score",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "tim elliott",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "ncaa football",
+        "approx_traffic": "50000+"
+      },
+      {
+        "term": "angels vs nationals",
+        "approx_traffic": "10000+"
+      },
+      {
+        "term": "mets score",
+        "approx_traffic": "5000+"
+      },
+      {
+        "term": "chelsea gray",
         "approx_traffic": "1000+"
-      },
-      {
-        "term": "rafa garcia",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "tulsa football",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "heidi klum",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "wow classic plus",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "utsa vs texas state",
-        "approx_traffic": "2000+"
-      },
-      {
-        "term": "utah state vs washington",
-        "approx_traffic": "2000+"
-      },
-      {
-        "term": "ucf vs pittsburgh",
-        "approx_traffic": "2000+"
-      },
-      {
-        "term": "california vs syracuse",
-        "approx_traffic": "2000+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "Houthi advance in Yemen puts U.S. in a new bind - reuters.com",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQNkd2T3JFYkQtX1BpRFMwdUY5V0tXY0xuX1JpY3cwa2hEZmxKRWVSdGtNQkR5dFBIT2JPanlxM0N3WjA5YVVpZExUOFJIWG1MZTNLUXNrTXZaZDRLRnFac2Vkclp3eWhkaTFUNEZrdGk4RzBYTmVVV1kwMHRJWHdXbGs3Z3U5VlZ1eldGOGJXLTU5d3B2NUE?oc=5",
-        "published": "Sat, 12 Sep 2026 14:02:25 GMT",
-        "source": "reuters.com"
+        "title": "Taxes wouldn’t fund $5,000 Trump ‘dividend’ if Republicans win midterms, says commerce secretary - The Guardian",
+        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdXRadTJjVHF1Q2prUm4zZlBUdzFkY18zZGxMT1JYeWxPTk5XZmtlZXZybURyQnNoenUweGQ3aUt2RmdjWHpvUnBHclAxZXYtcENyNHl6UlFUUWZibHZOTUhxRktQLXBfa0V1bHJReDVMekJfUXpkTWJxU3otekg0YXo3MEw?oc=5",
+        "published": "Sat, 12 Sep 2026 14:39:00 GMT",
+        "source": "The Guardian"
       },
       {
-        "title": "Closure of Critical Saudi Oil Pipeline Puts Iraq Under Pressure - Bloomberg.com",
-        "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQYmoyY0RUcDVpWkd1OFM3RFlmZ2dTc0VlM09DVC1fejRUUWk0WU9tLWU1Mzg0ZnNGX2NxZm9qeFQ2NVhlVTg3MDVObC1hRjBNRmZlN2g5R1BLLThaS2h3UHNEamFTaENLU2JxelhscTIxb1htUlJqNU1iVkZVY29kNDY1R0djcTJtNWJoSnd1OWFWLWJYcGVQbkxuZzVTYk5nRVJSX1ZFWlQ1Q3hkdU8zcXZweEl2X2RlcGlCUFR3TFZIcTA?oc=5",
-        "published": "Sat, 12 Sep 2026 12:03:03 GMT",
-        "source": "Bloomberg.com"
+        "title": "Iran-backed Houthis seize strategic Mayun Island: Can they hold it? - Al Jazeera",
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQcXdCWFdsRlcxeS1kT1h5cE9zNWN4eVBSM0dYTlltcElqdUxEMDhVR3lMNC1nU18tc3NUZG9KN2VIbVB1MnZ5aVlKd0F0SXd5UnRSZmwzRGtTRTlObkVtNUltcWdpMHZCWHVLd0V5OWhQNEpXRTB4Qll3dlo1azlQa3RNZ0NGTVpsTFlSMWQwMmx0WXlDN1h2OHlaRHJQNUJhNlUtb2t0NWttUdIBrwFBVV95cUxQTFJfa0hfYzJjcWozZ2tCbTUtVkkxRE9majVfSVpkU3pFZnBxR25hTnFNWkxjOS1ESHpZWC1STFkzb1NnVkcwOU9scFowRUlwdi1rclR6ZjJUbkRmS0F2LVdQclhyWUZYR0tiYlo5QnNXSEphSnh5U3BIZ3lLTzBoNVdNVWN5UXJ0T1E0dnN0b3hrNFlsR3ZEdFkzZ1lZcjBDc1FlaDVXYVlaZkdmeFlj?oc=5",
+        "published": "Sat, 12 Sep 2026 13:50:08 GMT",
+        "source": "Al Jazeera"
+      },
+      {
+        "title": "Attack that closed key Saudi pipeline is blamed on Iran-backed militias in Iraq - AP News",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPY0hKblZsWDdXODVsQUN2V2V6c3dSODhwQm9pVHlwTmxpX3dQRnEyM3BLNTdBYy1OV2ZqNTE3M2pfQ1pKLWI2ZEdxZXE5QU1vWUR5WnI5bkdDalpxeVRtU3l6Zmp3UnVCUFFMbVdLQUR3RlFqQThBOUQ0UWZDYWozV1RSLWhWWUdTcEgyV2g5dUs3QQ?oc=5",
+        "published": "Sat, 12 Sep 2026 16:26:00 GMT",
+        "source": "AP News"
+      },
+      {
+        "title": "Trump Says Irish Unification Would Be ‘Fantastic,’ Breaking With Precedent - The New York Times",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPcjJDQWswdURnNGs2YzlLME5MTEwzaVdERngxcGN1S3g0SkpOMEp2d2k5SmlVbWt4QnZLTXlaZjJsTXdpNy0xWWdzX3EyWjVLWmxhRDR3NXQ2Rkkxc2ZJbWt4UkNlRkVDVVh6bHJIcHczT1VYSHpqRGg5cW9zSy1rUUNDQ1llQ3NVMk9MMmtfWQ?oc=5",
+        "published": "Sat, 12 Sep 2026 13:40:26 GMT",
+        "source": "The New York Times"
+      },
+      {
+        "title": "U.S.-Canada trade war hits GOP efforts to keep control of Congress - The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOLUF2dW1XMWFCdEVCWTNfR0hVV2k3aUdKcUY4NHZTZlZiWm1OWGVidEpENnp1N2s4bHZOdGN0Vjg3a0p2V0JXaEZuX2tJaXBvT29xc25KT3J6RTViWElFY3EtSnFaaWxNU2FsdGU4a0diRVBQenpoT2ZsRncyOWxqT1FVejg2R0MzWDJNa0ItT1lMU2piSVhqNFRZSlMxUjN5SUM1NG13cGJFTHA3bUdjam5EQ2t0b1hQcmdmckF2UjJCc3I1QzY3dkVkX3hEeGhIM1lvbVVDYUVtN0VzYXpoem1xU09NaHc4a1Y5b2w0UmlBcHlVQ2xHeWNKU2NtbzFjWGFLMW93NkRGaDBS?oc=5",
+        "published": "Sat, 12 Sep 2026 16:39:01 GMT",
+        "source": "The Washington Post"
       },
       {
         "title": "Trump sees Iran war ending soon after mid-term elections, predicts oil prices will then fall sharply - CNBC",
@@ -67,28 +85,22 @@
         "source": "CNBC"
       },
       {
-        "title": "Trump pledges $5K checks if Republicans do well in the midterms. Can he legally do that? - The Hill",
-        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZDFudVpzWEFmM0hDeC1mT2M1MjZhQlF0ZEJEVGt4U0FIX25USlRwOXQ3TE9rV1F6VlppSnJHODFjTmM1aUdfa0daXzI1eFUzSkNxOHVuakc1WmtWSmthRThlR3k4em1JWm5NQzE5Sy14N1FqZmpQb2I2eEJTdl9FX0JaRnZVTlg2bFZEdXBvLXhtN0lKRVHSAZsBQVVfeXFMTUEyWlVUNzNpV2k0OEZpOFVFZmJLQlZCbFRpTnBsU3ExdWhVZi1Nd05PYVhpcDJpRWJaM0g2VGhnY3hFVEpDbjA3UzMxa1o4NjlQVEF2a0tESVV3SjZvUThSSnVNbG03VkZYbVdNQk91Qk9BYWlJVDl5ZVFvT0tIUDhTVmpJRm5qN0gxSVhWbml0VzAyalVnRjlZTXM?oc=5",
-        "published": "Sat, 12 Sep 2026 10:00:00 GMT",
-        "source": "The Hill"
+        "title": "Four Former Presidents Reunite in Downtown NYC to Attend 9/11 Memorial Ceremony - TODAY.com",
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOVHdWc1pNZG56dEw2ejl2RlFROFZ6Zk83YU9Dc19oM1F2NFJ2UFEycUhWWE81cXlOTDJTX0hieWdnMWg4dVJyNHBPVlg3azVVSHZfWjBlNFN0VTBTS0psVUd4d19HamV0dGtlSERmNHlUQXZTc2l0dDlUTTk1U3FDaXRORzFqeFktclFPTlpaMjltUVNucmh3bw?oc=5",
+        "published": "Fri, 11 Sep 2026 14:27:16 GMT",
+        "source": "TODAY.com"
       },
       {
-        "title": "U.S.-Canada trade war hits GOP efforts to keep control of Congress - The Washington Post",
-        "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOLUF2dW1XMWFCdEVCWTNfR0hVV2k3aUdKcUY4NHZTZlZiWm1OWGVidEpENnp1N2s4bHZOdGN0Vjg3a0p2V0JXaEZuX2tJaXBvT29xc25KT3J6RTViWElFY3EtSnFaaWxNU2FsdGU4a0diRVBQenpoT2ZsRncyOWxqT1FVejg2R0MzWDJNa0ItT1lMU2piSVhqNFRZSlMxUjN5SUM1NG13cGJFTHA3bUdjam5EQ2t0b1hQcmdmckF2UjJCc3I1QzY3dkVkX3hEeGhIM1lvbVVDYUVtN0VzYXpoem1xU09NaHc4a1Y5b2w0UmlBcHlVQ2xHeWNKU2NtbzFjWGFLMW93NkRGaDBS?oc=5",
-        "published": "Sat, 12 Sep 2026 14:32:16 GMT",
-        "source": "The Washington Post"
+        "title": "Trump wants the Smithsonian Institution to install George Washington statues and exhibit - AP News",
+        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQSUpYUUlad1c2MWpiMUZxZjdhOVhtSEhBRVFyWG03a3Vfd2ZQRnlxLWtaT0FuVUwyWm5oT2NiMWlUM0FjRlYyUi1PZ29xbEJzZWZDLXQyZ043UG5raVJqSV9Rd25OMS1CbjJXcE1oM1FIMXd3WGNETms1bkdsQVVOSktlWU03YklGVVNDQnd6WHNaZ1JJSlFpOWs5bXkzTGExMFByRXdaN3U1QUlEV2c?oc=5",
+        "published": "Sat, 12 Sep 2026 16:57:00 GMT",
+        "source": "AP News"
       },
       {
-        "title": "Donald Trump says he would ‘love’ to see united Ireland - The Guardian",
-        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPOVNZMTRDOHU3My1ETUhpZkJMd2p2SjdmTGRmZTVGdXIydDEzM1VYS05MM0ZvdzRqN05TMnZXVDE5Tk1GUEg1NmFKQ0FBOUJtVDNwRVhHTzZRbmc2RkF4VEhoV2hnWkVkV3YwWk1GNG5yR2xPTHNxWEVnTlJ6WG5yWkVGLUZWQmp4YlRrdmpRMXNvTVZNc0t6V2hSLVJadUt0M0dJ?oc=5",
-        "published": "Sat, 12 Sep 2026 13:06:00 GMT",
-        "source": "The Guardian"
-      },
-      {
-        "title": "25th anniversary of 9/11: Victims honored at memorials at Pentagon, NYC - USA Today",
-        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaEhabk9WeWR2U0FrRk1MVG5Fa1F0Rml3SEhKUWRYRnRMT0ZiMEpvbW1jb1pMR0E4cEZnS0plSmNiWm1iWnBkbEZXTDlpR0NfTG1lTDFjVWd5RTY2QXVPZkxMYjRIclR5elE0QXE4cUdEMnNNZFE4TkZiYl9VQ3l4SXotcmFJVl94WVJRU3lLZmU3MXo5YzZlN3pBYktIREdzZ3pfdlpHNkxkczI2aUJmeEV6R3FCVkc0?oc=5",
-        "published": "Sat, 12 Sep 2026 03:17:57 GMT",
-        "source": "USA Today"
+        "title": "El Niño has broken Atlantic hurricanes. Now the season is breaking records - CNN",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQWUZJVW9fWm1GRUYyaHFrMkVDTmlMTVhUZ0o5UGFRUURIb2VsUHY3cU5iQWxLckhBZ0Njakp4czE1SndNSUZCWklLVkdCTG93SllTQjdnRElmc29RdUNnM1ZEenR1V0V3X0YxVnlRUnFIZ2R3RkdsZGFGX0Z2TkIyWjc1eGprY3lxVzVZWm51aw?oc=5",
+        "published": "Sat, 12 Sep 2026 10:00:30 GMT",
+        "source": "CNN"
       },
       {
         "title": "Fear and Delusion in Dallas: Inside Trump’s Midterm Convention Flop - Rolling Stone",
@@ -97,46 +109,54 @@
         "source": "Rolling Stone"
       },
       {
-        "title": "Trump wants the Smithsonian Institution to install George Washington statues and exhibit - AP News",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQSUpYUUlad1c2MWpiMUZxZjdhOVhtSEhBRVFyWG03a3Vfd2ZQRnlxLWtaT0FuVUwyWm5oT2NiMWlUM0FjRlYyUi1PZ29xbEJzZWZDLXQyZ043UG5raVJqSV9Rd25OMS1CbjJXcE1oM1FIMXd3WGNETms1bkdsQVVOSktlWU03YklGVVNDQnd6WHNaZ1JJSlFpOWs5bXkzTGExMFByRXdaN3U1QUlEV2c?oc=5",
-        "published": "Sat, 12 Sep 2026 16:46:00 GMT",
-        "source": "AP News"
-      },
-      {
-        "title": "GOP anxiety grows over North Carolina Senate race - Politico",
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOeHlFeGF2R3hfeUF4VF9ycHU4eWFUYTRxTGlyQmMya0NKWGM4eUh4MFdTQ3FZcXpRM2pkT2xVTnQ0R1BzcnJiNnoyU29qV3d2SjB5VWktTktlX1lydk9rWjN1dWdJSFJjZGRMcTJtRVRYSUR2ZmdWNUNsazRmaThJNXZhNldsaWdLV2lLQTVMQ3ZLOTNZUDFmQXJR?oc=5",
-        "published": "Sat, 12 Sep 2026 18:00:00 GMT",
-        "source": "Politico"
-      },
-      {
         "title": "French officials investigate if malicious act caused train derailment - BBC",
         "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9lZE9qYjl3TXgxOGU5NjNDcTlYdWxEX2dianU0ZktMNjkzNXBmT1Q5OWxOaUVIWXRVN080b3FqN1NyS3RvTDhnM25hRTRJYzRZUmdVZ2RMb0c5QQ?oc=5",
         "published": "Sat, 12 Sep 2026 15:05:53 GMT",
         "source": "BBC"
       },
       {
-        "title": "Farage's Reform UK lands second record £36 million donation in 48 hours - reuters.com",
+        "title": "Farage's Reform UK lands second record £36 million donation in 48 hours - Reuters",
         "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQUTNpQUZmemxkOGh4bEtlV0pYb3NlR2lwYTlUMWs0emtlNTJiZUdFZDBFa0pscEd4dVRKRDd0YVp6VUFrdXVqX2pTRHBBMkVEcDFzZVlIcjRrdDc5cUM0UFBvS0V5cGdGcTBKSlF6d3p2Z1p0dkJGdmU4SDdqcGp4VC1SU3ZSMFpMVzlWeDE0bzlVbFRNVmJVaHhjbjZPdmpNZEctTklTSkFacFF3Z1pOZTZNSU9oWkFw?oc=5",
         "published": "Sat, 12 Sep 2026 13:59:46 GMT",
-        "source": "reuters.com"
+        "source": "Reuters"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
   },
   "jp": {
     "locale": "jp",
-    "generated_at": "2026-09-12T19:04:34.541965+00:00",
+    "generated_at": "2026-09-12T20:05:00.097282+00:00",
     "site_url": "https://jpdailybrief.wordpress.com",
     "status": "ERROR",
-    "candidate_pool_size": 22,
+    "candidate_pool_size": 21,
     "trend_snapshot": [
       {
-        "term": "real madrid vs rayo vallecano",
+        "term": "al-khaleej vs al-nassr",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "レアル・マドリード",
         "approx_traffic": "200+"
       },
       {
-        "term": "sunderland vs arsenal",
+        "term": "madrid vs rayo",
         "approx_traffic": "200+"
+      },
+      {
+        "term": "real madrid vs rayo vallecano",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "バレーボールイラン男子代表",
+        "approx_traffic": "100000+"
+      },
+      {
+        "term": "sunderland vs arsenal",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "通勤",
+        "approx_traffic": "100+"
       },
       {
         "term": "ねぶた祭り",
@@ -144,31 +164,11 @@
       },
       {
         "term": "パリfc 対 リヨン",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "サンダーランド 対 アーセナル",
-        "approx_traffic": "1000+"
+        "approx_traffic": "500+"
       },
       {
         "term": "rマドリード 対 ラージョ",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "メダル",
         "approx_traffic": "2000+"
-      },
-      {
-        "term": "tgs",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "北口榛花",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "ミラン",
-        "approx_traffic": "100+"
       }
     ],
     "news_snapshot": [
@@ -191,16 +191,16 @@
         "source": "TBS NEWS DIG"
       },
       {
-        "title": "熊本地震でＳＮＳに根拠なき情報「炊き出しでイスラム教徒に配慮」…食事提供の自治体は「宗教的対応していない」 - 読売新聞",
-        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBhMkJHZTIySkZmc3RraVJtcTZZZk1rSzZOck0wcnlFVnUtSmJBQjVSbERseEVWVnpVTDNYRUY1TngydS1JbnNPVmFnaktncHRnNTh6V3VYaUdCSFZ1NjdJYWF2SVEzdw?oc=5",
-        "published": "Sat, 12 Sep 2026 13:54:00 GMT",
-        "source": "読売新聞"
-      },
-      {
         "title": "相模原17歳死亡〉「難癖をつけ、金を要求したとの話も…」地元の同世代が怯える少年グループの素性、4人のうち3人は別の監禁事件で逮捕（集英社オンライン - Yahoo!ニュース",
         "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5tUHd4OWE0WXlPc2FDay1Gc3VXNHhNeHIyZ3FvYjFEdUVlSmdVRzBMa0xOR1pocVNQWUtsWHprR0hIeEIzZGpsQ3hQdWN3NHd1cHFsQU9WZUNJWWhCbU94aFdJYXpYMUZraHM4bkc1TzBPRjhLMzk1VGZ4bldOX0E?oc=5",
         "published": "Sat, 12 Sep 2026 08:51:17 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "熊本地震でＳＮＳに根拠なき情報「炊き出しでイスラム教徒に配慮」…食事提供の自治体は「宗教的対応していない」 - 読売新聞",
+        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBhMkJHZTIySkZmc3RraVJtcTZZZk1rSzZOck0wcnlFVnUtSmJBQjVSbERseEVWVnpVTDNYRUY1TngydS1JbnNPVmFnaktncHRnNTh6V3VYaUdCSFZ1NjdJYWF2SVEzdw?oc=5",
+        "published": "Sat, 12 Sep 2026 13:54:00 GMT",
+        "source": "読売新聞"
       },
       {
         "title": "【ＭＬＢ】９・１１追悼試合の乱入男に全米から怒りの声「吐き気がする」「実に卑劣」＝米報道 - 東スポWEB",
@@ -215,9 +215,9 @@
         "source": "産経ニュース"
       },
       {
-        "title": "来週は秋雨前線が本州付近に停滞 大雨となるおそれも - ウェザーニュース",
-        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE41M3JaNlJkZVp0Z1djbWVPSHdUQm5NUUtpVklpWWUwWXNDOHdPRnpGSkxjbXlqVk1UeGtrX3lTYUVvQnNnTm9MUTNkbERzamlNRTJ3Tw?oc=5",
-        "published": "Sat, 12 Sep 2026 08:40:00 GMT",
+        "title": "週間天気予報 前線停滞で秋の長雨 大型連休は南の海上に注目 - ウェザーニュース",
+        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1mVmFiVmVxRUpWc05VdVRXTUw5RW5ITVZYQzh5cS00RzM4eFNmX3RzdnZtZUVHRlB5cS1BcHJtRTN5V21TVDZkOU9wRTlLY3FpUGZsdg?oc=5",
+        "published": "Sat, 12 Sep 2026 05:45:00 GMT",
         "source": "ウェザーニュース"
       },
       {
@@ -249,64 +249,64 @@
   },
   "kr": {
     "locale": "kr",
-    "generated_at": "2026-09-12T19:04:36.926764+00:00",
+    "generated_at": "2026-09-12T20:05:02.557779+00:00",
     "site_url": "https://krdailybrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 20,
     "trend_snapshot": [
       {
-        "term": "오버워치",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "세리에",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "spurs vs everton",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "twitch",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "도경완",
+        "term": "공휴일",
         "approx_traffic": "200+"
       },
       {
-        "term": "연애",
-        "approx_traffic": "2000+"
+        "term": "이지아",
+        "approx_traffic": "200+"
       },
       {
-        "term": "토트넘 대 에버턴",
+        "term": "서정희",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "아스날",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "이준영",
+        "approx_traffic": "1000+"
+      },
+      {
+        "term": "디아블로5",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "추미애",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "입양",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "인벤",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "박재현",
         "approx_traffic": "10000+"
-      },
-      {
-        "term": "pl",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "이은결",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "프리미어리그",
-        "approx_traffic": "2000+"
       }
     ],
     "news_snapshot": [
+      {
+        "title": "“국익이라지만, 피해는 국민에게”…호르무즈 파병 반대 시민대행진 - 한겨레",
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9SSS0xV1lfZG5wWWZBMzNWMnRRSmkydUowY0xZWkR5ekRLVUQ3alFRQmRRWDB2MUNkbU5TVGxVb0VtaFk3T2NSYWE5SDYwckR3ajU3ZDlQamNQTDQzaHM3b2h1V09KbEZ1alJPZ2J2SFBmdw?oc=5",
+        "published": "Sat, 12 Sep 2026 10:21:00 GMT",
+        "source": "한겨레"
+      },
       {
         "title": "민주 “용혜인에 청년 여론 들끓어 심각한 상황…대책 필요” - 한겨레",
         "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5DaVhwVFphdHdORHRFYkNlLWY5TlgtejBFcVZXMXNZMmR5VmtIWl9kTUlxVXF0ZFpvNnQ3U2RjVzFMWHA0a0dpTVhXOFgtUURzd3dTUmQ2UnItWEhBZU1SdWI3Y0xpcTFGOWc?oc=5",
         "published": "Sat, 12 Sep 2026 07:13:00 GMT",
         "source": "한겨레"
-      },
-      {
-        "title": "“호르무즈 파병 거부하라” 시민 단체 서울 도심서 집회, 청와대까지 행진 - 조선일보",
-        "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQeU9QNC1uWVZFaEc1Y1pwYWVVT1FSdXpVVjlCWmJDQVNaaTZta2lsRHFoa2QxdGxvZVVNQlo5X1pXV28zUzlQNEFnQ0NNS3FfbFFQZVM4dzZ2RmdJT3RpVmxpVER0MDdBa3hIeDZVdmItRkR5WGNCUUNKSlNoOUNYRUV0YzVmZEd2OU9lV1RRcTI?oc=5",
-        "published": "Sat, 12 Sep 2026 08:58:47 GMT",
-        "source": "조선일보"
       },
       {
         "title": "추미애, 이 대통령 향해 \"왜 내란세력에 전전긍긍하나\" 작심 비판 - MBC 뉴스",
@@ -339,16 +339,22 @@
         "source": "연합뉴스"
       },
       {
-        "title": "이 대통령 \"개혁의 가장 큰 걸림돌은 개혁의 이름으로 방해하는 것\" - MBC 뉴스",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9CanUzYnJqRlpYb3duTGh2dDBQNk8zTm16WF9VUGVZSkdrMXlOLWxZem45Rnp0dFZIeHkwWmlLSmVoWUFqejFSVEcwTEdPTVpzRGNObEpnblpvUlBmRll6a2VNYmt0d3dsZHIzWXhCdmNNYUVMbF9QMNIBeEFVX3lxTE0xQ2MwbFZ1NVY1b3FOWkFUTk5pQy1CZFFSVUFpRVhZVlcwR0FEMThTQmpBeUl2Wnd6Uk4waEZMTUx4WUhXc3p1ZzhJN3pBNHAtRlcxZEtCMVNScEZoVmE3RWxjRWlWTl9GakdHWXY4YjlvQWpXNzVvbg?oc=5",
-        "published": "Sat, 12 Sep 2026 10:09:23 GMT",
-        "source": "MBC 뉴스"
+        "title": "‘끝날 때 높은 평가’ 글 공유한 이 대통령…“개혁 이름으로 개혁 방해, 가장 큰 걸림돌” - 한겨레",
+        "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9CdThmVzdyTTROSzFvQXIxRnRmNFdyRTJBV0Zvbms1em1fYkIyS2FySzZuQzJGYVZYWW5sajFXSnNoOFZ6aHo0cVNSOFVVNlVGUHZhZVJmNVFFUHNwOExTb3Z4TFpvSnhKSWlB?oc=5",
+        "published": "Sat, 12 Sep 2026 11:28:00 GMT",
+        "source": "한겨레"
       },
       {
-        "title": "與 \"기존 후보 중 재제청하라\"... 조희대 대법원장에 압박 - 조선일보",
-        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNNEFSVnlBdVRjWms1c05MVmV0ZEFRMTBoQjUwcktFeHJXN0J2a1VseC16a2FhUkFvOG1Dd2oybWw1V0phTDg5eUp0WEpWTWFDdGt1SWN4eWM0aVp2RmtOSzFMT21CUE9LU2REckFNU1JPLWZZUUlzTVpwR2tDdlV3SnFYd1NZZw?oc=5",
-        "published": "Sat, 12 Sep 2026 11:37:00 GMT",
+        "title": "김승원, ‘李 공소 취소’ 질문에 “검찰 중립성 지키도록 철저히 지휘·감독” - 조선일보",
+        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMFFxS21YSkFhZE9NeU42Vm5GcFpYalRvQkNJNkdTMHEtY2NRSnVjU0NIbzI4UzZOZzBXQW5zTmNfRHZMZzZJX2R0WGtOU0lZM1VMOExvdGFMUTBvVkdoazdfREVvNlVvOG5wOUcwOUE4T2I5NW8yT2NzbEduNzRwSWpPeTI2Zw?oc=5",
+        "published": "Sat, 12 Sep 2026 04:56:08 GMT",
         "source": "조선일보"
+      },
+      {
+        "title": "북극해 가로질러 영국 도착…이 대통령 “역사적 첫 길 축하” - 한겨레",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBXMXNTUTl1LWhoME5qaE1lbFhtTzkzSUlXcllvMkJBYTNKNDBRV0g0bkpwT05hOEZMcy1wNl80eXVGLXZfYzJrNGhjeU14YmNsTzdFdzJpN01ySUZWUlotQW5neUlLbmxiam1reC1VVk4zZmlV?oc=5",
+        "published": "Sat, 12 Sep 2026 09:52:00 GMT",
+        "source": "한겨레"
       },
       {
         "title": "미, 호르무즈 선박 호위 시간대 축소…장기전 대비하나 - 연합뉴스TV",
@@ -361,12 +367,6 @@
         "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5McUR3cWRzR2o1b2tZX29BbkRTbVVoY0s0eXNNaHFJcTFDOE81V0YxMFk5RVFId1JiOGh4YnFYQXRuNzBua080UzRTbV9YZW9zQUVLaWFCVFRYd9IBX0FVX3lxTE5BZnFiS3AyMV9qN2Z2VnExY3NVLVEtQWxRTEhjQWdKSWVrMG9oM2NneG5vNGxyN3I3R1p6MTZQS3pGNFNqM3gyVmR4SkpCWGxMYnZRdnJSeTVHWTVkNW1n?oc=5",
         "published": "Sat, 12 Sep 2026 12:37:00 GMT",
         "source": "경향신문"
-      },
-      {
-        "title": "“흙탕물 마시며 9일 버텼다”…히말라야 대홍수 터널서 극적 구조 - 강원도민일보",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBxbGZONGhLTktCRnR4el8teUlfckd6UG4tWWdJNnZpMXpPSF9ObTNXUDM4TGZrNGRYRFB5dUlPQ05DN2dvemIwTTBoUnhqZEY3MGtVTXBGSXZnUFlQTDB3eUFhcWxHSFE?oc=5",
-        "published": "Sat, 12 Sep 2026 08:13:17 GMT",
-        "source": "강원도민일보"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"

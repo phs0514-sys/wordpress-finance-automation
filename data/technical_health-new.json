@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T20:38:55.256170+00:00",
+  "generated_at": "2026-09-12T20:41:21.456975+00:00",
   "locales": {
     "us": {
       "locale": "us",
@@ -44,7 +44,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/"
           ],
           "issues": [],
-          "html_bytes": 152226,
+          "html_bytes": 152225,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -83,7 +83,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/06/hurricane-lowell-hawaii-update-track-timing-impacts/"
           ],
           "issues": [],
-          "html_bytes": 138136,
+          "html_bytes": 138130,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -122,7 +122,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/06/hurricane-lowell-hawaii-update-track-timing-impacts/comment-page-1/"
           ],
           "issues": [],
-          "html_bytes": 138693,
+          "html_bytes": 138658,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -161,7 +161,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/06/labor-day-2026-whats-open-and-closed-september-7/comment-page-1/"
           ],
           "issues": [],
-          "html_bytes": 138375,
+          "html_bytes": 138402,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -200,7 +200,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/05/mexican-wolf-population-2026-319-wolves-durango/comment-page-1/"
           ],
           "issues": [],
-          "html_bytes": 139536,
+          "html_bytes": 139537,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -239,7 +239,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/05/walker-cup-2026-schedule-teams-format-live-results/comment-page-1/"
           ],
           "issues": [],
-          "html_bytes": 137693,
+          "html_bytes": 137688,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -278,7 +278,7 @@
             "https://uscurrentbrief.wordpress.com/2026/09/04/hello-world/comment-page-1/?replytocom=1"
           ],
           "issues": [],
-          "html_bytes": 129380,
+          "html_bytes": 129347,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -326,7 +326,7 @@
             "https://jpdailybrief.wordpress.com"
           ],
           "issues": [],
-          "html_bytes": 107642,
+          "html_bytes": 107609,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -365,7 +365,7 @@
             "https://jpdailybrief.wordpress.com"
           ],
           "issues": [],
-          "html_bytes": 117865,
+          "html_bytes": 117892,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -404,7 +404,7 @@
             "https://jpdailybrief.wordpress.com"
           ],
           "issues": [],
-          "html_bytes": 113359,
+          "html_bytes": 113331,
           "structured_data": {
             "Article": true,
             "BreadcrumbList": false,
@@ -418,7 +418,7 @@
       "url": "https://krdailybrief.wordpress.com",
       "checked_pages": 4,
       "sitemap_status": 410,
-      "robots_status": 200,
+      "robots_status": 410,
       "core_web_vitals": "not collected by the standard-library monitor; use PageSpeed/Search Console field data",
       "structured_data_expectation": "Article/BreadcrumbList/Organization should be supplied by the active WordPress theme/SEO integration",
       "critical": true,
@@ -428,7 +428,8 @@
         "https://krdailybrief.wordpress.com/2026/09/05/mg-walking-start-savings-rate-checklist/: HTTP status 410",
         "https://krdailybrief.wordpress.com/2026/09/04/hello-world/: HTTP status 410",
         "max-image-preview:large not detected (theme/SEO setting check)",
-        "sitemap.xml HTTP status 410"
+        "sitemap.xml HTTP status 410",
+        "robots.txt HTTP status 410"
       ],
       "pages": [
         {

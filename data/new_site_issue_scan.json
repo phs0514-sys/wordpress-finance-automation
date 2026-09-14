@@ -1,112 +1,82 @@
 {
   "us": {
     "locale": "us",
-    "generated_at": "2026-09-14T00:08:21.638973+00:00",
+    "generated_at": "2026-09-14T01:05:46.626097+00:00",
     "site_url": "https://uscurrentbrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 22,
     "trend_snapshot": [
       {
-        "term": "mike tomlin",
+        "term": "christian parker",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "anthony bourdain",
+        "approx_traffic": "1000+"
+      },
+      {
+        "term": "dwts premiere",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "dallas cowboys players",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "greg newsome",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "mariska hargitay",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "sweden elections",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "2026 nfl draft",
         "approx_traffic": "5000+"
       },
       {
-        "term": "padres game today",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "big brother tonight",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "jake ferguson",
+        "term": "why is big brother not on tonight",
         "approx_traffic": "500+"
       },
       {
-        "term": "the perfect lie netflix",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "darnell mooney",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "marshals",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "kwity paye",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "malachi fields",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "isaiah likely",
-        "approx_traffic": "1000+"
+        "term": "von miller",
+        "approx_traffic": "2000+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "Trump resists AI slowdown as the political tide turns - The Washington Post",
-        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPUC1sNlREa2ZpZmZkaklBb3dodW5GQV95czZiNVJCYXlhNlQxQXdpQ0pEWU5vZ3FsUVVEMzh0eUt1UVN0LXNvM2U5N0wtNVVkclVPbmRYZHBzanliXzhJMXZaUGp6MGthbWNoVUg2T3VSeFlIeVdNOFpwbmdrNkJZcENKd3ptaTVvakRlSDJWNUlMa1lOSG1MQkhzeHdVMXBYTVQ3ZHRRUXUwbkktZVAwRGFZZERhZk5rSEJudzhR?oc=5",
-        "published": "Sun, 13 Sep 2026 21:41:51 GMT",
+        "title": "Trump downplays the need to check AI development and says he doesn't want to cede edge to China - AP News",
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOamh3ZzlxNlU2NTItT2hQNnladG9CS1I0QlZHMm9YcnE1X2RPTERiMS1oME9wc1UzUHloY3JDNDFLa3VQSEcybzlMUG1xVG5xV1BGS0V2Ym1ScGoyd1BaVlZwdGl4c1lzNDUxZkpzaXFOSDl5ZHhoUklLQ3drWG5QenVlRUk5amRfWjBPRHVfSUNxaUJ2aUwxS25CZ3JUQ1RxNkEzN3VYdThBX1RsdEpTa3d1N2JwUFZwblpjajFCOEpvQQ?oc=5",
+        "published": "Sun, 13 Sep 2026 22:55:00 GMT",
+        "source": "AP News"
+      },
+      {
+        "title": "Vessel struck in Strait of Hormuz, UKMTO says, as prospects for U.S.-Iran diplomacy appear elusive - cnbc.com",
+        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFAwTGlJOEZRVUpiWERhUm51WWZwRDRWVXlnVXczV2pQOGFnY01GUklBZTg2MHc0SU8xbzlYWjlRWFdxMFBKYkxPVy1TRUdXcmdBS3RxZmtsZnpGRG5rSjRobU9BNVY3cUlHNEMtOFZaVTFMRldydlcwSEZHbTJZUdIBgwFBVV95cUxOeF9MeDRhaEhUVXdqZ2ZJdWhkVVFTSlRNWDFoSllFMno3bE5lVXVnaDhGZnA2RDRFSnI3SzRTdF9yNXB5SVp2d2hacVdHS1IteWZkUk5PQ0EwNDhwTEViYUVCQXpGaHg3YXQ4TlhoRnpZMHprOHhkTDNXNDJUSmNnY2xiaw?oc=5",
+        "published": "Sun, 13 Sep 2026 13:38:23 GMT",
+        "source": "cnbc.com"
+      },
+      {
+        "title": "Trump's $5,000 checks require Congress to approve, Johnson says - Axios",
+        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0ybUJ0WDlQbmVjcF9rb2w5UEJReXJJcDgzZnRSQlh6LUVfOFNiQWVKZzh6UUJybHBrVHAtc1FtU1o0WFdhOUw2OFVwRHhDSURRQ1FyNzJQUTR6RFM5bmx4eWIxNjh1OG8ySGtmV1NMRkQ?oc=5",
+        "published": "Sun, 13 Sep 2026 20:49:17 GMT",
+        "source": "Axios"
+      },
+      {
+        "title": "Trump pokes the U.K., and Ireland’s unity debate catches fire - The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPLVozR0NzRGxIS0JsZ3JHWlQ3QXo1VHFhUGRPTDd3elByZGJkdVB3WVYzOVBfbGV0SzlQeTA1bkhiZWJBZENLYlNJOVdtWFQzNmFHSm5xb1Bic2FrSTctZUhwNEpqYVhXb3FXWlRKX3JiVlFlM25BNGpteGxDOVBlMDNzcHo2RmVyVFlnc2FSOWU4Nm9SbFVYMEM5LVAwSFlvWk1sM29DRWlzOFpodTM1SG9SSGxQLVhw?oc=5",
+        "published": "Sun, 13 Sep 2026 22:47:16 GMT",
         "source": "The Washington Post"
       },
       {
-        "title": "Iranian cargo ship is struck, and talks between Tehran and its neighbors are postponed - AP News",
-        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNMG04XzJlaFg3N0hjVGVucURCODFNSFJKYkdZaHY0aWZxMWJCXzlPY1pGOUNrWHRhWkc3NnJXQms3X1ZxaHBxOTBHTUZVNUFWWXBJV0hLcG9PaEg0Nm9VaTQxbVNfallyV0ZhVzlfMGpqaWMwLTV2ZmYwRGZYNm9EUzFLMnMzZkREbzRlR1JqR0tBd1Fs?oc=5",
-        "published": "Sun, 13 Sep 2026 20:36:00 GMT",
-        "source": "AP News"
-      },
-      {
-        "title": "Why Trump's united Ireland stance hit such a nerve - axios.com",
-        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1naDV0SklkbzhsVUJJVEpKZFMzdmhIOUdRVVVRMzNKWjN5Szd5cl9wOWRkNGpfYzJxR2ljbFR2eXlQWVpJTzVydWtnb2ZMbGgyZ2lVN25ZcUVXLTNnSEZNSUswR3NVNjFVa0tCNkJyU2tfLUE?oc=5",
-        "published": "Sun, 13 Sep 2026 19:39:06 GMT",
-        "source": "axios.com"
-      },
-      {
-        "title": "Washington scrambles to meet calls for AI guardrails while the window to act closes - CNBC",
-        "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE43ZFdOcUNiZmFDbmRDV3RyN3ZxekV1S3BONUxRZ0twQWlCcFFublhOanpUS3VUaHNiZFBBQ2FiN08wZGxKMW5KTHB3SV9Nc0lYcjhMQTdZZjdkMUtZbzU5dG9aX0t6SWJTUGhLVkJjeGprc2NkbUVtS1RHUk_SAYIBQVVfeXFMTjRGRTZPVklWdGtRb1N3NF8yZlBfTmxSNjZnRHp1WE5ybzZlZXJMZWdNT3JmbGJnTjlQR1JFbEhkQUxzZkdfNGZNeVJkYklSdDd4NGVRdkRBdmZrRi1CS1F5Z2sxZmpFYTlSb0o1WlBiTWI1Z3djM1dUeVFjRlJETjR6Zw?oc=5",
-        "published": "Sun, 13 Sep 2026 16:56:17 GMT",
-        "source": "CNBC"
-      },
-      {
-        "title": "Trump reiterates $5,000 ‘dividend’ pledge if Republicans win midterms - theguardian.com",
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0wel9jLTNENkVLcFZOLUlRZ1JzRnlJT1k1aGlEOWJRWE02VlR2NGlBWW5hTEdHNHA5eVRqYkYwa29LVTNJdGZPbHRxVGVySC1rWEQza2x4b1RpdUk5LTRnM2NpYURPc1ZZWUwwdXBtV2NSZmNUelFFMVVIR3N6OGs?oc=5",
-        "published": "Sun, 13 Sep 2026 17:21:00 GMT",
-        "source": "theguardian.com"
-      },
-      {
-        "title": "Russia hits Ukrainian train shortly after Boris Johnson and top European officials leave station - BBC",
-        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE56MUFXcDBJY3RjNktKU2pYREZQRmJnWExKSHJiQk5SSTR5UmsxbEx1ZFUzWUkteHNXU2xFRzhrQS1zdm1lN0MxdElzNVg0bnhjQ3FzMGtpNkkzUQ?oc=5",
-        "published": "Sun, 13 Sep 2026 19:14:21 GMT",
-        "source": "BBC"
-      },
-      {
-        "title": "GOP congressman from Wisconsin swims to safety after plane makes emergency landing in a lake - AP News",
-        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQSi1MWjIxVEdEOGRaalhNcXVWN1gzUVdZai1HX1BiQzJLeVFvYjd1RC1xZlU4SHJjOFpFUDE0aDE5eU5INWFpRzFLWjQxLXIwN3V0ZVhYSDgxZkIzdjRTN3BVNDZaQkxFTVhtYUJvSEhXeTVTWVZQVVE2bkJNZXo1RlRQeTZmMEt1TXNvdlBIUVdNcUEyQnBaejd4bXVXOUpjbmdn?oc=5",
-        "published": "Sun, 13 Sep 2026 21:21:00 GMT",
-        "source": "AP News"
-      },
-      {
-        "title": "Kamala Harris’s California home targeted by trespasser, officials say - theguardian.com",
-        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPMnpUSVVRbF9jSkwwMDYxMC1jMWFTWkc1bkUzRG85TFdOZkZOYnF4aGR4NVVyQ0NMYTlBOGJXdmQ5NHdnMWFZQVU0elVHLVgyN29DcFBZUnNyY2NWRE53c2FpMlo0emtMTy1YbzU5V1F2Q21xQTVmdmdlVUh0SG5wMVhOUV80QnNPcHM5Yg?oc=5",
-        "published": "Sun, 13 Sep 2026 14:00:00 GMT",
-        "source": "theguardian.com"
-      },
-      {
-        "title": "Chicago mayor bets progressives will turn out for him in announcing reelection bid - politico.com",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQcnBfMzA4WjdFTFVHLVJ5SGpqUldhRmdZNnpKdXFqVUhyaG5sbC11R01HZlZUVGZfSmxzM2l6LW15OVZFbzBBa3k4cUhMT1c1ajlOb0N5enpYZVZNUXZkdWx1SDU1M2RGcmhVR09PQmpjMHJuSTNFcWNWQU5vYlZsSEFZQmpFSjhtZ09JNnBCc3NCUkFBdlVXbGxsOE1URS1CNlF1bw?oc=5",
-        "published": "Sun, 13 Sep 2026 13:30:00 GMT",
-        "source": "politico.com"
-      },
-      {
-        "title": "Trump says Lindsay Clancy case is a ‘state situation' following attorney's pardon plea - Fox News",
-        "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOY0l3dm9aM25EdTlCN2x2bENtdmJJZjhGOXVOc2NQNGYxOE5ELXAwSm1fY2ExZVg4WmszTE1MZHpJR3hlTGpaV2ctVXlUNlJvdk42aGRvQ3p3OVdtOWZ4X2stZDdSb3ZNb1RHNDlXWWE2dkl6MmJSeU16dnFJR05DWWRDektTUkRqQ2VsYmVzRUExc04zTjZHY2FYWlJZSl92M3JrOHZCdEhMU1BJNWhhUtIBtgFBVV95cUxORWx6U2hFbU9BQmt6bWhfcE9sWEZMRUQ4bi15WGIxMF9oQmQyNHROV1NRRmlDZDNqVlZHTlJlT25IX0gwdXl0eVRtRjNjbzI3Q04zSEFYZVFhX09TaXFLYmRpazR3YlNJbmRrQzdtbU5CQUNUZnBZd3RHWmdhV2ZrckFMOWpUWkFXYTh3bzg5QmFhOHBzYnFZbW0tSFJ2dzZFS3dKRDd4WlN0Z0pJRVV0LXlqOHVhUQ?oc=5",
-        "published": "Sun, 13 Sep 2026 19:58:28 GMT",
-        "source": "Fox News"
+        "title": "Top Lawmakers Agree A.I.’s Risks Are Rising but Say They Have No Quick Fix - The New York Times",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPc3NTenhlaVBsazZZaUR4TlFZSzl0VzY4aXZqa3BrZHRoQ3N6a3JpR3BpQW5Nc3kzUk5hV1Eydk10SlVLUDRvMDMxRHQ2TlBUVlUxUmp0ZGZzbzlySEIzZ2tWcG1JTzZrMHVLLWdqb2E5ei14d0MzY1FlQmxWSHYzWGF2bkFrRjRkX0ZPUV9LMA?oc=5",
+        "published": "Sun, 13 Sep 2026 15:39:02 GMT",
+        "source": "The New York Times"
       },
       {
         "title": "Hormuz Meeting With Iran and Gulf Nations Delayed, Oman Says - Bloomberg.com",
@@ -115,68 +85,98 @@
         "source": "Bloomberg.com"
       },
       {
-        "title": "Sweden election forecast says vote too close to call - politico.eu",
-        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMmp1czdEc0VQY3NLcUMtVjZEU2hjNjBNMXNfWkktMUpQSUtBT0ZLTURGcjZjS3ZadzZFWW9hZVA4RmEtNEFOUGdScHJ3OUNldVBSZkNPYUZkU2tYZXlaQjM0S3hsS0tKMTBOeXl1c0NPNUtaOTZzYW9lUHFVYTBMU2xrQTNCcEZqNWIwY1VuYmM2QUtWQTBUNUV5dXdKUGZEcTgzbQ?oc=5",
-        "published": "Sun, 13 Sep 2026 21:29:00 GMT",
-        "source": "politico.eu"
+        "title": "Tom Tiffany's plane forced to make emergency water landing after campaign event - WISN",
+        "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOblJ1UXd6NjV2WEtOV1hhS05aOTQwMkk4ZmtOSU1PdlFCUDdJTGtYSGduOEV1WnNKcmowN3dsSUpDYlBsZktUUndlZm45a0QtZWlTS2xCckdMX3ZpLUF5QUZIa3BROE1QSThnbWttbzdUbmRZTDZsUEVrUGZZWXRTbmNPWEdRbF9iMXhfSWxHS0drUFZ4dzdtV1hiOA?oc=5",
+        "published": "Sun, 13 Sep 2026 23:32:00 GMT",
+        "source": "WISN"
+      },
+      {
+        "title": "Obama calls for Dems to focus on AI - Politico",
+        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPSjUwNUtCOHF1WWNreWZpZEFVbFRwb3NJOUFnejdxVDBmMkhfbzhQaFMwa3k3YlNNaGRaVl85NEQ5bVFLS1BQSzV0WmlnQzJhOWgxeWRZV0Ixb2ZFQ2hlNllscmJ5RnNDcUNKRDF4MlRWN0xRUUxnZTJDbDBwMUprTTU2M0lBZw?oc=5",
+        "published": "Sun, 13 Sep 2026 15:55:00 GMT",
+        "source": "Politico"
+      },
+      {
+        "title": "Security stops alleged trespasser on Kamala Harris’ Malibu property - WTOP News",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNanI1eFFRYlg1eEtBQk8ydEJtRTNZaTcwSDNrMHhHY2d1Ymk0Vm5mN3F5R2hTckVLQ0hLcVRTMHRGbnVLcEZVb2FlY0V0elJtaE9EVFJqWU9oLUh5bndKLWpTaUdrbi1RM2NYay04VlZMNEhETnRackY3UktsNjRpQkVoYm5hT0lGYVoxQUFZOWlHMXEtaENqNVZlLW0yYjJEOEVV?oc=5",
+        "published": "Sun, 13 Sep 2026 12:11:56 GMT",
+        "source": "WTOP News"
+      },
+      {
+        "title": "Missing US hiker, 70, found injured on remote island after week-long search - The Guardian",
+        "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNQWxjS0c4MU9yTVBqWVBaODRVNzh4ZW1FRjlUMTJnNjh3bmxpdHJZZWpBRjEwMjZKaWZMeWEtUEJjbkJycWl3REdIS24tSXN4X1FTVUZGeVEyc2Y0TlQ5X3VDdlMtWjhFbnVNbm1DeXR5dWZxX0tCeW0wMDZOeE9ZNk1zTkMxY1lnNUNFRFFiOTFKNm0wTUJMVzdlNFdscW9PbUE?oc=5",
+        "published": "Sun, 13 Sep 2026 23:12:00 GMT",
+        "source": "The Guardian"
+      },
+      {
+        "title": "Russian Strikes on Ukraine Hits Near David Petraeus, ex-C.I.A. Chief - The New York Times",
+        "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOUEdwM095OUd0Q1Z5dmJlelpnOFBHX3JzSkhnOEhfTW1rOXdBeVJ4dDdwelB3S3Z3Uk41aFpXUGZwd2d2M19heE1WVVV5d3l6STVPN1pmRFFHOE5neHlfVHZWU0I5OGdXTzZPZFotY2pWTmJ2RXh4RkpFdjdOTFZJVDNzUmVLVXRQZjJWWA?oc=5",
+        "published": "Sun, 13 Sep 2026 23:48:49 GMT",
+        "source": "The New York Times"
+      },
+      {
+        "title": "Houthis' Yemen advance leaves Gulf states with uncomfortable choice - Reuters",
+        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOX0JoY2VGb08xV0N2bWR6cnNzaFZoVm9MMGZ4WW1aa292SHNWTVBoVERfLW96ZVllX2thQjdUU1RMOTBvRkRoMGpDd2ZyMXVyb0t2bEFabVBJczM2SnhwM0w5c3diVnZiT1E4QnBxZ3YxaEVnYjE1cVJndExhaUloWENHQjlWdmtvUHRmNG1sSWtWQ3ZIRTJQUU5wQTFDaEw0MDVIdThHdnl5NnVCSTdHUmUwR3RPU0tXalFfSA?oc=5",
+        "published": "Sun, 13 Sep 2026 22:51:07 GMT",
+        "source": "Reuters"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
   },
   "jp": {
     "locale": "jp",
-    "generated_at": "2026-09-14T00:08:24.754984+00:00",
+    "generated_at": "2026-09-14T01:05:49.337460+00:00",
     "site_url": "https://jpdailybrief.wordpress.com",
     "status": "ERROR",
-    "candidate_pool_size": 21,
+    "candidate_pool_size": 20,
     "trend_snapshot": [
       {
-        "term": "西村博之",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "遅延",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "野口五郎",
+        "term": "新聞",
         "approx_traffic": "200+"
       },
       {
-        "term": "高速鉄道",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "原油価格",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "イエメン",
+        "term": "安藤勝己",
         "approx_traffic": "100+"
       },
       {
-        "term": "人身事故",
-        "approx_traffic": "500+"
+        "term": "エアトリ 株価",
+        "approx_traffic": "100+"
       },
       {
-        "term": "水谷豊",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "フーシ派とは",
+        "term": "sdgs",
         "approx_traffic": "1000+"
       },
       {
-        "term": "ルルデス グリエル jr",
+        "term": "kb5002914",
         "approx_traffic": "100+"
+      },
+      {
+        "term": "原爆",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "原爆ドーム",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "台風 熱帯低気圧",
+        "approx_traffic": "10000+"
+      },
+      {
+        "term": "東証株価指数",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "花田虎上",
+        "approx_traffic": "1000+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "沖縄知事に自民系古謝氏が初当選 辺野古容認へ12年ぶり転換（共同通信） - Yahoo!ニュース",
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBHQm1yc2VOa3dEMTZIVk5SaEZiZi16QkowZHIyWHU4UkJXMzE5QVJNYlVVNGpJUGZNODNmTFZMTHdiOENFWkdjVEU5SEQtcGxBWWFDdTU0Y2ZKYWIxRkxpN2xyaGMyOURmX3N5bFNmVVdlNEQ5RGoweFY1alZuclE?oc=5",
-        "published": "Sun, 13 Sep 2026 23:37:35 GMT",
-        "source": "Yahoo!ニュース"
+        "title": "新知事に古謝氏 オール沖縄破る最多42万票余獲得 玉城氏に14万7000票差 最年少42歳、復帰後生まれ - 琉球新報デジタル",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB1VF9NVG9FM1BQVVFIY01RelZRVzhJaEwyaGVheUJlaG9JZUxhNUdXZUswcWFWcE1tY1VOMVp4WDBETjlKZk9nWEREUk1wOWh6ejkweXlMLTZIQjlZSzR5Ng?oc=5",
+        "published": "Sun, 13 Sep 2026 19:22:43 GMT",
+        "source": "琉球新報デジタル"
       },
       {
         "title": "軽油高騰は「ゼレンスキー氏のせい」…トランプ大統領、ロシアのディーゼル燃料施設への攻撃停止するよう要求 - 読売新聞",
@@ -185,34 +185,28 @@
         "source": "読売新聞"
       },
       {
+        "title": "フーシ派、紅海の要衝で影響拡大 イラン、米への圧力強化か：時事ドットコム - 時事ドットコム",
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE83OGtOT3IzdW5MU3o3T1k3X1kxc0tjVURmRzlqU2tVUHExbDQxYjJ5cDd6TjRRcXhPSzJhTUNGRWdJUUJNa3NQYWZQQjRpQVh1ZEN3M3JnSW5LUmg3V1lFb2FhRQ?oc=5",
+        "published": "Sat, 12 Sep 2026 11:33:00 GMT",
+        "source": "時事ドットコム"
+      },
+      {
+        "title": "【速報】内閣改造、維新・中司幹事長の入閣調整 - 47NEWS",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1UQWZDQVk2Sm0xQ0N2cWJIVUw5ZEFORERPOGdFOEJ1MmY1UGhZWFVDRVJuZG81cmdXLXZOU3FSYWVCcko1OFl1UHNqYw?oc=5",
+        "published": "Sun, 13 Sep 2026 15:05:20 GMT",
+        "source": "47NEWS"
+      },
+      {
         "title": "週間天気予報 前線停滞で雨の日多い シルバーウィークは南海上の動向に注目 - ウェザーニュース",
         "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9tR0wxclVIY2NuTzRmV3RBVzNQdDlQV3FhVW5pRzJxMzBHcGt2NGpxX3dWbWhEazUzcWV5UTU3bXZFcWcwbW44LXNfQ3diaGl6UFFyVg?oc=5",
         "published": "Sun, 13 Sep 2026 20:50:00 GMT",
         "source": "ウェザーニュース"
       },
       {
-        "title": "23市町村議員選 全当選者322人決まる 本部、伊是名、大宜味の3首長選の当選者も【統一地方選2026・沖縄】 - 琉球新報デジタル",
-        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE90eFJlc2w5cHppb3lMS1ZYb1lLUmZfNktoRnQtclptR1MyN3ZCOUxZN1Jfc0ZTWDRxT00zLVZBYWxqUVZETm14SUVLTHVicUkwV1FId0Y5N0ZjN040NDBsMg?oc=5",
-        "published": "Sun, 13 Sep 2026 13:20:38 GMT",
-        "source": "琉球新報デジタル"
-      },
-      {
-        "title": "岐阜のケーキ店放火殺人事件、店主の死因は熱傷性ショック - 読売新聞",
-        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE14cTcxaEtFRWhBcE81dnBMQV9QcVhqOXF5a0o0WHBqSWlBMDl1Ti13d0NPTVhGa1djakJwNEdTdXNjWWlNQThydFVyZldWVkp1bUtmdU1oSnBiekk3X082bmlnVDQ4Zw?oc=5",
-        "published": "Sun, 13 Sep 2026 09:38:00 GMT",
-        "source": "読売新聞"
-      },
-      {
-        "title": "在留資格ない埼玉の外国人男女１３人、運転免許更新できないのはおかしいと提訴…昨年１０月に改正 - 読売新聞",
-        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1ENmZkTmw4OGRKZ21XM0l2MERIZEdXbGQ4aGMxRmp1QXRiSU9GQ0tvbkVDTHdVcmlQSUl1b1VXUlljT3FHR0NHMXp1OXNtUzhSYTljNmhSanlVcG9CYUpYV3h2ek5vZw?oc=5",
-        "published": "Sun, 13 Sep 2026 21:40:00 GMT",
-        "source": "読売新聞"
-      },
-      {
-        "title": "【独自】維新・中司幹事長の入閣調整 ポストは首相が最終判断 - 47NEWS",
-        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBKVXdERm9uVEpvU0NhY2VkUS15WFJQcE1LWTJVYmpYc09mYXdjenNwV3RrNDZfaFk3M0VXT3FhR2dLZ2tYZEluMDJXVQ?oc=5",
-        "published": "Sun, 13 Sep 2026 22:41:33 GMT",
-        "source": "47NEWS"
+        "title": "沖縄の統一地方選、全ての当選者決まる【顔写真と得票数の一覧】 - 沖縄タイムス社",
+        "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1TSzFJcGlLRjhtSF9MUVBiQ01SdmM4TXdaS3VzeWxQWFBncW5FaE9qcFl6aXZrVzVNU3JrbmluZ3BSMjRtYUNLRVViN2pIUWVIcVNlRFhRUG5zRW5UU0E?oc=5",
+        "published": "Sun, 13 Sep 2026 20:21:00 GMT",
+        "source": "沖縄タイムス社"
       },
       {
         "title": "今日9月14日(月)の天気予報 広い範囲で雨 関東は厳しい残暑に - ウェザーニュース",
@@ -221,104 +215,104 @@
         "source": "ウェザーニュース"
       },
       {
+        "title": "岐阜・火災ケーキ店主の死因判明 5人死傷、熱傷性ショックと発表（共同通信） - news.yahoo.co.jp",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBEcHEyZktsR096aC13dnJVYzJpeGFLZDVsTVFnV2VZaUtkSzZQVHBWdzQxajBwTDZWdmVxMGpSdVV0dTRiWEI0V01NTDc5Wnd3aTdZOTdHUmZSTnp3WmpiaU1iaEs5cVlWZVQzcWFtN3Jxd3VYRWs3bUtodGpSbG8?oc=5",
+        "published": "Sun, 13 Sep 2026 23:38:11 GMT",
+        "source": "news.yahoo.co.jp"
+      },
+      {
         "title": "＜速報＞石垣市議選の当選者22人決まる【2026統一地方選・沖縄】 - 琉球新報デジタル",
         "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE03QzVxV1BrcnZaZzQyUzNscHQzVGpzcHN0ZnJGMk9HTVoweks1XzBtMG02Q2hSU2VyU19peWthejMtNzhTQkJMaWxzSFBsVC1VdTdOYTlLTHZHdUZVcHdQXw?oc=5",
         "published": "Sun, 13 Sep 2026 16:44:50 GMT",
         "source": "琉球新報デジタル"
       },
       {
-        "title": "京都市の商店街で水道管が破損し漏水 周辺に水あふれ「大打撃だ。早くどうにかして」 - 京都新聞デジタル",
-        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBVOFdtUjM0Q09GbkpveFYwdEtLWUhwa3pQWWNxRWpfR2psOEN4Y2RlV09zcmNWZFFkeEswemZndGJiamZnSkRlZXY3RzdJcEhyc3c2ODI0Yl8?oc=5",
-        "published": "Sun, 13 Sep 2026 22:59:43 GMT",
-        "source": "京都新聞デジタル"
+        "title": "【気がかりな渦】シルバーウィークに前線刺激するおそれ 次の台風のたまごか 全国の天気 ※13日午後6時半現在 - news.yahoo.co.jp",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFByZzlBaW5rU3RqZzBRdThEQ1kwV1NWZ0NYTWNrazdmRFdPd1Y1XzAzZFRramtyXzNSMzdTTXNXbVRVR2xqdEhsVFN3SFVRYWhJY0RPR0RjblB4bXNlYm94TnFYYXdCcmlBZnFLZ3NqYnkyMXJieG9uSzczUllpMWs?oc=5",
+        "published": "Sun, 13 Sep 2026 09:42:17 GMT",
+        "source": "news.yahoo.co.jp"
       },
       {
-        "title": "インドネシアのジャワ海でフェリー消息不明 140人の行方分からず - news.tv-asahi.co.jp",
-        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB5Qm5xQVdUYUxDQkVLcXZkeVNibVU1VlFNaEkyMDc5NFFLdG03alFkNXNZWEFNOXN3WWhFNTNZZVJOTGRxSXhxdXRqZFh0aWxGZWw4Wm9VQ3Ezd2tJelR3U051TEIzdEsxSmpzeTRjODhBS2RSUVZGdFFR?oc=5",
-        "published": "Sun, 13 Sep 2026 07:40:30 GMT",
-        "source": "news.tv-asahi.co.jp"
+        "title": "トランプ氏、5000ドル配当は財政面で容易と強調 民主党は一斉批判 - Reuters",
+        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5UOGdiUXRFcXR2NG5ncFg3Y3ZtSjBtd0JET09lb2tOWUhhWklTZ2NxRUgxM3lrNGVENXJTeTZlVnBkZTJNYUlKeVFiaTh5R1NnbGhtUGxPeXZYTlMtUHZKNzFPVGY4X2hDSG9zMG5uTVRpbDlOZzBmeUpDRU9LZw?oc=5",
+        "published": "Sun, 13 Sep 2026 22:36:40 GMT",
+        "source": "Reuters"
       },
       {
-        "title": "日本円で約80万円！「トランプ配当金」の目論見とは？現職の司法長官から民主党上院議員まで参加した共和党大会を読み解く - Yahoo!ニュース",
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBmX20xbW5seWJicHNMRWZ6Y2hCRUJBU1o2Z2Q3NlR2OFRjRjBlTi1pcmFEVmtmc05jbFY1cVRKdDYxLWlqMllmVUpja0RvVFZhTzJEZzBsWDZkS25MNy0ydDM0amRHUVBIcGlCWkFvdG9ybk54MU5KRFE1YlplWEU?oc=5",
-        "published": "Sun, 13 Sep 2026 06:42:17 GMT",
-        "source": "Yahoo!ニュース"
+        "title": "ホルムズ海峡でイラン商船に飛翔体 1人死亡…新航路公表の会議にバーレーン不参加 - テレ朝NEWS",
+        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5qVVIwbGdwQUs5Wl9fdy1DYWpKaU51NWZlc1NpR2JraEJOMGJ1c0JITEJvM1VpR2dVdW1RTFIwY2xuUFh5NG4yQ3lMV1dRMmlCLVpqMkd1dVFFZExCYlowdFczclllcjBJOEh2U3lxYkh1a1R6VC00SVpR?oc=5",
+        "published": "Sun, 13 Sep 2026 09:03:41 GMT",
+        "source": "テレ朝NEWS"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
   },
   "kr": {
     "locale": "kr",
-    "generated_at": "2026-09-14T00:08:27.136583+00:00",
+    "generated_at": "2026-09-14T01:05:51.786005+00:00",
     "site_url": "https://krdailybrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 21,
     "trend_snapshot": [
       {
-        "term": "정석원",
+        "term": "신랑",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "폴란드",
         "approx_traffic": "500+"
       },
       {
-        "term": "우선주",
+        "term": "차상현",
         "approx_traffic": "200+"
       },
       {
-        "term": "맞벌이",
+        "term": "노벨상",
         "approx_traffic": "200+"
       },
       {
-        "term": "ios27",
+        "term": "허준이",
         "approx_traffic": "100+"
       },
       {
-        "term": "거점국립대학교",
+        "term": "이성주",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "벌쏘임",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "afc u-23 아시안컵",
         "approx_traffic": "500+"
       },
       {
-        "term": "real sociedad vs atlético madrid standings",
+        "term": "마리야 샤라포바",
         "approx_traffic": "200+"
       },
       {
-        "term": "유가",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "김기동",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "정준원",
-        "approx_traffic": "100+"
-      },
-      {
-        "term": "문동주",
+        "term": "유웨이",
         "approx_traffic": "500+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "용혜인, 지명 14일 만에 자진 사퇴‥\"여당서 결단 의사 전달\" - MBC 뉴스",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE8wTjU5S01XMXY1aEZOV1lFblJxUGdubDNSWlRZUkFWSUNtV2NMdjBnOF92N2NrMXVzS0JuU0dMMjR2b2c5LXBoQjV6UDJLTTlrdExwRHY5WDdtUWhhVXJ5eVRsN2NFMjhTR29aaTZDTi1Cb2JONDR0cNIBeEFVX3lxTFBNYWtGWGxxcHpibW5MTmc0QTlSSTFCVExfSzlJYnNPVHd1UHlsVmlCVWYxZmloT1VUVU5icXZTbFdJVzVjdk9XRVFRUTllOXY4X3p6N0NyRkZVMzlqSnVDVlBkWXVseDVkSDlmWmtoTUE5eXNIbHdXdQ?oc=5",
-        "published": "Sun, 13 Sep 2026 12:13:34 GMT",
-        "source": "MBC 뉴스"
+        "title": "‘겸직 고수’ 회견뒤 민심 악화… 용혜인, 장관보다 비례의원 택해 - donga.com",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9DUWs5djVJRENGQTdNWDVuY3hqa1RkU0l4WmJGZFVGV3JkQkxFQ3NUVGZaR3FZRWpoNElxcWM2VVNOWGUzVVJZbjB5OFBSUElDdTdkaXA0YWhOSDIxTHlEODlDUm1fOHpCUG41M2h5cTZFUkZGTjJB0gFmQVVfeXFMUDg3dWl2Z3dRVWNJN29ZclJKRHpDVWtSRTdvbzNDdFJkZUtJWWIwVC1lLWpNM0VSRjZIMF9YLVZxVEFCZDZKd0x6QXhMaEo2X29VTnRwbllCemg0WkxzSk9IUy0zN2RR?oc=5",
+        "published": "Sun, 13 Sep 2026 19:30:00 GMT",
+        "source": "donga.com"
+      },
+      {
+        "title": "김민석 “추미애의 ‘대통령 비판’, 왜 그렇게 말했는지 설명 필요” - KBS 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1ldXh1OXplLWtTM2hUX01mbVgwZFJsVThJd3F6TWJKenBwMm5UTlhSY2kzclY0VVowOG5oZ2haemF5eTZiWU9CbzdCb3FXeHJ4Y2IyMk5VOGQzdlU?oc=5",
+        "published": "Mon, 14 Sep 2026 00:13:00 GMT",
+        "source": "KBS 뉴스"
       },
       {
         "title": "‘후티 압승’으로 끝난 홍해 전투…미국·사우디 ‘머뭇’, 예멘군 ‘분열’ - 한겨레",
         "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0xamhzcjhSSU9OYU5GclBYLUZ6Z0RjT252eF9fNWRqd2MtT1pxdEFrdjU0ZVkyOVJvNmN6bGhWMWdzYmlvSFJRVzJWUVFYODdKOWJfMHpfR0NxRHBiT3VTYXlIU2ltV3MwLVJ1Q2lRaVNSUFU?oc=5",
-        "published": "Sun, 13 Sep 2026 13:11:00 GMT",
+        "published": "Sun, 13 Sep 2026 10:29:00 GMT",
         "source": "한겨레"
-      },
-      {
-        "title": "용혜인보다 의혹 심각한데… 與 \"김승원 밀리면 끝장\" 버티기 - 조선일보",
-        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPald5RXhDV3JVZkt5MG9JOEVSOUh3Sm1FMmEyUDNhN3ZVRXU2RmROZ0RlM0hOX1BMdl85b2Z4WTFDblBxSWVvSl9BMVZJZkxOaVloUVI2QmtSYzAyR3FGSjJZX19reFE2Q3lyM3NRLXVGNDltaGkxTWlvMFFWX1RwbnlDclRTZw?oc=5",
-        "published": "Sun, 13 Sep 2026 15:51:00 GMT",
-        "source": "조선일보"
-      },
-      {
-        "title": "러, 폴란드 코앞 공습…英·스웨덴 전 총리 탄 열차 맞을 뻔 - 연합뉴스TV",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9nYnhXMjI5WU5kUWNNZ1h6cWlKbEtDVnFwc3l3Tm81UEVJa1plWG9yU095NWF4MEN2YWlueXoyR2hnaWE1OFdOWF9JLWR1aGd0WUpVcUJLdzN2NkFXVG9tMmJ0YjVyN0E?oc=5",
-        "published": "Sun, 13 Sep 2026 20:38:00 GMT",
-        "source": "연합뉴스TV"
       },
       {
         "title": "동대문구 길거리서 칼부림 80대 체포…피해자 1명 병원 이송(종합) - 연합뉴스",
@@ -327,10 +321,22 @@
         "source": "연합뉴스"
       },
       {
-        "title": "북한, 도발 이틀 만에 포·미사일 합동타격훈련 확인…김정은 불참 - 연합뉴스TV",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9pVmdjWk1WQVUyQ1EwOE1BeFU0d3lwel9pOV9kcXUtMkstMndud2hoOGlDVS1LLUYzT1lLcEJMak1sTkFvNklyWC1tYVJpdHljMnBhUjlKbmdMeUR3M2dhWFRQZlFzdWs?oc=5",
-        "published": "Sun, 13 Sep 2026 22:37:00 GMT",
-        "source": "연합뉴스TV"
+        "title": "용혜인보다 의혹 심각한데… 與 \"김승원 밀리면 끝장\" 버티기 - 조선일보",
+        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPald5RXhDV3JVZkt5MG9JOEVSOUh3Sm1FMmEyUDNhN3ZVRXU2RmROZ0RlM0hOX1BMdl85b2Z4WTFDblBxSWVvSl9BMVZJZkxOaVloUVI2QmtSYzAyR3FGSjJZX19reFE2Q3lyM3NRLXVGNDltaGkxTWlvMFFWX1RwbnlDclRTZw?oc=5",
+        "published": "Sun, 13 Sep 2026 15:51:00 GMT",
+        "source": "조선일보"
+      },
+      {
+        "title": "'김승원 효과?'…국힘 지지율 42.1%로 민주 36.1%에 역전 - 한국경제",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFB3dmYwQlZJZ2lrVERURUhCQUdnX09wTmMtVmdpWmV3cFVXeXNIOGQ5WENQOXJsc0duRmhocDdKVWZwaHo0ZjduRmF5akxaMFZienl3bG1qWDhkZw?oc=5",
+        "published": "Sun, 13 Sep 2026 23:18:38 GMT",
+        "source": "한국경제"
+      },
+      {
+        "title": "[오늘날씨] 아침 '선선'·한낮 '여름볕'…큰 일교차 주의 - 뉴스핌",
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBZWG1RY0pfVlFYU1hwSXUyMklLYWcwMGJXMXNWMEtUQW52Z29yZ29obThTazVCSmZoSExzZjFSaGFhUWpoOW9uV2VxelVfSklGVk1HcFpGS0xxY3BU?oc=5",
+        "published": "Sun, 13 Sep 2026 21:30:00 GMT",
+        "source": "뉴스핌"
       },
       {
         "title": "김승원, 이 대통령 재판 공소취소엔 즉답 피해…공소청 공판부 강화엔 “공감” - 경향신문",
@@ -339,14 +345,8 @@
         "source": "경향신문"
       },
       {
-        "title": "중부 구름 많고 충남에 빗방울…큰 일교차 건강 유의 - 연합뉴스",
-        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1oY0sxSVNkMHluWXB3emZxdlctZlVRcFdUQ3BsZUUtNUsyYU5JY1RHRzNob3JpcVZGZXFiZ1JtYXNtMGctbS01ai1VUDluSmlTLUlMai1JbUdNWU3SAWBBVV95cUxOS1dKWGMxQUdxZ3BZcHgwMVpJNGIxY3dyVWxQSko5eWtiR3Jua1NpZ2lsc29WYzgtYjc4RVZMcHExWWpXTTREdXdvMEVSQ2lRMjJmUFZ5cEtkQThSZHZCelI?oc=5",
-        "published": "Sun, 13 Sep 2026 20:21:38 GMT",
-        "source": "연합뉴스"
-      },
-      {
-        "title": "‘64년만의 문민 장관’ 안규백 “파병 판단, 미국에 기반 두면 안돼…장관은 인내하는 자리였다”[인터뷰] - 경향신문",
-        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBubEpfbi00eFhiQzVadGVncnZJbXNrWlBBNHMxV0RsZ3NqV0ZxeE9tc2tJS0VPOUJuVUJ1dl9mV19TeXljM2duZHI3ZFVLeVBFVTRocHJOdkZuQdIBX0FVX3lxTE9IbXZIR3BNc2FBSGNiYVdQeHBKSFFrWDZDSDJ4V1R0UVhnSnUwMV9YbjdycV9SUF84TnoyQU1tVHFHX2RjUXJ6V3ZtMGVwX0JoYUR3TEdIZFFhdlc3a3N3?oc=5",
+        "title": "[이재명 시대, 사람 지도]노동 출신 3인방 민주당 가장 왼쪽…국힘 김예지 이념 점수 ‘민주당 중간’ - 경향신문",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5jWWVMVXlWb1BlTFFYVllIclVhWWhMZ1ZsOGh2ZlpNYmFhZjdfekEtakJ0cW5IU1dCNVFuTUVUc05MUHN4MFFqYWRpRk5wcndha29ucHpzMmxpUdIBX0FVX3lxTE05V1Z0VHdKNEpNdHdHZ3ZKalRLWlRVQ0s1bEtleHhXR2NCR0E0a2swNnl4T0ZCYVd5aDRTVFBiNzNldFlMM3ItQ0ZCYUg0QVczUTJxZngtTmpJbnpLSGdJ?oc=5",
         "published": "Sun, 13 Sep 2026 21:00:00 GMT",
         "source": "경향신문"
       },
@@ -357,16 +357,16 @@
         "source": "연합뉴스TV"
       },
       {
-        "title": "이란·걸프국 회담 연기…트럼프, 종전 낙관론 - 연합뉴스TV",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0tQkdTWFlMUmtqZjNGcjJxZjVpZ3NZanB0NXRqbkdvVlQ3REFHM0w2WDZ4TUtrMXZHbUFfalNmMFBhYVFrOGdiaGh0eDJDXzF3R1ptNkI2MUhYOTVzYU9KLThxRjJqQjg?oc=5",
-        "published": "Sun, 13 Sep 2026 22:55:00 GMT",
-        "source": "연합뉴스TV"
+        "title": "243명 탄 인니 여객선 사고, 6명 사망-130명 실종 - donga.com",
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5PVEpILUdjalo3UUlJOHU1eWhpQnhHQndFWDU5Q2luUjVOWUt6cTZZRkxrbVJyODhKMzgwS0xndmJYQVpMQmNOZXVQbndfQnNaRnpFUzBrLWk5X0RZYjRCMjh3TlZuNXR1VEhNajRtTFBQb2PSAWZBVV95cUxPSjhkZmVpcWJNQnViQ3drVmVOVHJaQ0s3Wno5YmFXMUpldWNhcXg1T3FxY2dpSnJvYjBqaFhTaHowUmpKSHhVRHdORmRiWlJyRDE4VTFnNmVuQlFqTml3RDk3TTByNkE?oc=5",
+        "published": "Sun, 13 Sep 2026 19:30:00 GMT",
+        "source": "donga.com"
       },
       {
-        "title": "미군, 호르무즈 항공 엄호 축소…지속 가능한 방어로 전환 - 한국경제",
-        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oYm9LUVRWYTdYVUxROUVKMVl6cUhXa3B4eUtGNkZQLURzWVF2UjN0LW4zVGxxckExajdDWXVDUlkyaTlCSmVvMXl3MEx3M0RXWUhZQVg1WVFFdw?oc=5",
-        "published": "Sun, 13 Sep 2026 23:21:52 GMT",
-        "source": "한국경제"
+        "title": "날개 연료탱크 달고, AI로 교란 피해… 탄도미사일 뺨친 우크라 드론 - 조선일보",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcGlKbTkzSUJTTzJtZkstcXQ4R2gtMVBUVGxUUGlzQXp4YWZzLUIybV9DSC1TcFplQjMxX3J5MHFlX3dsbWFEVERNMWR4ZEQ0VWZpem4yaTA3d0xiMGtCM1ZjUnhuei1WeUUwaHZRUE9FcldDNVZIUXJjRXRNb08zbkpVeTFwQm5rQ0ZVMFJ3OXMzODVXMXdNdTZZS280UQ?oc=5",
+        "published": "Sun, 13 Sep 2026 15:44:00 GMT",
+        "source": "조선일보"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"

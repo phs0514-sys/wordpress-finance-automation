@@ -1,13 +1,8 @@
 {
   "paused": true,
   "reason": "three consecutive failed runs",
-  "consecutive_failures": 271,
+  "consecutive_failures": 272,
   "events": [
-    {
-      "ok": false,
-      "timestamp": "2026-09-13T02:52:48.574683+00:00",
-      "error": "PUBLISHING PAUSED: technical SEO health monitor reports a critical issue"
-    },
     {
       "ok": false,
       "timestamp": "2026-09-13T02:52:48.685257+00:00",
@@ -102,8 +97,13 @@
       "ok": false,
       "timestamp": "2026-09-13T23:05:59.065711+00:00",
       "error": "PUBLISHING PAUSED: three consecutive failed runs"
+    },
+    {
+      "ok": false,
+      "timestamp": "2026-09-14T00:10:57.869908+00:00",
+      "error": "PUBLISHING PAUSED: three consecutive failed runs"
     }
   ],
   "last_error": "PUBLISHING PAUSED: three consecutive failed runs",
-  "updated_at": "2026-09-13T23:05:59.065730+00:00"
+  "updated_at": "2026-09-14T00:10:57.869928+00:00"
 }

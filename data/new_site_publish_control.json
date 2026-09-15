@@ -1,28 +1,10 @@
 {
   "paused": true,
   "reason": "us: three consecutive failed cycles, jp: three consecutive failed cycles, kr: three consecutive failed cycles",
-  "consecutive_failures": 163,
+  "consecutive_failures": 164,
   "last_error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}",
-  "updated_at": "2026-09-15T04:06:00.898123+00:00",
+  "updated_at": "2026-09-15T05:05:57.279923+00:00",
   "events": [
-    {
-      "locale": "kr",
-      "ok": false,
-      "timestamp": "2026-09-14T15:07:51.156163+00:00",
-      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-    },
-    {
-      "locale": "us",
-      "ok": false,
-      "timestamp": "2026-09-14T16:06:03.657969+00:00",
-      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-    },
-    {
-      "locale": "jp",
-      "ok": false,
-      "timestamp": "2026-09-14T16:06:06.344715+00:00",
-      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-    },
     {
       "locale": "kr",
       "ok": false,
@@ -244,22 +226,34 @@
       "ok": false,
       "timestamp": "2026-09-15T04:06:00.898078+00:00",
       "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+    },
+    {
+      "locale": "us",
+      "ok": false,
+      "timestamp": "2026-09-15T05:05:53.069076+00:00",
+      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+    },
+    {
+      "locale": "jp",
+      "ok": false,
+      "timestamp": "2026-09-15T05:05:55.552078+00:00",
+      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+    },
+    {
+      "locale": "kr",
+      "ok": false,
+      "timestamp": "2026-09-15T05:05:57.279884+00:00",
+      "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
     }
   ],
   "locales": {
     "us": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 163,
+      "consecutive_failures": 164,
       "last_error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}",
-      "updated_at": "2026-09-15T04:05:56.060383+00:00",
+      "updated_at": "2026-09-15T05:05:53.069103+00:00",
       "events": [
-        {
-          "locale": "us",
-          "ok": false,
-          "timestamp": "2026-09-14T09:07:09.899049+00:00",
-          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-        },
         {
           "locale": "us",
           "ok": false,
@@ -373,22 +367,22 @@
           "ok": false,
           "timestamp": "2026-09-15T04:05:56.060349+00:00",
           "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+        },
+        {
+          "locale": "us",
+          "ok": false,
+          "timestamp": "2026-09-15T05:05:53.069076+00:00",
+          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
         }
       ]
     },
     "jp": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 159,
+      "consecutive_failures": 160,
       "last_error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}",
-      "updated_at": "2026-09-15T04:05:59.080430+00:00",
+      "updated_at": "2026-09-15T05:05:55.552105+00:00",
       "events": [
-        {
-          "locale": "jp",
-          "ok": false,
-          "timestamp": "2026-09-14T09:07:12.484548+00:00",
-          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-        },
         {
           "locale": "jp",
           "ok": false,
@@ -502,22 +496,22 @@
           "ok": false,
           "timestamp": "2026-09-15T04:05:59.080399+00:00",
           "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+        },
+        {
+          "locale": "jp",
+          "ok": false,
+          "timestamp": "2026-09-15T05:05:55.552078+00:00",
+          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
         }
       ]
     },
     "kr": {
       "paused": true,
       "reason": "three consecutive failed cycles",
-      "consecutive_failures": 159,
+      "consecutive_failures": 160,
       "last_error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}",
-      "updated_at": "2026-09-15T04:06:00.898106+00:00",
+      "updated_at": "2026-09-15T05:05:57.279909+00:00",
       "events": [
-        {
-          "locale": "kr",
-          "ok": false,
-          "timestamp": "2026-09-14T09:07:14.773368+00:00",
-          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
-        },
         {
           "locale": "kr",
           "ok": false,
@@ -630,6 +624,12 @@
           "locale": "kr",
           "ok": false,
           "timestamp": "2026-09-15T04:06:00.898078+00:00",
+          "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
+        },
+        {
+          "locale": "kr",
+          "ok": false,
+          "timestamp": "2026-09-15T05:05:57.279884+00:00",
           "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
         }
       ]

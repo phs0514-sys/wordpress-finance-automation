@@ -1,94 +1,70 @@
 {
   "us": {
     "locale": "us",
-    "generated_at": "2026-09-19T03:05:14.300184+00:00",
+    "generated_at": "2026-09-19T04:05:33.908754+00:00",
     "site_url": "https://uscurrentbrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 22,
     "trend_snapshot": [
       {
-        "term": "braves magic number",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "riley greene",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "rangers game today",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "hao-yu lee",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "ronald acuña jr.",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "jung hoo lee",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "paul goldschmidt",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "white sox",
+        "term": "google",
         "approx_traffic": "10000+"
       },
       {
-        "term": "jessica tarlov",
+        "term": "mlb scores",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "angels",
         "approx_traffic": "1000+"
       },
       {
-        "term": "juárez - tigres",
-        "approx_traffic": "10000+"
+        "term": "tmz",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "walker jenkins",
+        "approx_traffic": "1000+"
+      },
+      {
+        "term": "alexandre pantoja",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "foxnews",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "bbc",
+        "approx_traffic": "1000+"
+      },
+      {
+        "term": "sea snake",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "jimi hendrix",
+        "approx_traffic": "100+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "Trump claims deal with Denmark gives US ‘permanent control’ over Greenland - Al Jazeera",
+        "title": "Trump claims deal with Denmark gives US ‘permanent control’ over Greenland - aljazeera.com",
         "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPRDVxdU8tLW5CMWJsU09LZjI2ajNiV3BoeEJzUkMxUHVIUzlMM0owem1TSm9jR2duTDRlMVNVaTR6T3lhQURzbC1hMXF3SUxxamN2TU9qdEVXYXNZa3ZJVDBncWdSU2pqNzdxN014b2hVanlYbE9hLTVHOTV2TkRMWUpXQURUbFo1a1Q4R1NaQjJsdjl3bnZ6Qjc1YnVhY3ZlZklhYlhtOVFqbkR5TGFHUGNSMNIBuAFBVV95cUxNM2hkbUFHWEdiQ1ktblBkWFNyek1ZeUdaZjNpb25aZ2JBa2NYMldMei1tanhYV2hsNUh4VkMxNTRFVHhQVkl2akJscUxraDVNNHh5ckVEcFZvamdVVU1sb253cU5PZXVfV1poeWVQd2J5ZVBwVjVwTDZaeXlsQ3gwNlhaWjJGZDhyYWs4NFFWSzlsYjVFRUVJRnJySW5TQkdxRk02SEdtMVhuS2pOWEtGbm9GNlNqejRU?oc=5",
         "published": "Sat, 19 Sep 2026 01:16:39 GMT",
-        "source": "Al Jazeera"
+        "source": "aljazeera.com"
       },
       {
-        "title": "Trump Says He Has Banned CNN, MS NOW and Politico From White House - The New York Times",
-        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxORkRnSkZJNGpwdlRLTGlyRGxKVmZRelpBR1ZSRXJNdDBsU2Vzdk00TlJqOTNXVmdYMEhwdTBiSmRNSXk0bi03b184MU5neG9ZUnVycGRjUGhpR0NQNnlMOFF0RXpaMGlkTVV4UDRtaVM5bHZUNGktYU54YmZtYlh2SnFGUmlPT0FmdVcwSG5JdEFlOEtISlF4TEM1SGc?oc=5",
-        "published": "Sat, 19 Sep 2026 00:31:59 GMT",
-        "source": "The New York Times"
+        "title": "Trump bans CNN, MS NOW and Politico from White House - Axios",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBtVWpKOWNSbVY1Znl3Ym1HeF9uZGZ4ZjNIaWplekxZMnhLaDdoNTNIaXJHenZQZTUtb083SlFuWVBRS1RZVmlFZFUzV3FEbjN2MFlfSE1RUHM3aVlCQ3ozR1MzY2FzdFRYSl8xZ1o4UHVMb3dseTAwQUtHZ3gwWEk?oc=5",
+        "published": "Fri, 18 Sep 2026 23:37:40 GMT",
+        "source": "Axios"
       },
       {
-        "title": "More U.S. troops have died amid Iran war than Pentagon has disclosed publicly - washingtonpost.com",
-        "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYk51QUpzSHBoWFR4UjJDZjhsbUNqck1YU2RndG93S2tzZjBMS2RqTWFKRURWenlzYzFpTGJYV2k4STFQZjNCbjhHaE5kUnZfeUlMNmhtblBBYzRzV1B0SHREbGk3R2JqbDVKSTJRMWduU2dTZzZ6Qkh0XzV3OUEyWWVldnJrTW00bDk0ZU5VbzBzVS1GSTJIVnpXLU00eVhuLUJ4V2llajVJdlJoN2EwXzhtTkwycklCS3dnNkRMd056Qm5Bd0N2MndkU0FBaTlRZEE?oc=5",
-        "published": "Sat, 19 Sep 2026 00:46:26 GMT",
-        "source": "washingtonpost.com"
-      },
-      {
-        "title": "Trump Calls A.I. Fears a Hoax. Inside the White House, the Debate Is More Complex. - The New York Times",
-        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNak5GUzFuWWRqR1pyS1YtWkxtSXdRRXZQeTVOQzlEQmMtMVFteUxjYnRDRTdlRm91NFhacVJ4UkEwRVA1Slg3THlocElZRTZxdTh3TnNyZGlpRklMdFhyWndMaEVORS1JMUY0N3lLc0xQQkdTZHFhMzNtY0R1d01KeVhjRVI3SURHenRrVWVTME9TRDZl?oc=5",
-        "published": "Fri, 18 Sep 2026 18:09:23 GMT",
-        "source": "The New York Times"
-      },
-      {
-        "title": "JFK’s family slams Trump over Kennedy Center: ‘How small minded, how narcissistic’ - The Hill",
-        "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMXl5UFlOOVBGa2hMb29aMW5SdEtJOVB3YWRHUEI2N0dSdUFReGI4bHlQNTVEYXc0QmVtOXNQaHVTNE8tZ096VkdCUkNSODFIMk9ROUVualMzYXF4MnkyZGNwZC1mOEczZjNhbDdHR3ZuNHFOMEpIME9WVWlhUnBRUnJ6d2dvQdIBiwFBVV95cUxNVDg4elZrVUd4N2lSUnZ0eHRGNDFNOWExb2lPQmhiLXlRLWtSdzdvU2FvLVJfWGJWRTRHN1hsdmpVUXBfdzJRVU1uOWNzT1BVM3ZWR0x1OTN1YjFvT3hQMUFtOXRLVllXOUp5VEVIaHlvQXc1VTFZWlpVdmtLU2psSW14dnp4NGJhd3Uw?oc=5",
-        "published": "Fri, 18 Sep 2026 16:57:00 GMT",
-        "source": "The Hill"
-      },
-      {
-        "title": "Ekurhuleni killings: Grim discoveries of murdered women spark fear in South Africa - BBC",
-        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBZZEl2blA0aEd5RW93YXNCRzM4VGFkRjIzd1pJTjhUNFhXbzdZQnZtNjhNaXdWd0QwR0ViMUY1UmpodFQ0Y05lVDc0dmdjRW5qX3FyWlEzVWR6UGM?oc=5",
-        "published": "Fri, 18 Sep 2026 23:04:41 GMT",
-        "source": "BBC"
-      },
-      {
-        "title": "Trump officially signs Russia sanctions bill into law - The Hill",
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZ1lIQTJVWl9zbnNGaVYtZ2kyOUlaS3A3VUhTdnBSbmNPM041eVZRdllxeTdQcTBHc0xEYVNVdmhFQ092eFhXQWdpS0RQY1VqQWtWcF9QVi0wbDNKcm9ZSE84b3VYZ2N0aTlRSlVzcUU3dEFMNldfWC1hcDlLd0JhM3VzenZ5YXJva0djbElOVdIBlAFBVV95cUxOVEx5RGVTWHNlLUZnRENzZVFxMnR6RHIwYk9McnFTUzZibFVFNmxhcWc4Ynl5WFdVZzVXT0Uzc1BCYlhtaXRPdkU3MHVhVFJRUWpFbE9FcE1UUGNQQXlweXJWYjYtblJfWlZJTm9Xb1hoUkZiOHlKTUNtT0h2WFltLWFjdXFKR1BkNERsck1qMUpjTnJH?oc=5",
-        "published": "Fri, 18 Sep 2026 23:47:00 GMT",
-        "source": "The Hill"
+        "title": "Vigil at the Kennedy Center expected to draw about 1,000 supporters - The Washington Post",
+        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNmxHMG00bUY0M0VDVHJHenYtdXhCVXdPRmxjTDN0OEhEWE5QYWlnUEJzeFZFV1pYMFhjWWlCNU1yZk1IQlBMcHdybzhVYjhLV19peUlwWDg1SUZGVWRmZFdIdFprZG83Ym02dWQ5T2RZV2FVY0Jpd3RqaVFxZU5sY2kzb3ZKZGJTRUZUeDlIVnVRVGRkcUw1TUotNDZib1VDWGY4aHdxei0?oc=5",
+        "published": "Fri, 18 Sep 2026 23:35:29 GMT",
+        "source": "The Washington Post"
       },
       {
         "title": "Holdout juror in Clancy trial says he didn't have 'any doubts' that she was responsible for killing her kids - PBS",
@@ -97,22 +73,46 @@
         "source": "PBS"
       },
       {
-        "title": "Florida’s Salazar gets light Trump rebuke over critical immigration ad - Politico",
-        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUmJBRWZIdU1nT0VrX0x1NDRTN2dGV3NKRmNVSnMzOWhmVzVHUkd0dmdDa0FsOXV1V1kwbGNDS3Z1RzQ2d0xkZWhVcmVyWHFBYU1YclBUQTd0Tk1ZUkh3ckwxemhrcVdHdE1MMzJMdWJmZWFTdkdEaEgyUEpBUWdIcTJJdnN6TkFJQUdrV0RDaWhyN21jbkExUEN6X2hnQkcxSXlScjd6SzJPYmtuR0xmbTdDRzhEZXoweTZr?oc=5",
-        "published": "Sat, 19 Sep 2026 00:20:00 GMT",
-        "source": "Politico"
+        "title": "Ekurhuleni killings: Grim discoveries of murdered women spark fear in South Africa - BBC",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBZZEl2blA0aEd5RW93YXNCRzM4VGFkRjIzd1pJTjhUNFhXbzdZQnZtNjhNaXdWd0QwR0ViMUY1UmpodFQ0Y05lVDc0dmdjRW5qX3FyWlEzVWR6UGM?oc=5",
+        "published": "Fri, 18 Sep 2026 23:04:41 GMT",
+        "source": "BBC"
       },
       {
-        "title": "Newsom Wants AI ‘Kill Switch’ to Rein In Tech Industry - Bloomberg",
+        "title": "Trump Calls A.I. Fears a Hoax. Inside the White House, the Debate Is More Complex. - The New York Times",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNak5GUzFuWWRqR1pyS1YtWkxtSXdRRXZQeTVOQzlEQmMtMVFteUxjYnRDRTdlRm91NFhacVJ4UkEwRVA1Slg3THlocElZRTZxdTh3TnNyZGlpRklMdFhyWndMaEVORS1JMUY0N3lLc0xQQkdTZHFhMzNtY0R1d01KeVhjRVI3SURHenRrVWVTME9TRDZl?oc=5",
+        "published": "Fri, 18 Sep 2026 16:36:48 GMT",
+        "source": "The New York Times"
+      },
+      {
+        "title": "Trump officially signs Russia sanctions bill into law - The Hill",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZ1lIQTJVWl9zbnNGaVYtZ2kyOUlaS3A3VUhTdnBSbmNPM041eVZRdllxeTdQcTBHc0xEYVNVdmhFQ092eFhXQWdpS0RQY1VqQWtWcF9QVi0wbDNKcm9ZSE84b3VYZ2N0aTlRSlVzcUU3dEFMNldfWC1hcDlLd0JhM3VzenZ5YXJva0djbElOVdIBlAFBVV95cUxOVEx5RGVTWHNlLUZnRENzZVFxMnR6RHIwYk9McnFTUzZibFVFNmxhcWc4Ynl5WFdVZzVXT0Uzc1BCYlhtaXRPdkU3MHVhVFJRUWpFbE9FcE1UUGNQQXlweXJWYjYtblJfWlZJTm9Xb1hoUkZiOHlKTUNtT0h2WFltLWFjdXFKR1BkNERsck1qMUpjTnJH?oc=5",
+        "published": "Fri, 18 Sep 2026 23:47:00 GMT",
+        "source": "The Hill"
+      },
+      {
+        "title": "Newsom Wants AI ‘Kill Switch’ to Rein In Tech Industry - Bloomberg.com",
         "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQVTQ3ejdRYU1ZWlcwbjQtV2o3Sm10R1l3WFpKdmpLMVMzb2h3QTAtY3ZYSlRveHpFYktaOVc4V0JzQlE2eVdkWTkzY010T3owcm53RmlNMW1tdGdXX25TUkdiY0NsVjdQdVFqWE96ajRmSm4ydmpZenY4YXM3QXEzY1hhLWxwT1FwOVpGSmItcG1NS2QwS2xKR1F2NWctMlJTUGl1UElIMTlwV0NJLTVj?oc=5",
         "published": "Fri, 18 Sep 2026 18:32:54 GMT",
-        "source": "Bloomberg"
+        "source": "Bloomberg.com"
       },
       {
-        "title": "Russia begins 3 days of voting in a parliamentary election set to cement the Kremlin’s power - AP News",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOYUFqYVVGeUo1RkFUYXVSZVNtWU5wU0ViN1c3eE90aEJ4dHduTjRhazI0VWpscUJzTXUwQkNzVzl0UC0xMnlVa0c3azRCTmtqbFc3bldOWjQxOWxkbDFMaTUxb1AyTVFRMm9wVGoxcFZ1RVJhSDYxX0FLYzFNNVF6VHY1NkR2WF82QmozeGFXaFh2cjdHSWJaY0tub3lybVJ4c1FfME41ZUdoSUFCeHc?oc=5",
-        "published": "Fri, 18 Sep 2026 20:18:00 GMT",
-        "source": "AP News"
+        "title": "Civil Rights Groups Sue to Keep Armed Agents Away From Voting Sites - The New York Times",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOX2JQX2RZX19QLVMtY0hCMDE2RWVFRzU2cFdtakFrdnBFRHV1TnpNdjV0czEwZXNjRUNRcnVkNEg0WlFmUk9XTjVUVk9pdFB0QzJvVDRfeXpXeXlEMkxBNmc0My0yRXdLaTFtRkJCNy1USXRNUHdLZFVXY0YxZVFVY3Z0cEV4YWJhaDFV?oc=5",
+        "published": "Fri, 18 Sep 2026 13:34:51 GMT",
+        "source": "The New York Times"
+      },
+      {
+        "title": "Bailee Rios, suspect in deadly Metro bus crash, seen in new video moments after crash in Chatsworth - ABC7 Los Angeles",
+        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQSEFmYklfbEZZNDVfaHVKNzJURGxPTDdvZFlvSkJJZlFKZ2M5dy1wZHR1ZjM3eUZUdVc2ODJvbGFCVVNwR1NPLVdsUmxDbGNES2lRM2xIRndza2ZfM28zZUJhaVdtb0FEcHlZU2tiendfaGNidlBxaUtXcXQ5dXhjNjducW91NWZqaGhtTnVfa3d3eWpxUFI0T2IzUzhlX2NzSTNObl9vUDJPZWPSAbABQVVfeXFMTlN4TW5vN3ZPTlI4cllrVmFwYkswZzhCdEZRcVB0MDRzOWdqZkZGZm9nZmJaSlJWNEktLU5BQndZUXdjak1TeUFDakdWNUs1c1RqZEhGTXRka2pFVTQ3RFhIRXdIdk90ckZNRUt2UWZjcGhudGdyNGdJUWNyRmZDcEtpYnRLMVpMa2VRdi1rczBpSnpNcVBra3hRbktuM3czM1hmVjdhQzU0cUIzUjJ1ay0?oc=5",
+        "published": "Fri, 18 Sep 2026 21:02:57 GMT",
+        "source": "ABC7 Los Angeles"
+      },
+      {
+        "title": "‘There are no decent parties left’: Sham elections underscore Putin’s grip on Russia - politico.eu",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQOTluRmdiblV6d3JhQ0RqZVV5dmdPRUpBaWJDN0V2eGFYVG1qelNRWXdsQnROWkJJVEozY2xQdUFuUTk4NVJSUFQwclhBOUxEbGtsYjNVUlJ3MzlBZHFnTUdvczYwMGpQNEZ3Y0RNQlBGY3RYM2RwSG5PREZUY0FKMm9aTjJLQmJ6dXFHS0hOU0FQX0l4ZHBObGpxZnJJRnlYYXl4RXA1bFRCSkFoU1VNbThPTQ?oc=5",
+        "published": "Fri, 18 Sep 2026 17:54:00 GMT",
+        "source": "politico.eu"
       },
       {
         "title": "The cost of the Iran war has risen to $43.6B, Pentagon tells Congress - USA Today",
@@ -125,53 +125,59 @@
   },
   "jp": {
     "locale": "jp",
-    "generated_at": "2026-09-19T03:05:16.606779+00:00",
+    "generated_at": "2026-09-19T04:05:36.654859+00:00",
     "site_url": "https://jpdailybrief.wordpress.com",
     "status": "ERROR",
     "candidate_pool_size": 22,
     "trend_snapshot": [
       {
-        "term": "富山競輪",
+        "term": "ベルーナドーム",
         "approx_traffic": "100+"
       },
       {
-        "term": "安青錦新大",
-        "approx_traffic": "5000+"
-      },
-      {
-        "term": "イ・ジョンフ",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "ジャパネット",
+        "term": "タイムレスマン",
         "approx_traffic": "200+"
       },
       {
-        "term": "ママがもうこの世界にいなくても",
+        "term": "東京六大学野球",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "広瀬アリス",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "バスケットボール 大韓民国 代表",
+        "approx_traffic": "500+"
+      },
+      {
+        "term": "傷害罪",
         "approx_traffic": "1000+"
       },
       {
-        "term": "江川 卓",
-        "approx_traffic": "500+"
+        "term": "若林有子アナウンサー",
+        "approx_traffic": "2000+"
       },
       {
-        "term": "高杉真宙",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "スーパーgt",
+        "term": "ultra japan 2026",
         "approx_traffic": "100+"
       },
       {
-        "term": "宮島競艇",
+        "term": "京極町",
         "approx_traffic": "200+"
       },
       {
-        "term": "旅客機",
-        "approx_traffic": "100+"
+        "term": "ムーキー・ベッツ",
+        "approx_traffic": "1000+"
       }
     ],
     "news_snapshot": [
+      {
+        "title": "台風25号(ドゥージェン) 21日(月)に強い勢力で関東接近か 接近タイミングが後ろ倒しに - ウェザーニュース",
+        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE83eWI1RmtKay1XZHBkY3VjejlGc1NvZ2o0WDh1a1Z0ejdhQjZlMllUS2hUUlVsZGNNb0ltT3Z3VzlHLS1tajRWZUQ5MEstZndGRGFKZQ?oc=5",
+        "published": "Sat, 19 Sep 2026 01:36:00 GMT",
+        "source": "ウェザーニュース"
+      },
       {
         "title": "立民元代表の泉健太氏と大島敦・元総務副大臣は「民主改革の会」に入党しない意向…「全員入党」早くも頓挫 - 読売新聞",
         "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1XMm56VmlmVU9fZE9LTF9oX3JIUkVQNTk3UHF6UWQ5TmVjUW8xY2dvRUVwaVp1Um5XbFNEZHJxaGVpVzRYMzNtZTFIR0dZQS1iczBqMHhlYTdvdEtJLXl6M09rNjdTQQ?oc=5",
@@ -179,22 +185,16 @@
         "source": "読売新聞"
       },
       {
-        "title": "トランプ氏、CNNなどをホワイトハウスから排除 「他のフェイクメディアも続く」と予告 - 産経ニュース",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBOWHYxc0xRSVlGc3ZrazFvRXVYVWdqbzVFSE0zSVdBNVFEOU9qWjJxbkM0dkVwX2ZFVHBrcl9vclFzMmQwSDJtLUp1eFFpajN2M25nenBKRUtHaU5rOW16ZFM3c1V6aHd4bnhRZTFSejMyeDZVRlE?oc=5",
-        "published": "Fri, 18 Sep 2026 22:35:55 GMT",
-        "source": "産経ニュース"
+        "title": "トランプ氏、ＣＮＮなど取材禁止 偽ニュースと主張、反発必至―米：時事ドットコム - jiji.com",
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE91bGJlck83MUg1T3QxMEhEREhiTE81OWlfZWl4bjJfRTRlRko1d1dIVUcwZ1Q4YU9aRjI1MWswSmFNem5VeUp0TllzSmVLQW4zYnVPakczTTVodXFNcUh2aWRORQ?oc=5",
+        "published": "Fri, 18 Sep 2026 23:32:00 GMT",
+        "source": "jiji.com"
       },
       {
-        "title": "暴れる入院患者に劇薬の鎮静剤、看護師が「別患者分」抜き取り無断で投与…大阪・岸和田の病院に行政指導 - Yahoo!ニュース",
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE45Zm5GcGZWWUZrRGZEWTlRY0dWb3pzRjRkSktxNi15b1FyVEI5MXlBMTdGWVZKaDF1TlAxWXVjQ0dpUTc1LW1EakstNFp4OGhRcjNQbjRjaVVmRFdsNmlKRUxJN1ozU3FaTG1fMGJtREptR3VxM3J5WDhqMHJsZ2s?oc=5",
-        "published": "Sat, 19 Sep 2026 00:00:18 GMT",
-        "source": "Yahoo!ニュース"
-      },
-      {
-        "title": "台風25号(ドゥージェン) 21日(月)に強い勢力で関東接近か 接近タイミングが後ろ倒しに - ウェザーニュース",
-        "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE83eWI1RmtKay1XZHBkY3VjejlGc1NvZ2o0WDh1a1Z0ejdhQjZlMllUS2hUUlVsZGNNb0ltT3Z3VzlHLS1tajRWZUQ5MEstZndGRGFKZQ?oc=5",
-        "published": "Sat, 19 Sep 2026 01:36:00 GMT",
-        "source": "ウェザーニュース"
+        "title": "アメリカとデンマーク、グリーンランドの安全保障めぐり合意　トランプ氏が武力で併合すると脅した末に - BBC",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE04MGpiTWwwZElHY3VCU0lmdTJpODJ2UG05ZVA4X0VEanBSMDRTRXZCWnFZMUM0eXdoemRzUjhsTENfZzVVeXl0d0Z5Z2x6WnRraVl0QmlNcnJRUmlPYVVWVNIBZkFVX3lxTFB6a1RlQlFjbmxidUlRS0sya3J6TzRsRWRpc3pTQ0Flc1I5UnJfOHk3NEpDd3pFQVY5bEhHOUdHaGVCaGhQbDBFM1BvV0RmbEN4ZDMxTXg5eGJ2RlFxSlliTFZRSHJPdw?oc=5",
+        "published": "Sat, 19 Sep 2026 01:42:46 GMT",
+        "source": "BBC"
       },
       {
         "title": "＜独自＞古謝氏の子供通う学校への爆破予告、辺野古沖事故遺族のアドレス悪用 遺族も中傷 - 産経ニュース",
@@ -203,22 +203,22 @@
         "source": "産経ニュース"
       },
       {
-        "title": "トランプ氏、グリーンランドを「恒久的に管理」 来週に協定締結へ - 日本経済新聞",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5yajVwdDk0amlieTFmbnphOHFpVlFaMUNnTXJNOXBWWnFFcFQ1TnBYTHF3NTZRNlhmM3dtZmxZMVFzUnBkUG9UOFdseS1yME0tMWhqRndvS193NERsUTZNWVRvSzZ6WkhDWjFEZw?oc=5",
-        "published": "Sat, 19 Sep 2026 02:14:04 GMT",
-        "source": "日本経済新聞"
+        "title": "【速報】高市内閣支持率53％、8月調査から3ポイント増 - 47NEWS",
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE0yR1p6c2h4VV9YbEZXQjdBdXg0b096S3ptWURmbkhPN3E1TlcwWmJHck1WekxDYjROdldMVkpoVkk4UmNhUUhTOUVfZw?oc=5",
+        "published": "Fri, 18 Sep 2026 09:29:12 GMT",
+        "source": "47NEWS"
       },
       {
         "title": "【岐阜ケーキ店放火殺人】接点は“亡夫の葬儀”だった…女性店主と死亡男性（70） 「ケーキで幸せに」開店20周年目前の惨劇 - Yahoo!ニュース",
         "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5rMmllb0lXazNmUEFhc1hGSmRsbDBQbUdQY21XbjNLdVBNejNnU2YwTFQ2ZXY1Qzd3Q29DdUxhX1BlY1RoMFpoWUk2ZUdiZm81aGxPVElCT2VoUmh1QmJjeTlKTG1nVlZ4OWY4Mm5PVXpKYVI1bk9yMlloSHRtOTA?oc=5",
-        "published": "Fri, 18 Sep 2026 21:00:08 GMT",
+        "published": "Fri, 18 Sep 2026 21:11:02 GMT",
         "source": "Yahoo!ニュース"
       },
       {
-        "title": "第2次高市改造内閣 副大臣・政務官の顔ぶれ 一覧 - 毎日新聞",
+        "title": "第2次高市改造内閣 副大臣・政務官の顔ぶれ 一覧 - mainichi.jp",
         "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBNeEpnZ0lvOFFIdzF0aFY0dENiVGhYSHFoc3J5Z056NW5TUjhXR2RRcmRBT1UtSDkwZUR6SGNJYzgtSWxNdmtqSFRaUUs3a2xUemxLc1libHA5YklFeWhqR3lUalNGQ19C?oc=5",
         "published": "Fri, 18 Sep 2026 13:22:32 GMT",
-        "source": "毎日新聞"
+        "source": "mainichi.jp"
       },
       {
         "title": "【速報】宮崎県南部平野部では今後3時間以内に線状降水帯発生のおそれ(気象予報士 日直主任 2026年09月18日) - tenki.jp",
@@ -227,44 +227,64 @@
         "source": "tenki.jp"
       },
       {
-        "title": "グローバルホーク墜落事故、空自が浮遊物の写真公開 - 日本経済新聞",
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9qZXpLSkliRnRyRUNaQUxOYkI2UEtvLWtreTgydlhnSl9mTk1ZR3VUVk5WUy0xRDRyV2d2ZkJQZkdvcFZuX1FXNkYtNzZOeGd2YVdVZWx6M2EwWTk1SkNpNDF1cHRvVnI3WnQ5WQ?oc=5",
-        "published": "Fri, 18 Sep 2026 13:51:31 GMT",
+        "title": "暴れる入院患者に劇薬の鎮静剤、看護師が「別患者分」抜き取り無断で投与…大阪・岸和田の病院に行政指導 - 読売新聞",
+        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB6dndsMHdzMVAxSlFhMGtrWHRvVzF6MURpWDhUbGpGSmNGNnMzVVVscm5EQWNxRUtQaFpKblcwWjdjSFVPcUl6MncyZkFkR1FtQTdwN0JmeXJScXdyaWQ4RXphSlYzQQ?oc=5",
+        "published": "Sat, 19 Sep 2026 00:00:00 GMT",
+        "source": "読売新聞"
+      },
+      {
+        "title": "トランプ氏と習近平氏、24日の晩さん会でスピーチ マスク氏らも参加 - 日本経済新聞",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBXUlo5VEZPN002a213dE11eVpkcXU2N1NlbkFTZWlJa25yb21kMnp1UmpFcGREOXRYYnVvRVF5OENiNk16WGNsUE52OVRkY0JLVDg5QjZvR2ZYUHQ2ZHJkRWZQd3JBYlJETXFDUA?oc=5",
+        "published": "Fri, 18 Sep 2026 23:58:13 GMT",
         "source": "日本経済新聞"
       },
       {
-        "title": "トランプ氏、習氏の空軍基地到着を自ら出迎えへ 「国賓」異例の厚遇 - 朝日新聞",
-        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4wXzNMdHdITlhIOWhYRDlpVlI0QjB4Ums3enFqendJaENrYXN3LV9XUHpEbEpxb0gyUGdVUVhQSHlFaHBhVkRLRWdGb1ZlRDlPWmNpZERQUHhFU085eHY0RVo5NWxsTG8?oc=5",
-        "published": "Fri, 18 Sep 2026 00:50:40 GMT",
-        "source": "朝日新聞"
-      },
-      {
-        "title": "仏大統領が警戒感「ロシアの攻撃性と脅威は性質が変化」 - NHKニュース",
-        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1WMGs1c1hCVDVBeTBFV1gzM2lNdGRLNGZLUmNBZFhHVUdqYW1kS0U4Tjd3NlJFcndYOHRveFVjV0lPZ1diNHdLbFFNRkZEZkFJaUJDTjV5YXc5MTBJUlUw?oc=5",
-        "published": "Sat, 19 Sep 2026 01:57:50 GMT",
-        "source": "NHKニュース"
+        "title": "対ロシア制裁法が成立 ロシア産原油・ガスの大口輸入国に関税 - 日本経済新聞",
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9kRUlqY3p3SGhsa2hVS1c1YzVyYlZueFhlYUlDZUFUc0hOOEh4ek56UDc4Mlg0ZTdHWmw2Vkp5SW5HNGllNTRGNEJPTDBiWFNPMVVpNDZMWmlpZGk0OGtEck5JYTVzY2lPcWVVQQ?oc=5",
+        "published": "Sat, 19 Sep 2026 00:28:38 GMT",
+        "source": "日本経済新聞"
       }
     ],
     "error": "HTTP 429 from https://api.openai.com/v1/responses: {\n  \"error\": {\n    \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n    \"type\": \"insufficient_quota\",\n    \"param\": null,\n    \"code\": \"credit_balance_exhausted\"\n  }\n}"
   },
   "kr": {
     "locale": "kr",
-    "generated_at": "2026-09-19T03:05:18.823352+00:00",
+    "generated_at": "2026-09-19T04:05:38.961458+00:00",
     "site_url": "https://krdailybrief.wordpress.com",
     "status": "ERROR",
-    "candidate_pool_size": 19,
+    "candidate_pool_size": 21,
     "trend_snapshot": [
       {
-        "term": "골골골골",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "수성못",
+        "term": "한화에어로스페이스 채용",
         "approx_traffic": "100+"
       },
       {
-        "term": "정현",
+        "term": "국가보훈부",
         "approx_traffic": "1000+"
+      },
+      {
+        "term": "김수미",
+        "approx_traffic": "2000+"
+      },
+      {
+        "term": "김승원 사퇴",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "부활남",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "japan vs hong kong",
+        "approx_traffic": "100+"
+      },
+      {
+        "term": "수성못",
+        "approx_traffic": "200+"
+      },
+      {
+        "term": "하원",
+        "approx_traffic": "200+"
       },
       {
         "term": "포스코노동조합",
@@ -272,53 +292,33 @@
       },
       {
         "term": "이소나",
-        "approx_traffic": "500+"
-      },
-      {
-        "term": "선거",
         "approx_traffic": "1000+"
-      },
-      {
-        "term": "투자가",
-        "approx_traffic": "200+"
-      },
-      {
-        "term": "공무원",
-        "approx_traffic": "2000+"
-      },
-      {
-        "term": "중국",
-        "approx_traffic": "1000+"
-      },
-      {
-        "term": "엘레나 리바 키나",
-        "approx_traffic": "200+"
       }
     ],
     "news_snapshot": [
       {
-        "title": "[속보] 김승원 법무장관 후보자 자진 사퇴…“깊은 고민 끝에 직 내려놓기로” - KBS 뉴스",
-        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBpYjNHRGlfMGI3amFBZTJSWlhZWEQ3MkhTdHJsem1BWnVla3lJM1Z2U1JFTEt2NDFpbmlUMFFZUFdPeXJpMjA4NWN3YUg0cUhhN05FZkJFMnZ1VlE?oc=5",
-        "published": "Sat, 19 Sep 2026 02:00:00 GMT",
-        "source": "KBS 뉴스"
+        "title": "한·미 외교장관, 북한 비핵화 원칙 재확인···“북미 대화 진전은 아직” - 경향신문",
+        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5jT0o0andGaUs2ZGNIdkh2WWl4WHVUendUZVJVYnpnR05YMFNtM3FkNWI3TVVOZGxrS01CZGUyUFJvVVpjYmdnVVBzZDVjXzEzOTBua0lXY1c1d9IBX0FVX3lxTE4zOEsyYmQ0YTRPam5jd2Z3ZGRFMm9LZFowOV9IQnhseFh5dzA1WTU5eFRvQUtXbmlfUllvZVBuUzRzb3ZlMzh3VE1xSmtZZ0R0MzM4UTlnYUJQTm0ydjJj?oc=5",
+        "published": "Fri, 18 Sep 2026 23:47:00 GMT",
+        "source": "경향신문"
       },
       {
-        "title": "트럼프 직접 나온다는데···‘시진핑 맞이’ 다른 정상들은 어땠을까 - khan.co.kr",
-        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1RN2JxcFFrbzhtVXBMV3o2cDBZWVZwb1FiUEZ2Yy1pVEhwZEZhMFJRdmdpWndqdEd0LURlZDFWUjNSWkxKWHprVEdzWVBRSUp0cnI5NnZQTDlvQdIBX0FVX3lxTE5TMlJyRU5aR1lvaXVhZE16UDJ5WjRKNjJqMnJfSnlTNWR1X3B5Z2tCcDN3ZEd5U1F3dUhEajFrWktYb3Z2enM2R3BwNTRFT2dCNXJlaWIwSGtfWVo5YjZ3?oc=5",
-        "published": "Fri, 18 Sep 2026 21:00:00 GMT",
-        "source": "khan.co.kr"
-      },
-      {
-        "title": "한미 외교장관, 북미대화 재개 논의…“북한 비핵화 공약 재확인” - 한겨레",
-        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE04ZVdnVzltbXRxZVcwUkhHLWZVTXNxR0lBNURVVGJjdGdUbFl1YWJKZW9DeUV2NE5QaHhSM2tWMU9fVktPU3dJTlJEOHZBZHZwTFZjODNPeWN6NkQwcC15LXZJb1RYZ2xuSkIzeVhSMA?oc=5",
-        "published": "Fri, 18 Sep 2026 23:24:00 GMT",
-        "source": "한겨레"
+        "title": "국힘 \"김승원 임명하면 성난 민심이 대통령 덮칠 것\" - MBC 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1OX3lEYkxQeFBWdFN5OGJjV2F5SEVvMEIydkVTZ3p0VXVsLWRiYjBYV0ZnSUNlRWktRTZKN01PRWtLXzlaRnZHVF9sYlhRWHZ6TjViRlhyaURsdDZtOUNfeEpzazBhMllPbU1SVmwyZ19ySlhEa0lXVg?oc=5",
+        "published": "Fri, 18 Sep 2026 00:54:40 GMT",
+        "source": "MBC 뉴스"
       },
       {
         "title": "이 대통령, ‘외국군 지휘 배제’ 밝혀…청해부대 활동 ‘기준선’ 시사 - 한겨레",
         "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE8yM0Y5d2x3eXp4T0VxdTRNYmRZcnY1OF9YY3J3bUo0UTBCYjhjR2JLMW1tUUJoVFVCbklFWXpteDlTckFlel92Sm9UTXdfMFhmaDVTUlRMYUJQV0E3c3p4bzVBTUxvRDlE?oc=5",
         "published": "Fri, 18 Sep 2026 07:07:00 GMT",
         "source": "한겨레"
+      },
+      {
+        "title": "트럼프 \"시 주석과 아주 좋은 만남 될 것‥이란전은 곧 끝나\" - MBC 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE44SEkxVEpLdHV5TE9LU3pwZ0VHNE9aQjRvZlByR3VGQ1BaREV0dWNFTzM3TDhFMnFxWjNHTHdrWUEyUkZ4djlaZjUwdFNUZEN3dnZiZmMzLWM1N0hfWXFiWE1MRS0zN0JwUFBmRFdaeXFyWWZJ0gF0QVVfeXFMUHJzUDVZZnJIZVZQU19VM3dJRE1tX0tfbnFCWW5VdGl1NTNzX2RRNHhtbVBvcWllb214TXFqWTNHSmxPOFZ5a3JITkNxcTc0aHhOSlVQcVlpYXZ5ckpDaG95NjZ5NVBhTW5VX0dpQ3VDSUlYZ0U?oc=5",
+        "published": "Fri, 18 Sep 2026 21:04:58 GMT",
+        "source": "MBC 뉴스"
       },
       {
         "title": "이 대통령, 지지자 응원 글에 \"위로 많이 돼‥더 개혁해 더 나은 세상\" - MBC 뉴스",
@@ -333,16 +333,10 @@
         "source": "한겨레"
       },
       {
-        "title": "뿌리고 나눠먹고 몰아쓰고… 김지용 중수청장 후보자, 특활비 의혹 ‘종합세트’ - 뉴스타파",
-        "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBrSG8tbG9wMThMSll5ZXJhWnJMbTFOQ25uNTFtaXlDZFFWR0libTFtVXpTOWxOSXR2bzFPclFieEI3RkV5b2FyMjJn?oc=5",
-        "published": "Fri, 18 Sep 2026 04:45:53 GMT",
-        "source": "뉴스타파"
-      },
-      {
-        "title": "이란전쟁 틈타 ‘수조원 담합 혐의‘ 석화업체 경영진 2명 구속 - 한겨레",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9mUGxvNTRBdzgyUnNVWWhlWmxjRWk0SW5qRERsOFRCa1RMSkFfRHVmM0pmQWVPUm50alRVZnhLNmw3SERIZ2pha1FlZDRZRWxkMTNqakUyWVpvWkg5MDBmUmVnd01xSmRxalhXOXJNSlF3QQ?oc=5",
-        "published": "Fri, 18 Sep 2026 23:34:00 GMT",
-        "source": "한겨레"
+        "title": "'전쟁 틈타 담합' 의혹 석화업체 경영진 2명 구속‥6명은 기각 - MBC 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE05X3ExdnlMbFlJWG5DUzQ5N3NFQm5UQkJLTEVMekc4b0FRNV8taHZHVmdGcWxZM3pOak1JTXppUXlNS0JPcHU2RzdyVVRFaFIxdV9kOUlzdTBJak5CZE9JSzVsYmt4dGQzN0R2OThEeThzTExsLTZ30gF3QVVfeXFMUDd2SVVILTd5LVVRS2Y3cVVFbjBHbHVnLUxEOGV0eXExM01ULTUxbWh2RHRmeXBTNlNUT3NWdmstcmpsZ0FGMmdYTGJxeUFOWnpsdUdfbUk5a3cweUYzOS02RGxmckR2RFFiYnV6QmxQem05RkVyd0U?oc=5",
+        "published": "Fri, 18 Sep 2026 18:17:12 GMT",
+        "source": "MBC 뉴스"
       },
       {
         "title": "일교차 큰 가을 날씨…동해안·제주 비 - KBS 뉴스",
@@ -351,10 +345,16 @@
         "source": "KBS 뉴스"
       },
       {
-        "title": "李, 서울 집값 상승 오세훈 탓... 吳 \"대통령 머릿속부터 리셋해야\" - 조선일보",
-        "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNZjk0RkdsX2RIc0NIZklWdEtDMUNzZmxUY1U4Z0NWTGdoZHRhVkt1YVdIRU4yVDZ6ejBPdEhUTm1lTk5BcF9YY055WDdJekx4WFExWkRtS05rdHE5Ymhab05vbi1hMmpLWUxmSFBud2Z2cEtFcURBVkxYUXFiWmU3cHFlUFFiMk0teWo0S1RnSi0?oc=5",
-        "published": "Fri, 18 Sep 2026 13:22:32 GMT",
-        "source": "조선일보"
+        "title": "문재인 “트럼프 대북 대화 의지 다행…한반도 정세 풀 유일한 열쇠는 대화” - KBS 뉴스",
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9uWmZQa1VnQlRsdlRFOXZLcGdvQU5vQTR3YTNoalFXN2lkSjRpRTA0MnNYZHdCX3NHN1dvR1paanpXNDIyMHdkTzJDQ3ZOTjNiOXlJb1NMRzhUdFU?oc=5",
+        "published": "Fri, 18 Sep 2026 07:11:00 GMT",
+        "source": "KBS 뉴스"
+      },
+      {
+        "title": "손자 사망 ‘강릉 급발진 의심’ 사고, 법원 재현 감정 - v.daum.net",
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1SNTlUazZvN1FwSjNIZjY1cFhYaG92eWU3dzBocVZBdmUzU0VoVUxPMm5BUDdYX0NWZWNNSTB6c2ZucjVwRS1DejBfaUV2T00?oc=5",
+        "published": "Fri, 18 Sep 2026 22:17:53 GMT",
+        "source": "v.daum.net"
       },
       {
         "title": "미군, AI가 만든 잘못된 정보로 대중 작전 실행할 뻔 - 연합뉴스TV",
@@ -363,9 +363,9 @@
         "source": "연합뉴스TV"
       },
       {
-        "title": "“후티 좀 말려줘” 中 밀착하는 빈살만… 美·사우디 동맹 ‘흔들’ - 조선일보",
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOcFZaU0xWY3B2QW9xNXotak0xdmtXWmV5TjlzSnpIRmEyWHRqNi1wS3NNSUlYMWxqWWw4SWNpNXZRQ3NROWhNQlZUQjFTWFlWSlNGZTlncF9yNlJOX1ZiRDBTa1hmNUVLVENQcHJYY2E1bzNNck9PTUpWWU9sdmZ5U2hpUUJhT096VXVscTQ0WllSa1FkOUEyNnpXbTZoZw?oc=5",
-        "published": "Fri, 18 Sep 2026 15:36:00 GMT",
+        "title": "트럼프 \"그린란드 내 미군 주둔 합의... 안보 영구 통제권 확보\" - 조선일보",
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQb1dLY0lDV29ybDJBSXVjRGNXcFg2UEEySUdKWm5yVDlMV1JUYUtCRHJxLTFwemE1cU9QcTRMY2VmQ082RFZLVmxIeUxuRGQ0NzNndjNmTDFzZ2lBRGtqRW9rdWdUY3c2UjhxNG5EMzhRT1dCcjdabnVRQzBMZnRFcXZtLW1WbnZHZ042YzJWa0c2U1lTRk5qWG5QYUNRZw?oc=5",
+        "published": "Sat, 19 Sep 2026 01:16:00 GMT",
         "source": "조선일보"
       }
     ],
